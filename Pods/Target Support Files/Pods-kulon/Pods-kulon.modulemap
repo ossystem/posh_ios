@@ -1,0 +1,6 @@
+framework module Pods_kulon {
+  umbrella header "Pods-kulon-umbrella.h"
+
+  export *
+  module * { export * }
+}

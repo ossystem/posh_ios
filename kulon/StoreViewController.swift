@@ -1,4 +1,4 @@
-//
+ //
 //  SecondViewController.swift
 //  kulon
 //
@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RxBluetoothKit
 
 class StoreViewController: BaseViewController, UICollectionViewDelegate, UICollectionViewDataSource {
 
@@ -17,8 +18,11 @@ class StoreViewController: BaseViewController, UICollectionViewDelegate, UIColle
         }
     }
     
-    //MARK: - Lifecycle
+    let bleService = BLEService.shared
     
+    //MARK: - Lifecycle
+    //c 2A37 s 180D
+    //  2A29   180A
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -26,10 +30,27 @@ class StoreViewController: BaseViewController, UICollectionViewDelegate, UIColle
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setupInterface()
+        topBar.button.addTarget(self, action: #selector(discover), for: .touchUpInside)
+    }
+    
+    func discover() {
+        bleService.discover()
     }
     
     func setupInterface(){
-
+        let button1 = UIButton()
+        button1.addTarget(self, action: #selector(searchTags), for: .touchUpInside)
+        let button2 = UIButton()
+        button2.addTarget(self, action: #selector(searchCategories), for: .touchUpInside)
+        topBar.buttonAction = .multipleButtons([button1, button2])
+    }
+    
+    func searchTags() {
+        print("search tags")
+    }
+    
+    func searchCategories() {
+        print("search categories")
     }
     
     //MARK: - Collection view datasource

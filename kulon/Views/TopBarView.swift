@@ -9,10 +9,26 @@
 import Foundation
 import UIKit
 
+enum ButtonActionType {
+    case simpleAction(()->())
+    case multipleButtons([UIButton])
+}
+
 class TopBarView: UIView {
     
     @IBOutlet weak var background: TopBarBackgroundView!
-    @IBOutlet weak var button: RoundedButton!
+    @IBOutlet weak var button: ExpandableButton!
+    
+    var buttonAction: ButtonActionType?
+//    {
+//        set {
+//            button.buttonAction = newValue
+//        }
+//        get {
+//            return button.buttonAction
+//        }
+//    }
+    
     
     
     

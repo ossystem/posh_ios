@@ -1,18 +1,16 @@
 //
-//  RoundedButton.swift
-//  Telemed
+//  RoundedView.swift
+//  kulon
 //
-//  Created by Ivan Grachev on 25/10/2016.
-//  Copyright © 2016 Jufy. All rights reserved.
+//  Created by Артмеий Шлесберг on 03/05/2017.
+//  Copyright © 2017 Jufy. All rights reserved.
 //
 
+import Foundation
 import UIKit
 
-@IBDesignable public class RoundedButton: UIButton {
-    
-    public override func didMoveToSuperview() {
-        imageView?.contentMode = .scaleAspectFit
-    }
+
+@IBDesignable class RoundedView: UIView {
     
     @IBInspectable var borderColor: UIColor = UIColor.black {
         didSet {
@@ -32,15 +30,6 @@ import UIKit
         }
     }
     
-    @IBInspectable var underlined: Bool = false {
-        didSet {
-            if underlined {
-                let string  = NSAttributedString(string: self.titleLabel!.text!, attributes: [NSUnderlineStyleAttributeName: NSUnderlineStyle.styleSingle.rawValue])
-                self.setAttributedTitle(string, for: .normal)
-            }
-        }
-    }
-    
     var blurView: UIVisualEffectView?
     
     @IBInspectable var hasBlur: Bool = false {
@@ -48,7 +37,7 @@ import UIKit
             if hasBlur {
                 blurView = UIVisualEffectView(frame: self.bounds)
                 let blur = UIBlurEffect(style: .light)
-            
+                
                 blurView?.effect = blur
                 self.addSubview(blurView!)
                 self.sendSubview(toBack: blurView!)
@@ -58,5 +47,5 @@ import UIKit
             }
         }
     }
-
+    
 }

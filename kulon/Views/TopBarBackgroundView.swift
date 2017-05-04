@@ -13,17 +13,8 @@ import UIKit
 class TopBarBackgroundView: UIView {
     
     @IBInspectable var mainColor: UIColor = .white
-        {
-        didSet { print("mainColor was set here") }
-    }
     @IBInspectable var shadowSize: CGFloat = 3.0
-        {
-        didSet { print("shadowSize was set here") }
-    }
     @IBInspectable var shadowColor: UIColor = .black
-        {
-        didSet { print("shadowColor was set here") }
-    }
     @IBInspectable var topOffsetHeight: CGFloat = 20
     ///In degrees
     @IBInspectable var angle: CGFloat = 30

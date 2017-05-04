@@ -11,11 +11,6 @@ import UIKit
 class BaseViewController: UIViewController {
 
     @IBOutlet weak var topBar: TopBarView!
-    var buttonAction: ((RoundedButton)->())?
-    
-    @IBAction func topBarButtonTapped(_ sender: RoundedButton) {
-        buttonAction?(sender)
-    }
     
 }
 

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="DbO-EW-J5X">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--MyImages-->
+        <scene sceneID="FTt-dE-RLT">
+            <objects>
+                <viewController id="DbO-EW-J5X" userLabel="MyImages" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="mpV-C3-WXY"/>
+                        <viewControllerLayoutGuide type="bottom" id="gnc-3P-UqF"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="wHK-f6-gWC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q13-h7-x9u" customClass="TopBarView" customModule="kulon" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="20" width="375" height="70"/>
+                                <subviews>
+                                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tx2-KR-3QE" userLabel="Top Bar" customClass="TopBarBackgroundView" customModule="kulon" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="70"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="70" id="NYb-91-e1W"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="mainColor">
+                                                <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="topOffsetHeight">
+                                                <real key="value" value="24"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="angle">
+                                                <real key="value" value="20"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="shadowSize">
+                                                <real key="value" value="3"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="buttonRadius">
+                                                <real key="value" value="27"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SCX-VD-tfv" customClass="RoundedButton" customModule="kulon" customModuleProvider="target">
+                                        <rect key="frame" x="167" y="20" width="40" height="40"/>
+                                        <color key="backgroundColor" red="0.91328364610000001" green="0.32373040910000001" blue="0.14859074350000001" alpha="0.050000000000000003" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="SCX-VD-tfv" secondAttribute="height" id="36T-3i-pKh"/>
+                                            <constraint firstAttribute="width" constant="40" id="hD9-mC-Wyy"/>
+                                        </constraints>
+                                        <state key="normal" image="camera"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="20"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="Tx2-KR-3QE" firstAttribute="top" secondItem="q13-h7-x9u" secondAttribute="top" id="0Ao-1s-lui"/>
+                                    <constraint firstItem="SCX-VD-tfv" firstAttribute="top" secondItem="q13-h7-x9u" secondAttribute="top" constant="20" id="TYo-fK-UTH"/>
+                                    <constraint firstItem="SCX-VD-tfv" firstAttribute="centerX" secondItem="q13-h7-x9u" secondAttribute="centerX" id="dos-ba-5pC"/>
+                                    <constraint firstItem="Tx2-KR-3QE" firstAttribute="leading" secondItem="q13-h7-x9u" secondAttribute="leading" id="oaq-hu-EvG"/>
+                                    <constraint firstAttribute="trailing" secondItem="Tx2-KR-3QE" secondAttribute="trailing" id="uIi-9u-1mf"/>
+                                    <constraint firstAttribute="height" constant="70" id="wn0-gd-o0y"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="background" destination="Tx2-KR-3QE" id="GcI-Yv-JdV"/>
+                                    <outlet property="button" destination="SCX-VD-tfv" id="AOq-lq-kU2"/>
+                                </connections>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="q13-h7-x9u" firstAttribute="top" secondItem="mpV-C3-WXY" secondAttribute="bottom" id="4zT-nA-d2x"/>
+                            <constraint firstItem="q13-h7-x9u" firstAttribute="leading" secondItem="wHK-f6-gWC" secondAttribute="leading" id="XId-i1-Lh5"/>
+                            <constraint firstAttribute="trailing" secondItem="q13-h7-x9u" secondAttribute="trailing" id="pA3-fu-euT"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Second" image="second" id="8ij-h8-hFs"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aIF-ta-OjB" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="749.60000000000002" y="359.37031484257875"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="camera" width="16" height="16"/>
+        <image name="second" width="30" height="30"/>
+    </resources>
+</document>

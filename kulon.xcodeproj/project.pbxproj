@@ -11,7 +11,7 @@
 		FD5F9F421EA776A300BD79B1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD5F9F411EA776A300BD79B1 /* AppDelegate.swift */; };
 		FD5F9F441EA776A300BD79B1 /* BaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD5F9F431EA776A300BD79B1 /* BaseController.swift */; };
 		FD5F9F461EA776A300BD79B1 /* StoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD5F9F451EA776A300BD79B1 /* StoreViewController.swift */; };
-		FD5F9F491EA776A300BD79B1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FD5F9F471EA776A300BD79B1 /* Main.storyboard */; };
+		FD5F9F491EA776A300BD79B1 /* Auth.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FD5F9F471EA776A300BD79B1 /* Auth.storyboard */; };
 		FD5F9F4B1EA776A300BD79B1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FD5F9F4A1EA776A300BD79B1 /* Assets.xcassets */; };
 		FD5F9F4E1EA776A300BD79B1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FD5F9F4C1EA776A300BD79B1 /* LaunchScreen.storyboard */; };
 		FD5F9F561EA79ED700BD79B1 /* FloatingPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD5F9F551EA79ED700BD79B1 /* FloatingPoint.swift */; };
@@ -19,6 +19,20 @@
 		FD5F9F5A1EA8073E00BD79B1 /* TopBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD5F9F591EA8073E00BD79B1 /* TopBarView.swift */; };
 		FD5F9F5D1EA8093900BD79B1 /* TopBarBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD5F9F5C1EA8093900BD79B1 /* TopBarBackgroundView.swift */; };
 		FD5F9F601EA80CF500BD79B1 /* RoundedImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD5F9F5F1EA80CF500BD79B1 /* RoundedImageView.swift */; };
+		FD7DDF161EB3BE7800B963DC /* BLEService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7DDF151EB3BE7800B963DC /* BLEService.swift */; };
+		FDC060341EB8D9D5007C6A71 /* EspandableButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDC060331EB8D9D5007C6A71 /* EspandableButton.swift */; };
+		FDC3AB101EBB36AF00141241 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDC3AB0F1EBB36AF00141241 /* TextField.swift */; };
+		FDC3AB121EBB428C00141241 /* TabBar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FDC3AB111EBB428C00141241 /* TabBar.storyboard */; };
+		FDC3AB141EBB42A800141241 /* MarketPlace.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FDC3AB131EBB42A800141241 /* MarketPlace.storyboard */; };
+		FDC3AB161EBB460100141241 /* Acquired.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FDC3AB151EBB460100141241 /* Acquired.storyboard */; };
+		FDC3AB181EBB463F00141241 /* MyImages.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FDC3AB171EBB463F00141241 /* MyImages.storyboard */; };
+		FDC3AB1A1EBB465C00141241 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FDC3AB191EBB465C00141241 /* Settings.storyboard */; };
+		FDC89DF61EBA3799004D3F9F /* RoundedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDC89DF51EBA3799004D3F9F /* RoundedView.swift */; };
+		FDC89DF91EBA4A2B004D3F9F /* PresentationAnimtor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDC89DF71EBA4A2B004D3F9F /* PresentationAnimtor.swift */; };
+		FDC89DFA1EBA4A2B004D3F9F /* DismissAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDC89DF81EBA4A2B004D3F9F /* DismissAnimator.swift */; };
+		FDC89DFC1EBA4ABA004D3F9F /* AuthViewCoontroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDC89DFB1EBA4ABA004D3F9F /* AuthViewCoontroller.swift */; };
+		FDC89DFE1EBA4B4E004D3F9F /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDC89DFD1EBA4B4E004D3F9F /* RegistrationViewController.swift */; };
+		FDEAE6991EAAB26500B9F504 /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDEAE6981EAAB26500B9F504 /* FavoritesViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,7 +43,7 @@
 		FD5F9F411EA776A300BD79B1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FD5F9F431EA776A300BD79B1 /* BaseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseController.swift; sourceTree = "<group>"; };
 		FD5F9F451EA776A300BD79B1 /* StoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreViewController.swift; sourceTree = "<group>"; };
-		FD5F9F481EA776A300BD79B1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		FD5F9F481EA776A300BD79B1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Auth.storyboard; sourceTree = "<group>"; };
 		FD5F9F4A1EA776A300BD79B1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FD5F9F4D1EA776A300BD79B1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FD5F9F4F1EA776A300BD79B1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -38,6 +52,20 @@
 		FD5F9F591EA8073E00BD79B1 /* TopBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TopBarView.swift; path = Views/TopBarView.swift; sourceTree = "<group>"; };
 		FD5F9F5C1EA8093900BD79B1 /* TopBarBackgroundView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TopBarBackgroundView.swift; path = Views/TopBarBackgroundView.swift; sourceTree = "<group>"; };
 		FD5F9F5F1EA80CF500BD79B1 /* RoundedImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedImageView.swift; sourceTree = "<group>"; };
+		FD7DDF151EB3BE7800B963DC /* BLEService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BLEService.swift; sourceTree = "<group>"; };
+		FDC060331EB8D9D5007C6A71 /* EspandableButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EspandableButton.swift; sourceTree = "<group>"; };
+		FDC3AB0F1EBB36AF00141241 /* TextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
+		FDC3AB111EBB428C00141241 /* TabBar.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TabBar.storyboard; sourceTree = "<group>"; };
+		FDC3AB131EBB42A800141241 /* MarketPlace.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MarketPlace.storyboard; sourceTree = "<group>"; };
+		FDC3AB151EBB460100141241 /* Acquired.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Acquired.storyboard; sourceTree = "<group>"; };
+		FDC3AB171EBB463F00141241 /* MyImages.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MyImages.storyboard; sourceTree = "<group>"; };
+		FDC3AB191EBB465C00141241 /* Settings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
+		FDC89DF51EBA3799004D3F9F /* RoundedView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedView.swift; sourceTree = "<group>"; };
+		FDC89DF71EBA4A2B004D3F9F /* PresentationAnimtor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresentationAnimtor.swift; sourceTree = "<group>"; };
+		FDC89DF81EBA4A2B004D3F9F /* DismissAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DismissAnimator.swift; sourceTree = "<group>"; };
+		FDC89DFB1EBA4ABA004D3F9F /* AuthViewCoontroller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthViewCoontroller.swift; sourceTree = "<group>"; };
+		FDC89DFD1EBA4B4E004D3F9F /* RegistrationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
+		FDEAE6981EAAB26500B9F504 /* FavoritesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,12 +118,19 @@
 		FD5F9F401EA776A300BD79B1 /* kulon */ = {
 			isa = PBXGroup;
 			children = (
+				FDC89DF71EBA4A2B004D3F9F /* PresentationAnimtor.swift */,
+				FDC89DF81EBA4A2B004D3F9F /* DismissAnimator.swift */,
+				FD7DDF151EB3BE7800B963DC /* BLEService.swift */,
 				FD5F9F5E1EA80A9600BD79B1 /* Extensions */,
-				FD5F9F411EA776A300BD79B1 /* AppDelegate.swift */,
-				FD5F9F431EA776A300BD79B1 /* BaseController.swift */,
+				FDEAE6971EAAB22E00B9F504 /* View controllers */,
 				FD5F9F5B1EA8091A00BD79B1 /* Views */,
-				FD5F9F451EA776A300BD79B1 /* StoreViewController.swift */,
-				FD5F9F471EA776A300BD79B1 /* Main.storyboard */,
+				FD5F9F411EA776A300BD79B1 /* AppDelegate.swift */,
+				FD5F9F471EA776A300BD79B1 /* Auth.storyboard */,
+				FDC3AB151EBB460100141241 /* Acquired.storyboard */,
+				FDC3AB171EBB463F00141241 /* MyImages.storyboard */,
+				FDC3AB191EBB465C00141241 /* Settings.storyboard */,
+				FDC3AB131EBB42A800141241 /* MarketPlace.storyboard */,
+				FDC3AB111EBB428C00141241 /* TabBar.storyboard */,
 				FD5F9F4A1EA776A300BD79B1 /* Assets.xcassets */,
 				FD5F9F4C1EA776A300BD79B1 /* LaunchScreen.storyboard */,
 				FD5F9F4F1EA776A300BD79B1 /* Info.plist */,
@@ -108,8 +143,11 @@
 			children = (
 				FD5F9F591EA8073E00BD79B1 /* TopBarView.swift */,
 				FD5F9F571EA7BFB300BD79B1 /* RoundedButton.swift */,
+				FDC89DF51EBA3799004D3F9F /* RoundedView.swift */,
 				FD5F9F5C1EA8093900BD79B1 /* TopBarBackgroundView.swift */,
 				FD5F9F5F1EA80CF500BD79B1 /* RoundedImageView.swift */,
+				FDC060331EB8D9D5007C6A71 /* EspandableButton.swift */,
+				FDC3AB0F1EBB36AF00141241 /* TextField.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -120,6 +158,18 @@
 				FD5F9F551EA79ED700BD79B1 /* FloatingPoint.swift */,
 			);
 			name = Extensions;
+			sourceTree = "<group>";
+		};
+		FDEAE6971EAAB22E00B9F504 /* View controllers */ = {
+			isa = PBXGroup;
+			children = (
+				FD5F9F431EA776A300BD79B1 /* BaseController.swift */,
+				FD5F9F451EA776A300BD79B1 /* StoreViewController.swift */,
+				FDEAE6981EAAB26500B9F504 /* FavoritesViewController.swift */,
+				FDC89DFB1EBA4ABA004D3F9F /* AuthViewCoontroller.swift */,
+				FDC89DFD1EBA4B4E004D3F9F /* RegistrationViewController.swift */,
+			);
+			name = "View controllers";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -185,9 +235,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FDC3AB181EBB463F00141241 /* MyImages.storyboard in Resources */,
+				FDC3AB161EBB460100141241 /* Acquired.storyboard in Resources */,
+				FDC3AB141EBB42A800141241 /* MarketPlace.storyboard in Resources */,
+				FDC3AB1A1EBB465C00141241 /* Settings.storyboard in Resources */,
+				FDC3AB121EBB428C00141241 /* TabBar.storyboard in Resources */,
 				FD5F9F4E1EA776A300BD79B1 /* LaunchScreen.storyboard in Resources */,
 				FD5F9F4B1EA776A300BD79B1 /* Assets.xcassets in Resources */,
-				FD5F9F491EA776A300BD79B1 /* Main.storyboard in Resources */,
+				FD5F9F491EA776A300BD79B1 /* Auth.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -246,26 +301,35 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FDC89DF91EBA4A2B004D3F9F /* PresentationAnimtor.swift in Sources */,
 				FD5F9F601EA80CF500BD79B1 /* RoundedImageView.swift in Sources */,
+				FD7DDF161EB3BE7800B963DC /* BLEService.swift in Sources */,
+				FDEAE6991EAAB26500B9F504 /* FavoritesViewController.swift in Sources */,
 				FD5F9F561EA79ED700BD79B1 /* FloatingPoint.swift in Sources */,
 				FD5F9F581EA7BFB300BD79B1 /* RoundedButton.swift in Sources */,
+				FDC3AB101EBB36AF00141241 /* TextField.swift in Sources */,
 				FD5F9F5D1EA8093900BD79B1 /* TopBarBackgroundView.swift in Sources */,
+				FDC89DFC1EBA4ABA004D3F9F /* AuthViewCoontroller.swift in Sources */,
 				FD5F9F461EA776A300BD79B1 /* StoreViewController.swift in Sources */,
 				FD5F9F421EA776A300BD79B1 /* AppDelegate.swift in Sources */,
+				FDC89DFE1EBA4B4E004D3F9F /* RegistrationViewController.swift in Sources */,
+				FDC89DF61EBA3799004D3F9F /* RoundedView.swift in Sources */,
 				FD5F9F5A1EA8073E00BD79B1 /* TopBarView.swift in Sources */,
 				FD5F9F441EA776A300BD79B1 /* BaseController.swift in Sources */,
+				FDC060341EB8D9D5007C6A71 /* EspandableButton.swift in Sources */,
+				FDC89DFA1EBA4A2B004D3F9F /* DismissAnimator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		FD5F9F471EA776A300BD79B1 /* Main.storyboard */ = {
+		FD5F9F471EA776A300BD79B1 /* Auth.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				FD5F9F481EA776A300BD79B1 /* Base */,
 			);
-			name = Main.storyboard;
+			name = Auth.storyboard;
 			sourceTree = "<group>";
 		};
 		FD5F9F4C1EA776A300BD79B1 /* LaunchScreen.storyboard */ = {

@@ -53,7 +53,7 @@ class BLEService {
                             .withLatestFrom(Observable.just(per)) { return ($0.0, $0.1) }
                     }
                 .do(onNext: { (servs, per) in
-                    print(per.name, servs.map{ $0.uuid.uuidString }.reduce("") { "\($0)\n    \($1)" })
+                    print(per.name ?? "", servs.map{ $0.uuid.uuidString }.reduce("") { "\($0)\n    \($1)" })
                 })
             }
             .subscribe()

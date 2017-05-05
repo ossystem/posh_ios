@@ -56,7 +56,7 @@
                                             <constraint firstAttribute="width" secondItem="SCX-VD-tfv" secondAttribute="height" id="36T-3i-pKh"/>
                                             <constraint firstAttribute="width" constant="40" id="hD9-mC-Wyy"/>
                                         </constraints>
-                                        <state key="normal" image="camera"/>
+                                        <state key="normal" image="icon_camera"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                 <real key="value" value="20"/>
@@ -94,7 +94,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="camera" width="16" height="16"/>
+        <image name="icon_camera" width="100" height="100"/>
         <image name="second" width="30" height="30"/>
     </resources>
 </document>

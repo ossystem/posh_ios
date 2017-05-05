@@ -3,4 +3,8 @@ target ‘kulon’ do
 	use_frameworks!
 	# BLE 
 	pod 'RxBluetoothKit'
+    
+    # Custom blur
+    pod 'DynamicBlurView'
+    
 end

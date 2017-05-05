@@ -62,10 +62,10 @@
                                 <rect key="frame" x="0.0" y="20" width="375" height="70"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sEY-Bg-pEe" userLabel="Top Bar" customClass="TopBarBackgroundView" customModule="kulon" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="70"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="300"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="70" id="vMO-o7-uTd"/>
+                                            <constraint firstAttribute="height" constant="300" id="vMO-o7-uTd"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="color" keyPath="mainColor">
@@ -84,8 +84,11 @@
                                                 <real key="value" value="27"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <outlet property="button" destination="Ei1-3g-gjY" id="OwT-le-EcU"/>
+                                        </connections>
                                     </view>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ei1-3g-gjY" customClass="RoundedButton" customModule="kulon" customModuleProvider="target">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ei1-3g-gjY" customClass="ExpandableButton" customModule="kulon" customModuleProvider="target">
                                         <rect key="frame" x="167" y="20" width="40" height="40"/>
                                         <color key="backgroundColor" red="0.91328364610000001" green="0.32373040910000001" blue="0.14859074350000001" alpha="0.050000000000000003" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>

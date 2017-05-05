@@ -34,8 +34,8 @@ class ExpandableButton: RoundedButton {
                 newFrame.origin.x -= expanrionRadius * cos(angleStep.degreesToRadians * CGFloat(index + 1))
                 newFrame.origin.y += expanrionRadius * sin(angleStep.degreesToRadians * CGFloat(index + 1))
                 button.frame = newFrame
-                button.backgroundColor = UIColor.black
-                self.addSubview(button)
+                button.layer.cornerRadius = frame.size.width/2.0
+                self.superview?.addSubview(button)
             }
         }
     }

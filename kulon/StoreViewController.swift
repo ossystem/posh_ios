@@ -30,7 +30,7 @@ class StoreViewController: BaseViewController, UICollectionViewDelegate, UIColle
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setupInterface()
-        topBar.button.addTarget(self, action: #selector(discover), for: .touchUpInside)
+        
     }
     
     func discover() {
@@ -38,11 +38,13 @@ class StoreViewController: BaseViewController, UICollectionViewDelegate, UIColle
     }
     
     func setupInterface(){
-        let button1 = UIButton()
-        button1.addTarget(self, action: #selector(searchTags), for: .touchUpInside)
+        let categoryButton = UIButton()
+        categoryButton.setImage(#imageLiteral(resourceName: "icon_camera"), for: .normal)
+        categoryButton.backgroundColor = UIColor.Kulon.orange
+        categoryButton.addTarget(self, action: #selector(searchTags), for: .touchUpInside)
         let button2 = UIButton()
         button2.addTarget(self, action: #selector(searchCategories), for: .touchUpInside)
-        topBar.buttonAction = .multipleButtons([button1, button2])
+        topBar.button.buttonAction = .multipleButtons([categoryButton, button2])
     }
     
     func searchTags() {

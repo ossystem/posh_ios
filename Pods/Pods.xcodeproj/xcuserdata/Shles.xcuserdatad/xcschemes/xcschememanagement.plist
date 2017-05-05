@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>DynamicBlurView.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-kulon.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -22,17 +27,22 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>2B13047B2AE2DAB68923C1FEE8070B54</key>
+		<key>7A0DC639FDAC08A54058E344A5322FF5</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>533C9A00CA5A07DA43754C4B4FB2EA79</key>
+		<key>9CAA7482778A9C0399F8D36F3138D18A</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>CDB492C18413BD0D8CFF2EB58B0895D8</key>
+		<key>B024A520D5E5C87274963E27520E728D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>B59CE2570DC6FF68BA3BFF6B98D0D313</key>
 		<dict>
 			<key>primary</key>
 			<true/>

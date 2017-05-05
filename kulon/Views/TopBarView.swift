@@ -20,16 +20,5 @@ class TopBarView: UIView {
     @IBOutlet weak var button: ExpandableButton!
     
     var buttonAction: ButtonActionType?
-//    {
-//        set {
-//            button.buttonAction = newValue
-//        }
-//        get {
-//            return button.buttonAction
-//        }
-//    }
-    
-    
-    
     
 }

@@ -47,9 +47,8 @@ import UIKit
         didSet {
             if hasBlur {
                 blurView = UIVisualEffectView(frame: self.bounds)
-                let blur = UIBlurEffect(style: .light)
-            
-                blurView?.effect = blur
+                blurView?.effect = UIBlurEffect(style: .light)
+                //TODO: fix blur
                 self.addSubview(blurView!)
                 self.sendSubview(toBack: blurView!)
             } else {

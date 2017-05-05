@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		E82F969064B23ED6D522597F /* Pods_kulon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71CFAFB935F22B6DF069D93A /* Pods_kulon.framework */; };
+		FD1F42F01EBB52BE008AE3ED /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD1F42EF1EBB52BE008AE3ED /* UIColor.swift */; };
 		FD5F9F421EA776A300BD79B1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD5F9F411EA776A300BD79B1 /* AppDelegate.swift */; };
 		FD5F9F441EA776A300BD79B1 /* BaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD5F9F431EA776A300BD79B1 /* BaseController.swift */; };
 		FD5F9F461EA776A300BD79B1 /* StoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD5F9F451EA776A300BD79B1 /* StoreViewController.swift */; };
@@ -20,6 +21,7 @@
 		FD5F9F5D1EA8093900BD79B1 /* TopBarBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD5F9F5C1EA8093900BD79B1 /* TopBarBackgroundView.swift */; };
 		FD5F9F601EA80CF500BD79B1 /* RoundedImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD5F9F5F1EA80CF500BD79B1 /* RoundedImageView.swift */; };
 		FD7DDF161EB3BE7800B963DC /* BLEService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7DDF151EB3BE7800B963DC /* BLEService.swift */; };
+		FDA3CB0C1EBC8F4A0048AE71 /* AndaleMono.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FDA3CB0B1EBC8F4A0048AE71 /* AndaleMono.ttf */; };
 		FDC060341EB8D9D5007C6A71 /* EspandableButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDC060331EB8D9D5007C6A71 /* EspandableButton.swift */; };
 		FDC3AB101EBB36AF00141241 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDC3AB0F1EBB36AF00141241 /* TextField.swift */; };
 		FDC3AB121EBB428C00141241 /* TabBar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FDC3AB111EBB428C00141241 /* TabBar.storyboard */; };
@@ -39,6 +41,7 @@
 		71CFAFB935F22B6DF069D93A /* Pods_kulon.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_kulon.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		72BB98DF18CBD9B63AF9681F /* Pods-kulon.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-kulon.release.xcconfig"; path = "Pods/Target Support Files/Pods-kulon/Pods-kulon.release.xcconfig"; sourceTree = "<group>"; };
 		91E6D5B414977C880C7C4136 /* Pods-kulon.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-kulon.debug.xcconfig"; path = "Pods/Target Support Files/Pods-kulon/Pods-kulon.debug.xcconfig"; sourceTree = "<group>"; };
+		FD1F42EF1EBB52BE008AE3ED /* UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		FD5F9F3E1EA776A300BD79B1 /* kulon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = kulon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD5F9F411EA776A300BD79B1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FD5F9F431EA776A300BD79B1 /* BaseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseController.swift; sourceTree = "<group>"; };
@@ -53,6 +56,7 @@
 		FD5F9F5C1EA8093900BD79B1 /* TopBarBackgroundView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TopBarBackgroundView.swift; path = Views/TopBarBackgroundView.swift; sourceTree = "<group>"; };
 		FD5F9F5F1EA80CF500BD79B1 /* RoundedImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedImageView.swift; sourceTree = "<group>"; };
 		FD7DDF151EB3BE7800B963DC /* BLEService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BLEService.swift; sourceTree = "<group>"; };
+		FDA3CB0B1EBC8F4A0048AE71 /* AndaleMono.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = AndaleMono.ttf; sourceTree = "<group>"; };
 		FDC060331EB8D9D5007C6A71 /* EspandableButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EspandableButton.swift; sourceTree = "<group>"; };
 		FDC3AB0F1EBB36AF00141241 /* TextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
 		FDC3AB111EBB428C00141241 /* TabBar.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TabBar.storyboard; sourceTree = "<group>"; };
@@ -134,6 +138,8 @@
 				FD5F9F4A1EA776A300BD79B1 /* Assets.xcassets */,
 				FD5F9F4C1EA776A300BD79B1 /* LaunchScreen.storyboard */,
 				FD5F9F4F1EA776A300BD79B1 /* Info.plist */,
+				FDA3CB0B1EBC8F4A0048AE71 /* AndaleMono.ttf */,
+				FD1F42EF1EBB52BE008AE3ED /* UIColor.swift */,
 			);
 			path = kulon;
 			sourceTree = "<group>";
@@ -242,6 +248,7 @@
 				FDC3AB121EBB428C00141241 /* TabBar.storyboard in Resources */,
 				FD5F9F4E1EA776A300BD79B1 /* LaunchScreen.storyboard in Resources */,
 				FD5F9F4B1EA776A300BD79B1 /* Assets.xcassets in Resources */,
+				FDA3CB0C1EBC8F4A0048AE71 /* AndaleMono.ttf in Resources */,
 				FD5F9F491EA776A300BD79B1 /* Auth.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -314,6 +321,7 @@
 				FD5F9F421EA776A300BD79B1 /* AppDelegate.swift in Sources */,
 				FDC89DFE1EBA4B4E004D3F9F /* RegistrationViewController.swift in Sources */,
 				FDC89DF61EBA3799004D3F9F /* RoundedView.swift in Sources */,
+				FD1F42F01EBB52BE008AE3ED /* UIColor.swift in Sources */,
 				FD5F9F5A1EA8073E00BD79B1 /* TopBarView.swift in Sources */,
 				FD5F9F441EA776A300BD79B1 /* BaseController.swift in Sources */,
 				FDC060341EB8D9D5007C6A71 /* EspandableButton.swift in Sources */,
@@ -440,6 +448,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 91E6D5B414977C880C7C4136 /* Pods-kulon.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = Y2V78VDHEV;
 				INFOPLIST_FILE = kulon/Info.plist;
@@ -455,6 +464,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 72BB98DF18CBD9B63AF9681F /* Pods-kulon.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = Y2V78VDHEV;
 				INFOPLIST_FILE = kulon/Info.plist;

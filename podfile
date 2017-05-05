@@ -4,7 +4,4 @@ target ‘kulon’ do
 	# BLE 
 	pod 'RxBluetoothKit'
     
-    # Custom blur
-    pod 'DynamicBlurView'
-    
 end

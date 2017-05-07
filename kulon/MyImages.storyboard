@@ -13,7 +13,7 @@
         <!--MyImages-->
         <scene sceneID="FTt-dE-RLT">
             <objects>
-                <viewController id="DbO-EW-J5X" userLabel="MyImages" sceneMemberID="viewController">
+                <viewController id="DbO-EW-J5X" userLabel="MyImages" customClass="MyImagesViewController" customModule="kulon" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="mpV-C3-WXY"/>
                         <viewControllerLayoutGuide type="bottom" id="gnc-3P-UqF"/>
@@ -32,7 +32,7 @@
                                     <inset key="sectionInset" minX="17" minY="76" maxX="17" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="imageCell" id="Bos-X2-x4g">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="poshikCell" id="Bos-X2-x4g" customClass="PoshikCell" customModule="kulon" customModuleProvider="target">
                                         <rect key="frame" x="17" y="76" width="84" height="84"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -55,6 +55,9 @@
                                             <constraint firstAttribute="trailing" secondItem="Agy-xq-Rv3" secondAttribute="trailing" id="DSv-rS-Rkj"/>
                                             <constraint firstItem="Agy-xq-Rv3" firstAttribute="top" secondItem="Bos-X2-x4g" secondAttribute="top" id="Q6f-ap-IeP"/>
                                         </constraints>
+                                        <connections>
+                                            <outlet property="image" destination="Agy-xq-Rv3" id="adl-cp-cld"/>
+                                        </connections>
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
@@ -63,7 +66,7 @@
                                 <subviews>
                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tx2-KR-3QE" userLabel="Top Bar" customClass="TopBarBackgroundView" customModule="kulon" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="70"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="70" id="NYb-91-e1W"/>
                                         </constraints>
@@ -144,6 +147,9 @@
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Second" image="second" id="8ij-h8-hFs"/>
+                    <connections>
+                        <outlet property="collectionView" destination="6xi-4H-ona" id="5di-AV-yvr"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aIF-ta-OjB" sceneMemberID="firstResponder"/>
             </objects>

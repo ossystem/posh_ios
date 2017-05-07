@@ -47,7 +47,7 @@ class SettingsViewController: BaseViewController, UITableViewDataSource, UITable
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "SettingsCell") as! SettingsCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: Identifiers.Cell.settingsCell) as! SettingsCell
         cell.configure(with: settings[indexPath.row])
         return cell
     }

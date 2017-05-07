@@ -37,7 +37,9 @@
 		FDC9E31C1EBFBE4000B6DC25 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDC9E31B1EBFBE4000B6DC25 /* SettingsViewController.swift */; };
 		FDC9E31E1EBFBF8700B6DC25 /* Identifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDC9E31D1EBFBF8700B6DC25 /* Identifiers.swift */; };
 		FDC9E3201EBFC0CF00B6DC25 /* SettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDC9E31F1EBFC0CF00B6DC25 /* SettingsCell.swift */; };
-		FDEAE6991EAAB26500B9F504 /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDEAE6981EAAB26500B9F504 /* FavoritesViewController.swift */; };
+		FDC9E3221EBFDFCE00B6DC25 /* PoshikCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDC9E3211EBFDFCE00B6DC25 /* PoshikCell.swift */; };
+		FDC9E3241EBFE02C00B6DC25 /* Poshik.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDC9E3231EBFE02C00B6DC25 /* Poshik.swift */; };
+		FDEAE6991EAAB26500B9F504 /* MyImagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDEAE6981EAAB26500B9F504 /* MyImagesViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -75,7 +77,9 @@
 		FDC9E31B1EBFBE4000B6DC25 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		FDC9E31D1EBFBF8700B6DC25 /* Identifiers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Identifiers.swift; sourceTree = "<group>"; };
 		FDC9E31F1EBFC0CF00B6DC25 /* SettingsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsCell.swift; sourceTree = "<group>"; };
-		FDEAE6981EAAB26500B9F504 /* FavoritesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
+		FDC9E3211EBFDFCE00B6DC25 /* PoshikCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PoshikCell.swift; sourceTree = "<group>"; };
+		FDC9E3231EBFE02C00B6DC25 /* Poshik.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Poshik.swift; sourceTree = "<group>"; };
+		FDEAE6981EAAB26500B9F504 /* MyImagesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyImagesViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -152,13 +156,14 @@
 		FD5F9F5B1EA8091A00BD79B1 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				FDC9E3211EBFDFCE00B6DC25 /* PoshikCell.swift */,
+				FDC9E3231EBFE02C00B6DC25 /* Poshik.swift */,
 				FD5F9F591EA8073E00BD79B1 /* TopBarView.swift */,
 				FDC9E3191EBF155500B6DC25 /* MarketplaceTopBar.swift */,
 				FD5F9F571EA7BFB300BD79B1 /* RoundedButton.swift */,
 				FDC89DF51EBA3799004D3F9F /* RoundedView.swift */,
 				FD5F9F5C1EA8093900BD79B1 /* TopBarBackgroundView.swift */,
 				FD5F9F5F1EA80CF500BD79B1 /* RoundedImageView.swift */,
-				FDC9E31B1EBFBE4000B6DC25 /* SettingsViewController.swift */,
 				FDC9E31D1EBFBF8700B6DC25 /* Identifiers.swift */,
 				FDC9E31F1EBFC0CF00B6DC25 /* SettingsCell.swift */,
 				FDC060331EB8D9D5007C6A71 /* EspandableButton.swift */,
@@ -180,9 +185,10 @@
 			children = (
 				FD5F9F431EA776A300BD79B1 /* BaseController.swift */,
 				FD5F9F451EA776A300BD79B1 /* StoreViewController.swift */,
-				FDEAE6981EAAB26500B9F504 /* FavoritesViewController.swift */,
+				FDEAE6981EAAB26500B9F504 /* MyImagesViewController.swift */,
 				FDC89DFB1EBA4ABA004D3F9F /* AuthViewCoontroller.swift */,
 				FDC89DFD1EBA4B4E004D3F9F /* RegistrationViewController.swift */,
+				FDC9E31B1EBFBE4000B6DC25 /* SettingsViewController.swift */,
 			);
 			name = "View controllers";
 			sourceTree = "<group>";
@@ -321,13 +327,15 @@
 				FD7DDF161EB3BE7800B963DC /* BLEService.swift in Sources */,
 				FDC9E31C1EBFBE4000B6DC25 /* SettingsViewController.swift in Sources */,
 				FDC9E31E1EBFBF8700B6DC25 /* Identifiers.swift in Sources */,
-				FDEAE6991EAAB26500B9F504 /* FavoritesViewController.swift in Sources */,
+				FDEAE6991EAAB26500B9F504 /* MyImagesViewController.swift in Sources */,
 				FD5F9F561EA79ED700BD79B1 /* FloatingPoint.swift in Sources */,
 				FD5F9F581EA7BFB300BD79B1 /* RoundedButton.swift in Sources */,
 				FDC9E31A1EBF155500B6DC25 /* MarketplaceTopBar.swift in Sources */,
 				FDC3AB101EBB36AF00141241 /* UITextField.swift in Sources */,
+				FDC9E3221EBFDFCE00B6DC25 /* PoshikCell.swift in Sources */,
 				FDC9E3201EBFC0CF00B6DC25 /* SettingsCell.swift in Sources */,
 				FD5F9F5D1EA8093900BD79B1 /* TopBarBackgroundView.swift in Sources */,
+				FDC9E3241EBFE02C00B6DC25 /* Poshik.swift in Sources */,
 				FDC89DFC1EBA4ABA004D3F9F /* AuthViewCoontroller.swift in Sources */,
 				FD5F9F461EA776A300BD79B1 /* StoreViewController.swift in Sources */,
 				FD5F9F421EA776A300BD79B1 /* AppDelegate.swift in Sources */,

@@ -10,6 +10,7 @@ import Foundation
 
 struct Identifiers {
     struct Cell {
-        static let settings = "SettingsCell"
+        static let settingsCell = "SettingsCell"
+        static let poshikCell =  "poshikCell"
     }
 }

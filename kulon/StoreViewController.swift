@@ -19,12 +19,9 @@ class StoreViewController: BaseViewController, UICollectionViewDelegate, UIColle
     }
     
     let bleService = BLEService.shared
-    
     var blurView: UIVisualEffectView!
+    var poshiks: [Poshik] = Poshik.sampleSet + Poshik.sampleSet + Poshik.sampleSet + Poshik.sampleSet + Poshik.sampleSet
     
-    //MARK: - Lifecycle
-    //c 2A37 s 180D
-    //  2A29   180A
     override func viewDidLoad() {
         super.viewDidLoad()
         topBar.button.delegate = self
@@ -55,9 +52,6 @@ class StoreViewController: BaseViewController, UICollectionViewDelegate, UIColle
         topBar.button.subButtons = [categoryButton, tagButton]
         
         blurView = UIVisualEffectView(frame: view.bounds)
-        view.addSubview(blurView!)
-        blurView.isHidden = true
-        view.bringSubview(toFront: topBar)
     }
     
     func searchTags() {
@@ -71,18 +65,24 @@ class StoreViewController: BaseViewController, UICollectionViewDelegate, UIColle
     //MARK: - Collection view datasource
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "imageCell", for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Identifiers.Cell.poshikCell, for: indexPath) as! PoshikCell
+        cell.configure(with: poshiks[indexPath.row])
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 20
+        return poshiks.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print("selected")
     }
     
     //MARK: - Expandable button delegate
     
     func willExpand(_ button: ExpandableButton) {
-        blurView.isHidden = false
+        view.addSubview(blurView!)
+        view.bringSubview(toFront: topBar)
         UIView.animate(withDuration: 0.3, animations: {
             self.blurView?.effect = UIBlurEffect(style: .extraLight)
         })
@@ -92,7 +92,7 @@ class StoreViewController: BaseViewController, UICollectionViewDelegate, UIColle
         UIView.animate(withDuration: 0.3, animations: {
             self.blurView.effect = nil
         },completion: { completed in
-            self.blurView.isHidden = true
+            self.blurView.removeFromSuperview()
         })
     }
 

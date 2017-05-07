@@ -33,7 +33,7 @@
         <scene sceneID="c1j-EY-L8w">
             <objects>
                 <viewControllerPlaceholder storyboardName="MarketPlace" id="hFF-7G-Ycv" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="Xux-yq-gBg"/>
+                    <tabBarItem key="tabBarItem" title="Store" id="Xux-yq-gBg"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cZG-HF-wJ7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -43,7 +43,7 @@
         <scene sceneID="jmC-Fs-odI">
             <objects>
                 <viewControllerPlaceholder storyboardName="MyImages" id="K0e-dS-lhS" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="UQS-T0-Qbi"/>
+                    <tabBarItem key="tabBarItem" title="My images" id="UQS-T0-Qbi"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Sdf-Ad-viS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -53,7 +53,7 @@
         <scene sceneID="ZMt-Ct-rpW">
             <objects>
                 <viewControllerPlaceholder storyboardName="Settings" id="iuK-K0-mCD" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="e0d-NB-qVj"/>
+                    <tabBarItem key="tabBarItem" title="Settings" id="e0d-NB-qVj"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pwt-Ch-dRL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

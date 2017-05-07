@@ -9,7 +9,7 @@
 import UIKit
 import RxBluetoothKit
 
-class StoreViewController: BaseViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+class StoreViewController: BaseViewController, UICollectionViewDelegate, UICollectionViewDataSource, ExpandableButtonDelegate {
 
     @IBOutlet weak var collectionView: UICollectionView! {
         didSet {
@@ -20,11 +20,14 @@ class StoreViewController: BaseViewController, UICollectionViewDelegate, UIColle
     
     let bleService = BLEService.shared
     
+    var blurView: UIVisualEffectView!
+    
     //MARK: - Lifecycle
     //c 2A37 s 180D
     //  2A29   180A
     override func viewDidLoad() {
         super.viewDidLoad()
+        topBar.button.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -37,22 +40,32 @@ class StoreViewController: BaseViewController, UICollectionViewDelegate, UIColle
         bleService.discover()
     }
     
+    let categoryButton = RoundedButton()
+    let tagButton = RoundedButton()
+
+    
     func setupInterface(){
-        let categoryButton = UIButton()
         categoryButton.setImage(#imageLiteral(resourceName: "icon_camera"), for: .normal)
         categoryButton.backgroundColor = UIColor.Kulon.orange
-        categoryButton.addTarget(self, action: #selector(searchTags), for: .touchUpInside)
-        let button2 = UIButton()
-        button2.addTarget(self, action: #selector(searchCategories), for: .touchUpInside)
-        topBar.button.buttonAction = .multipleButtons([categoryButton, button2])
+        categoryButton.addTarget(self, action: #selector(searchCategories), for: .touchUpInside)
+        tagButton.setImage(#imageLiteral(resourceName: "icon_camera"), for: .normal)
+        tagButton.setImage(#imageLiteral(resourceName: "icon_password"), for: .highlighted)
+        tagButton.backgroundColor = UIColor.Kulon.orange
+        tagButton.addTarget(self, action: #selector(searchTags), for: .touchUpInside)
+        topBar.button.subButtons = [categoryButton, tagButton]
+        
+        blurView = UIVisualEffectView(frame: view.bounds)
+        view.addSubview(blurView!)
+        blurView.isHidden = true
+        view.bringSubview(toFront: topBar)
     }
     
     func searchTags() {
-        print("search tags")
+        tagButton.isHighlighted = true
     }
     
     func searchCategories() {
-        print("search categories")
+        
     }
     
     //MARK: - Collection view datasource
@@ -64,6 +77,23 @@ class StoreViewController: BaseViewController, UICollectionViewDelegate, UIColle
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 20
+    }
+    
+    //MARK: - Expandable button delegate
+    
+    func willExpand(_ button: ExpandableButton) {
+        blurView.isHidden = false
+        UIView.animate(withDuration: 0.3, animations: {
+            self.blurView?.effect = UIBlurEffect(style: .extraLight)
+        })
+    }
+    
+    func willShrink(_ button: ExpandableButton) {
+        UIView.animate(withDuration: 0.3, animations: {
+            self.blurView.effect = nil
+        },completion: { completed in
+            self.blurView.isHidden = true
+        })
     }
 
 }

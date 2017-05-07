@@ -21,7 +21,6 @@
                     </tabBar>
                     <connections>
                         <segue destination="hFF-7G-Ycv" kind="relationship" relationship="viewControllers" id="XDI-cm-edX"/>
-                        <segue destination="TIz-Iu-o3O" kind="relationship" relationship="viewControllers" id="ovL-06-7Zd"/>
                         <segue destination="K0e-dS-lhS" kind="relationship" relationship="viewControllers" id="o9Y-SU-lW7"/>
                         <segue destination="iuK-K0-mCD" kind="relationship" relationship="viewControllers" id="hZU-x7-5sd"/>
                     </connections>
@@ -40,16 +39,6 @@
             </objects>
             <point key="canvasLocation" x="155" y="1087"/>
         </scene>
-        <!--Acquired-->
-        <scene sceneID="Jrh-FD-ZgW">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Acquired" id="TIz-Iu-o3O" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="ojT-Tf-4Ua"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="RnQ-pe-Vko" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="138" y="1172"/>
-        </scene>
         <!--MyImages-->
         <scene sceneID="jmC-Fs-odI">
             <objects>
@@ -58,7 +47,7 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Sdf-Ad-viS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="142" y="1262"/>
+            <point key="canvasLocation" x="142" y="1220"/>
         </scene>
         <!--Settings-->
         <scene sceneID="ZMt-Ct-rpW">

@@ -26,7 +26,6 @@
 		FDC3AB101EBB36AF00141241 /* UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDC3AB0F1EBB36AF00141241 /* UITextField.swift */; };
 		FDC3AB121EBB428C00141241 /* TabBar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FDC3AB111EBB428C00141241 /* TabBar.storyboard */; };
 		FDC3AB141EBB42A800141241 /* MarketPlace.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FDC3AB131EBB42A800141241 /* MarketPlace.storyboard */; };
-		FDC3AB161EBB460100141241 /* Acquired.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FDC3AB151EBB460100141241 /* Acquired.storyboard */; };
 		FDC3AB181EBB463F00141241 /* MyImages.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FDC3AB171EBB463F00141241 /* MyImages.storyboard */; };
 		FDC3AB1A1EBB465C00141241 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FDC3AB191EBB465C00141241 /* Settings.storyboard */; };
 		FDC89DF61EBA3799004D3F9F /* RoundedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDC89DF51EBA3799004D3F9F /* RoundedView.swift */; };
@@ -34,6 +33,10 @@
 		FDC89DFA1EBA4A2B004D3F9F /* DismissAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDC89DF81EBA4A2B004D3F9F /* DismissAnimator.swift */; };
 		FDC89DFC1EBA4ABA004D3F9F /* AuthViewCoontroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDC89DFB1EBA4ABA004D3F9F /* AuthViewCoontroller.swift */; };
 		FDC89DFE1EBA4B4E004D3F9F /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDC89DFD1EBA4B4E004D3F9F /* RegistrationViewController.swift */; };
+		FDC9E31A1EBF155500B6DC25 /* MarketplaceTopBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDC9E3191EBF155500B6DC25 /* MarketplaceTopBar.swift */; };
+		FDC9E31C1EBFBE4000B6DC25 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDC9E31B1EBFBE4000B6DC25 /* SettingsViewController.swift */; };
+		FDC9E31E1EBFBF8700B6DC25 /* Identifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDC9E31D1EBFBF8700B6DC25 /* Identifiers.swift */; };
+		FDC9E3201EBFC0CF00B6DC25 /* SettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDC9E31F1EBFC0CF00B6DC25 /* SettingsCell.swift */; };
 		FDEAE6991EAAB26500B9F504 /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDEAE6981EAAB26500B9F504 /* FavoritesViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -61,7 +64,6 @@
 		FDC3AB0F1EBB36AF00141241 /* UITextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITextField.swift; sourceTree = "<group>"; };
 		FDC3AB111EBB428C00141241 /* TabBar.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TabBar.storyboard; sourceTree = "<group>"; };
 		FDC3AB131EBB42A800141241 /* MarketPlace.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MarketPlace.storyboard; sourceTree = "<group>"; };
-		FDC3AB151EBB460100141241 /* Acquired.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Acquired.storyboard; sourceTree = "<group>"; };
 		FDC3AB171EBB463F00141241 /* MyImages.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MyImages.storyboard; sourceTree = "<group>"; };
 		FDC3AB191EBB465C00141241 /* Settings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
 		FDC89DF51EBA3799004D3F9F /* RoundedView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedView.swift; sourceTree = "<group>"; };
@@ -69,6 +71,10 @@
 		FDC89DF81EBA4A2B004D3F9F /* DismissAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DismissAnimator.swift; sourceTree = "<group>"; };
 		FDC89DFB1EBA4ABA004D3F9F /* AuthViewCoontroller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthViewCoontroller.swift; sourceTree = "<group>"; };
 		FDC89DFD1EBA4B4E004D3F9F /* RegistrationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
+		FDC9E3191EBF155500B6DC25 /* MarketplaceTopBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MarketplaceTopBar.swift; path = Views/MarketplaceTopBar.swift; sourceTree = "<group>"; };
+		FDC9E31B1EBFBE4000B6DC25 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		FDC9E31D1EBFBF8700B6DC25 /* Identifiers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Identifiers.swift; sourceTree = "<group>"; };
+		FDC9E31F1EBFC0CF00B6DC25 /* SettingsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsCell.swift; sourceTree = "<group>"; };
 		FDEAE6981EAAB26500B9F504 /* FavoritesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -130,7 +136,6 @@
 				FD5F9F5B1EA8091A00BD79B1 /* Views */,
 				FD5F9F411EA776A300BD79B1 /* AppDelegate.swift */,
 				FD5F9F471EA776A300BD79B1 /* Auth.storyboard */,
-				FDC3AB151EBB460100141241 /* Acquired.storyboard */,
 				FDC3AB171EBB463F00141241 /* MyImages.storyboard */,
 				FDC3AB191EBB465C00141241 /* Settings.storyboard */,
 				FDC3AB131EBB42A800141241 /* MarketPlace.storyboard */,
@@ -148,10 +153,14 @@
 			isa = PBXGroup;
 			children = (
 				FD5F9F591EA8073E00BD79B1 /* TopBarView.swift */,
+				FDC9E3191EBF155500B6DC25 /* MarketplaceTopBar.swift */,
 				FD5F9F571EA7BFB300BD79B1 /* RoundedButton.swift */,
 				FDC89DF51EBA3799004D3F9F /* RoundedView.swift */,
 				FD5F9F5C1EA8093900BD79B1 /* TopBarBackgroundView.swift */,
 				FD5F9F5F1EA80CF500BD79B1 /* RoundedImageView.swift */,
+				FDC9E31B1EBFBE4000B6DC25 /* SettingsViewController.swift */,
+				FDC9E31D1EBFBF8700B6DC25 /* Identifiers.swift */,
+				FDC9E31F1EBFC0CF00B6DC25 /* SettingsCell.swift */,
 				FDC060331EB8D9D5007C6A71 /* EspandableButton.swift */,
 			);
 			name = Views;
@@ -242,7 +251,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				FDC3AB181EBB463F00141241 /* MyImages.storyboard in Resources */,
-				FDC3AB161EBB460100141241 /* Acquired.storyboard in Resources */,
 				FDC3AB141EBB42A800141241 /* MarketPlace.storyboard in Resources */,
 				FDC3AB1A1EBB465C00141241 /* Settings.storyboard in Resources */,
 				FDC3AB121EBB428C00141241 /* TabBar.storyboard in Resources */,
@@ -311,10 +319,14 @@
 				FDC89DF91EBA4A2B004D3F9F /* PresentationAnimtor.swift in Sources */,
 				FD5F9F601EA80CF500BD79B1 /* RoundedImageView.swift in Sources */,
 				FD7DDF161EB3BE7800B963DC /* BLEService.swift in Sources */,
+				FDC9E31C1EBFBE4000B6DC25 /* SettingsViewController.swift in Sources */,
+				FDC9E31E1EBFBF8700B6DC25 /* Identifiers.swift in Sources */,
 				FDEAE6991EAAB26500B9F504 /* FavoritesViewController.swift in Sources */,
 				FD5F9F561EA79ED700BD79B1 /* FloatingPoint.swift in Sources */,
 				FD5F9F581EA7BFB300BD79B1 /* RoundedButton.swift in Sources */,
+				FDC9E31A1EBF155500B6DC25 /* MarketplaceTopBar.swift in Sources */,
 				FDC3AB101EBB36AF00141241 /* UITextField.swift in Sources */,
+				FDC9E3201EBFC0CF00B6DC25 /* SettingsCell.swift in Sources */,
 				FD5F9F5D1EA8093900BD79B1 /* TopBarBackgroundView.swift in Sources */,
 				FDC89DFC1EBA4ABA004D3F9F /* AuthViewCoontroller.swift in Sources */,
 				FD5F9F461EA776A300BD79B1 /* StoreViewController.swift in Sources */,

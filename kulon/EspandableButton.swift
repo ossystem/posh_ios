@@ -9,36 +9,84 @@
 import Foundation
 import UIKit
 
-class ExpandableButton: RoundedButton {
-    var buttonAction: ButtonActionType? {
-        didSet {
-            if buttonAction != nil {
-                addTarget(self, action: #selector(performAction), for: .touchUpInside)
-            } else {
-                removeTarget(self, action: #selector(performAction), for: .touchUpInside)
-            }
-        }
+@objc protocol  ExpandableButtonDelegate {
+    @objc optional func willExpand(_ button: ExpandableButton)
+    @objc optional func didExpand(_ button: ExpandableButton)
+    @objc optional func willShrink(_ button: ExpandableButton)
+    @objc optional func didShrink(_ button: ExpandableButton)
+}
+
+class ExpandableButton: UIView {
+
+    @IBOutlet weak var mainButton: UIButton!
+    var subButtons: [UIButton]!
+    
+    private var isExpanded = false
+    
+    var delegate: ExpandableButtonDelegate?
+    var expansionDuration = 0.3
+    var expansionRadius: CGFloat = 100
+    
+    override func awakeFromNib() {
+        mainButton.addTarget(self, action: #selector(performAction), for: .touchUpInside)
     }
-    
-    var expanrionRadius: CGFloat = 100
-    
+
     func performAction() {
-        guard let buttonAction = buttonAction else{ return }
-        switch buttonAction {
-        case let .simpleAction(action):
-            action()
-        case let .multipleButtons(buttons):
-            let angleStep = 180.0/(CGFloat(buttons.count) + 1.0)
-            for (index, button) in buttons.enumerated() {
-                var newFrame = self.frame
-                newFrame.origin.x -= expanrionRadius * cos(angleStep.degreesToRadians * CGFloat(index + 1))
-                newFrame.origin.y += expanrionRadius * sin(angleStep.degreesToRadians * CGFloat(index + 1))
+        if !isExpanded {
+            
+                //TODO: move to delegate
+//            blurView = UIVisualEffectView(frame: superview!.bounds)
+//            superview?.addSubview(blurView!)
+//            UIView.animate(withDuration: 0.3, animations: {
+//                self.blurView?.effect = UIBlurEffect(style: .extraLight)
+//            })
+            delegate?.willExpand?(self)
+            
+            let angleStep = 180.0 / (CGFloat(subButtons.count) + 1.0)
+            for (index, button) in subButtons.enumerated() {
+                var newFrame = self.mainButton.frame
                 button.frame = newFrame
-                button.layer.cornerRadius = frame.size.width/2.0
-                self.superview?.addSubview(button)
+                newFrame.origin.x -= expansionRadius * cos(angleStep.degreesToRadians * CGFloat(index + 1))
+                newFrame.origin.y += expansionRadius * sin(angleStep.degreesToRadians * CGFloat(index + 1))
+                button.layer.cornerRadius = self.mainButton.frame.size.width / 2.0
+                self.addSubview(button)
+                UIView.animate(withDuration: 0.3, animations: {
+                    button.frame = newFrame
+                })
             }
+            //TODO: syncronize all animations andd add didExpand: method
+            superview?.bringSubview(toFront: self)
+            isExpanded = true
+        } else {
+            delegate?.willShrink?(self)
+            UIView.animate(withDuration: 0.3, animations: {
+//                self.blurView?.effect = nil
+                for button in self.subButtons {
+                    var frame = button.frame
+                    frame.origin = self.mainButton.frame.origin
+                    frame.origin.y += 20
+                    button.frame = frame
+                }
+            }, completion: { completed in
+//                self.blurView?.removeFromSuperview()
+                for button in self.subButtons {
+                    button.removeFromSuperview()
+                }
+                self.delegate?.didShrink?(self)
+            })
+            isExpanded = false
         }
+        
     }
     
-    
+    override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
+        if isExpanded {
+            for button in subButtons {
+                if let convertedPoint = superview?.convert(point, to: self), button.frame.contains(convertedPoint) {
+                    return true
+                }
+            }
+        }
+        return super.point(inside: point, with: event)
+    }
 }

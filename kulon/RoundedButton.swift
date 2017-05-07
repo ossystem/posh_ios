@@ -41,21 +41,10 @@ import UIKit
         }
     }
     
-    var blurView: UIVisualEffectView?
+
     
-    @IBInspectable var hasBlur: Bool = false {
-        didSet {
-            if hasBlur {
-                blurView = UIVisualEffectView(frame: self.bounds)
-                blurView?.effect = UIBlurEffect(style: .light)
-                //TODO: fix blur
-                self.addSubview(blurView!)
-                self.sendSubview(toBack: blurView!)
-            } else {
-                blurView?.removeFromSuperview()
-                blurView = nil
-            }
-        }
+    func highlight(_ highlighted: Bool) {
+        
     }
 
 }

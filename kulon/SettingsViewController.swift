@@ -52,4 +52,10 @@ class SettingsViewController: BaseViewController, UITableViewDataSource, UITable
         return cell
     }
     
+    //MARK: - tableView delegate 
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
 }

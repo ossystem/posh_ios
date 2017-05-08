@@ -19,10 +19,7 @@ class TopBarBackgroundView: UIView {
     ///In degrees
     @IBInspectable var angle: CGFloat = 30
     @IBInspectable var buttonRadius: CGFloat = 50
-    @IBInspectable var buttonInset: CGFloat = 2
-    
-//    @IBOutlet weak var button: UIButton!
-    
+        
     override func draw(_ rect: CGRect) {
         let outterPath = outterRadialBacground(for: rect)
         let buttonPath = buttonBackground(for: rect)

@@ -45,6 +45,7 @@ class ExpandableButton: UIView {
             let angleStep = 180.0 / (CGFloat(subButtons.count) + 1.0)
             for (index, button) in subButtons.enumerated() {
                 var newFrame = self.mainButton.frame
+                
                 button.frame = newFrame
                 newFrame.origin.x -= expansionRadius * cos(angleStep.degreesToRadians * CGFloat(index + 1))
                 newFrame.origin.y += expansionRadius * sin(angleStep.degreesToRadians * CGFloat(index + 1))
@@ -54,6 +55,7 @@ class ExpandableButton: UIView {
                     button.frame = newFrame
                 })
             }
+            bringSubview(toFront: mainButton)
             //TODO: syncronize all animations andd add didExpand: method
             superview?.bringSubview(toFront: self)
             isExpanded = true
@@ -64,7 +66,6 @@ class ExpandableButton: UIView {
                 for button in self.subButtons {
                     var frame = button.frame
                     frame.origin = self.mainButton.frame.origin
-                    frame.origin.y += 20
                     button.frame = frame
                 }
             }, completion: { completed in

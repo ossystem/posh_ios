@@ -43,11 +43,16 @@ class StoreViewController: BaseViewController, UICollectionViewDelegate, UIColle
     
     func setupInterface(){
         categoryButton.setImage(#imageLiteral(resourceName: "icon_camera"), for: .normal)
-        categoryButton.backgroundColor = UIColor.Kulon.orange
+        categoryButton.backgroundColor = UIColor.white
         categoryButton.addTarget(self, action: #selector(searchCategories), for: .touchUpInside)
+        categoryButton.borderColor = .white
+        categoryButton.cornerRadius = 25
+        categoryButton.borderWidth = 4
         tagButton.setImage(#imageLiteral(resourceName: "icon_camera"), for: .normal)
-        tagButton.setImage(#imageLiteral(resourceName: "icon_password"), for: .highlighted)
         tagButton.backgroundColor = UIColor.Kulon.orange
+        tagButton.borderColor = .white
+        tagButton.cornerRadius = 25
+        tagButton.borderWidth = 4
         tagButton.addTarget(self, action: #selector(searchTags), for: .touchUpInside)
         topBar.button.subButtons = [categoryButton, tagButton]
         

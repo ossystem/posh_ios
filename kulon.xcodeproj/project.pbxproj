@@ -22,7 +22,7 @@
 		FD5F9F601EA80CF500BD79B1 /* RoundedImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD5F9F5F1EA80CF500BD79B1 /* RoundedImageView.swift */; };
 		FD7DDF161EB3BE7800B963DC /* BLEService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7DDF151EB3BE7800B963DC /* BLEService.swift */; };
 		FDA3CB0C1EBC8F4A0048AE71 /* AndaleMono.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FDA3CB0B1EBC8F4A0048AE71 /* AndaleMono.ttf */; };
-		FDC060341EB8D9D5007C6A71 /* EspandableButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDC060331EB8D9D5007C6A71 /* EspandableButton.swift */; };
+		FDC060341EB8D9D5007C6A71 /* ExpandableButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDC060331EB8D9D5007C6A71 /* ExpandableButton.swift */; };
 		FDC3AB101EBB36AF00141241 /* UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDC3AB0F1EBB36AF00141241 /* UITextField.swift */; };
 		FDC3AB121EBB428C00141241 /* TabBar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FDC3AB111EBB428C00141241 /* TabBar.storyboard */; };
 		FDC3AB141EBB42A800141241 /* MarketPlace.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FDC3AB131EBB42A800141241 /* MarketPlace.storyboard */; };
@@ -62,7 +62,7 @@
 		FD5F9F5F1EA80CF500BD79B1 /* RoundedImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedImageView.swift; sourceTree = "<group>"; };
 		FD7DDF151EB3BE7800B963DC /* BLEService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BLEService.swift; sourceTree = "<group>"; };
 		FDA3CB0B1EBC8F4A0048AE71 /* AndaleMono.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = AndaleMono.ttf; sourceTree = "<group>"; };
-		FDC060331EB8D9D5007C6A71 /* EspandableButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EspandableButton.swift; sourceTree = "<group>"; };
+		FDC060331EB8D9D5007C6A71 /* ExpandableButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpandableButton.swift; sourceTree = "<group>"; };
 		FDC3AB0F1EBB36AF00141241 /* UITextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITextField.swift; sourceTree = "<group>"; };
 		FDC3AB111EBB428C00141241 /* TabBar.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TabBar.storyboard; sourceTree = "<group>"; };
 		FDC3AB131EBB42A800141241 /* MarketPlace.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MarketPlace.storyboard; sourceTree = "<group>"; };
@@ -166,7 +166,7 @@
 				FD5F9F5F1EA80CF500BD79B1 /* RoundedImageView.swift */,
 				FDC9E31D1EBFBF8700B6DC25 /* Identifiers.swift */,
 				FDC9E31F1EBFC0CF00B6DC25 /* SettingsCell.swift */,
-				FDC060331EB8D9D5007C6A71 /* EspandableButton.swift */,
+				FDC060331EB8D9D5007C6A71 /* ExpandableButton.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -344,7 +344,7 @@
 				FD1F42F01EBB52BE008AE3ED /* UIColor.swift in Sources */,
 				FD5F9F5A1EA8073E00BD79B1 /* TopBarView.swift in Sources */,
 				FD5F9F441EA776A300BD79B1 /* BaseController.swift in Sources */,
-				FDC060341EB8D9D5007C6A71 /* EspandableButton.swift in Sources */,
+				FDC060341EB8D9D5007C6A71 /* ExpandableButton.swift in Sources */,
 				FDC89DFA1EBA4A2B004D3F9F /* DismissAnimator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

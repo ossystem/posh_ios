@@ -17,6 +17,7 @@ class StoreViewController: BaseViewController, UICollectionViewDelegate, UIColle
             collectionView.dataSource = self
         }
     }
+    @IBOutlet weak var topButton: ExpandableButton!
     
     let bleService = BLEService.shared
     var blurView: UIVisualEffectView!
@@ -24,7 +25,7 @@ class StoreViewController: BaseViewController, UICollectionViewDelegate, UIColle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        topBar.button.delegate = self
+        topButton.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -45,26 +46,25 @@ class StoreViewController: BaseViewController, UICollectionViewDelegate, UIColle
         categoryButton.setImage(#imageLiteral(resourceName: "icon_camera"), for: .normal)
         categoryButton.backgroundColor = UIColor.white
         categoryButton.addTarget(self, action: #selector(searchCategories), for: .touchUpInside)
-        categoryButton.borderColor = .white
-        categoryButton.cornerRadius = 25
-        categoryButton.borderWidth = 4
+        
         tagButton.setImage(#imageLiteral(resourceName: "icon_camera"), for: .normal)
-        tagButton.backgroundColor = UIColor.Kulon.orange
-        tagButton.borderColor = .white
-        tagButton.cornerRadius = 25
-        tagButton.borderWidth = 4
+        tagButton.backgroundColor = .white
         tagButton.addTarget(self, action: #selector(searchTags), for: .touchUpInside)
-        topBar.button.subButtons = [categoryButton, tagButton]
+        
+        topButton.subButtons = [categoryButton, tagButton]
         
         blurView = UIVisualEffectView(frame: view.bounds)
     }
     
     func searchTags() {
-        tagButton.isHighlighted = true
+        tagButton.highlight(true)
+        categoryButton.highlight(false)
+    
     }
     
     func searchCategories() {
-        
+        tagButton.highlight(false)
+        categoryButton.highlight(true)
     }
     
     //MARK: - Collection view datasource
@@ -86,8 +86,7 @@ class StoreViewController: BaseViewController, UICollectionViewDelegate, UIColle
     //MARK: - Expandable button delegate
     
     func willExpand(_ button: ExpandableButton) {
-        view.addSubview(blurView!)
-        view.bringSubview(toFront: topBar)
+        view.insertSubview(blurView, belowSubview: topBar)
         UIView.animate(withDuration: 0.3, animations: {
             self.blurView?.effect = UIBlurEffect(style: .extraLight)
         })

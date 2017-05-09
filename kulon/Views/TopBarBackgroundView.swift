@@ -49,7 +49,9 @@ class TopBarBackgroundView: UIView {
     
     private func buttonBackground(for rect: CGRect) -> UIBezierPath {
         let centerX = rect.width / 2
-        let centerY = topOffsetHeight + 16
+        let R = (rect.width / 2) / sin(angle.degreesToRadians/2)
+        let bigCenter = topOffsetHeight - (rect.width/2) / tan(angle.degreesToRadians/2)
+        let centerY = bigCenter + sqrt(pow(R, 2) - pow(buttonRadius, 2))//topOffsetHeight + 16
         let center = CGPoint(x: centerX, y: centerY)
         let buttonbackgroundPath = UIBezierPath(arcCenter: center, radius: buttonRadius, startAngle: 0, endAngle: CGFloat.pi, clockwise: true)
         return buttonbackgroundPath

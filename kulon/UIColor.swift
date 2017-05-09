@@ -11,8 +11,11 @@ import UIKit
 
 extension UIColor {
     struct Kulon {
-        static var orange : UIColor {
+        static var lightOrange : UIColor {
             return UIColor(red:255/255.0, green:144/255.0, blue:144/255.0, alpha: 1.0)
+        }
+        static var orange: UIColor {
+            return UIColor(red: 220/255, green: 58/255, blue: 26/255, alpha: 0.9)
         }
     }
 }

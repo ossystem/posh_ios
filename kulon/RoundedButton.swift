@@ -41,10 +41,40 @@ import UIKit
         }
     }
     
-
+    var selectionRadius: CGFloat = 5
+    private var externalBorder: CALayer!
     
     func highlight(_ highlighted: Bool) {
-        backgroundColor = .orange
+        if highlighted {
+            backgroundColor = UIColor.Kulon.orange
+            addExternalBorder()
+        } else {
+            backgroundColor = .white
+            removeExternalBorder()
+        }
+    }
+    
+    private func addExternalBorder() {
+        externalBorder = CALayer(layer: layer)
+        externalBorder.frame = CGRect(x: -selectionRadius, y: -selectionRadius, width: frame.width + selectionRadius * 2, height: frame.height + selectionRadius * 2)
+        externalBorder.backgroundColor = UIColor.clear.cgColor
+        externalBorder.borderWidth = selectionRadius
+        externalBorder.cornerRadius = externalBorder.frame.width/2
+        externalBorder.borderColor = UIColor.white.cgColor
+        clipsToBounds = false
+        layer.insertSublayer(externalBorder, at: 0)
+    }
+    
+    private func removeExternalBorder() {
+        externalBorder?.removeFromSuperlayer()
+    }
+    
+    static func button(with icon: UIImage,target: Any?,  action: Selector) -> RoundedButton {
+        let button = RoundedButton()
+        button.setImage(icon, for: .normal)
+        button.backgroundColor = .white
+        button.addTarget(target, action: action, for: .touchUpInside)
+        return button
     }
 
 }

@@ -88,58 +88,48 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KNX-wG-DnB" customClass="ExpandableButton" customModule="kulon" customModuleProvider="target">
-                                        <rect key="frame" x="167" y="22" width="40" height="40"/>
-                                        <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ei1-3g-gjY">
-                                                <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
-                                                <color key="backgroundColor" red="0.91328364610000001" green="0.32373040910000001" blue="0.14859074350000001" alpha="0.050000000000000003" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" secondItem="Ei1-3g-gjY" secondAttribute="height" id="dhY-Rg-PVa"/>
-                                                    <constraint firstAttribute="width" constant="40" id="fpR-CT-XlB"/>
-                                                </constraints>
-                                                <state key="normal" image="icon_camera"/>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                        <real key="value" value="20"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                            </button>
-                                        </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="40" id="bYo-xQ-Vjc"/>
-                                            <constraint firstItem="Ei1-3g-gjY" firstAttribute="centerY" secondItem="KNX-wG-DnB" secondAttribute="centerY" id="pEm-ai-bXC"/>
-                                            <constraint firstAttribute="width" constant="40" id="q8U-Ch-Jig"/>
-                                            <constraint firstItem="Ei1-3g-gjY" firstAttribute="centerX" secondItem="KNX-wG-DnB" secondAttribute="centerX" id="tcJ-hN-cmK"/>
-                                        </constraints>
-                                        <connections>
-                                            <outlet property="mainButton" destination="Ei1-3g-gjY" id="xUI-EK-sdG"/>
-                                        </connections>
-                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="sEY-Bg-pEe" secondAttribute="trailing" id="4AX-Kp-x0r"/>
-                                    <constraint firstItem="KNX-wG-DnB" firstAttribute="top" secondItem="ZGF-8B-8cu" secondAttribute="top" constant="22" id="7An-6R-9Rz"/>
                                     <constraint firstAttribute="height" constant="70" id="8ew-Kn-xzT"/>
-                                    <constraint firstItem="KNX-wG-DnB" firstAttribute="centerX" secondItem="ZGF-8B-8cu" secondAttribute="centerX" id="9jh-8q-czZ"/>
                                     <constraint firstItem="sEY-Bg-pEe" firstAttribute="leading" secondItem="ZGF-8B-8cu" secondAttribute="leading" id="n2F-fm-flD"/>
                                     <constraint firstItem="sEY-Bg-pEe" firstAttribute="top" secondItem="ZGF-8B-8cu" secondAttribute="top" id="nNJ-5g-xhH"/>
                                     <constraint firstItem="sEY-Bg-pEe" firstAttribute="centerX" secondItem="ZGF-8B-8cu" secondAttribute="centerX" id="oA0-Q3-HK6"/>
                                 </constraints>
                                 <connections>
                                     <outlet property="background" destination="sEY-Bg-pEe" id="zPV-fM-6wa"/>
-                                    <outlet property="button" destination="KNX-wG-DnB" id="XGB-OZ-M6R"/>
                                 </connections>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3y1-UM-NDL" customClass="ExpandableButton" customModule="kulon" customModuleProvider="target">
+                                <rect key="frame" x="168" y="40" width="40" height="40"/>
+                                <color key="backgroundColor" red="0.91328364610000001" green="0.32373040910000001" blue="0.14859074350000001" alpha="0.050000000000000003" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="3y1-UM-NDL" secondAttribute="height" id="djw-U9-gby"/>
+                                    <constraint firstAttribute="width" constant="40" id="kJR-rn-itf"/>
+                                </constraints>
+                                <state key="normal" image="icon_camera"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="20"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="3y1-UM-NDL" firstAttribute="centerX" secondItem="oVc-Lu-Ne5" secondAttribute="centerX" id="0ss-jb-k2O"/>
                             <constraint firstAttribute="trailing" secondItem="Dxi-Cd-tdk" secondAttribute="trailing" id="Z1d-QN-XlG"/>
                             <constraint firstItem="Dxi-Cd-tdk" firstAttribute="top" secondItem="WOC-Uj-Kjq" secondAttribute="bottom" id="grn-Nw-IRd"/>
                             <constraint firstItem="NSV-Ns-VWJ" firstAttribute="top" secondItem="Dxi-Cd-tdk" secondAttribute="bottom" id="hvD-AU-aT9"/>
                             <constraint firstItem="ZGF-8B-8cu" firstAttribute="centerX" secondItem="oVc-Lu-Ne5" secondAttribute="centerX" id="lhV-gL-ub5"/>
+                            <constraint firstItem="3y1-UM-NDL" firstAttribute="top" secondItem="WOC-Uj-Kjq" secondAttribute="bottom" constant="20" id="sq4-Xp-Gi0"/>
                             <constraint firstItem="Dxi-Cd-tdk" firstAttribute="leading" secondItem="oVc-Lu-Ne5" secondAttribute="leading" id="vTL-d0-pVm"/>
                             <constraint firstItem="ZGF-8B-8cu" firstAttribute="width" secondItem="oVc-Lu-Ne5" secondAttribute="width" id="xBA-0f-sN2"/>
                             <constraint firstItem="ZGF-8B-8cu" firstAttribute="top" secondItem="WOC-Uj-Kjq" secondAttribute="bottom" id="zNt-c2-6eT"/>
@@ -149,6 +139,7 @@
                     <connections>
                         <outlet property="collectionView" destination="Dxi-Cd-tdk" id="gLk-9F-X1v"/>
                         <outlet property="topBar" destination="ZGF-8B-8cu" id="11b-fD-ZEZ"/>
+                        <outlet property="topButton" destination="3y1-UM-NDL" id="BJx-ug-urg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nBH-CA-B5D" sceneMemberID="firstResponder"/>

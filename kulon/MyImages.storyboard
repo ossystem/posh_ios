@@ -117,17 +117,20 @@
                                     <outlet property="button" destination="SCX-VD-tfv" id="AOq-lq-kU2"/>
                                 </connections>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pVV-im-775" customClass="RoundedButton" customModule="kulon" customModuleProvider="target">
-                                <rect key="frame" x="167" y="607" width="40" height="40"/>
-                                <color key="backgroundColor" red="0.91328364610000001" green="0.32373040910000001" blue="0.14859074350000001" alpha="0.050000000000000003" colorSpace="custom" customColorSpace="sRGB"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pVV-im-775" customClass="ExpandableButton" customModule="kulon" customModuleProvider="target">
+                                <rect key="frame" x="167.5" y="607" width="40" height="40"/>
+                                <color key="backgroundColor" red="0.99448782205581665" green="0.35271477699279785" blue="0.22732526063919067" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="pVV-im-775" secondAttribute="height" id="cfU-w7-Wh9"/>
                                     <constraint firstAttribute="width" constant="40" id="hDg-yu-f1h"/>
                                 </constraints>
-                                <state key="normal" image="icon_camera"/>
+                                <state key="normal" image="logo"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                         <real key="value" value="20"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="0.0"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </button>
@@ -148,17 +151,130 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Second" image="second" id="8ij-h8-hFs"/>
                     <connections>
+                        <outlet property="addButton" destination="pVV-im-775" id="zk8-pp-6kd"/>
                         <outlet property="collectionView" destination="6xi-4H-ona" id="5di-AV-yvr"/>
+                        <outlet property="topBar" destination="q13-h7-x9u" id="7bI-XH-FMD"/>
+                        <segue destination="k5z-4S-a2K" kind="presentation" identifier="AddTextImageID" id="LDo-Zv-88h"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aIF-ta-OjB" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="749.60000000000002" y="359.37031484257875"/>
         </scene>
+        <!--Redactor View Controller-->
+        <scene sceneID="mHR-PU-xzt">
+            <objects>
+                <viewController id="k5z-4S-a2K" customClass="RedactorViewController" customModule="kulon" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="lHX-sS-pbd"/>
+                        <viewControllerLayoutGuide type="bottom" id="kui-Lr-l6F"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="9kq-vB-ElZ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X8M-n3-YnP" userLabel="Top Bar" customClass="TopBarBackgroundView" customModule="kulon" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="20" width="375" height="70"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="70" id="Yyn-VC-aS2"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="mainColor">
+                                        <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="topOffsetHeight">
+                                        <real key="value" value="24"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="angle">
+                                        <real key="value" value="20"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowSize">
+                                        <real key="value" value="3"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="buttonRadius">
+                                        <real key="value" value="27"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RFE-XP-VHm" customClass="RoundedButton" customModule="kulon" customModuleProvider="target">
+                                <rect key="frame" x="167.5" y="40" width="40" height="40"/>
+                                <color key="backgroundColor" red="0.91328364610000001" green="0.32373040910000001" blue="0.14859074350000001" alpha="0.050000000000000003" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="RFE-XP-VHm" secondAttribute="height" id="41z-eA-P0B"/>
+                                    <constraint firstAttribute="width" constant="40" id="Jgh-yW-tAN"/>
+                                </constraints>
+                                <state key="normal" image="icon_camera"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="20"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="topBarButtonTapped:" destination="k5z-4S-a2K" eventType="touchUpInside" id="hmJ-js-pNU"/>
+                                </connections>
+                            </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ytE-nE-SUQ" customClass="RoundedView" customModule="kulon" customModuleProvider="target">
+                                <rect key="frame" x="43.5" y="110" width="288" height="288"/>
+                                <subviews>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mh0-Hn-Try">
+                                        <rect key="frame" x="44" y="132" width="200" height="24"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="200" id="CGR-e3-s38"/>
+                                        </constraints>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                </subviews>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="mh0-Hn-Try" firstAttribute="centerX" secondItem="ytE-nE-SUQ" secondAttribute="centerX" id="EPz-Wb-I5m"/>
+                                    <constraint firstItem="mh0-Hn-Try" firstAttribute="centerY" secondItem="ytE-nE-SUQ" secondAttribute="centerY" id="Mtx-NO-SLf"/>
+                                    <constraint firstAttribute="width" constant="288" id="Xuz-DD-tTY"/>
+                                    <constraint firstAttribute="width" secondItem="ytE-nE-SUQ" secondAttribute="height" id="ZzK-Gu-L8b"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="144"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1NJ-gM-3Rh">
+                                <rect key="frame" x="0.0" y="623" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <items>
+                                    <barButtonItem title="Item" id="N11-zO-e5e"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="TPU-2o-3Ma"/>
+                                    <barButtonItem title="Item" id="aC0-lx-5nD"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="Ro9-GC-wNg"/>
+                                    <barButtonItem title="Item" id="Gs1-Sf-mRH"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="dFZ-kh-SHd"/>
+                                    <barButtonItem title="Item" id="i6M-Wu-Kxp"/>
+                                </items>
+                            </toolbar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="X8M-n3-YnP" firstAttribute="centerX" secondItem="9kq-vB-ElZ" secondAttribute="centerX" id="1mU-Yx-tCo"/>
+                            <constraint firstItem="RFE-XP-VHm" firstAttribute="top" secondItem="lHX-sS-pbd" secondAttribute="bottom" constant="20" id="7wp-pq-mBO"/>
+                            <constraint firstItem="ytE-nE-SUQ" firstAttribute="top" secondItem="X8M-n3-YnP" secondAttribute="bottom" constant="20" id="Yj3-5M-A3t"/>
+                            <constraint firstItem="X8M-n3-YnP" firstAttribute="width" secondItem="9kq-vB-ElZ" secondAttribute="width" id="cPN-kj-UjV"/>
+                            <constraint firstItem="X8M-n3-YnP" firstAttribute="top" secondItem="lHX-sS-pbd" secondAttribute="bottom" id="fhy-aH-SAI"/>
+                            <constraint firstItem="ytE-nE-SUQ" firstAttribute="centerX" secondItem="9kq-vB-ElZ" secondAttribute="centerX" id="qKP-wq-7HC"/>
+                            <constraint firstItem="RFE-XP-VHm" firstAttribute="centerX" secondItem="9kq-vB-ElZ" secondAttribute="centerX" id="tKB-aX-mBi"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uxV-2p-zxr" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1636" y="358.4707646176912"/>
+        </scene>
     </scenes>
     <resources>
         <image name="SamplePhoto" width="16" height="16"/>
         <image name="icon_camera" width="100" height="100"/>
+        <image name="logo" width="140" height="139"/>
         <image name="second" width="30" height="30"/>
     </resources>
 </document>

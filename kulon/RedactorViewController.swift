@@ -10,7 +10,8 @@ import Foundation
 import UIKit
 
 class RedactorViewController: BaseViewController {
-    
+    @IBOutlet weak var toolBar: UIToolbar!
+    @IBOutlet weak var textField: UITextField!
     @IBAction func topBarButtonTapped(_ sender: RoundedButton) {
         dismiss(animated: true, completion: nil)
     }

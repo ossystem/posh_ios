@@ -265,6 +265,10 @@
                             <constraint firstItem="RFE-XP-VHm" firstAttribute="centerX" secondItem="9kq-vB-ElZ" secondAttribute="centerX" id="tKB-aX-mBi"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="textField" destination="mh0-Hn-Try" id="7eB-fd-ipG"/>
+                        <outlet property="toolBar" destination="1NJ-gM-3Rh" id="QgX-Cd-L1c"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uxV-2p-zxr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

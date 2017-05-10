@@ -21,7 +21,7 @@ class MyImagesViewController: BaseViewController, UICollectionViewDelegate, UICo
             collectionView.dataSource = self
         }
     }
-    var poshiks: [Poshik] = Poshik.sampleSet + Poshik.sampleSet + Poshik.sampleSet + Poshik.sampleSet + Poshik.sampleSet
+    var poshiks: [Poshik] = Poshik.sampleSet
     var blurView: UIVisualEffectView!
     
     override func viewDidLoad() {
@@ -64,6 +64,7 @@ class MyImagesViewController: BaseViewController, UICollectionViewDelegate, UICo
         button.highlight(true)
         UIView.animate(withDuration: 0.3, animations: {
             self.blurView?.effect = UIBlurEffect(style: .extraLight)
+            button.transform = CGAffineTransform(rotationAngle: CGFloat(135.0.degreesToRadians))
         })
     }
     
@@ -71,6 +72,7 @@ class MyImagesViewController: BaseViewController, UICollectionViewDelegate, UICo
         button.highlight(false)
         UIView.animate(withDuration: 0.3, animations: {
             self.blurView.effect = nil
+            button.transform = .identity
         },completion: { completed in
             self.blurView.removeFromSuperview()
         })

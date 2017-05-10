@@ -43,14 +43,20 @@ import UIKit
     
     var selectionRadius: CGFloat = 5
     private var externalBorder: CALayer!
+    var highlightImage: UIImage?
+    var ordinaryImage: UIImage?
     
     func highlight(_ highlighted: Bool) {
         if highlighted {
-//            backgroundColor = UIColor.Kulon.orange
+            if let image = highlightImage {
+                setImage(image, for: .normal)
+            }
             addExternalBorder()
         } else {
-//            backgroundColor = .white
             removeExternalBorder()
+            if let image = ordinaryImage {
+                setImage(image, for: .normal)
+            }
         }
     }
     
@@ -69,9 +75,11 @@ import UIKit
         externalBorder?.removeFromSuperlayer()
     }
     
-    static func button(with icon: UIImage,target: Any?,  action: Selector) -> RoundedButton {
+    static func button(with icon: UIImage, highlightIcon: UIImage? = nil, target: Any?,  action: Selector) -> RoundedButton {
         let button = RoundedButton()
         button.setImage(icon, for: .normal)
+        button.ordinaryImage = icon
+        button.highlightImage = highlightIcon
         button.backgroundColor = .white
         button.addTarget(target, action: action, for: .touchUpInside)
         return button

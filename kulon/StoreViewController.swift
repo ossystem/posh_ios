@@ -18,6 +18,9 @@ class StoreViewController: BaseViewController, UICollectionViewDelegate, UIColle
         }
     }
     @IBOutlet weak var topButton: ExpandableButton!
+    @IBOutlet weak var tagInputView: UIView!
+    @IBOutlet weak var tagTextField: UITextField!
+    @IBOutlet weak var tagBottomConstraint: NSLayoutConstraint!
     
     let bleService = BLEService.shared
     var blurView: UIVisualEffectView!
@@ -26,6 +29,8 @@ class StoreViewController: BaseViewController, UICollectionViewDelegate, UIColle
     override func viewDidLoad() {
         super.viewDidLoad()
         topButton.delegate = self
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -34,42 +39,53 @@ class StoreViewController: BaseViewController, UICollectionViewDelegate, UIColle
         
     }
     
-    func discover() {
-        bleService.discover()
-    }
-    
-    let categoryButton = RoundedButton()
-    let tagButton = RoundedButton()
+    let categoryButton = RoundedButton.button(with: #imageLiteral(resourceName: "icon_top_category_red"), highlightIcon: #imageLiteral(resourceName: "icon_top_category_white"),target: self, action: #selector(searchCategories))
+    let tagButton = RoundedButton.button(with: #imageLiteral(resourceName: "icon_top_tag"), highlightIcon: #imageLiteral(resourceName: "icon_top_tag_selected"), target: self, action: #selector(searchTags))
 
     
     func setupInterface(){
-        categoryButton.setImage(#imageLiteral(resourceName: "icon_camera"), for: .normal)
-        categoryButton.backgroundColor = UIColor.white
-        categoryButton.addTarget(self, action: #selector(searchCategories), for: .touchUpInside)
-        
-        tagButton.setImage(#imageLiteral(resourceName: "icon_camera"), for: .normal)
-        tagButton.backgroundColor = .white
-        tagButton.addTarget(self, action: #selector(searchTags), for: .touchUpInside)
-        
-        topButton.subButtons = [categoryButton, tagButton]
-        
+        topButton.subButtons = [
+            categoryButton,
+            tagButton
+        ]
         blurView = UIVisualEffectView(frame: view.bounds)
     }
     
     func searchTags() {
-        tagButton.highlight(true)
-        categoryButton.highlight(false)
-        tagButton.backgroundColor = UIColor.Kulon.orange
-        categoryButton.backgroundColor = .white
-    
+        statrSearching()
+        endCategorySelection()
     }
     
     func searchCategories() {
+        startCategorySelection()
+        endSearching()
+    }
+    
+    private func statrSearching() {
+        tagInputView.isHidden = false
+        tagTextField.becomeFirstResponder()
+        tagButton.highlight(true)
+        tagButton.backgroundColor = UIColor.Kulon.orange
+    }
+    
+    private func endSearching() {
         tagButton.highlight(false)
+        tagButton.backgroundColor = .white
+        view.endEditing(true)
+        tagInputView.isHidden = true
+    }
+    
+    private func startCategorySelection() {
         categoryButton.highlight(true)
         categoryButton.backgroundColor = UIColor.Kulon.orange
-        tagButton.backgroundColor = .white
     }
+    
+    private func endCategorySelection() {
+        categoryButton.highlight(false)
+        categoryButton.backgroundColor = .white
+    }
+    
+
     
     //MARK: - Collection view datasource
 
@@ -97,12 +113,34 @@ class StoreViewController: BaseViewController, UICollectionViewDelegate, UIColle
     }
     
     func willShrink(_ button: ExpandableButton) {
+        endSearching()
+        endCategorySelection()
         UIView.animate(withDuration: 0.3, animations: {
             self.blurView.effect = nil
         },completion: { completed in
             self.blurView.removeFromSuperview()
         })
     }
+    
+    //MARK: - keyboard events handling
+    
+    func keyboardWillShow(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            if tagBottomConstraint.constant == -49 {
+                tagBottomConstraint.constant += keyboardSize.height
+            }
+        }
+    }
+    
+    func keyboardWillHide(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            if tagBottomConstraint.constant != -49 {
+                tagBottomConstraint.constant -= keyboardSize.height
+            }
+        }
+    }
+    
+    
 
 }
 

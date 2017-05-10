@@ -50,8 +50,8 @@ class ExpandableButton: RoundedButton {
     }
     
     func showButtons() {
-        delegate?.willExpand?(self)
         let angleStep = 180.0 / (CGFloat(subButtons.count) + 1.0)
+        var newFrames: [CGRect] = []
         for (index, button) in subButtons.enumerated() {
             var newFrame = frame
             button.frame = newFrame
@@ -63,12 +63,16 @@ class ExpandableButton: RoundedButton {
                 newFrame.origin.x -= expansionRadius * cos(angleStep.degreesToRadians * CGFloat(index + 1))
                 newFrame.origin.y += expansionRadius * sin(angleStep.degreesToRadians * CGFloat(index + 1))
             }
+            newFrames.append(newFrame)
             button.layer.cornerRadius = frame.size.width / 2.0
             superview?.insertSubview(button, belowSubview: self)
-            UIView.animate(withDuration: 0.3, animations: {
-                button.frame = newFrame
-            })
         }
+        delegate?.willExpand?(self)
+        UIView.animate(withDuration: 0.3, animations: {
+            for (button, frame) in zip(self.subButtons, newFrames) {
+                button.frame = frame
+            }
+        })
     }
     
     func hideButtons() {

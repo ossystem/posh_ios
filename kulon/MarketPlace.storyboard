@@ -108,7 +108,7 @@
                                     <constraint firstAttribute="width" secondItem="3y1-UM-NDL" secondAttribute="height" id="djw-U9-gby"/>
                                     <constraint firstAttribute="width" constant="40" id="kJR-rn-itf"/>
                                 </constraints>
-                                <state key="normal" image="icon_camera"/>
+                                <state key="normal" image="icon_top_search"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                         <real key="value" value="20"/>
@@ -121,16 +121,55 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </button>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C8w-Ji-LuW">
+                                <rect key="frame" x="0.0" y="636" width="375" height="80"/>
+                                <subviews>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="TAG" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dsf-cW-tsc">
+                                        <rect key="frame" x="54" y="20" width="267" height="26"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
+                                    </textField>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GaJ-PJ-Gqg">
+                                        <rect key="frame" x="20" y="19.5" width="14" height="27.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                        <color key="textColor" red="0.8373681902885437" green="0.8374629020690918" blue="0.83731347322463989" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XCp-ll-Rzv">
+                                        <rect key="frame" x="20" y="62" width="335" height="1"/>
+                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="1" id="gdX-z1-g6d"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="XCp-ll-Rzv" firstAttribute="top" secondItem="dsf-cW-tsc" secondAttribute="bottom" constant="16" id="6r5-eG-Cfo"/>
+                                    <constraint firstItem="XCp-ll-Rzv" firstAttribute="width" secondItem="C8w-Ji-LuW" secondAttribute="width" constant="-40" id="7ke-sZ-8YG"/>
+                                    <constraint firstItem="GaJ-PJ-Gqg" firstAttribute="centerY" secondItem="dsf-cW-tsc" secondAttribute="centerY" id="bUG-HG-4yK"/>
+                                    <constraint firstItem="XCp-ll-Rzv" firstAttribute="centerX" secondItem="C8w-Ji-LuW" secondAttribute="centerX" id="hmn-24-Vo9"/>
+                                    <constraint firstAttribute="trailing" secondItem="dsf-cW-tsc" secondAttribute="trailing" constant="54" id="nXg-58-hts"/>
+                                    <constraint firstItem="dsf-cW-tsc" firstAttribute="leading" secondItem="GaJ-PJ-Gqg" secondAttribute="trailing" constant="20" id="qWD-Mx-ahh"/>
+                                    <constraint firstAttribute="height" constant="80" id="w5P-Dj-LVE"/>
+                                    <constraint firstItem="dsf-cW-tsc" firstAttribute="top" secondItem="C8w-Ji-LuW" secondAttribute="top" constant="20" id="wo2-QJ-w5F"/>
+                                    <constraint firstItem="GaJ-PJ-Gqg" firstAttribute="leading" secondItem="C8w-Ji-LuW" secondAttribute="leading" constant="20" id="zmZ-xZ-GdH"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="3y1-UM-NDL" firstAttribute="centerX" secondItem="oVc-Lu-Ne5" secondAttribute="centerX" id="0ss-jb-k2O"/>
+                            <constraint firstItem="NSV-Ns-VWJ" firstAttribute="top" secondItem="C8w-Ji-LuW" secondAttribute="bottom" constant="-49" id="1kR-vu-0YP"/>
+                            <constraint firstItem="C8w-Ji-LuW" firstAttribute="width" secondItem="oVc-Lu-Ne5" secondAttribute="width" id="34J-DJ-Un5"/>
                             <constraint firstAttribute="trailing" secondItem="Dxi-Cd-tdk" secondAttribute="trailing" id="Z1d-QN-XlG"/>
                             <constraint firstItem="Dxi-Cd-tdk" firstAttribute="top" secondItem="WOC-Uj-Kjq" secondAttribute="bottom" id="grn-Nw-IRd"/>
                             <constraint firstItem="NSV-Ns-VWJ" firstAttribute="top" secondItem="Dxi-Cd-tdk" secondAttribute="bottom" id="hvD-AU-aT9"/>
                             <constraint firstItem="ZGF-8B-8cu" firstAttribute="centerX" secondItem="oVc-Lu-Ne5" secondAttribute="centerX" id="lhV-gL-ub5"/>
                             <constraint firstItem="3y1-UM-NDL" firstAttribute="top" secondItem="WOC-Uj-Kjq" secondAttribute="bottom" constant="20" id="sq4-Xp-Gi0"/>
                             <constraint firstItem="Dxi-Cd-tdk" firstAttribute="leading" secondItem="oVc-Lu-Ne5" secondAttribute="leading" id="vTL-d0-pVm"/>
+                            <constraint firstItem="C8w-Ji-LuW" firstAttribute="centerX" secondItem="oVc-Lu-Ne5" secondAttribute="centerX" id="vhS-qU-WlM"/>
                             <constraint firstItem="ZGF-8B-8cu" firstAttribute="width" secondItem="oVc-Lu-Ne5" secondAttribute="width" id="xBA-0f-sN2"/>
                             <constraint firstItem="ZGF-8B-8cu" firstAttribute="top" secondItem="WOC-Uj-Kjq" secondAttribute="bottom" id="zNt-c2-6eT"/>
                         </constraints>
@@ -138,18 +177,21 @@
                     <tabBarItem key="tabBarItem" title="Store" image="icon_tab_cloud" id="qt9-DD-5ss"/>
                     <connections>
                         <outlet property="collectionView" destination="Dxi-Cd-tdk" id="gLk-9F-X1v"/>
+                        <outlet property="tagBottomConstraint" destination="1kR-vu-0YP" id="Y1L-6q-8Ua"/>
+                        <outlet property="tagInputView" destination="C8w-Ji-LuW" id="Ixa-oZ-NDh"/>
+                        <outlet property="tagTextField" destination="dsf-cW-tsc" id="KvX-Zx-aJy"/>
                         <outlet property="topBar" destination="ZGF-8B-8cu" id="11b-fD-ZEZ"/>
                         <outlet property="topButton" destination="3y1-UM-NDL" id="BJx-ug-urg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nBH-CA-B5D" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="800" y="-292"/>
+            <point key="canvasLocation" x="799.20000000000005" y="-292.80359820089956"/>
         </scene>
     </scenes>
     <resources>
         <image name="SamplePhoto" width="16" height="16"/>
-        <image name="icon_camera" width="100" height="100"/>
         <image name="icon_tab_cloud" width="35" height="24"/>
+        <image name="icon_top_search" width="25" height="25"/>
     </resources>
 </document>

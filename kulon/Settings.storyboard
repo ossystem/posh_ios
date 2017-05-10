@@ -114,7 +114,7 @@
                                             <constraint firstAttribute="width" secondItem="IgY-D6-OWK" secondAttribute="height" id="1s4-tc-QPg"/>
                                             <constraint firstAttribute="width" constant="40" id="3Xb-8H-bvK"/>
                                         </constraints>
-                                        <state key="normal" image="icon_camera"/>
+                                        <state key="normal" image="icon_top_power_btn"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                 <real key="value" value="20"/>
@@ -160,8 +160,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="icon_camera" width="100" height="100"/>
         <image name="icon_tab_settings" width="30" height="30"/>
+        <image name="icon_top_power_btn" width="22" height="24"/>
         <image name="logo" width="140" height="139"/>
     </resources>
 </document>

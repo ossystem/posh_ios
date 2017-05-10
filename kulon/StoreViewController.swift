@@ -59,12 +59,16 @@ class StoreViewController: BaseViewController, UICollectionViewDelegate, UIColle
     func searchTags() {
         tagButton.highlight(true)
         categoryButton.highlight(false)
+        tagButton.backgroundColor = UIColor.Kulon.orange
+        categoryButton.backgroundColor = .white
     
     }
     
     func searchCategories() {
         tagButton.highlight(false)
         categoryButton.highlight(true)
+        categoryButton.backgroundColor = UIColor.Kulon.orange
+        tagButton.backgroundColor = .white
     }
     
     //MARK: - Collection view datasource

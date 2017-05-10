@@ -124,7 +124,7 @@
                                     <constraint firstAttribute="width" secondItem="pVV-im-775" secondAttribute="height" id="cfU-w7-Wh9"/>
                                     <constraint firstAttribute="width" constant="40" id="hDg-yu-f1h"/>
                                 </constraints>
-                                <state key="normal" image="logo"/>
+                                <state key="normal" image="icon_add"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                         <real key="value" value="20"/>
@@ -149,7 +149,7 @@
                             <constraint firstItem="gnc-3P-UqF" firstAttribute="top" secondItem="pVV-im-775" secondAttribute="bottom" constant="20" id="slo-xi-EoQ"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Second" image="second" id="8ij-h8-hFs"/>
+                    <tabBarItem key="tabBarItem" title="My images" image="icon_tab_picture" id="8ij-h8-hFs"/>
                     <connections>
                         <outlet property="addButton" destination="pVV-im-775" id="zk8-pp-6kd"/>
                         <outlet property="collectionView" destination="6xi-4H-ona" id="5di-AV-yvr"/>
@@ -277,8 +277,8 @@
     </scenes>
     <resources>
         <image name="SamplePhoto" width="16" height="16"/>
+        <image name="icon_add" width="27" height="27"/>
         <image name="icon_camera" width="100" height="100"/>
-        <image name="logo" width="140" height="139"/>
-        <image name="second" width="30" height="30"/>
+        <image name="icon_tab_picture" width="30" height="25"/>
     </resources>
 </document>

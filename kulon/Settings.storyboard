@@ -148,7 +148,7 @@
                             <constraint firstItem="EdR-jj-NlC" firstAttribute="leading" secondItem="z4p-Cd-Jsa" secondAttribute="leading" id="yeR-Yg-nV4"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Second" image="second" id="lM9-Zo-r0E"/>
+                    <tabBarItem key="tabBarItem" title="Settings" image="icon_tab_settings" id="lM9-Zo-r0E"/>
                     <connections>
                         <outlet property="tableView" destination="EdR-jj-NlC" id="y1f-H7-Vks"/>
                         <outlet property="topBar" destination="dA7-97-daZ" id="7Ec-gf-SjJ"/>
@@ -161,7 +161,7 @@
     </scenes>
     <resources>
         <image name="icon_camera" width="100" height="100"/>
+        <image name="icon_tab_settings" width="30" height="30"/>
         <image name="logo" width="140" height="139"/>
-        <image name="second" width="30" height="30"/>
     </resources>
 </document>

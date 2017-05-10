@@ -18,6 +18,7 @@
                         <rect key="frame" x="0.0" y="975" width="768" height="49"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="selectedImageTintColor" red="0.99448782205581665" green="0.35271477699279785" blue="0.22732526063919067" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBar>
                     <connections>
                         <segue destination="hFF-7G-Ycv" kind="relationship" relationship="viewControllers" id="XDI-cm-edX"/>
@@ -33,7 +34,7 @@
         <scene sceneID="c1j-EY-L8w">
             <objects>
                 <viewControllerPlaceholder storyboardName="MarketPlace" id="hFF-7G-Ycv" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Store" id="Xux-yq-gBg"/>
+                    <tabBarItem key="tabBarItem" title="Store" image="icon_tab_cloud" id="Xux-yq-gBg"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cZG-HF-wJ7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -43,7 +44,7 @@
         <scene sceneID="jmC-Fs-odI">
             <objects>
                 <viewControllerPlaceholder storyboardName="MyImages" id="K0e-dS-lhS" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="My images" id="UQS-T0-Qbi"/>
+                    <tabBarItem key="tabBarItem" title="My images" image="icon_tab_picture" id="UQS-T0-Qbi"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Sdf-Ad-viS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -53,11 +54,16 @@
         <scene sceneID="ZMt-Ct-rpW">
             <objects>
                 <viewControllerPlaceholder storyboardName="Settings" id="iuK-K0-mCD" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Settings" id="e0d-NB-qVj"/>
+                    <tabBarItem key="tabBarItem" title="Settings" image="icon_tab_settings" id="e0d-NB-qVj"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pwt-Ch-dRL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="135" y="1353"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="icon_tab_cloud" width="35" height="24"/>
+        <image name="icon_tab_picture" width="30" height="25"/>
+        <image name="icon_tab_settings" width="30" height="30"/>
+    </resources>
 </document>

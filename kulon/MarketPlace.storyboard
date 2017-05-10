@@ -135,7 +135,7 @@
                             <constraint firstItem="ZGF-8B-8cu" firstAttribute="top" secondItem="WOC-Uj-Kjq" secondAttribute="bottom" id="zNt-c2-6eT"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="First" image="first" id="qt9-DD-5ss"/>
+                    <tabBarItem key="tabBarItem" title="Store" image="icon_tab_cloud" id="qt9-DD-5ss"/>
                     <connections>
                         <outlet property="collectionView" destination="Dxi-Cd-tdk" id="gLk-9F-X1v"/>
                         <outlet property="topBar" destination="ZGF-8B-8cu" id="11b-fD-ZEZ"/>
@@ -149,7 +149,7 @@
     </scenes>
     <resources>
         <image name="SamplePhoto" width="16" height="16"/>
-        <image name="first" width="30" height="30"/>
         <image name="icon_camera" width="100" height="100"/>
+        <image name="icon_tab_cloud" width="35" height="24"/>
     </resources>
 </document>

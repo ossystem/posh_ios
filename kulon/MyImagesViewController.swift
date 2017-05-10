@@ -28,12 +28,12 @@ class MyImagesViewController: BaseViewController, UICollectionViewDelegate, UICo
         addButton.delegate = self
         addButton.type = .above
         addButton.subButtons = [
-            RoundedButton.button(with: #imageLiteral(resourceName: "icon_camera"), target: self, action: #selector(addTextImage)),
-            RoundedButton.button(with: #imageLiteral(resourceName: "icon_camera"), target: self, action: #selector(addTextImage)),
-            RoundedButton.button(with: #imageLiteral(resourceName: "icon_camera"), target: self, action: #selector(addTextImage)),
-            RoundedButton.button(with: #imageLiteral(resourceName: "icon_camera"), target: self, action: #selector(addTextImage)),
-            RoundedButton.button(with: #imageLiteral(resourceName: "icon_camera"), target: self, action: #selector(addTextImage)),
-            RoundedButton.button(with: #imageLiteral(resourceName: "icon_camera"), target: self, action: #selector(addTextImage)),
+            RoundedButton.button(with: #imageLiteral(resourceName: "icon_vk-1"), target: self, action: #selector(addTextImage)),
+            RoundedButton.button(with: #imageLiteral(resourceName: "icon_fb-1"), target: self, action: #selector(addTextImage)),
+            RoundedButton.button(with: #imageLiteral(resourceName: "instagram"), target: self, action: #selector(addTextImage)),
+            RoundedButton.button(with: #imageLiteral(resourceName: "icon_snapchat"), target: self, action: #selector(addTextImage)),
+            RoundedButton.button(with: #imageLiteral(resourceName: "icon_text"), target: self, action: #selector(addTextImage)),
+            RoundedButton.button(with: #imageLiteral(resourceName: "icon_phone"), target: self, action: #selector(addTextImage)),
         ]
         blurView = UIVisualEffectView(frame: view.bounds)
     }

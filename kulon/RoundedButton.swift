@@ -46,10 +46,10 @@ import UIKit
     
     func highlight(_ highlighted: Bool) {
         if highlighted {
-            backgroundColor = UIColor.Kulon.orange
+//            backgroundColor = UIColor.Kulon.orange
             addExternalBorder()
         } else {
-            backgroundColor = .white
+//            backgroundColor = .white
             removeExternalBorder()
         }
     }

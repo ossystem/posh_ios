@@ -17,10 +17,10 @@ struct SettingItem {
     static var defaultSettingsSet: [SettingItem] {
         //TODO: change items
         return [
-            SettingItem(name: "ОТВЯЗАТЬ КУЛОН", descr: "Изменить кулон, управляемый с помощью приложения", image: #imageLiteral(resourceName: "icon_settings_culon")),
-            SettingItem(name: "КОНТАКТЫ", descr: "Написать разработчику и задать свой вопрос", image: #imageLiteral(resourceName: "icon_settings_contacts")),
-            SettingItem(name: "ВОПРОСЫ И ОТВЕТЫ", descr: "Ответы на самые распространенные вопросы", image: #imageLiteral(resourceName: "icon_settings_FAQ")),
-            SettingItem(name: "АДРЕСА МАГАЗИНОВ", descr: "Изменить кулон, управляемый с помощью приложения", image: #imageLiteral(resourceName: "icon_settings_locations"))
+            SettingItem(name: "ОТВЯЗАТЬ КУЛОН", descr: "Изменить кулон, управляемый с помощью приложения", image: #imageLiteral(resourceName: "icon_settigns_kulon_8F8D8D")),
+            SettingItem(name: "КОНТАКТЫ", descr: "Написать разработчику и задать свой вопрос", image: #imageLiteral(resourceName: "icon_settings_contacts_8F8D8D")),
+            SettingItem(name: "ВОПРОСЫ И ОТВЕТЫ", descr: "Ответы на самые распространенные вопросы", image: #imageLiteral(resourceName: "icon_settings_question_8F8D8D")),
+            SettingItem(name: "АДРЕСА МАГАЗИНОВ", descr: "Изменить кулон, управляемый с помощью приложения", image: #imageLiteral(resourceName: "icon_settings_geo_8F8D8D"))
         ]
     }
 }

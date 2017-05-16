@@ -43,6 +43,16 @@ import UIKit
         }
     }
     
+    @IBInspectable var hasShadow: Bool = false {
+        didSet {
+            if hasShadow {
+                layer.shadowOpacity = 0.1
+                layer.shadowRadius = 3
+                layer.shadowOffset = CGSize(width: 0, height: 0)
+            }
+        }
+    }
+    
     var selectionRadius: CGFloat = 5
     private var externalBorder: CALayer!
     var highlightImage: UIImage?

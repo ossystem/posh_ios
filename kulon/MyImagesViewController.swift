@@ -35,6 +35,7 @@ class MyImagesViewController: BaseViewController, UICollectionViewDelegate, UICo
             RoundedButton.button(with: #imageLiteral(resourceName: "icon_text"), target: self, action: #selector(addTextImage)),
             RoundedButton.button(with: #imageLiteral(resourceName: "icon_phone"), target: self, action: #selector(addTextImage)),
         ]
+
         blurView = UIVisualEffectView(frame: view.bounds)
     }
     

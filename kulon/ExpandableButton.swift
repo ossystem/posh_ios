@@ -26,7 +26,7 @@ enum ExpandableButtonType {
 
 class ExpandableButton: RoundedButton {
 
-    var subButtons: [UIButton]!
+    var subButtons: [RoundedButton]!
     
     private var isExpanded = false
     
@@ -52,6 +52,7 @@ class ExpandableButton: RoundedButton {
         var newFrames: [CGRect] = []
         for (index, button) in subButtons.enumerated() {
             var newFrame = frame
+            (button as! RoundedButton).hasShadow = true
             button.frame = newFrame
             switch type {
             case .above:

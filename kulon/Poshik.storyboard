@@ -23,10 +23,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xnq-vz-MWz">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xnq-vz-MWz">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="32"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="DFU-lZ-Ihz">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="32"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 </view>
                                 <blurEffect style="dark"/>
@@ -105,6 +105,46 @@
                                     <action selector="topBarButtonTapped:" destination="z8M-vs-EmS" eventType="touchUpInside" id="w9H-jL-vNV"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b1D-u8-BWQ" customClass="RoundedButton" customModule="kulon" customModuleProvider="target">
+                                <rect key="frame" x="20" y="465" width="70" height="70"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="70" id="aVL-gR-GKD"/>
+                                </constraints>
+                                <state key="normal" image="icon_top_cancel"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="35"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="hasShadow" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="el9-sR-n3d" customClass="RoundedButton" customModule="kulon" customModuleProvider="target">
+                                <rect key="frame" x="285" y="465" width="70" height="70"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="70" id="kz5-mN-hXW"/>
+                                </constraints>
+                                <state key="normal" image="icon_top_cancel"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="35"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="hasShadow" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -112,15 +152,21 @@
                             <constraint firstItem="xnq-vz-MWz" firstAttribute="top" secondItem="wAO-AN-Xmw" secondAttribute="topMargin" id="7JG-RS-tFo"/>
                             <constraint firstItem="xnq-vz-MWz" firstAttribute="leading" secondItem="wAO-AN-Xmw" secondAttribute="leading" id="CFZ-rp-Mgz"/>
                             <constraint firstItem="YSY-fk-jFO" firstAttribute="top" secondItem="LCz-Iy-HK4" secondAttribute="bottom" constant="20" id="K1U-K4-I29"/>
+                            <constraint firstItem="el9-sR-n3d" firstAttribute="top" secondItem="MaV-5Z-fHg" secondAttribute="bottom" constant="20" id="KI3-tD-Soc"/>
                             <constraint firstAttribute="trailingMargin" secondItem="MaV-5Z-fHg" secondAttribute="trailing" constant="4" id="Oy6-0E-Yky"/>
                             <constraint firstItem="TlW-BY-8Tb" firstAttribute="top" secondItem="xnq-vz-MWz" secondAttribute="bottom" id="PNO-9G-MZz"/>
+                            <constraint firstItem="b1D-u8-BWQ" firstAttribute="leading" secondItem="MaV-5Z-fHg" secondAttribute="leading" id="QHm-2o-rpB"/>
                             <constraint firstItem="MaV-5Z-fHg" firstAttribute="top" secondItem="c4R-dk-baW" secondAttribute="bottom" constant="20" id="SBP-GB-fqP"/>
                             <constraint firstAttribute="trailing" secondItem="c4R-dk-baW" secondAttribute="trailing" id="bFB-JF-2Et"/>
                             <constraint firstAttribute="trailing" secondItem="xnq-vz-MWz" secondAttribute="trailing" id="d57-6h-yyL"/>
+                            <constraint firstItem="el9-sR-n3d" firstAttribute="trailing" secondItem="MaV-5Z-fHg" secondAttribute="trailing" id="jyJ-jZ-x5Z"/>
                             <constraint firstItem="YSY-fk-jFO" firstAttribute="width" secondItem="YSY-fk-jFO" secondAttribute="height" id="lon-ZD-Ria"/>
                             <constraint firstItem="MaV-5Z-fHg" firstAttribute="leading" secondItem="wAO-AN-Xmw" secondAttribute="leadingMargin" constant="4" id="mNA-ot-GC2"/>
                             <constraint firstItem="c4R-dk-baW" firstAttribute="leading" secondItem="wAO-AN-Xmw" secondAttribute="leading" id="odX-MO-w93"/>
                             <constraint firstItem="c4R-dk-baW" firstAttribute="top" secondItem="LCz-Iy-HK4" secondAttribute="bottom" id="uFd-GI-DFb"/>
+                            <constraint firstItem="b1D-u8-BWQ" firstAttribute="width" secondItem="b1D-u8-BWQ" secondAttribute="height" id="wnq-xf-f7O"/>
+                            <constraint firstItem="b1D-u8-BWQ" firstAttribute="top" secondItem="MaV-5Z-fHg" secondAttribute="bottom" constant="20" id="xK9-DP-6kT"/>
+                            <constraint firstItem="el9-sR-n3d" firstAttribute="width" secondItem="el9-sR-n3d" secondAttribute="height" id="zGw-2V-lJ2"/>
                         </constraints>
                     </view>
                     <connections>

@@ -8,8 +8,9 @@
 
 import UIKit
 import RxBluetoothKit
+import RxSwift
 
-class StoreViewController: BaseViewController, UICollectionViewDelegate, UICollectionViewDataSource, ExpandableButtonDelegate {
+class StoreViewController: BaseViewController, UICollectionViewDelegate, UICollectionViewDataSource, ExpandableButtonDelegate, UITableViewDataSource, UITableViewDelegate {
 
     @IBOutlet weak var collectionView: UICollectionView! {
         didSet {
@@ -17,26 +18,38 @@ class StoreViewController: BaseViewController, UICollectionViewDelegate, UIColle
             collectionView.dataSource = self
         }
     }
+    @IBOutlet weak var categoriesTableView: UITableView! {
+        didSet {
+            categoriesTableView.delegate = self
+            categoriesTableView.dataSource = self
+        }
+    }
     @IBOutlet weak var topButton: ExpandableButton!
     @IBOutlet weak var tagInputView: UIView!
     @IBOutlet weak var tagTextField: UITextField!
     @IBOutlet weak var tagBottomConstraint: NSLayoutConstraint!
+
     
-    let bleService = BLEService.shared
-    var blurView: UIVisualEffectView!
+    private let bleService = BLEService.shared
+    private var blurView: UIVisualEffectView!
     var poshiks: [Poshik] = Poshik.sampleSet + Poshik.sampleSet + Poshik.sampleSet + Poshik.sampleSet + Poshik.sampleSet
+    var categories: [PoshikCategory] = PoshikCategory.sampleSet
     
     override func viewDidLoad() {
         super.viewDidLoad()
         topButton.delegate = self
+        
+        
+        
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        categoriesTableView.contentInset = UIEdgeInsets(top: 140, left: 0, bottom: 0, right: 0)
+        categoriesTableView.tableFooterView = UIView() //hack to remove emty cells
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setupInterface()
-        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -58,15 +71,14 @@ class StoreViewController: BaseViewController, UICollectionViewDelegate, UIColle
     
     func searchTags() {
         statrSearching()
-        endCategorySelection()
     }
     
     func searchCategories() {
         startCategorySelection()
-        endSearching()
     }
     
     private func statrSearching() {
+        endCategorySelection()
         tagInputView.isHidden = false
         tagTextField.becomeFirstResponder()
         tagButton.highlight(true)
@@ -81,15 +93,21 @@ class StoreViewController: BaseViewController, UICollectionViewDelegate, UIColle
     }
     
     private func startCategorySelection() {
+        endSearching()
         categoryButton.highlight(true)
         categoryButton.backgroundColor = UIColor.Kulon.orange
+        categoriesTableView.isHidden = false
     }
     
     private func endCategorySelection() {
         categoryButton.highlight(false)
         categoryButton.backgroundColor = .white
+        categoriesTableView.isHidden = true
     }
     
+    func didSelect(category: PoshikCategory) {
+        topButton.hideButtons()
+    }
 
     
     //MARK: - Collection view datasource
@@ -123,7 +141,7 @@ class StoreViewController: BaseViewController, UICollectionViewDelegate, UIColle
     //MARK: - Expandable button delegate
     
     func willExpand(_ button: ExpandableButton) {
-        view.insertSubview(blurView, belowSubview: topBar)
+        view.insertSubview(blurView, aboveSubview: collectionView)
         UIView.animate(withDuration: 0.3, animations: {
             self.blurView?.effect = UIBlurEffect(style: .extraLight)
         })
@@ -157,7 +175,22 @@ class StoreViewController: BaseViewController, UICollectionViewDelegate, UIColle
         }
     }
     
+    //MARK: - tableView 
     
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return categories.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: Identifiers.Cell.categoryCell) as! CategoryCell
+        cell.configure(with: categories[indexPath.row])
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        didSelect(category: categories[indexPath.row])
+    }
 
 }
 

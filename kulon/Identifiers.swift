@@ -12,6 +12,7 @@ struct Identifiers {
     struct Cell {
         static let settingsCell = "SettingsCell"
         static let poshikCell =  "poshikCell"
+        static let categoryCell = "CategoryCell"
     }
     struct Segue {
         static let PoshikViewController = "PoshikViewControllerID"

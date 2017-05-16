@@ -18,6 +18,8 @@
 		FD59599A1ECAFF5900BB2D9D /* PoshikPresentationAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD5959991ECAFF5900BB2D9D /* PoshikPresentationAnimator.swift */; };
 		FD59599C1ECB4ADB00BB2D9D /* PoshikViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD59599B1ECB4ADB00BB2D9D /* PoshikViewModel.swift */; };
 		FD59599E1ECB51B900BB2D9D /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD59599D1ECB51B900BB2D9D /* UIView.swift */; };
+		FD5959A01ECB96C500BB2D9D /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD59599F1ECB96C500BB2D9D /* CategoryCell.swift */; };
+		FD5959A21ECB973900BB2D9D /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD5959A11ECB973900BB2D9D /* Category.swift */; };
 		FD5F9F421EA776A300BD79B1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD5F9F411EA776A300BD79B1 /* AppDelegate.swift */; };
 		FD5F9F441EA776A300BD79B1 /* BaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD5F9F431EA776A300BD79B1 /* BaseController.swift */; };
 		FD5F9F461EA776A300BD79B1 /* StoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD5F9F451EA776A300BD79B1 /* StoreViewController.swift */; };
@@ -66,6 +68,8 @@
 		FD5959991ECAFF5900BB2D9D /* PoshikPresentationAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PoshikPresentationAnimator.swift; sourceTree = "<group>"; };
 		FD59599B1ECB4ADB00BB2D9D /* PoshikViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PoshikViewModel.swift; sourceTree = "<group>"; };
 		FD59599D1ECB51B900BB2D9D /* UIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
+		FD59599F1ECB96C500BB2D9D /* CategoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
+		FD5959A11ECB973900BB2D9D /* Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		FD5F9F3E1EA776A300BD79B1 /* kulon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = kulon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD5F9F411EA776A300BD79B1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FD5F9F431EA776A300BD79B1 /* BaseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseController.swift; sourceTree = "<group>"; };
@@ -161,6 +165,8 @@
 			children = (
 				FD5409AC1EC32A2400E93B7F /* LikeView.swift */,
 				FDC3AB131EBB42A800141241 /* MarketPlace.storyboard */,
+				FD59599F1ECB96C500BB2D9D /* CategoryCell.swift */,
+				FD5959A11ECB973900BB2D9D /* Category.swift */,
 				FD5F9F451EA776A300BD79B1 /* StoreViewController.swift */,
 			);
 			name = Store;
@@ -445,6 +451,7 @@
 				FDC9E31E1EBFBF8700B6DC25 /* Identifiers.swift in Sources */,
 				FDEAE6991EAAB26500B9F504 /* MyImagesViewController.swift in Sources */,
 				FD5F9F561EA79ED700BD79B1 /* FloatingPoint.swift in Sources */,
+				FD5959A21ECB973900BB2D9D /* Category.swift in Sources */,
 				FD5F9F581EA7BFB300BD79B1 /* RoundedButton.swift in Sources */,
 				FD5409A91EC2699300E93B7F /* RedactorViewController.swift in Sources */,
 				FDC3AB101EBB36AF00141241 /* UITextField.swift in Sources */,
@@ -466,6 +473,7 @@
 				FD5F9F441EA776A300BD79B1 /* BaseController.swift in Sources */,
 				FDC060341EB8D9D5007C6A71 /* ExpandableButton.swift in Sources */,
 				FDC89DFA1EBA4A2B004D3F9F /* DismissAnimator.swift in Sources */,
+				FD5959A01ECB96C500BB2D9D /* CategoryCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

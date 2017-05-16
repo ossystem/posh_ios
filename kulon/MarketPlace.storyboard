@@ -7,6 +7,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -61,6 +62,54 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
+                            <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="72" sectionHeaderHeight="70" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="lYJ-8K-W7w">
+                                <rect key="frame" x="1" y="20" width="373" height="647"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <inset key="separatorInset" minX="20" minY="0.0" maxX="20" maxY="0.0"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CategoryCell" rowHeight="72" id="rSq-az-ZbL" customClass="CategoryCell" customModule="kulon" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="70" width="373" height="72"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="rSq-az-ZbL" id="qHc-E5-dA3">
+                                            <rect key="frame" x="0.0" y="0.0" width="373" height="71.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="d4v-gS-g22" customClass="RoundedImageView" customModule="kulon" customModuleProvider="target">
+                                                    <rect key="frame" x="20" y="16" width="39.5" height="39.5"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="d4v-gS-g22" secondAttribute="height" id="IWI-My-chy"/>
+                                                    </constraints>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                            <real key="value" value="40"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="НА ВСЕ БАБКИ" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EVB-Xt-1v3">
+                                                    <rect key="frame" x="79.5" y="26" width="265.5" height="20"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                            <constraints>
+                                                <constraint firstItem="EVB-Xt-1v3" firstAttribute="leading" secondItem="d4v-gS-g22" secondAttribute="trailing" constant="20" id="3py-GQ-0MW"/>
+                                                <constraint firstItem="d4v-gS-g22" firstAttribute="leading" secondItem="qHc-E5-dA3" secondAttribute="leading" constant="20" id="9Mu-qh-gc1"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="EVB-Xt-1v3" secondAttribute="trailing" constant="20" id="LV6-RU-PA3"/>
+                                                <constraint firstItem="d4v-gS-g22" firstAttribute="centerY" secondItem="qHc-E5-dA3" secondAttribute="centerY" id="XpN-FE-cGD"/>
+                                                <constraint firstItem="d4v-gS-g22" firstAttribute="height" secondItem="qHc-E5-dA3" secondAttribute="height" constant="-32" id="c6W-UE-J68"/>
+                                                <constraint firstItem="EVB-Xt-1v3" firstAttribute="centerY" secondItem="qHc-E5-dA3" secondAttribute="centerY" id="p4B-eB-SnL"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <connections>
+                                            <outlet property="icon" destination="d4v-gS-g22" id="udg-z0-WUn"/>
+                                            <outlet property="title" destination="EVB-Xt-1v3" id="0C8-oT-zGI"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZGF-8B-8cu" customClass="TopBarView" customModule="kulon" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="20" width="375" height="70"/>
                                 <subviews>
@@ -163,19 +212,24 @@
                             <constraint firstItem="3y1-UM-NDL" firstAttribute="centerX" secondItem="oVc-Lu-Ne5" secondAttribute="centerX" id="0ss-jb-k2O"/>
                             <constraint firstItem="NSV-Ns-VWJ" firstAttribute="top" secondItem="C8w-Ji-LuW" secondAttribute="bottom" constant="-49" id="1kR-vu-0YP"/>
                             <constraint firstItem="C8w-Ji-LuW" firstAttribute="width" secondItem="oVc-Lu-Ne5" secondAttribute="width" id="34J-DJ-Un5"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="lYJ-8K-W7w" secondAttribute="trailingMargin" id="JK4-HF-Rma"/>
+                            <constraint firstItem="NSV-Ns-VWJ" firstAttribute="top" secondItem="lYJ-8K-W7w" secondAttribute="bottom" id="KDT-co-BM8"/>
                             <constraint firstAttribute="trailing" secondItem="Dxi-Cd-tdk" secondAttribute="trailing" id="Z1d-QN-XlG"/>
+                            <constraint firstItem="lYJ-8K-W7w" firstAttribute="top" secondItem="WOC-Uj-Kjq" secondAttribute="bottom" id="ddm-31-LEA"/>
                             <constraint firstItem="Dxi-Cd-tdk" firstAttribute="top" secondItem="WOC-Uj-Kjq" secondAttribute="bottom" id="grn-Nw-IRd"/>
                             <constraint firstItem="NSV-Ns-VWJ" firstAttribute="top" secondItem="Dxi-Cd-tdk" secondAttribute="bottom" id="hvD-AU-aT9"/>
                             <constraint firstItem="ZGF-8B-8cu" firstAttribute="centerX" secondItem="oVc-Lu-Ne5" secondAttribute="centerX" id="lhV-gL-ub5"/>
                             <constraint firstItem="3y1-UM-NDL" firstAttribute="top" secondItem="WOC-Uj-Kjq" secondAttribute="bottom" constant="20" id="sq4-Xp-Gi0"/>
                             <constraint firstItem="Dxi-Cd-tdk" firstAttribute="leading" secondItem="oVc-Lu-Ne5" secondAttribute="leading" id="vTL-d0-pVm"/>
                             <constraint firstItem="C8w-Ji-LuW" firstAttribute="centerX" secondItem="oVc-Lu-Ne5" secondAttribute="centerX" id="vhS-qU-WlM"/>
+                            <constraint firstItem="lYJ-8K-W7w" firstAttribute="leadingMargin" secondItem="oVc-Lu-Ne5" secondAttribute="leadingMargin" id="wuS-rg-isg"/>
                             <constraint firstItem="ZGF-8B-8cu" firstAttribute="width" secondItem="oVc-Lu-Ne5" secondAttribute="width" id="xBA-0f-sN2"/>
                             <constraint firstItem="ZGF-8B-8cu" firstAttribute="top" secondItem="WOC-Uj-Kjq" secondAttribute="bottom" id="zNt-c2-6eT"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Store" image="icon_tab_cloud" id="qt9-DD-5ss"/>
                     <connections>
+                        <outlet property="categoriesTableView" destination="lYJ-8K-W7w" id="0Fb-42-qec"/>
                         <outlet property="collectionView" destination="Dxi-Cd-tdk" id="gLk-9F-X1v"/>
                         <outlet property="tagBottomConstraint" destination="1kR-vu-0YP" id="Y1L-6q-8Ua"/>
                         <outlet property="tagInputView" destination="C8w-Ji-LuW" id="Ixa-oZ-NDh"/>
@@ -202,5 +256,6 @@
         <image name="SamplePhoto" width="16" height="16"/>
         <image name="icon_tab_cloud" width="35" height="24"/>
         <image name="icon_top_search" width="25" height="25"/>
+        <image name="logo" width="140" height="139"/>
     </resources>
 </document>

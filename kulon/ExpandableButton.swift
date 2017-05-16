@@ -42,10 +42,8 @@ class ExpandableButton: RoundedButton {
     func performAction() {
         if !isExpanded {
             showButtons()
-            isExpanded = true
         } else {
             hideButtons()
-            isExpanded = false
         }
     }
     
@@ -73,6 +71,7 @@ class ExpandableButton: RoundedButton {
                 button.frame = frame
             }
         })
+        isExpanded = true
     }
     
     func hideButtons() {
@@ -89,5 +88,6 @@ class ExpandableButton: RoundedButton {
             }
             self.delegate?.didShrink?(self)
         })
+        isExpanded = false
     }
 }

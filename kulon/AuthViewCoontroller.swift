@@ -8,7 +8,20 @@
 
 import Foundation
 import UIKit
+import ExternalAccessory
 
 class AuthViewController: BaseViewController {
 
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        let manager = EAAccessoryManager.shared()
+        manager.showBluetoothAccessoryPicker(withNameFilter: nil) { (error) in
+            print(manager.connectedAccessories)
+        }
+    }
 }

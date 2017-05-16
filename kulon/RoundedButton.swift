@@ -10,6 +10,8 @@ import UIKit
 
 @IBDesignable public class RoundedButton: UIButton {
     
+    //TODO: add shadow
+    
     public override func didMoveToSuperview() {
         imageView?.contentMode = .scaleAspectFit
     }

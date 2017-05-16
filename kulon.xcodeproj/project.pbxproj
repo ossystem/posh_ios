@@ -11,6 +11,10 @@
 		FD1F42F01EBB52BE008AE3ED /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD1F42EF1EBB52BE008AE3ED /* UIColor.swift */; };
 		FD5409A91EC2699300E93B7F /* RedactorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD5409A81EC2699300E93B7F /* RedactorViewController.swift */; };
 		FD5409AD1EC32A2400E93B7F /* LikeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD5409AC1EC32A2400E93B7F /* LikeView.swift */; };
+		FD5409AF1EC5D78000E93B7F /* Poshik.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FD5409AE1EC5D78000E93B7F /* Poshik.storyboard */; };
+		FD5409B11EC5F9F900E93B7F /* PoshikViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD5409B01EC5F9F900E93B7F /* PoshikViewController.swift */; };
+		FD5409BE1EC6231D00E93B7F /* ColorPicker.xib in Resources */ = {isa = PBXBuildFile; fileRef = FD5409BD1EC6231D00E93B7F /* ColorPicker.xib */; };
+		FD5409C01EC99DDD00E93B7F /* ColorPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD5409BF1EC99DDD00E93B7F /* ColorPickerView.swift */; };
 		FD5F9F421EA776A300BD79B1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD5F9F411EA776A300BD79B1 /* AppDelegate.swift */; };
 		FD5F9F441EA776A300BD79B1 /* BaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD5F9F431EA776A300BD79B1 /* BaseController.swift */; };
 		FD5F9F461EA776A300BD79B1 /* StoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD5F9F451EA776A300BD79B1 /* StoreViewController.swift */; };
@@ -23,6 +27,8 @@
 		FD5F9F5D1EA8093900BD79B1 /* TopBarBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD5F9F5C1EA8093900BD79B1 /* TopBarBackgroundView.swift */; };
 		FD5F9F601EA80CF500BD79B1 /* RoundedImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD5F9F5F1EA80CF500BD79B1 /* RoundedImageView.swift */; };
 		FD7DDF161EB3BE7800B963DC /* BLEService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7DDF151EB3BE7800B963DC /* BLEService.swift */; };
+		FD974B061EC9C0100066AC27 /* RedactorTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD974B051EC9C0100066AC27 /* RedactorTextField.swift */; };
+		FD974B081EC9EF3C0066AC27 /* CGPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD974B071EC9EF3C0066AC27 /* CGPoint.swift */; };
 		FDA3CB0C1EBC8F4A0048AE71 /* AndaleMono.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FDA3CB0B1EBC8F4A0048AE71 /* AndaleMono.ttf */; };
 		FDC060341EB8D9D5007C6A71 /* ExpandableButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDC060331EB8D9D5007C6A71 /* ExpandableButton.swift */; };
 		FDC3AB101EBB36AF00141241 /* UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDC3AB0F1EBB36AF00141241 /* UITextField.swift */; };
@@ -35,7 +41,6 @@
 		FDC89DFA1EBA4A2B004D3F9F /* DismissAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDC89DF81EBA4A2B004D3F9F /* DismissAnimator.swift */; };
 		FDC89DFC1EBA4ABA004D3F9F /* AuthViewCoontroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDC89DFB1EBA4ABA004D3F9F /* AuthViewCoontroller.swift */; };
 		FDC89DFE1EBA4B4E004D3F9F /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDC89DFD1EBA4B4E004D3F9F /* RegistrationViewController.swift */; };
-		FDC9E31A1EBF155500B6DC25 /* MarketplaceTopBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDC9E3191EBF155500B6DC25 /* MarketplaceTopBar.swift */; };
 		FDC9E31C1EBFBE4000B6DC25 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDC9E31B1EBFBE4000B6DC25 /* SettingsViewController.swift */; };
 		FDC9E31E1EBFBF8700B6DC25 /* Identifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDC9E31D1EBFBF8700B6DC25 /* Identifiers.swift */; };
 		FDC9E3201EBFC0CF00B6DC25 /* SettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDC9E31F1EBFC0CF00B6DC25 /* SettingsCell.swift */; };
@@ -51,6 +56,10 @@
 		FD1F42EF1EBB52BE008AE3ED /* UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		FD5409A81EC2699300E93B7F /* RedactorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RedactorViewController.swift; sourceTree = "<group>"; };
 		FD5409AC1EC32A2400E93B7F /* LikeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LikeView.swift; sourceTree = "<group>"; };
+		FD5409AE1EC5D78000E93B7F /* Poshik.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Poshik.storyboard; sourceTree = "<group>"; };
+		FD5409B01EC5F9F900E93B7F /* PoshikViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PoshikViewController.swift; sourceTree = "<group>"; };
+		FD5409BD1EC6231D00E93B7F /* ColorPicker.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ColorPicker.xib; sourceTree = "<group>"; };
+		FD5409BF1EC99DDD00E93B7F /* ColorPickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorPickerView.swift; sourceTree = "<group>"; };
 		FD5F9F3E1EA776A300BD79B1 /* kulon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = kulon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD5F9F411EA776A300BD79B1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FD5F9F431EA776A300BD79B1 /* BaseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseController.swift; sourceTree = "<group>"; };
@@ -65,6 +74,8 @@
 		FD5F9F5C1EA8093900BD79B1 /* TopBarBackgroundView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TopBarBackgroundView.swift; path = Views/TopBarBackgroundView.swift; sourceTree = "<group>"; };
 		FD5F9F5F1EA80CF500BD79B1 /* RoundedImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedImageView.swift; sourceTree = "<group>"; };
 		FD7DDF151EB3BE7800B963DC /* BLEService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BLEService.swift; sourceTree = "<group>"; };
+		FD974B051EC9C0100066AC27 /* RedactorTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RedactorTextField.swift; sourceTree = "<group>"; };
+		FD974B071EC9EF3C0066AC27 /* CGPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CGPoint.swift; sourceTree = "<group>"; };
 		FDA3CB0B1EBC8F4A0048AE71 /* AndaleMono.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = AndaleMono.ttf; sourceTree = "<group>"; };
 		FDC060331EB8D9D5007C6A71 /* ExpandableButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpandableButton.swift; sourceTree = "<group>"; };
 		FDC3AB0F1EBB36AF00141241 /* UITextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITextField.swift; sourceTree = "<group>"; };
@@ -77,7 +88,6 @@
 		FDC89DF81EBA4A2B004D3F9F /* DismissAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DismissAnimator.swift; sourceTree = "<group>"; };
 		FDC89DFB1EBA4ABA004D3F9F /* AuthViewCoontroller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthViewCoontroller.swift; sourceTree = "<group>"; };
 		FDC89DFD1EBA4B4E004D3F9F /* RegistrationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
-		FDC9E3191EBF155500B6DC25 /* MarketplaceTopBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MarketplaceTopBar.swift; path = Views/MarketplaceTopBar.swift; sourceTree = "<group>"; };
 		FDC9E31B1EBFBE4000B6DC25 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		FDC9E31D1EBFBF8700B6DC25 /* Identifiers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Identifiers.swift; sourceTree = "<group>"; };
 		FDC9E31F1EBFC0CF00B6DC25 /* SettingsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsCell.swift; sourceTree = "<group>"; };
@@ -115,6 +125,118 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		FD5409B21EC5FA1400E93B7F /* Stories */ = {
+			isa = PBXGroup;
+			children = (
+				FD5409BC1EC5FE5600E93B7F /* TabBar */,
+				FD5409B71EC5FD2F00E93B7F /* Poshik */,
+				FD5409B61EC5FAE700E93B7F /* Settings */,
+				FD5409B51EC5FAB000E93B7F /* MyImages */,
+				FD5409B41EC5FA4100E93B7F /* Store */,
+				FD5409B31EC5FA2200E93B7F /* Auth */,
+			);
+			name = Stories;
+			sourceTree = "<group>";
+		};
+		FD5409B31EC5FA2200E93B7F /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				FDC89DF71EBA4A2B004D3F9F /* PresentationAnimtor.swift */,
+				FDC89DF81EBA4A2B004D3F9F /* DismissAnimator.swift */,
+				FDC89DFB1EBA4ABA004D3F9F /* AuthViewCoontroller.swift */,
+				FDC89DFD1EBA4B4E004D3F9F /* RegistrationViewController.swift */,
+				FD5F9F471EA776A300BD79B1 /* Auth.storyboard */,
+			);
+			name = Auth;
+			sourceTree = "<group>";
+		};
+		FD5409B41EC5FA4100E93B7F /* Store */ = {
+			isa = PBXGroup;
+			children = (
+				FD5409AC1EC32A2400E93B7F /* LikeView.swift */,
+				FDC3AB131EBB42A800141241 /* MarketPlace.storyboard */,
+				FD5F9F451EA776A300BD79B1 /* StoreViewController.swift */,
+			);
+			name = Store;
+			sourceTree = "<group>";
+		};
+		FD5409B51EC5FAB000E93B7F /* MyImages */ = {
+			isa = PBXGroup;
+			children = (
+				FD5409A81EC2699300E93B7F /* RedactorViewController.swift */,
+				FD974B051EC9C0100066AC27 /* RedactorTextField.swift */,
+				FDEAE6981EAAB26500B9F504 /* MyImagesViewController.swift */,
+				FDC3AB171EBB463F00141241 /* MyImages.storyboard */,
+				FD5409BD1EC6231D00E93B7F /* ColorPicker.xib */,
+				FD5409BF1EC99DDD00E93B7F /* ColorPickerView.swift */,
+			);
+			name = MyImages;
+			sourceTree = "<group>";
+		};
+		FD5409B61EC5FAE700E93B7F /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				FDC9E31F1EBFC0CF00B6DC25 /* SettingsCell.swift */,
+				FDC3AB191EBB465C00141241 /* Settings.storyboard */,
+				FDC9E31B1EBFBE4000B6DC25 /* SettingsViewController.swift */,
+			);
+			name = Settings;
+			sourceTree = "<group>";
+		};
+		FD5409B71EC5FD2F00E93B7F /* Poshik */ = {
+			isa = PBXGroup;
+			children = (
+				FDC9E3211EBFDFCE00B6DC25 /* PoshikCell.swift */,
+				FD5409AE1EC5D78000E93B7F /* Poshik.storyboard */,
+				FD5409B01EC5F9F900E93B7F /* PoshikViewController.swift */,
+			);
+			name = Poshik;
+			sourceTree = "<group>";
+		};
+		FD5409B81EC5FD5500E93B7F /* topBar */ = {
+			isa = PBXGroup;
+			children = (
+				FD5F9F591EA8073E00BD79B1 /* TopBarView.swift */,
+				FD5F9F5C1EA8093900BD79B1 /* TopBarBackgroundView.swift */,
+			);
+			name = topBar;
+			sourceTree = "<group>";
+		};
+		FD5409B91EC5FDD200E93B7F /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				FDC9E31D1EBFBF8700B6DC25 /* Identifiers.swift */,
+			);
+			name = Utils;
+			sourceTree = "<group>";
+		};
+		FD5409BA1EC5FE2400E93B7F /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				FD7DDF151EB3BE7800B963DC /* BLEService.swift */,
+			);
+			name = Services;
+			sourceTree = "<group>";
+		};
+		FD5409BB1EC5FE3300E93B7F /* Supporting files */ = {
+			isa = PBXGroup;
+			children = (
+				FD5F9F4A1EA776A300BD79B1 /* Assets.xcassets */,
+				FD5F9F4C1EA776A300BD79B1 /* LaunchScreen.storyboard */,
+				FD5F9F4F1EA776A300BD79B1 /* Info.plist */,
+				FDA3CB0B1EBC8F4A0048AE71 /* AndaleMono.ttf */,
+			);
+			name = "Supporting files";
+			sourceTree = "<group>";
+		};
+		FD5409BC1EC5FE5600E93B7F /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				FDC3AB111EBB428C00141241 /* TabBar.storyboard */,
+			);
+			name = TabBar;
+			sourceTree = "<group>";
+		};
 		FD5F9F351EA776A200BD79B1 = {
 			isa = PBXGroup;
 			children = (
@@ -136,23 +258,14 @@
 		FD5F9F401EA776A300BD79B1 /* kulon */ = {
 			isa = PBXGroup;
 			children = (
-				FDC89DF71EBA4A2B004D3F9F /* PresentationAnimtor.swift */,
-				FDC89DF81EBA4A2B004D3F9F /* DismissAnimator.swift */,
-				FD7DDF151EB3BE7800B963DC /* BLEService.swift */,
-				FD5F9F5E1EA80A9600BD79B1 /* Extensions */,
-				FDEAE6971EAAB22E00B9F504 /* View controllers */,
-				FD5F9F5B1EA8091A00BD79B1 /* Views */,
 				FD5F9F411EA776A300BD79B1 /* AppDelegate.swift */,
-				FD5F9F471EA776A300BD79B1 /* Auth.storyboard */,
-				FDC3AB171EBB463F00141241 /* MyImages.storyboard */,
-				FDC3AB191EBB465C00141241 /* Settings.storyboard */,
-				FDC3AB131EBB42A800141241 /* MarketPlace.storyboard */,
-				FDC3AB111EBB428C00141241 /* TabBar.storyboard */,
-				FD5F9F4A1EA776A300BD79B1 /* Assets.xcassets */,
-				FD5F9F4C1EA776A300BD79B1 /* LaunchScreen.storyboard */,
-				FD5F9F4F1EA776A300BD79B1 /* Info.plist */,
-				FDA3CB0B1EBC8F4A0048AE71 /* AndaleMono.ttf */,
-				FD1F42EF1EBB52BE008AE3ED /* UIColor.swift */,
+				FD5F9F431EA776A300BD79B1 /* BaseController.swift */,
+				FD5409B21EC5FA1400E93B7F /* Stories */,
+				FD5409BA1EC5FE2400E93B7F /* Services */,
+				FD5F9F5B1EA8091A00BD79B1 /* Views */,
+				FD5409B91EC5FDD200E93B7F /* Utils */,
+				FD5F9F5E1EA80A9600BD79B1 /* Extensions */,
+				FD5409BB1EC5FE3300E93B7F /* Supporting files */,
 			);
 			path = kulon;
 			sourceTree = "<group>";
@@ -160,17 +273,11 @@
 		FD5F9F5B1EA8091A00BD79B1 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				FD5409AC1EC32A2400E93B7F /* LikeView.swift */,
-				FDC9E3211EBFDFCE00B6DC25 /* PoshikCell.swift */,
+				FD5409B81EC5FD5500E93B7F /* topBar */,
 				FDC9E3231EBFE02C00B6DC25 /* Poshik.swift */,
-				FD5F9F591EA8073E00BD79B1 /* TopBarView.swift */,
-				FDC9E3191EBF155500B6DC25 /* MarketplaceTopBar.swift */,
 				FD5F9F571EA7BFB300BD79B1 /* RoundedButton.swift */,
 				FDC89DF51EBA3799004D3F9F /* RoundedView.swift */,
-				FD5F9F5C1EA8093900BD79B1 /* TopBarBackgroundView.swift */,
 				FD5F9F5F1EA80CF500BD79B1 /* RoundedImageView.swift */,
-				FDC9E31D1EBFBF8700B6DC25 /* Identifiers.swift */,
-				FDC9E31F1EBFC0CF00B6DC25 /* SettingsCell.swift */,
 				FDC060331EB8D9D5007C6A71 /* ExpandableButton.swift */,
 			);
 			name = Views;
@@ -179,24 +286,12 @@
 		FD5F9F5E1EA80A9600BD79B1 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				FD1F42EF1EBB52BE008AE3ED /* UIColor.swift */,
 				FD5F9F551EA79ED700BD79B1 /* FloatingPoint.swift */,
 				FDC3AB0F1EBB36AF00141241 /* UITextField.swift */,
+				FD974B071EC9EF3C0066AC27 /* CGPoint.swift */,
 			);
 			name = Extensions;
-			sourceTree = "<group>";
-		};
-		FDEAE6971EAAB22E00B9F504 /* View controllers */ = {
-			isa = PBXGroup;
-			children = (
-				FD5F9F431EA776A300BD79B1 /* BaseController.swift */,
-				FD5F9F451EA776A300BD79B1 /* StoreViewController.swift */,
-				FDEAE6981EAAB26500B9F504 /* MyImagesViewController.swift */,
-				FD5409A81EC2699300E93B7F /* RedactorViewController.swift */,
-				FDC89DFB1EBA4ABA004D3F9F /* AuthViewCoontroller.swift */,
-				FDC89DFD1EBA4B4E004D3F9F /* RegistrationViewController.swift */,
-				FDC9E31B1EBFBE4000B6DC25 /* SettingsViewController.swift */,
-			);
-			name = "View controllers";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -265,9 +360,11 @@
 				FDC3AB181EBB463F00141241 /* MyImages.storyboard in Resources */,
 				FDC3AB141EBB42A800141241 /* MarketPlace.storyboard in Resources */,
 				FDC3AB1A1EBB465C00141241 /* Settings.storyboard in Resources */,
+				FD5409BE1EC6231D00E93B7F /* ColorPicker.xib in Resources */,
 				FDC3AB121EBB428C00141241 /* TabBar.storyboard in Resources */,
 				FD5F9F4E1EA776A300BD79B1 /* LaunchScreen.storyboard in Resources */,
 				FD5F9F4B1EA776A300BD79B1 /* Assets.xcassets in Resources */,
+				FD5409AF1EC5D78000E93B7F /* Poshik.storyboard in Resources */,
 				FDA3CB0C1EBC8F4A0048AE71 /* AndaleMono.ttf in Resources */,
 				FD5F9F491EA776A300BD79B1 /* Auth.storyboard in Resources */,
 			);
@@ -329,6 +426,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FDC89DF91EBA4A2B004D3F9F /* PresentationAnimtor.swift in Sources */,
+				FD5409B11EC5F9F900E93B7F /* PoshikViewController.swift in Sources */,
 				FD5F9F601EA80CF500BD79B1 /* RoundedImageView.swift in Sources */,
 				FD7DDF161EB3BE7800B963DC /* BLEService.swift in Sources */,
 				FD5409AD1EC32A2400E93B7F /* LikeView.swift in Sources */,
@@ -338,14 +436,16 @@
 				FD5F9F561EA79ED700BD79B1 /* FloatingPoint.swift in Sources */,
 				FD5F9F581EA7BFB300BD79B1 /* RoundedButton.swift in Sources */,
 				FD5409A91EC2699300E93B7F /* RedactorViewController.swift in Sources */,
-				FDC9E31A1EBF155500B6DC25 /* MarketplaceTopBar.swift in Sources */,
 				FDC3AB101EBB36AF00141241 /* UITextField.swift in Sources */,
 				FDC9E3221EBFDFCE00B6DC25 /* PoshikCell.swift in Sources */,
+				FD974B081EC9EF3C0066AC27 /* CGPoint.swift in Sources */,
 				FDC9E3201EBFC0CF00B6DC25 /* SettingsCell.swift in Sources */,
+				FD5409C01EC99DDD00E93B7F /* ColorPickerView.swift in Sources */,
 				FD5F9F5D1EA8093900BD79B1 /* TopBarBackgroundView.swift in Sources */,
 				FDC9E3241EBFE02C00B6DC25 /* Poshik.swift in Sources */,
 				FDC89DFC1EBA4ABA004D3F9F /* AuthViewCoontroller.swift in Sources */,
 				FD5F9F461EA776A300BD79B1 /* StoreViewController.swift in Sources */,
+				FD974B061EC9C0100066AC27 /* RedactorTextField.swift in Sources */,
 				FD5F9F421EA776A300BD79B1 /* AppDelegate.swift in Sources */,
 				FDC89DFE1EBA4B4E004D3F9F /* RegistrationViewController.swift in Sources */,
 				FDC89DF61EBA3799004D3F9F /* RoundedView.swift in Sources */,

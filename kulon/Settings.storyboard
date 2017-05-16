@@ -160,7 +160,7 @@
     </scenes>
     <resources>
         <image name="icon_tab_settings" width="30" height="30"/>
-        <image name="icon_top_power_btn" width="22" height="24"/>
+        <image name="icon_top_power_btn" width="30" height="30"/>
         <image name="logo" width="140" height="139"/>
     </resources>
 </document>

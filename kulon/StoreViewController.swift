@@ -39,6 +39,11 @@ class StoreViewController: BaseViewController, UICollectionViewDelegate, UIColle
         
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        topButton.hideButtons()
+    }
+    
     let categoryButton = RoundedButton.button(with: #imageLiteral(resourceName: "icon_top_category_red"), highlightIcon: #imageLiteral(resourceName: "icon_top_category_white"),target: self, action: #selector(searchCategories))
     let tagButton = RoundedButton.button(with: #imageLiteral(resourceName: "icon_top_tag"), highlightIcon: #imageLiteral(resourceName: "icon_top_tag_selected"), target: self, action: #selector(searchTags))
 
@@ -100,7 +105,17 @@ class StoreViewController: BaseViewController, UICollectionViewDelegate, UIColle
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("selected")
+        let poshik = poshiks[indexPath.row]
+        performSegue(withIdentifier: Identifiers.Segue.PoshikViewController, sender: poshik)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == Identifiers.Segue.PoshikViewController,
+            let poshik = sender as? Poshik,
+            let poshikViewController = segue.destination as? PoshikViewController{
+            
+        }
+        
     }
     
     //MARK: - Expandable button delegate

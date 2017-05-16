@@ -3,5 +3,8 @@ target ‘kulon’ do
 	use_frameworks!
 	# BLE 
 	pod 'RxBluetoothKit'
-    
+    # color picker
+    pod 'IMGLYColorPicker'
+    # rx guestures wrapper
+    pod 'RxGesture'
 end

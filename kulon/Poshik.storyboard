@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Poshik View Controller-->
+        <scene sceneID="x1w-wZ-dWA">
+            <objects>
+                <viewController id="z8M-vs-EmS" customClass="PoshikViewController" customModule="kulon" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="LCz-Iy-HK4"/>
+                        <viewControllerLayoutGuide type="bottom" id="TlW-BY-8Tb"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="wAO-AN-Xmw">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MaV-5Z-fHg" customClass="RoundedImageView" customModule="kulon" customModuleProvider="target">
+                                <rect key="frame" x="20" y="39" width="335" height="335"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="MaV-5Z-fHg" secondAttribute="height" id="yUO-uM-1JH"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="6"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="MaV-5Z-fHg" firstAttribute="width" secondItem="wAO-AN-Xmw" secondAttribute="width" constant="-40" id="3Gs-kT-Mmb"/>
+                            <constraint firstItem="MaV-5Z-fHg" firstAttribute="centerX" secondItem="wAO-AN-Xmw" secondAttribute="centerX" id="7vJ-Ok-CMh"/>
+                            <constraint firstItem="MaV-5Z-fHg" firstAttribute="top" secondItem="LCz-Iy-HK4" secondAttribute="bottom" constant="20" id="vaB-8U-O6M"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="poshikImage" destination="MaV-5Z-fHg" id="pIv-Mc-7Mz"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aPi-nE-daO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="126" y="165"/>
+        </scene>
+    </scenes>
+</document>

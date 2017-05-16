@@ -169,7 +169,7 @@
                         <viewControllerLayoutGuide type="top" id="lHX-sS-pbd"/>
                         <viewControllerLayoutGuide type="bottom" id="kui-Lr-l6F"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="9kq-vB-ElZ">
+                    <view key="view" multipleTouchEnabled="YES" contentMode="scaleToFill" id="9kq-vB-ElZ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -214,23 +214,20 @@
                                     <action selector="topBarButtonTapped:" destination="k5z-4S-a2K" eventType="touchUpInside" id="hmJ-js-pNU"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ytE-nE-SUQ" customClass="RoundedView" customModule="kulon" customModuleProvider="target">
+                            <view clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ytE-nE-SUQ" customClass="RoundedView" customModule="kulon" customModuleProvider="target">
                                 <rect key="frame" x="43.5" y="110" width="288" height="288"/>
                                 <subviews>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mh0-Hn-Try">
-                                        <rect key="frame" x="44" y="132" width="200" height="24"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="200" id="CGR-e3-s38"/>
-                                        </constraints>
-                                        <nil key="textColor"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" text="ghbdt" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="jtl-60-391" customClass="RedactorTextField" customModule="kulon" customModuleProvider="target">
+                                        <rect key="frame" x="120.5" y="127.5" width="48.5" height="33"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="no" spellCheckingType="no"/>
+                                    </textView>
                                 </subviews>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstItem="mh0-Hn-Try" firstAttribute="centerX" secondItem="ytE-nE-SUQ" secondAttribute="centerX" id="EPz-Wb-I5m"/>
-                                    <constraint firstItem="mh0-Hn-Try" firstAttribute="centerY" secondItem="ytE-nE-SUQ" secondAttribute="centerY" id="Mtx-NO-SLf"/>
+                                    <constraint firstItem="jtl-60-391" firstAttribute="centerX" secondItem="ytE-nE-SUQ" secondAttribute="centerX" id="1eM-8T-tTI"/>
+                                    <constraint firstItem="jtl-60-391" firstAttribute="centerY" secondItem="ytE-nE-SUQ" secondAttribute="centerY" id="WVY-gc-vuD"/>
                                     <constraint firstAttribute="width" constant="288" id="Xuz-DD-tTY"/>
                                     <constraint firstAttribute="width" secondItem="ytE-nE-SUQ" secondAttribute="height" id="ZzK-Gu-L8b"/>
                                 </constraints>
@@ -240,19 +237,6 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1NJ-gM-3Rh">
-                                <rect key="frame" x="0.0" y="623" width="375" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                <items>
-                                    <barButtonItem title="Item" id="N11-zO-e5e"/>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="TPU-2o-3Ma"/>
-                                    <barButtonItem title="Item" id="aC0-lx-5nD"/>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="Ro9-GC-wNg"/>
-                                    <barButtonItem title="Item" id="Gs1-Sf-mRH"/>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="dFZ-kh-SHd"/>
-                                    <barButtonItem title="Item" id="i6M-Wu-Kxp"/>
-                                </items>
-                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -266,8 +250,8 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="textField" destination="mh0-Hn-Try" id="7eB-fd-ipG"/>
-                        <outlet property="toolBar" destination="1NJ-gM-3Rh" id="QgX-Cd-L1c"/>
+                        <outlet property="newPoshikView" destination="ytE-nE-SUQ" id="ILe-K9-UK1"/>
+                        <outlet property="textView" destination="jtl-60-391" id="ld0-Lc-hNU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uxV-2p-zxr" userLabel="First Responder" sceneMemberID="firstResponder"/>

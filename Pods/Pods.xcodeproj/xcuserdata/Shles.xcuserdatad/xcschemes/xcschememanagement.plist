@@ -4,12 +4,32 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>IMGLYColorPicker-IMGLYColorPicker.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>IMGLYColorPicker.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-kulon.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
 		<key>RxBluetoothKit.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>RxCocoa.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>RxGesture.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -22,17 +42,37 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>2B13047B2AE2DAB68923C1FEE8070B54</key>
+		<key>27C2AFE02B45F856106803F071164529</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>533C9A00CA5A07DA43754C4B4FB2EA79</key>
+		<key>3893E2B61297C512F0BCF38FB86B9DEB</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>CDB492C18413BD0D8CFF2EB58B0895D8</key>
+		<key>3B9535CC60FD2023A9AA15FA9A1647FB</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>6D25D06F3BBA3C3D345223FE5B66D7A1</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>7109755596B1F0924E95A30B8004D498</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>9801EC07F4820ED2FABBF8B42D57694F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>D291163F2E18477ACE560FE6EE5BF8E9</key>
 		<dict>
 			<key>primary</key>
 			<true/>

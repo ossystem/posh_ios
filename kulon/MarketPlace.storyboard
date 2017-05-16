@@ -182,17 +182,17 @@
                         <outlet property="tagTextField" destination="dsf-cW-tsc" id="KvX-Zx-aJy"/>
                         <outlet property="topBar" destination="ZGF-8B-8cu" id="11b-fD-ZEZ"/>
                         <outlet property="topButton" destination="3y1-UM-NDL" id="BJx-ug-urg"/>
-                        <segue destination="d9b-DI-VHW" kind="presentation" identifier="PoshikViewControllerID" modalPresentationStyle="overFullScreen" id="hb3-Y3-YYv"/>
+                        <segue destination="d9b-DI-VHW" kind="presentation" identifier="PoshikViewControllerID" modalPresentationStyle="overFullScreen" modalTransitionStyle="crossDissolve" id="hb3-Y3-YYv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nBH-CA-B5D" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="799.20000000000005" y="-292.80359820089956"/>
         </scene>
-        <!--Storyboard Reference-->
+        <!--Poshik-->
         <scene sceneID="jD0-i9-eMQ">
             <objects>
-                <viewControllerPlaceholder id="d9b-DI-VHW" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardName="Poshik" id="d9b-DI-VHW" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vg4-YO-q38" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1486" y="-293"/>

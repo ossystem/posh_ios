@@ -15,6 +15,9 @@
 		FD5409B11EC5F9F900E93B7F /* PoshikViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD5409B01EC5F9F900E93B7F /* PoshikViewController.swift */; };
 		FD5409BE1EC6231D00E93B7F /* ColorPicker.xib in Resources */ = {isa = PBXBuildFile; fileRef = FD5409BD1EC6231D00E93B7F /* ColorPicker.xib */; };
 		FD5409C01EC99DDD00E93B7F /* ColorPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD5409BF1EC99DDD00E93B7F /* ColorPickerView.swift */; };
+		FD59599A1ECAFF5900BB2D9D /* PoshikPresentationAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD5959991ECAFF5900BB2D9D /* PoshikPresentationAnimator.swift */; };
+		FD59599C1ECB4ADB00BB2D9D /* PoshikViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD59599B1ECB4ADB00BB2D9D /* PoshikViewModel.swift */; };
+		FD59599E1ECB51B900BB2D9D /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD59599D1ECB51B900BB2D9D /* UIView.swift */; };
 		FD5F9F421EA776A300BD79B1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD5F9F411EA776A300BD79B1 /* AppDelegate.swift */; };
 		FD5F9F441EA776A300BD79B1 /* BaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD5F9F431EA776A300BD79B1 /* BaseController.swift */; };
 		FD5F9F461EA776A300BD79B1 /* StoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD5F9F451EA776A300BD79B1 /* StoreViewController.swift */; };
@@ -60,6 +63,9 @@
 		FD5409B01EC5F9F900E93B7F /* PoshikViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PoshikViewController.swift; sourceTree = "<group>"; };
 		FD5409BD1EC6231D00E93B7F /* ColorPicker.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ColorPicker.xib; sourceTree = "<group>"; };
 		FD5409BF1EC99DDD00E93B7F /* ColorPickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorPickerView.swift; sourceTree = "<group>"; };
+		FD5959991ECAFF5900BB2D9D /* PoshikPresentationAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PoshikPresentationAnimator.swift; sourceTree = "<group>"; };
+		FD59599B1ECB4ADB00BB2D9D /* PoshikViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PoshikViewModel.swift; sourceTree = "<group>"; };
+		FD59599D1ECB51B900BB2D9D /* UIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 		FD5F9F3E1EA776A300BD79B1 /* kulon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = kulon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD5F9F411EA776A300BD79B1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FD5F9F431EA776A300BD79B1 /* BaseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseController.swift; sourceTree = "<group>"; };
@@ -189,6 +195,8 @@
 				FDC9E3211EBFDFCE00B6DC25 /* PoshikCell.swift */,
 				FD5409AE1EC5D78000E93B7F /* Poshik.storyboard */,
 				FD5409B01EC5F9F900E93B7F /* PoshikViewController.swift */,
+				FD59599B1ECB4ADB00BB2D9D /* PoshikViewModel.swift */,
+				FD5959991ECAFF5900BB2D9D /* PoshikPresentationAnimator.swift */,
 			);
 			name = Poshik;
 			sourceTree = "<group>";
@@ -290,6 +298,7 @@
 				FD5F9F551EA79ED700BD79B1 /* FloatingPoint.swift */,
 				FDC3AB0F1EBB36AF00141241 /* UITextField.swift */,
 				FD974B071EC9EF3C0066AC27 /* CGPoint.swift */,
+				FD59599D1ECB51B900BB2D9D /* UIView.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -425,18 +434,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FD59599E1ECB51B900BB2D9D /* UIView.swift in Sources */,
 				FDC89DF91EBA4A2B004D3F9F /* PresentationAnimtor.swift in Sources */,
 				FD5409B11EC5F9F900E93B7F /* PoshikViewController.swift in Sources */,
 				FD5F9F601EA80CF500BD79B1 /* RoundedImageView.swift in Sources */,
 				FD7DDF161EB3BE7800B963DC /* BLEService.swift in Sources */,
 				FD5409AD1EC32A2400E93B7F /* LikeView.swift in Sources */,
 				FDC9E31C1EBFBE4000B6DC25 /* SettingsViewController.swift in Sources */,
+				FD59599C1ECB4ADB00BB2D9D /* PoshikViewModel.swift in Sources */,
 				FDC9E31E1EBFBF8700B6DC25 /* Identifiers.swift in Sources */,
 				FDEAE6991EAAB26500B9F504 /* MyImagesViewController.swift in Sources */,
 				FD5F9F561EA79ED700BD79B1 /* FloatingPoint.swift in Sources */,
 				FD5F9F581EA7BFB300BD79B1 /* RoundedButton.swift in Sources */,
 				FD5409A91EC2699300E93B7F /* RedactorViewController.swift in Sources */,
 				FDC3AB101EBB36AF00141241 /* UITextField.swift in Sources */,
+				FD59599A1ECAFF5900BB2D9D /* PoshikPresentationAnimator.swift in Sources */,
 				FDC9E3221EBFDFCE00B6DC25 /* PoshikCell.swift in Sources */,
 				FD974B081EC9EF3C0066AC27 /* CGPoint.swift in Sources */,
 				FDC9E3201EBFC0CF00B6DC25 /* SettingsCell.swift in Sources */,

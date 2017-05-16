@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="z8M-vs-EmS">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -7,6 +7,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -22,8 +23,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MaV-5Z-fHg" customClass="RoundedImageView" customModule="kulon" customModuleProvider="target">
-                                <rect key="frame" x="20" y="39" width="335" height="335"/>
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xnq-vz-MWz">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="DFU-lZ-Ihz">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                </view>
+                                <blurEffect style="dark"/>
+                            </visualEffectView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="MaV-5Z-fHg" customClass="RoundedImageView" customModule="kulon" customModuleProvider="target">
+                                <rect key="frame" x="20" y="110" width="335" height="335"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="MaV-5Z-fHg" secondAttribute="height" id="yUO-uM-1JH"/>
                                 </constraints>
@@ -33,21 +42,98 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c4R-dk-baW" customClass="TopBarView" customModule="kulon" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="20" width="375" height="70"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="v78-Dv-TSm" userLabel="Top Bar" customClass="TopBarBackgroundView" customModule="kulon" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="70"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="70" id="MIR-O0-5Pr"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="mainColor">
+                                                <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="topOffsetHeight">
+                                                <real key="value" value="24"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="angle">
+                                                <real key="value" value="20"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="shadowSize">
+                                                <real key="value" value="3"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="buttonRadius">
+                                                <real key="value" value="27"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="v78-Dv-TSm" firstAttribute="leading" secondItem="c4R-dk-baW" secondAttribute="leading" id="0xl-cP-sNf"/>
+                                    <constraint firstItem="v78-Dv-TSm" firstAttribute="top" secondItem="c4R-dk-baW" secondAttribute="top" id="dDK-eI-FNI"/>
+                                    <constraint firstAttribute="height" constant="70" id="i0N-kY-Ef4"/>
+                                    <constraint firstAttribute="trailing" secondItem="v78-Dv-TSm" secondAttribute="trailing" id="wIq-GK-H6F"/>
+                                    <constraint firstItem="v78-Dv-TSm" firstAttribute="centerX" secondItem="c4R-dk-baW" secondAttribute="centerX" id="y35-xo-Y4M"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="background" destination="v78-Dv-TSm" id="TuT-Zw-s1Z"/>
+                                </connections>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YSY-fk-jFO" customClass="RoundedButton" customModule="kulon" customModuleProvider="target">
+                                <rect key="frame" x="167" y="40" width="40" height="40"/>
+                                <color key="backgroundColor" red="0.99681133030000002" green="0.96478229760000001" blue="0.95604163409999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="sxG-0N-h1Q"/>
+                                    <constraint firstAttribute="width" secondItem="YSY-fk-jFO" secondAttribute="height" id="we6-K1-e3v"/>
+                                </constraints>
+                                <state key="normal" image="icon_top_cancel"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="20"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="topBarButtonTapped:" destination="z8M-vs-EmS" eventType="touchUpInside" id="w9H-jL-vNV"/>
+                                </connections>
+                            </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="MaV-5Z-fHg" firstAttribute="width" secondItem="wAO-AN-Xmw" secondAttribute="width" constant="-40" id="3Gs-kT-Mmb"/>
-                            <constraint firstItem="MaV-5Z-fHg" firstAttribute="centerX" secondItem="wAO-AN-Xmw" secondAttribute="centerX" id="7vJ-Ok-CMh"/>
-                            <constraint firstItem="MaV-5Z-fHg" firstAttribute="top" secondItem="LCz-Iy-HK4" secondAttribute="bottom" constant="20" id="vaB-8U-O6M"/>
+                            <constraint firstItem="YSY-fk-jFO" firstAttribute="centerX" secondItem="wAO-AN-Xmw" secondAttribute="centerX" id="4b6-lV-5b7"/>
+                            <constraint firstItem="xnq-vz-MWz" firstAttribute="top" secondItem="wAO-AN-Xmw" secondAttribute="topMargin" id="7JG-RS-tFo"/>
+                            <constraint firstItem="xnq-vz-MWz" firstAttribute="leading" secondItem="wAO-AN-Xmw" secondAttribute="leading" id="CFZ-rp-Mgz"/>
+                            <constraint firstItem="YSY-fk-jFO" firstAttribute="top" secondItem="LCz-Iy-HK4" secondAttribute="bottom" constant="20" id="K1U-K4-I29"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="MaV-5Z-fHg" secondAttribute="trailing" constant="4" id="Oy6-0E-Yky"/>
+                            <constraint firstItem="TlW-BY-8Tb" firstAttribute="top" secondItem="xnq-vz-MWz" secondAttribute="bottom" id="PNO-9G-MZz"/>
+                            <constraint firstItem="MaV-5Z-fHg" firstAttribute="top" secondItem="c4R-dk-baW" secondAttribute="bottom" constant="20" id="SBP-GB-fqP"/>
+                            <constraint firstAttribute="trailing" secondItem="c4R-dk-baW" secondAttribute="trailing" id="bFB-JF-2Et"/>
+                            <constraint firstAttribute="trailing" secondItem="xnq-vz-MWz" secondAttribute="trailing" id="d57-6h-yyL"/>
+                            <constraint firstItem="YSY-fk-jFO" firstAttribute="width" secondItem="YSY-fk-jFO" secondAttribute="height" id="lon-ZD-Ria"/>
+                            <constraint firstItem="MaV-5Z-fHg" firstAttribute="leading" secondItem="wAO-AN-Xmw" secondAttribute="leadingMargin" constant="4" id="mNA-ot-GC2"/>
+                            <constraint firstItem="c4R-dk-baW" firstAttribute="leading" secondItem="wAO-AN-Xmw" secondAttribute="leading" id="odX-MO-w93"/>
+                            <constraint firstItem="c4R-dk-baW" firstAttribute="top" secondItem="LCz-Iy-HK4" secondAttribute="bottom" id="uFd-GI-DFb"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="blurView" destination="xnq-vz-MWz" id="OAg-kl-K8c"/>
                         <outlet property="poshikImage" destination="MaV-5Z-fHg" id="pIv-Mc-7Mz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aPi-nE-daO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="126" y="165"/>
+            <point key="canvasLocation" x="125.59999999999999" y="164.16791604197903"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="icon_top_cancel" width="24" height="24"/>
+    </resources>
 </document>

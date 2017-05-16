@@ -106,14 +106,16 @@ class StoreViewController: BaseViewController, UICollectionViewDelegate, UIColle
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let poshik = poshiks[indexPath.row]
-        performSegue(withIdentifier: Identifiers.Segue.PoshikViewController, sender: poshik)
+        let frame = collectionView.cellForItem(at: indexPath)?.frame
+        let model = PoshikViewModel(poshik: poshik, startingFrame: frame!)
+        performSegue(withIdentifier: Identifiers.Segue.PoshikViewController, sender: model)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == Identifiers.Segue.PoshikViewController,
-            let poshik = sender as? Poshik,
-            let poshikViewController = segue.destination as? PoshikViewController{
-            
+            let sender = sender as? PoshikViewModel,
+            let poshikViewController = segue.destination as? PoshikViewController {
+            poshikViewController.model = sender
         }
         
     }

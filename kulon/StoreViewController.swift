@@ -39,8 +39,7 @@ class StoreViewController: BaseViewController, UICollectionViewDelegate, UIColle
         super.viewDidLoad()
         topButton.delegate = self
         
-        
-        
+        //TODO: try to rewrite using rx
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         categoriesTableView.contentInset = UIEdgeInsets(top: 140, left: 0, bottom: 0, right: 0)
@@ -144,6 +143,8 @@ class StoreViewController: BaseViewController, UICollectionViewDelegate, UIColle
         view.insertSubview(blurView, aboveSubview: collectionView)
         UIView.animate(withDuration: 0.3, animations: {
             self.blurView?.effect = UIBlurEffect(style: .extraLight)
+        }, completion: { _ in
+                self.statrSearching()
         })
     }
     

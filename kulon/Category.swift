@@ -18,6 +18,7 @@ struct PoshikCategory {
             PoshikCategory(title: "Art", image: #imageLiteral(resourceName: "icon_settings_culon")),
             PoshikCategory(title: "Pictures", image: #imageLiteral(resourceName: "icon_settings_culon")),
             PoshikCategory(title: "People", image: #imageLiteral(resourceName: "icon_settings_culon")),
+            PoshikCategory(title: "На все бабки", image: #imageLiteral(resourceName: "icon_settings_culon")),
         ]
     }
 }

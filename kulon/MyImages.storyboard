@@ -155,6 +155,7 @@
                         <outlet property="collectionView" destination="6xi-4H-ona" id="5di-AV-yvr"/>
                         <outlet property="topBar" destination="q13-h7-x9u" id="7bI-XH-FMD"/>
                         <segue destination="k5z-4S-a2K" kind="presentation" identifier="AddTextImageID" id="LDo-Zv-88h"/>
+                        <segue destination="USw-RR-vDc" kind="presentation" identifier="PoshikViewControllerID" modalPresentationStyle="overFullScreen" modalTransitionStyle="crossDissolve" id="BqL-SM-N9X"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aIF-ta-OjB" sceneMemberID="firstResponder"/>
@@ -257,6 +258,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uxV-2p-zxr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1636" y="358.4707646176912"/>
+        </scene>
+        <!--Poshik-->
+        <scene sceneID="2sI-hd-p7u">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Poshik" id="USw-RR-vDc" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jEv-Jn-ylT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1111" y="-228"/>
         </scene>
     </scenes>
     <resources>

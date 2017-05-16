@@ -54,7 +54,19 @@ class MyImagesViewController: BaseViewController, UICollectionViewDelegate, UICo
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("selected")
+        let poshik = poshiks[indexPath.row]
+        let frame = collectionView.cellForItem(at: indexPath)?.frame
+        let model = PoshikViewModel(poshik: poshik, startingFrame: frame!)
+        performSegue(withIdentifier: Identifiers.Segue.PoshikViewController, sender: model)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == Identifiers.Segue.PoshikViewController,
+            let sender = sender as? PoshikViewModel,
+            let poshikViewController = segue.destination as? PoshikViewController {
+            poshikViewController.model = sender
+        }
+        
     }
     
     //MARK: expandable button delegate 

@@ -52,7 +52,7 @@ class ExpandableButton: RoundedButton {
         var newFrames: [CGRect] = []
         for (index, button) in subButtons.enumerated() {
             var newFrame = frame
-            (button as! RoundedButton).hasShadow = true
+            button.hasShadow = true
             button.frame = newFrame
             switch type {
             case .above:

@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import Alamofire
 
 class CategoryCell : UITableViewCell {
     
@@ -15,7 +16,7 @@ class CategoryCell : UITableViewCell {
     @IBOutlet weak var icon: RoundedImageView!
     
     func configure(with category: PoshikCategory) {
-        title.text = category.title
-        icon.image = category.image
+        title.text = category.name
+        
     }
 }

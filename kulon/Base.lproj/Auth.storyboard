@@ -325,7 +325,7 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <segue destination="6pY-kJ-nUd" kind="show" id="82e-om-v7j"/>
+                                            <action selector="nextButtonTapped:" destination="A3z-Zx-mQc" eventType="touchUpInside" id="Qvx-yN-EJs"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LGo-7c-rUY" customClass="RoundedButton" customModule="kulon" customModuleProvider="target">
@@ -430,6 +430,11 @@
                             <constraint firstItem="PCS-lL-zr9" firstAttribute="top" secondItem="MMY-Xi-KuU" secondAttribute="bottom" constant="78" id="syV-Hc-rky"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="emailField" destination="agF-Jl-C1i" id="r6h-wW-U4j"/>
+                        <outlet property="passwordField" destination="DUG-Ji-ejG" id="Qdz-5L-Ilx"/>
+                        <segue destination="6pY-kJ-nUd" kind="show" identifier="MainTabBarViewControllerID" id="gxC-h7-Klc"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="udy-gA-LKD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

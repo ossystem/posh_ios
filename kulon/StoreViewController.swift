@@ -32,8 +32,12 @@ class StoreViewController: BaseViewController, UICollectionViewDelegate, UIColle
     
     private let bleService = BLEService.shared
     private var blurView: UIVisualEffectView!
-    var poshiks: [Poshik] = Poshik.sampleSet + Poshik.sampleSet + Poshik.sampleSet + Poshik.sampleSet + Poshik.sampleSet
-    var categories: [PoshikCategory] = PoshikCategory.sampleSet
+    private let marketService = MarketService()
+    
+    var bag: DisposeBag = DisposeBag()
+    var poshiks: [Poshik] = []
+    var categories: [PoshikCategory] = []
+    var marketParameter =  MarketParameter()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,6 +53,7 @@ class StoreViewController: BaseViewController, UICollectionViewDelegate, UIColle
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setupInterface()
+        loadData()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -66,6 +71,18 @@ class StoreViewController: BaseViewController, UICollectionViewDelegate, UIColle
             tagButton
         ]
         blurView = UIVisualEffectView(frame: view.bounds)
+    }
+    
+    func loadData() {
+        marketService.getPoshiks(parameter: marketParameter)
+            .subscribe(onNext: {
+                poshiks in
+                self.poshiks = poshiks.poshiks
+                self.collectionView.reloadData()
+            }, onError: {
+                error in
+                print(error.localizedDescription)
+            }).addDisposableTo(bag)
     }
     
     func searchTags() {

@@ -4,12 +4,32 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>Alamofire.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>AlamofireImage.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>AlamofireObjectMapper.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>IMGLYColorPicker-IMGLYColorPicker.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
 		<key>IMGLYColorPicker.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>ObjectMapper.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -42,12 +62,17 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>27C2AFE02B45F856106803F071164529</key>
+		<key>2DF175DC482BBB30FEE3E2429D9CB202</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>3893E2B61297C512F0BCF38FB86B9DEB</key>
+		<key>2F5622F3B18DF497981AB58C6D1FC72F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>3129C9B96D4D5C04131327757AEEC1C8</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -57,17 +82,32 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>6D25D06F3BBA3C3D345223FE5B66D7A1</key>
+		<key>5D41F1E104B05DCE24FD3E7AFE68E094</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>7109755596B1F0924E95A30B8004D498</key>
+		<key>7A17C6E1D36619AF243515237884BCCB</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>9801EC07F4820ED2FABBF8B42D57694F</key>
+		<key>7BC4C09A9B633EDEFBCD569D2166EC9A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>88E9EC28B8B46C3631E6B242B50F4442</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>9502FB01641FBABB78522037E882757B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>9EFE4C70245EE2857D336B8B9FA4E825</key>
 		<dict>
 			<key>primary</key>
 			<true/>

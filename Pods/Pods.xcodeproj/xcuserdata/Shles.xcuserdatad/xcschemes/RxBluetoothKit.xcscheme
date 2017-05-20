@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '6D25D06F3BBA3C3D345223FE5B66D7A1'
+               BlueprintIdentifier = '7BC4C09A9B633EDEFBCD569D2166EC9A'
                BlueprintName = 'RxBluetoothKit'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'RxBluetoothKit.framework'>

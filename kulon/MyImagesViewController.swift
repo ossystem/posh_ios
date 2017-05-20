@@ -21,7 +21,7 @@ class MyImagesViewController: BaseViewController, UICollectionViewDelegate, UICo
             collectionView.dataSource = self
         }
     }
-    var poshiks: [Poshik] = Poshik.sampleSet
+    var poshiks: [Poshik] = []
     var blurView: UIVisualEffectView!
     
     override func viewDidLoad() {

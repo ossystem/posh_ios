@@ -8,17 +8,20 @@
 
 import Foundation
 import UIKit
+import ObjectMapper
 
-struct Poshik {
-    var image: UIImage
+struct Poshik: ImmutableMappable {
     
-    static var sampleSet: [Poshik] {
-        return [
-            Poshik(image: #imageLiteral(resourceName: "sample_poshik_1")),
-            Poshik(image: #imageLiteral(resourceName: "sample_poshik_5")),
-            Poshik(image: #imageLiteral(resourceName: "sample_poshik_3")),
-            Poshik(image: #imageLiteral(resourceName: "sample_poshik_2")),
-            Poshik(image: #imageLiteral(resourceName: "sample_poshik_4"))
-        ]
+    //TODO: use different sizes
+    var imageURLString: String = ""
+    var id: Int = -1
+    var imageURL: URL? {
+        return URL(string: imageURLString)
     }
+    
+    init(map: Map) throws {
+        imageURLString <- map["image"]
+        id <- map["id"]
+    }
+
 }

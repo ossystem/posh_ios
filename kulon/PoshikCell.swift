@@ -8,12 +8,16 @@
 
 import Foundation
 import UIKit
+import AlamofireImage
 
 class PoshikCell: UICollectionViewCell {
     
     @IBOutlet weak var image: RoundedImageView!
     
     func configure(with poshik: Poshik) {
-        image.image = poshik.image
+        //TODO: use different sizes
+        if let url = poshik.imageURL {
+            image.af_setImage(withURL: url)
+        }
     }
 }

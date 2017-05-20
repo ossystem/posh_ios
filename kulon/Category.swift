@@ -8,17 +8,20 @@
 
 import Foundation
 import UIKit
+import AlamofireObjectMapper
+import ObjectMapper
 
-struct PoshikCategory {
-    var title: String
-    var image: UIImage
+class IdiableObject: ImmutableMappable {
     
-    static var sampleSet: [PoshikCategory] {
-        return [
-            PoshikCategory(title: "Art", image: #imageLiteral(resourceName: "icon_settings_culon")),
-            PoshikCategory(title: "Pictures", image: #imageLiteral(resourceName: "icon_settings_culon")),
-            PoshikCategory(title: "People", image: #imageLiteral(resourceName: "icon_settings_culon")),
-            PoshikCategory(title: "На все бабки", image: #imageLiteral(resourceName: "icon_settings_culon")),
-        ]
+    var id: Int = -1
+    var name: String = ""
+    
+    required init(map: Map) throws {
+        id <- map["id"]
+        name <- map["name"]
     }
+}
+
+class PoshikCategory: IdiableObject {
+    
 }

@@ -11,7 +11,8 @@ import UIKit
 
 class PoshikViewController: BaseViewController, UIViewControllerTransitioningDelegate {
     
-    var model: PoshikViewModel?
+    var model: PoshikViewModel!
+    var poshikService: PoshikService!
     
     @IBOutlet weak var poshikImage: RoundedImageView!    
     @IBOutlet weak var blurView: UIVisualEffectView!
@@ -24,6 +25,7 @@ class PoshikViewController: BaseViewController, UIViewControllerTransitioningDel
         self.providesPresentationContextTransitionStyle = true
         self.definesPresentationContext = true
         self.transitioningDelegate = self
+        poshikService = PoshikService(with: model.poshik.id)
     }
     
     override func viewDidLayoutSubviews() {
@@ -34,6 +36,16 @@ class PoshikViewController: BaseViewController, UIViewControllerTransitioningDel
         dismiss(animated: true, completion: nil)
     }
     
+    @IBAction func likeButtonTapped(_ sender: Any) {
+        //TODO: change button state
+        poshikService.like()
+    }
+    
+    @IBAction func buyButtonTapped(_ sender: Any) {
+        //TODO: react somehow
+        poshikService.buy()
+    }
+
     func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         if dismissed == self {
             return PoshikDismissAnimator(with: model?.startingFrame ?? poshikImage.frame)

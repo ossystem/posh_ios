@@ -111,7 +111,7 @@
                                 <constraints>
                                     <constraint firstAttribute="width" constant="70" id="aVL-gR-GKD"/>
                                 </constraints>
-                                <state key="normal" image="icon_top_cancel"/>
+                                <state key="normal" image="icon_like_1"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                         <real key="value" value="35"/>
@@ -124,6 +124,9 @@
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="hasShadow" value="YES"/>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="likeButtonTapped:" destination="z8M-vs-EmS" eventType="touchUpInside" id="7aB-pY-n1Z"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="el9-sR-n3d" customClass="RoundedButton" customModule="kulon" customModuleProvider="target">
                                 <rect key="frame" x="285" y="465" width="70" height="70"/>
@@ -131,7 +134,7 @@
                                 <constraints>
                                     <constraint firstAttribute="width" constant="70" id="kz5-mN-hXW"/>
                                 </constraints>
-                                <state key="normal" image="icon_top_cancel"/>
+                                <state key="normal" image="icon_buy"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                         <real key="value" value="35"/>
@@ -144,6 +147,9 @@
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="hasShadow" value="YES"/>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="buyButtonTapped:" destination="z8M-vs-EmS" eventType="touchUpInside" id="BG4-as-gYe"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -180,6 +186,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="icon_buy" width="38" height="28"/>
+        <image name="icon_like_1" width="52" height="50"/>
         <image name="icon_top_cancel" width="24" height="24"/>
     </resources>
 </document>

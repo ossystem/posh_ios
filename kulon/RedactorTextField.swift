@@ -22,10 +22,9 @@ class RedactorTextField: UITextView {
     //TODO: set proper images
     //TODO: store all properties somewhere
     
-    
-    let itemsOrdinaryImages: [UIImage] = []
-    let itemsSelectedImages: [UIImage] = []
-    
+    enum RedactorTabs: Int {
+        case text = 0, font = 2, textColor = 4, fillColor = 6, ok = 8
+    }
     var poshikBackgroundColor: UIColor?
     
     private var actualtKeyBoardHeight: CGFloat = 216
@@ -39,22 +38,23 @@ class RedactorTextField: UITextView {
         toolBar.tintColor = UIColor.white
         toolBar.sizeToFit()
         
-        let textButton = UIBarButtonItem(image: #imageLiteral(resourceName: "icon_tab_picture"), style: .plain, target: self, action: #selector(beginTextChanging))
-        let fontButton = UIBarButtonItem(image: #imageLiteral(resourceName: "icon_tab_picture"), style: .plain, target: self, action: #selector(beginFontSelection))
-        let textColorButton = UIBarButtonItem(image: #imageLiteral(resourceName: "icon_tab_picture"), style: .plain, target: self, action: #selector(beginTextColorSelection))
-        let backgroundColorButton = UIBarButtonItem(image: #imageLiteral(resourceName: "icon_tab_picture"), style: .plain, target: self, action: #selector(beginBackgroundColorSelection))
-        let doneButton = UIBarButtonItem(image: #imageLiteral(resourceName: "icon_tab_picture"), style: .done, target: self, action: #selector(createImage))
+        let textButton = UIBarButtonItem(image: #imageLiteral(resourceName: "icon_keyboard_pink"), style: .plain, target: self, action: #selector(beginTextChanging))
+        let fontButton = UIBarButtonItem(image: #imageLiteral(resourceName: "icon_font_pink"), style: .plain, target: self, action: #selector(beginFontSelection))
+        let textColorButton = UIBarButtonItem(image: #imageLiteral(resourceName: "icon_font_color_pink"), style: .plain, target: self, action: #selector(beginTextColorSelection))
+        let backgroundColorButton = UIBarButtonItem(image: #imageLiteral(resourceName: "icon_fill_pink"), style: .plain, target: self, action: #selector(beginBackgroundColorSelection))
+        let doneButton = UIBarButtonItem(image: #imageLiteral(resourceName: "icon_text"), style: .done, target: self, action: #selector(createImage))
         let spaceButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-        toolBar.tintColor = UIColor.Kulon.orange
+        toolBar.tintColor = UIColor.Kulon.pink
         toolBar.setItems([textButton, spaceButton, fontButton, spaceButton, textColorButton, spaceButton, backgroundColorButton, spaceButton, doneButton], animated: false)
         
         self.inputAccessoryView = toolBar
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyBoardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-
+        beginTextChanging()
     }
     
     func beginTextColorSelection() {
+        selectBarButton(.textColor)
         let colorPicker = ColorPickerView()
         colorPicker.addTarget(self, action: #selector(textColorPicked(_:)), for: .valueChanged)
         colorPicker.frame = CGRect(x: 0, y: 0, width: 0, height: actualtKeyBoardHeight)
@@ -63,6 +63,7 @@ class RedactorTextField: UITextView {
     }
     
     func beginBackgroundColorSelection() {
+        selectBarButton(.fillColor)
         let colorPicker = ColorPickerView()
         colorPicker.addTarget(self, action: #selector(backgroundColorPicked(_:)), for: .valueChanged)
         colorPicker.frame = CGRect(x: 0, y: 0, width: 0, height: actualtKeyBoardHeight)
@@ -71,10 +72,11 @@ class RedactorTextField: UITextView {
     }
     
     func beginFontSelection() {
-        
+        selectBarButton(.font)
     }
     
     func beginTextChanging() {
+        selectBarButton(.text)
         changeInputView(to: nil)
     }
     
@@ -87,15 +89,17 @@ class RedactorTextField: UITextView {
         reloadInputViews()
     }
     
-    private func selectBarButton(_ id: Int) {
+    private func selectBarButton(_ id: RedactorTabs) {
         guard let toolBar = inputAccessoryView as? UIToolbar,
             let items = toolBar.items,
-            items.count > id
+            items.count > id.rawValue
             else { return }
         
         for (index, item) in items.enumerated() {
-            if index != id {
-                
+            if index != id.rawValue {
+                item.tintColor = UIColor.Kulon.pink
+            } else {
+                item.tintColor = UIColor.Kulon.orange
             }
         }
     }

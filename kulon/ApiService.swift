@@ -16,9 +16,21 @@ protocol ParameterType {
     func toJSON() -> [String : Any]?
 }
 
+class ParameterNone : ParameterType {
+    func toJSON() -> [String : Any]? {
+        return nil
+    }
+}
 
 protocol ResponseType: ImmutableMappable {
     
+}
+
+class ResponseNone : ResponseType {
+    
+    required init(map: Map) throws {
+        
+    }
 }
 
 protocol ApiService : class {

@@ -36,6 +36,10 @@
 		FD5F9F5D1EA8093900BD79B1 /* TopBarBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD5F9F5C1EA8093900BD79B1 /* TopBarBackgroundView.swift */; };
 		FD5F9F601EA80CF500BD79B1 /* RoundedImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD5F9F5F1EA80CF500BD79B1 /* RoundedImageView.swift */; };
 		FD7DBAB91ECF597000D97D45 /* RegistrationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7DBAB81ECF597000D97D45 /* RegistrationService.swift */; };
+		FD7DBABE1ED08D0600D97D45 /* CategoriesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7DBABD1ED08D0600D97D45 /* CategoriesService.swift */; };
+		FD7DBAC01ED0918400D97D45 /* MarketViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7DBABF1ED0918400D97D45 /* MarketViewModel.swift */; };
+		FD7DBAC21ED098DE00D97D45 /* MarketTagAutoCompletionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7DBAC11ED098DE00D97D45 /* MarketTagAutoCompletionService.swift */; };
+		FD7DBAC41ED0A92E00D97D45 /* PoshikService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7DBAC31ED0A92E00D97D45 /* PoshikService.swift */; };
 		FD7DDF161EB3BE7800B963DC /* BLEService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7DDF151EB3BE7800B963DC /* BLEService.swift */; };
 		FD974B061EC9C0100066AC27 /* RedactorTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD974B051EC9C0100066AC27 /* RedactorTextField.swift */; };
 		FD974B081EC9EF3C0066AC27 /* CGPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD974B071EC9EF3C0066AC27 /* CGPoint.swift */; };
@@ -93,6 +97,10 @@
 		FD5F9F5C1EA8093900BD79B1 /* TopBarBackgroundView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TopBarBackgroundView.swift; path = Views/TopBarBackgroundView.swift; sourceTree = "<group>"; };
 		FD5F9F5F1EA80CF500BD79B1 /* RoundedImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedImageView.swift; sourceTree = "<group>"; };
 		FD7DBAB81ECF597000D97D45 /* RegistrationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationService.swift; sourceTree = "<group>"; };
+		FD7DBABD1ED08D0600D97D45 /* CategoriesService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoriesService.swift; sourceTree = "<group>"; };
+		FD7DBABF1ED0918400D97D45 /* MarketViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarketViewModel.swift; sourceTree = "<group>"; };
+		FD7DBAC11ED098DE00D97D45 /* MarketTagAutoCompletionService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarketTagAutoCompletionService.swift; sourceTree = "<group>"; };
+		FD7DBAC31ED0A92E00D97D45 /* PoshikService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PoshikService.swift; sourceTree = "<group>"; };
 		FD7DDF151EB3BE7800B963DC /* BLEService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BLEService.swift; sourceTree = "<group>"; };
 		FD974B051EC9C0100066AC27 /* RedactorTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RedactorTextField.swift; sourceTree = "<group>"; };
 		FD974B071EC9EF3C0066AC27 /* CGPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CGPoint.swift; sourceTree = "<group>"; };
@@ -177,6 +185,9 @@
 				FD59599F1ECB96C500BB2D9D /* CategoryCell.swift */,
 				FD5959A11ECB973900BB2D9D /* Category.swift */,
 				FD5F9F451EA776A300BD79B1 /* StoreViewController.swift */,
+				FD7DBABF1ED0918400D97D45 /* MarketViewModel.swift */,
+				FD7DBABD1ED08D0600D97D45 /* CategoriesService.swift */,
+				FD7DBAC11ED098DE00D97D45 /* MarketTagAutoCompletionService.swift */,
 				FD0EF8FF1ECF39AF005F5ACF /* MarketService.swift */,
 			);
 			name = Store;
@@ -213,6 +224,7 @@
 				FD5409B01EC5F9F900E93B7F /* PoshikViewController.swift */,
 				FD59599B1ECB4ADB00BB2D9D /* PoshikViewModel.swift */,
 				FD5959991ECAFF5900BB2D9D /* PoshikPresentationAnimator.swift */,
+				FD7DBAC31ED0A92E00D97D45 /* PoshikService.swift */,
 			);
 			name = Poshik;
 			sourceTree = "<group>";
@@ -480,6 +492,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FD59599E1ECB51B900BB2D9D /* UIView.swift in Sources */,
+				FD7DBAC01ED0918400D97D45 /* MarketViewModel.swift in Sources */,
 				FD7DBAB91ECF597000D97D45 /* RegistrationService.swift in Sources */,
 				FDC89DF91EBA4A2B004D3F9F /* PresentationAnimtor.swift in Sources */,
 				FD5409B11EC5F9F900E93B7F /* PoshikViewController.swift in Sources */,
@@ -493,6 +506,7 @@
 				FD5F9F561EA79ED700BD79B1 /* FloatingPoint.swift in Sources */,
 				FD5959A21ECB973900BB2D9D /* Category.swift in Sources */,
 				FD5F9F581EA7BFB300BD79B1 /* RoundedButton.swift in Sources */,
+				FD7DBAC21ED098DE00D97D45 /* MarketTagAutoCompletionService.swift in Sources */,
 				FD5409A91EC2699300E93B7F /* RedactorViewController.swift in Sources */,
 				FD0EF8FC1ECF38D5005F5ACF /* ApiService.swift in Sources */,
 				FDC3AB101EBB36AF00141241 /* UITextField.swift in Sources */,
@@ -504,12 +518,14 @@
 				FD0EF9001ECF39AF005F5ACF /* MarketService.swift in Sources */,
 				FD5409C01EC99DDD00E93B7F /* ColorPickerView.swift in Sources */,
 				FD5F9F5D1EA8093900BD79B1 /* TopBarBackgroundView.swift in Sources */,
+				FD7DBABE1ED08D0600D97D45 /* CategoriesService.swift in Sources */,
 				FDC9E3241EBFE02C00B6DC25 /* Poshik.swift in Sources */,
 				FDC89DFC1EBA4ABA004D3F9F /* AuthViewController.swift in Sources */,
 				FD5F9F461EA776A300BD79B1 /* StoreViewController.swift in Sources */,
 				FD974B061EC9C0100066AC27 /* RedactorTextField.swift in Sources */,
 				FD5959A41ECC8DC700BB2D9D /* LoginService.swift in Sources */,
 				FD5F9F421EA776A300BD79B1 /* AppDelegate.swift in Sources */,
+				FD7DBAC41ED0A92E00D97D45 /* PoshikService.swift in Sources */,
 				FDC89DFE1EBA4B4E004D3F9F /* RegistrationViewController.swift in Sources */,
 				FDC89DF61EBA3799004D3F9F /* RoundedView.swift in Sources */,
 				FD1F42F01EBB52BE008AE3ED /* UIColor.swift in Sources */,

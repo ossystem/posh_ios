@@ -83,6 +83,7 @@ class StoreViewController: BaseViewController, UICollectionViewDelegate, UIColle
                 error in
                 print(error.localizedDescription)
             }).addDisposableTo(bag)
+        
     }
     
     func searchTags() {

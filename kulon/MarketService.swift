@@ -49,6 +49,7 @@ class MarketPoshiks: ResponseType {
         
 }
 
+
 class MarketApiService : ApiService {
     
     static let shared = MarketApiService()
@@ -65,10 +66,21 @@ class MarketApiService : ApiService {
 
 class MarketService {
     
-    let apiService = MarketApiService.shared
-    
+    let marketApiService = MarketApiService.shared
+    let categoriesApiService = CategoriesApiService.shared
+    let tagApiService = TagAutocompletionApiService.shared
+
     func getPoshiks(parameter: MarketParameter) -> Observable<MarketPoshiks> {
-        return apiService.request(parameter: parameter)
+        return marketApiService.request(parameter: parameter)
     }
+    
+    func getCategories() -> Observable<PoshikCategories> {
+        return categoriesApiService.request(parameter: ParameterNone())
+    }
+    
+    func getAutocompletedTagsFor(string: String) -> Observable<TagAutocompletions> {
+        return tagApiService.request(parameter: TagAutocompletionParameter(string))
+    }
+    
     
 }

@@ -60,7 +60,7 @@ extension ApiService {
     }
     
     func request(parameter: Parameter) -> Observable<Response> {
-        return Observable.create{ observer in
+        return Observable.create { observer in
             Alamofire.request(URL(string: self.baseRoute + self.route)!,
                               method: self.method,
                               parameters: parameter.toJSON(),
@@ -74,7 +74,20 @@ extension ApiService {
                         observer.on(.next(value))
                         observer.onCompleted()
                     case .failure(let error):
-                        if let data = response.data {
+                        if response.response?.statusCode == 401 {
+                            observer.onError(UnauthorisedError())
+                        }
+                           /* LoginService().loginWithStoredCredentials()
+                                .subscribe(onError: {
+                                    error in
+                                    LoginService().logout()
+                                },
+                                    onCompleted: {
+                                    self.request(parameter: parameter)
+                                })
+                        }*/
+                        
+                        else if let data = response.data {
                             observer.on(.error(self.getError(from: data)))
                         } else {
                             observer.on(.error(error))
@@ -82,8 +95,17 @@ extension ApiService {
                     }
             }
             return Disposables.create()
-        }
+            }.retryWhen({ (errorObservable : Observable<Error>) -> Observable<Void> in
+            return errorObservable.flatMap { (error) -> Observable<Void> in
+                if error is UnauthorisedError {
+                    return LoginService().loginWithStoredCredentials()
+                }
+                throw error
+            }
+        })
+        
     }
+
     
     private func updateAuthorizationToken(response: DataResponse<Response>) {
         if let token = response.response?.allHeaderFields["Authorization"] as? String {
@@ -98,12 +120,21 @@ extension ApiService {
     
 }
 
+
+class UnauthorisedError : ResponseError {
+    
+}
+
 class ResponseError: LocalizedError, Mappable {
     
     var message: String = "Низвестная ошибка"
     var description: [String]?
     var errorDescription: String? {
         return description?.joined(separator: " ") ?? message
+    }
+    
+    init() {
+        
     }
     
     required init(map: Map) {

@@ -40,6 +40,8 @@
 		FD7DBAC01ED0918400D97D45 /* MarketViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7DBABF1ED0918400D97D45 /* MarketViewModel.swift */; };
 		FD7DBAC21ED098DE00D97D45 /* MarketTagAutoCompletionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7DBAC11ED098DE00D97D45 /* MarketTagAutoCompletionService.swift */; };
 		FD7DBAC41ED0A92E00D97D45 /* PoshikService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7DBAC31ED0A92E00D97D45 /* PoshikService.swift */; };
+		FD7DBAC61ED1C90500D97D45 /* UserCredentialsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7DBAC51ED1C90500D97D45 /* UserCredentialsService.swift */; };
+		FD7DBAC81ED1DA6800D97D45 /* UIWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7DBAC71ED1DA6800D97D45 /* UIWindow.swift */; };
 		FD7DDF161EB3BE7800B963DC /* BLEService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7DDF151EB3BE7800B963DC /* BLEService.swift */; };
 		FD974B061EC9C0100066AC27 /* RedactorTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD974B051EC9C0100066AC27 /* RedactorTextField.swift */; };
 		FD974B081EC9EF3C0066AC27 /* CGPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD974B071EC9EF3C0066AC27 /* CGPoint.swift */; };
@@ -101,6 +103,8 @@
 		FD7DBABF1ED0918400D97D45 /* MarketViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarketViewModel.swift; sourceTree = "<group>"; };
 		FD7DBAC11ED098DE00D97D45 /* MarketTagAutoCompletionService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarketTagAutoCompletionService.swift; sourceTree = "<group>"; };
 		FD7DBAC31ED0A92E00D97D45 /* PoshikService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PoshikService.swift; sourceTree = "<group>"; };
+		FD7DBAC51ED1C90500D97D45 /* UserCredentialsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserCredentialsService.swift; sourceTree = "<group>"; };
+		FD7DBAC71ED1DA6800D97D45 /* UIWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIWindow.swift; sourceTree = "<group>"; };
 		FD7DDF151EB3BE7800B963DC /* BLEService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BLEService.swift; sourceTree = "<group>"; };
 		FD974B051EC9C0100066AC27 /* RedactorTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RedactorTextField.swift; sourceTree = "<group>"; };
 		FD974B071EC9EF3C0066AC27 /* CGPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CGPoint.swift; sourceTree = "<group>"; };
@@ -324,6 +328,7 @@
 		FD5F9F5E1EA80A9600BD79B1 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				FD7DBAC71ED1DA6800D97D45 /* UIWindow.swift */,
 				FD1F42EF1EBB52BE008AE3ED /* UIColor.swift */,
 				FD5F9F551EA79ED700BD79B1 /* FloatingPoint.swift */,
 				FDC3AB0F1EBB36AF00141241 /* UITextField.swift */,
@@ -336,6 +341,7 @@
 		FD7DBABA1ED05A0A00D97D45 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				FD7DBAC51ED1C90500D97D45 /* UserCredentialsService.swift */,
 				FD5959A31ECC8DC700BB2D9D /* LoginService.swift */,
 				FD7DBAB81ECF597000D97D45 /* RegistrationService.swift */,
 			);
@@ -508,6 +514,7 @@
 				FD5F9F581EA7BFB300BD79B1 /* RoundedButton.swift in Sources */,
 				FD7DBAC21ED098DE00D97D45 /* MarketTagAutoCompletionService.swift in Sources */,
 				FD5409A91EC2699300E93B7F /* RedactorViewController.swift in Sources */,
+				FD7DBAC61ED1C90500D97D45 /* UserCredentialsService.swift in Sources */,
 				FD0EF8FC1ECF38D5005F5ACF /* ApiService.swift in Sources */,
 				FDC3AB101EBB36AF00141241 /* UITextField.swift in Sources */,
 				FD0EF8FE1ECF397C005F5ACF /* TockenService.swift in Sources */,
@@ -517,6 +524,7 @@
 				FDC9E3201EBFC0CF00B6DC25 /* SettingsCell.swift in Sources */,
 				FD0EF9001ECF39AF005F5ACF /* MarketService.swift in Sources */,
 				FD5409C01EC99DDD00E93B7F /* ColorPickerView.swift in Sources */,
+				FD7DBAC81ED1DA6800D97D45 /* UIWindow.swift in Sources */,
 				FD5F9F5D1EA8093900BD79B1 /* TopBarBackgroundView.swift in Sources */,
 				FD7DBABE1ED08D0600D97D45 /* CategoriesService.swift in Sources */,
 				FDC9E3241EBFE02C00B6DC25 /* Poshik.swift in Sources */,

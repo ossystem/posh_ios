@@ -10,22 +10,35 @@ import Foundation
 import UIKit
 
 struct SettingItem {
+    
     var name: String
     var descr: String
     var image: UIImage
+    var request: URLRequest?
     
     static var defaultSettingsSet: [SettingItem] {
         //TODO: change items
         return [
-            SettingItem(name: "ОТВЯЗАТЬ КУЛОН", descr: "Изменить кулон, управляемый с помощью приложения", image: #imageLiteral(resourceName: "icon_settigns_kulon_8F8D8D")),
-            SettingItem(name: "КОНТАКТЫ", descr: "Написать разработчику и задать свой вопрос", image: #imageLiteral(resourceName: "icon_settings_contacts_8F8D8D")),
-            SettingItem(name: "ВОПРОСЫ И ОТВЕТЫ", descr: "Ответы на самые распространенные вопросы", image: #imageLiteral(resourceName: "icon_settings_question_8F8D8D")),
-            SettingItem(name: "АДРЕСА МАГАЗИНОВ", descr: "Изменить кулон, управляемый с помощью приложения", image: #imageLiteral(resourceName: "icon_settings_geo_8F8D8D"))
+            SettingItem(name: "ОТВЯЗАТЬ КУЛОН", descr: "Изменить кулон, управляемый с помощью приложения", image: #imageLiteral(resourceName: "icon_settigns_kulon_8F8D8D"),request: nil),
+            SettingItem(name: "КОНТАКТЫ", descr: "Написать разработчику и задать свой вопрос", image: #imageLiteral(resourceName: "icon_settings_contacts_8F8D8D"),request: ContactsSettingsService().getRequest() ),
+            SettingItem(name: "ВОПРОСЫ И ОТВЕТЫ", descr: "Ответы на самые распространенные вопросы", image: #imageLiteral(resourceName: "icon_settings_question_8F8D8D"), request: FAQSettingsService().getRequest()),
+            SettingItem(name: "АДРЕСА МАГАЗИНОВ", descr: "Изменить кулон, управляемый с помощью приложения", image: #imageLiteral(resourceName: "icon_settings_geo_8F8D8D"), request:AdressesSettingsService().getRequest())
         ]
     }
 }
 
+
+
+
 class SettingsViewController: BaseViewController, UITableViewDataSource, UITableViewDelegate {
+    
+    enum SettingsItems: Int {
+        case deattachKulon = 0, contacts, FAQ, adresses
+        
+        var item: SettingItem {
+           return SettingItem.defaultSettingsSet[rawValue]
+        }
+    }
     
     @IBOutlet weak var tableView: UITableView! {
         didSet {
@@ -57,6 +70,21 @@ class SettingsViewController: BaseViewController, UITableViewDataSource, UITable
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        let item = SettingsItems(rawValue: indexPath.row)!
+        switch item {
+        case .adresses,.contacts,.FAQ:
+            performSegue(withIdentifier: Identifiers.Segue.SettingsWebViewControllerID, sender: item)
+        default:
+            //TODO: open culon connecting screen
+            return
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == Identifiers.Segue.SettingsWebViewControllerID,
+            let webController = segue.destination as? SettingsWebViewController, let item = sender as? SettingsItems {
+            webController.request = item.item.request
+        }
     }
     
 }

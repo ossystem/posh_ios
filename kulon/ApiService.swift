@@ -77,16 +77,6 @@ extension ApiService {
                         if response.response?.statusCode == 401 {
                             observer.onError(UnauthorisedError())
                         }
-                           /* LoginService().loginWithStoredCredentials()
-                                .subscribe(onError: {
-                                    error in
-                                    LoginService().logout()
-                                },
-                                    onCompleted: {
-                                    self.request(parameter: parameter)
-                                })
-                        }*/
-                        
                         else if let data = response.data {
                             observer.on(.error(self.getError(from: data)))
                         } else {

@@ -17,5 +17,6 @@ struct Identifiers {
     struct Segue {
         static let PoshikViewController = "PoshikViewControllerID"
         static let MainTabBarViewController = "MainTabBarViewControllerID"
+        static let SettingsWebViewControllerID = "SettingsWebViewControllerID"
     }
 }

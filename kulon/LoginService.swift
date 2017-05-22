@@ -41,6 +41,7 @@ class LoginService {
             .flatMap { (result) -> Observable<Void> in
                 self.userCredentialsService.credentials = credentials
                 self.tokenService.token = result.token
+                self.userCredentialsService.isLoggedIn = true
                 return Observable<Void>.empty()
         }
     }

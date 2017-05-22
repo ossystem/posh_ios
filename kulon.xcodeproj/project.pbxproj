@@ -42,6 +42,9 @@
 		FD7DBAC41ED0A92E00D97D45 /* PoshikService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7DBAC31ED0A92E00D97D45 /* PoshikService.swift */; };
 		FD7DBAC61ED1C90500D97D45 /* UserCredentialsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7DBAC51ED1C90500D97D45 /* UserCredentialsService.swift */; };
 		FD7DBAC81ED1DA6800D97D45 /* UIWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7DBAC71ED1DA6800D97D45 /* UIWindow.swift */; };
+		FD7DBACA1ED2254C00D97D45 /* MyImagesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7DBAC91ED2254C00D97D45 /* MyImagesService.swift */; };
+		FD7DBACC1ED2DDBD00D97D45 /* SettingsWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7DBACB1ED2DDBD00D97D45 /* SettingsWebViewController.swift */; };
+		FD7DBACE1ED2E48800D97D45 /* SettingsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7DBACD1ED2E48800D97D45 /* SettingsService.swift */; };
 		FD7DDF161EB3BE7800B963DC /* BLEService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7DDF151EB3BE7800B963DC /* BLEService.swift */; };
 		FD974B061EC9C0100066AC27 /* RedactorTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD974B051EC9C0100066AC27 /* RedactorTextField.swift */; };
 		FD974B081EC9EF3C0066AC27 /* CGPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD974B071EC9EF3C0066AC27 /* CGPoint.swift */; };
@@ -105,6 +108,9 @@
 		FD7DBAC31ED0A92E00D97D45 /* PoshikService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PoshikService.swift; sourceTree = "<group>"; };
 		FD7DBAC51ED1C90500D97D45 /* UserCredentialsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserCredentialsService.swift; sourceTree = "<group>"; };
 		FD7DBAC71ED1DA6800D97D45 /* UIWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIWindow.swift; sourceTree = "<group>"; };
+		FD7DBAC91ED2254C00D97D45 /* MyImagesService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyImagesService.swift; sourceTree = "<group>"; };
+		FD7DBACB1ED2DDBD00D97D45 /* SettingsWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsWebViewController.swift; sourceTree = "<group>"; };
+		FD7DBACD1ED2E48800D97D45 /* SettingsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsService.swift; sourceTree = "<group>"; };
 		FD7DDF151EB3BE7800B963DC /* BLEService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BLEService.swift; sourceTree = "<group>"; };
 		FD974B051EC9C0100066AC27 /* RedactorTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RedactorTextField.swift; sourceTree = "<group>"; };
 		FD974B071EC9EF3C0066AC27 /* CGPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CGPoint.swift; sourceTree = "<group>"; };
@@ -206,6 +212,7 @@
 				FDC3AB171EBB463F00141241 /* MyImages.storyboard */,
 				FD5409BD1EC6231D00E93B7F /* ColorPicker.xib */,
 				FD5409BF1EC99DDD00E93B7F /* ColorPickerView.swift */,
+				FD7DBAC91ED2254C00D97D45 /* MyImagesService.swift */,
 			);
 			name = MyImages;
 			sourceTree = "<group>";
@@ -216,6 +223,8 @@
 				FDC9E31F1EBFC0CF00B6DC25 /* SettingsCell.swift */,
 				FDC3AB191EBB465C00141241 /* Settings.storyboard */,
 				FDC9E31B1EBFBE4000B6DC25 /* SettingsViewController.swift */,
+				FD7DBACD1ED2E48800D97D45 /* SettingsService.swift */,
+				FD7DBACB1ED2DDBD00D97D45 /* SettingsWebViewController.swift */,
 			);
 			name = Settings;
 			sourceTree = "<group>";
@@ -515,6 +524,7 @@
 				FD7DBAC21ED098DE00D97D45 /* MarketTagAutoCompletionService.swift in Sources */,
 				FD5409A91EC2699300E93B7F /* RedactorViewController.swift in Sources */,
 				FD7DBAC61ED1C90500D97D45 /* UserCredentialsService.swift in Sources */,
+				FD7DBACE1ED2E48800D97D45 /* SettingsService.swift in Sources */,
 				FD0EF8FC1ECF38D5005F5ACF /* ApiService.swift in Sources */,
 				FDC3AB101EBB36AF00141241 /* UITextField.swift in Sources */,
 				FD0EF8FE1ECF397C005F5ACF /* TockenService.swift in Sources */,
@@ -526,12 +536,14 @@
 				FD5409C01EC99DDD00E93B7F /* ColorPickerView.swift in Sources */,
 				FD7DBAC81ED1DA6800D97D45 /* UIWindow.swift in Sources */,
 				FD5F9F5D1EA8093900BD79B1 /* TopBarBackgroundView.swift in Sources */,
+				FD7DBACC1ED2DDBD00D97D45 /* SettingsWebViewController.swift in Sources */,
 				FD7DBABE1ED08D0600D97D45 /* CategoriesService.swift in Sources */,
 				FDC9E3241EBFE02C00B6DC25 /* Poshik.swift in Sources */,
 				FDC89DFC1EBA4ABA004D3F9F /* AuthViewController.swift in Sources */,
 				FD5F9F461EA776A300BD79B1 /* StoreViewController.swift in Sources */,
 				FD974B061EC9C0100066AC27 /* RedactorTextField.swift in Sources */,
 				FD5959A41ECC8DC700BB2D9D /* LoginService.swift in Sources */,
+				FD7DBACA1ED2254C00D97D45 /* MyImagesService.swift in Sources */,
 				FD5F9F421EA776A300BD79B1 /* AppDelegate.swift in Sources */,
 				FD7DBAC41ED0A92E00D97D45 /* PoshikService.swift in Sources */,
 				FDC89DFE1EBA4B4E004D3F9F /* RegistrationViewController.swift in Sources */,

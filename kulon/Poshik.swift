@@ -12,7 +12,6 @@ import ObjectMapper
 
 struct Poshik: ImmutableMappable {
     
-    //TODO: use different sizes
     var imageURLString: String = ""
     var id: Int = -1
     var imageURL: URL? {

@@ -9,9 +9,7 @@
 import UIKit
 
 @IBDesignable public class RoundedButton: UIButton {
-    
-    //TODO: add shadow
-    
+        
     public override func didMoveToSuperview() {
         imageView?.contentMode = .scaleAspectFit
     }
@@ -71,7 +69,7 @@ import UIKit
             }
         }
     }
-    
+        
     private func addExternalBorder() {
         externalBorder = CALayer(layer: layer)
         externalBorder.frame = CGRect(x: -selectionRadius, y: -selectionRadius, width: frame.width + selectionRadius * 2, height: frame.height + selectionRadius * 2)

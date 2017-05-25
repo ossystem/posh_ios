@@ -22,6 +22,8 @@ class MyImagesViewController: BaseViewController, UICollectionViewDelegate, UICo
         }
     }
     var poshiks: [Poshik] = []
+    var bag = DisposeBag()
+    let myPoshiksService = MyPoshiksService()
     var blurView: UIVisualEffectView!
     
     override func viewDidLoad() {
@@ -37,6 +39,13 @@ class MyImagesViewController: BaseViewController, UICollectionViewDelegate, UICo
         ]
 
         blurView = UIVisualEffectView(frame: view.bounds)
+        myPoshiksService.getPoshiks().subscribe(onNext: {
+            poshiks in
+            self.poshiks = poshiks.poshiks
+        }, onError: {
+            error in
+            print("myPoshiks: \(error.localizedDescription)")
+        }).addDisposableTo(bag)
     }
     
     func addTextImage() {

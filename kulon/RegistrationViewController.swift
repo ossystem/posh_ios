@@ -14,7 +14,9 @@ class RegistrationViewController: BaseViewController {
     
     @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var emailField: UITextField!
+    @IBOutlet weak var nextButton: RoundedButton!
     let loginService = LoginService()
+    let registrationService = RegistrationService()
     let bag = DisposeBag()
     
     override func viewDidLoad() {
@@ -25,13 +27,20 @@ class RegistrationViewController: BaseViewController {
         self.transitioningDelegate = self
     }
     
-    @IBAction func nextButtonTapped(_ sender: Any) {
+    @IBAction func nextButtonTapped(_ sender: UIButton) {
         guard let email = emailField.text,
             let password = passwordField.text
-            else { return } //TODO: show alert
+            else { return }
+        sender.setWaiting(true)
         let credentials = UserCredentials(email: email, password: password)
         loginService.login(with: credentials)
             .subscribe(onError: { error in
+                if error is UserNotExistError {
+                    self.tryToCrateNewUrer(with: credentials)
+                } else {
+                    sender.setWaiting(false)
+                    self.showErrorMessage(error)
+                }
                 print(error.localizedDescription)
             }, onCompleted: {
                 self.enterApplication()
@@ -43,8 +52,27 @@ class RegistrationViewController: BaseViewController {
     }
     
     func enterApplication() {
+        nextButton.setWaiting(false)
         performSegue(withIdentifier: Identifiers.Segue.MainTabBarViewController, sender: nil)
     }
+    
+    func tryToCrateNewUrer(with credentials: UserCredentials) {
+        let alertController = UIAlertController(title: "Регистрация", message: "Аккаунта с такой почтой не существует. Создать новый?", preferredStyle: .alert)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        let okAction = UIAlertAction(title: "Ok", style: .default) { [unowned self] (action) in
+            self.registrationService.register(with: credentials)
+                .subscribe(onError: { error in
+                    self.nextButton.setWaiting(false)
+                    print(error.localizedDescription)
+                }, onCompleted: {
+                    self.enterApplication()
+                }).addDisposableTo(self.bag)
+        }
+        alertController.addAction(cancelAction)
+        alertController.addAction(okAction)
+        present(alertController, animated: true, completion: nil)
+    }
+    
 }
 
 

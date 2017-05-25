@@ -12,6 +12,13 @@ class BaseViewController: UIViewController {
 
     @IBOutlet weak var topBar: TopBarView!
     
+    func showErrorMessage(_ error: Error) {
+        let message = error.localizedDescription
+        let alertController = UIAlertController(title: "Ошибка", message: message, preferredStyle: .alert)
+        let cancelAction = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
+        alertController.addAction(cancelAction)
+        present(alertController, animated: true, completion: nil)
+    }
 }
 
 

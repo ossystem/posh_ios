@@ -41,7 +41,6 @@ class MarketPresentationModel {
             .subscribe(onNext: {
                 poshiks in
                 self.model.poshiks = poshiks.poshiks
-                //TODO: update view with new model
                 //self.collectionView.reloadData()
             }, onError: {
                 error in

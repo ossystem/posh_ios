@@ -47,7 +47,6 @@ class LoginService {
     }
     
     func loginWithStoredCredentials() -> Observable<Void> {
-        //TODO: logout if error
         let credentials = userCredentialsService.credentials
         return loginApiService.request(parameter: credentials)
             .flatMap { (result) -> Observable<Void> in

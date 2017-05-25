@@ -74,13 +74,18 @@ extension ApiService {
                         observer.on(.next(value))
                         observer.onCompleted()
                     case .failure(let error):
-                        if response.response?.statusCode == 401 {
-                            observer.onError(UnauthorisedError())
-                        }
-                        else if let data = response.data {
-                            observer.on(.error(self.getError(from: data)))
-                        } else {
-                            observer.on(.error(error))
+                        //TODO: chek uwrap
+                        switch response.response!.statusCode {
+                        case 401:
+                            observer.on(.error(UnauthorisedError()))
+                        case 300:
+                            observer.on(.error(UserNotExistError()))
+                        default:
+                            if let data = response.data {
+                                observer.on(.error(self.getError(from: data)))
+                            } else {
+                                observer.on(.error(error))
+                            }
                         }
                     }
             }
@@ -111,9 +116,9 @@ extension ApiService {
 }
 
 
-class UnauthorisedError : ResponseError {
-    
-}
+class UnauthorisedError : ResponseError { }
+
+class UserNotExistError : ResponseError { }
 
 class ResponseError: LocalizedError, Mappable {
     

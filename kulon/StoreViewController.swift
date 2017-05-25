@@ -86,6 +86,13 @@ class StoreViewController: BaseViewController, UICollectionViewDelegate, UIColle
         
     }
     
+    func loadCategories() {
+        marketService.getCategories().subscribe(onNext: { categories in
+            self.categories = categories.categories
+            self.categoriesTableView.reloadData()
+        }).addDisposableTo(bag)
+    }
+    
     func searchTags() {
         statrSearching()
     }
@@ -111,6 +118,7 @@ class StoreViewController: BaseViewController, UICollectionViewDelegate, UIColle
     
     private func startCategorySelection() {
         endSearching()
+        loadCategories()
         categoryButton.highlight(true)
         categoryButton.backgroundColor = UIColor.Kulon.orange
         categoriesTableView.isHidden = false

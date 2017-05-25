@@ -74,19 +74,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="373" height="71.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="d4v-gS-g22" customClass="RoundedImageView" customModule="kulon" customModuleProvider="target">
-                                                    <rect key="frame" x="20" y="16" width="39.5" height="39.5"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" secondItem="d4v-gS-g22" secondAttribute="height" id="IWI-My-chy"/>
-                                                    </constraints>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                            <real key="value" value="40"/>
-                                                        </userDefinedRuntimeAttribute>
-                                                    </userDefinedRuntimeAttributes>
-                                                </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="НА ВСЕ БАБКИ" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EVB-Xt-1v3">
-                                                    <rect key="frame" x="79.5" y="26" width="265.5" height="20"/>
+                                                    <rect key="frame" x="28" y="26" width="317" height="20"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -94,17 +83,13 @@
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <constraints>
-                                                <constraint firstItem="EVB-Xt-1v3" firstAttribute="leading" secondItem="d4v-gS-g22" secondAttribute="trailing" constant="20" id="3py-GQ-0MW"/>
-                                                <constraint firstItem="d4v-gS-g22" firstAttribute="leading" secondItem="qHc-E5-dA3" secondAttribute="leading" constant="20" id="9Mu-qh-gc1"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="EVB-Xt-1v3" secondAttribute="trailing" constant="20" id="LV6-RU-PA3"/>
-                                                <constraint firstItem="d4v-gS-g22" firstAttribute="centerY" secondItem="qHc-E5-dA3" secondAttribute="centerY" id="XpN-FE-cGD"/>
-                                                <constraint firstItem="d4v-gS-g22" firstAttribute="height" secondItem="qHc-E5-dA3" secondAttribute="height" constant="-32" id="c6W-UE-J68"/>
+                                                <constraint firstItem="EVB-Xt-1v3" firstAttribute="leading" secondItem="qHc-E5-dA3" secondAttribute="leadingMargin" constant="20" id="bva-ax-8ZP"/>
                                                 <constraint firstItem="EVB-Xt-1v3" firstAttribute="centerY" secondItem="qHc-E5-dA3" secondAttribute="centerY" id="p4B-eB-SnL"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <connections>
-                                            <outlet property="icon" destination="d4v-gS-g22" id="udg-z0-WUn"/>
                                             <outlet property="title" destination="EVB-Xt-1v3" id="0C8-oT-zGI"/>
                                         </connections>
                                     </tableViewCell>
@@ -256,6 +241,5 @@
         <image name="SamplePhoto" width="16" height="16"/>
         <image name="icon_tab_cloud" width="35" height="24"/>
         <image name="icon_top_search" width="25" height="25"/>
-        <image name="logo" width="140" height="139"/>
     </resources>
 </document>

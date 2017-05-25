@@ -31,7 +31,7 @@
                                 </view>
                                 <blurEffect style="dark"/>
                             </visualEffectView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="MaV-5Z-fHg" customClass="RoundedImageView" customModule="kulon" customModuleProvider="target">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="MaV-5Z-fHg" customClass="RoundedImageView" customModule="kulon" customModuleProvider="target">
                                 <rect key="frame" x="20" y="110" width="335" height="335"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="MaV-5Z-fHg" secondAttribute="height" id="yUO-uM-1JH"/>

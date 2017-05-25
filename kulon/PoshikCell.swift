@@ -14,6 +14,11 @@ class PoshikCell: UICollectionViewCell {
     
     @IBOutlet weak var image: RoundedImageView!
     
+    override func prepareForReuse() {
+        image.af_cancelImageRequest()
+        image.image = nil
+    }
+    
     func configure(with poshik: Poshik) {
         //TODO: use different sizes
         if let url = poshik.imageURL {

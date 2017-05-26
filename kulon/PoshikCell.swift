@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import AlamofireImage
+import Alamofire
 
 class PoshikCell: UICollectionViewCell {
     
@@ -22,7 +23,8 @@ class PoshikCell: UICollectionViewCell {
     func configure(with poshik: Poshik) {
         //TODO: use different sizes
         if let url = poshik.imageURL {
-            image.af_setImage(withURL: url)
+            //TODO: Possibly not the best solution, alamofireImage 3.3 may bring better solution, check it release  
+            image.image = UIImage.gif(url: poshik.imageURLString)
         }
     }
 }

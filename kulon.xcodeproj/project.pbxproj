@@ -47,6 +47,7 @@
 		FD7DBACE1ED2E48800D97D45 /* SettingsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7DBACD1ED2E48800D97D45 /* SettingsService.swift */; };
 		FD7DDF161EB3BE7800B963DC /* BLEService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7DDF151EB3BE7800B963DC /* BLEService.swift */; };
 		FD92DDDC1ED71EE200E331A3 /* UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD92DDDB1ED71EE200E331A3 /* UIButton.swift */; };
+		FD92DDDE1ED770A400E331A3 /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD92DDDD1ED770A400E331A3 /* UIImage.swift */; };
 		FD974B061EC9C0100066AC27 /* RedactorTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD974B051EC9C0100066AC27 /* RedactorTextField.swift */; };
 		FD974B081EC9EF3C0066AC27 /* CGPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD974B071EC9EF3C0066AC27 /* CGPoint.swift */; };
 		FDA3CB0C1EBC8F4A0048AE71 /* AndaleMono.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FDA3CB0B1EBC8F4A0048AE71 /* AndaleMono.ttf */; };
@@ -114,6 +115,7 @@
 		FD7DBACD1ED2E48800D97D45 /* SettingsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsService.swift; sourceTree = "<group>"; };
 		FD7DDF151EB3BE7800B963DC /* BLEService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BLEService.swift; sourceTree = "<group>"; };
 		FD92DDDB1ED71EE200E331A3 /* UIButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIButton.swift; sourceTree = "<group>"; };
+		FD92DDDD1ED770A400E331A3 /* UIImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImage.swift; sourceTree = "<group>"; };
 		FD974B051EC9C0100066AC27 /* RedactorTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RedactorTextField.swift; sourceTree = "<group>"; };
 		FD974B071EC9EF3C0066AC27 /* CGPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CGPoint.swift; sourceTree = "<group>"; };
 		FDA3CB0B1EBC8F4A0048AE71 /* AndaleMono.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = AndaleMono.ttf; sourceTree = "<group>"; };
@@ -346,6 +348,7 @@
 				FDC3AB0F1EBB36AF00141241 /* UITextField.swift */,
 				FD974B071EC9EF3C0066AC27 /* CGPoint.swift */,
 				FD59599D1ECB51B900BB2D9D /* UIView.swift */,
+				FD92DDDD1ED770A400E331A3 /* UIImage.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -414,6 +417,7 @@
 					FD5F9F3D1EA776A200BD79B1 = {
 						CreatedOnToolsVersion = 8.3.1;
 						DevelopmentTeam = Y2V78VDHEV;
+						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -510,6 +514,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FD59599E1ECB51B900BB2D9D /* UIView.swift in Sources */,
+				FD92DDDE1ED770A400E331A3 /* UIImage.swift in Sources */,
 				FD7DBAC01ED0918400D97D45 /* MarketViewModel.swift in Sources */,
 				FD7DBAB91ECF597000D97D45 /* RegistrationService.swift in Sources */,
 				FDC89DF91EBA4A2B004D3F9F /* PresentationAnimtor.swift in Sources */,

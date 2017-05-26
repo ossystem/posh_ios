@@ -17,6 +17,9 @@ struct Poshik: ImmutableMappable {
     var imageURL: URL? {
         return URL(string: imageURLString)
     }
+    var image: UIImage? {
+        return UIImage.gif(url: imageURLString)
+    }
     
     init(map: Map) throws {
         imageURLString <- map["image"]

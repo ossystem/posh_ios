@@ -19,9 +19,9 @@ class PoshikViewController: BaseViewController, UIViewControllerTransitioningDel
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if let  url = model?.poshik.imageURL {
-            poshikImage.af_setImage(withURL: url)
-        }
+        
+        poshikImage.image = model.poshik.image
+        
         self.providesPresentationContextTransitionStyle = true
         self.definesPresentationContext = true
         self.transitioningDelegate = self

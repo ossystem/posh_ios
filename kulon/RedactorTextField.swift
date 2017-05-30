@@ -15,11 +15,10 @@ protocol RedactorTextFieldDelegate: class {
     func completeCreatingImage()
 }
 
-class RedactorTextField: UITextView {
+class RedactorTextField: UITextView, FontPickerViewDelegate{
     
     weak var redactorDelegate: RedactorTextFieldDelegate?
     
-    //TODO: set proper images
     //TODO: store all properties somewhere
     
     enum RedactorTabs: Int {
@@ -73,6 +72,9 @@ class RedactorTextField: UITextView {
     
     func beginFontSelection() {
         selectBarButton(.font)
+        let fontPicker = FontPickerView(frame: CGRect(x: 0, y: 0, width: 0, height: actualtKeyBoardHeight))
+        fontPicker.delegate = self
+        changeInputView(to: fontPicker)
     }
     
     func beginTextChanging() {
@@ -120,6 +122,69 @@ class RedactorTextField: UITextView {
         let keyboardFrame:NSValue = userInfo.value(forKey: UIKeyboardFrameEndUserInfoKey) as! NSValue
         let keyboardRectangle = keyboardFrame.cgRectValue
         actualtKeyBoardHeight = keyboardRectangle.height - inputAccessoryView!.frame.height
+    }
+    
+    //MARK: - font picker delegate
+    
+    func fontPickerView(didSelect font: UIFont) {
+        self.font = font
+    }
+    
+}
+
+protocol FontPickerViewDelegate: class {
+    func fontPickerView(didSelect font: UIFont)
+}
+
+class FontPickerView: UIView, UITableViewDataSource, UITableViewDelegate {
+    
+    weak var delegate: FontPickerViewDelegate?
+    private var tableView: UITableView!
+    var fonts: [UIFont] = [UIFont(name: "HelveticaNeue-UltraLight" , size: 21)!,
+                           UIFont(name: "HelveticaNeue-UltraLight" , size: 21)!]
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        tableView = UITableView(frame: frame, style: .plain)
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.separatorInset = UIEdgeInsets(top: 0, left: 25, bottom: 0, right: 25)
+        addSubview(tableView)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        tableView.frame = self.bounds
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return fonts.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        var cell = tableView.dequeueReusableCell(withIdentifier: "fontCell") as? FontCell
+        if cell == nil {
+            tableView.register(FontCell.self, forCellReuseIdentifier: "fontCell")
+            cell = FontCell()
+        }
+        cell?.configure(with: fonts[indexPath.row])
+        return cell!
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        delegate?.fontPickerView(didSelect: fonts[indexPath.row])
+    }
+    
+}
+
+class FontCell : UITableViewCell {
+    
+    func configure(with font: UIFont) {
+        textLabel?.attributedText = NSAttributedString(string: font.familyName, attributes: [NSFontAttributeName : font])
     }
     
 }

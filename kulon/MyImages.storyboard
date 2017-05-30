@@ -266,7 +266,7 @@
                 <viewControllerPlaceholder storyboardName="Poshik" id="USw-RR-vDc" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jEv-Jn-ylT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1111" y="-228"/>
+            <point key="canvasLocation" x="1395" y="-18"/>
         </scene>
     </scenes>
     <resources>

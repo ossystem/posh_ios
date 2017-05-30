@@ -15,18 +15,17 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HMk-Er-NRe">
-                    <rect key="frame" x="164" y="318" width="46" height="30"/>
-                    <state key="normal" title="Button"/>
-                    <connections>
-                        <action selector="setColor:" destination="-1" eventType="touchUpInside" id="UyX-E5-McS"/>
-                    </connections>
-                </button>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="htA-tE-TUu">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </tableView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="HMk-Er-NRe" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="MEd-7g-Kla"/>
-                <constraint firstItem="HMk-Er-NRe" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="rrk-as-giK"/>
+                <constraint firstItem="htA-tE-TUu" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Bbp-7J-nSk"/>
+                <constraint firstAttribute="trailing" secondItem="htA-tE-TUu" secondAttribute="trailing" id="DFM-En-gcH"/>
+                <constraint firstItem="htA-tE-TUu" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="VkG-IS-RHo"/>
+                <constraint firstAttribute="bottom" secondItem="htA-tE-TUu" secondAttribute="bottom" id="utG-ba-XG2"/>
             </constraints>
         </view>
     </objects>

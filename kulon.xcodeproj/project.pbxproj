@@ -12,6 +12,9 @@
 		FD0EF8FE1ECF397C005F5ACF /* TockenService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD0EF8FD1ECF397C005F5ACF /* TockenService.swift */; };
 		FD0EF9001ECF39AF005F5ACF /* MarketService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD0EF8FF1ECF39AF005F5ACF /* MarketService.swift */; };
 		FD1F42F01EBB52BE008AE3ED /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD1F42EF1EBB52BE008AE3ED /* UIColor.swift */; };
+		FD4E2F491EDF25D5009C74D3 /* FAQViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD4E2F481EDF25D5009C74D3 /* FAQViewController.swift */; };
+		FD4E2F4B1EDF2700009C74D3 /* CommonQuestionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD4E2F4A1EDF2700009C74D3 /* CommonQuestionCell.swift */; };
+		FD4E2F4D1EE07171009C74D3 /* CommonQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD4E2F4C1EE07171009C74D3 /* CommonQuestion.swift */; };
 		FD5409A91EC2699300E93B7F /* RedactorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD5409A81EC2699300E93B7F /* RedactorViewController.swift */; };
 		FD5409AD1EC32A2400E93B7F /* LikeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD5409AC1EC32A2400E93B7F /* LikeView.swift */; };
 		FD5409AF1EC5D78000E93B7F /* Poshik.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FD5409AE1EC5D78000E93B7F /* Poshik.storyboard */; };
@@ -78,6 +81,9 @@
 		FD0EF8FD1ECF397C005F5ACF /* TockenService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TockenService.swift; sourceTree = "<group>"; };
 		FD0EF8FF1ECF39AF005F5ACF /* MarketService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarketService.swift; sourceTree = "<group>"; };
 		FD1F42EF1EBB52BE008AE3ED /* UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
+		FD4E2F481EDF25D5009C74D3 /* FAQViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FAQViewController.swift; sourceTree = "<group>"; };
+		FD4E2F4A1EDF2700009C74D3 /* CommonQuestionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommonQuestionCell.swift; sourceTree = "<group>"; };
+		FD4E2F4C1EE07171009C74D3 /* CommonQuestion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommonQuestion.swift; sourceTree = "<group>"; };
 		FD5409A81EC2699300E93B7F /* RedactorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RedactorViewController.swift; sourceTree = "<group>"; };
 		FD5409AC1EC32A2400E93B7F /* LikeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LikeView.swift; sourceTree = "<group>"; };
 		FD5409AE1EC5D78000E93B7F /* Poshik.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Poshik.storyboard; sourceTree = "<group>"; };
@@ -224,6 +230,9 @@
 		FD5409B61EC5FAE700E93B7F /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				FD4E2F4C1EE07171009C74D3 /* CommonQuestion.swift */,
+				FD4E2F4A1EDF2700009C74D3 /* CommonQuestionCell.swift */,
+				FD4E2F481EDF25D5009C74D3 /* FAQViewController.swift */,
 				FDC9E31F1EBFC0CF00B6DC25 /* SettingsCell.swift */,
 				FDC3AB191EBB465C00141241 /* Settings.storyboard */,
 				FDC9E31B1EBFBE4000B6DC25 /* SettingsViewController.swift */,
@@ -514,6 +523,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FD59599E1ECB51B900BB2D9D /* UIView.swift in Sources */,
+				FD4E2F4D1EE07171009C74D3 /* CommonQuestion.swift in Sources */,
 				FD92DDDE1ED770A400E331A3 /* UIImage.swift in Sources */,
 				FD7DBAC01ED0918400D97D45 /* MarketViewModel.swift in Sources */,
 				FD7DBAB91ECF597000D97D45 /* RegistrationService.swift in Sources */,
@@ -537,6 +547,7 @@
 				FD0EF8FC1ECF38D5005F5ACF /* ApiService.swift in Sources */,
 				FDC3AB101EBB36AF00141241 /* UITextField.swift in Sources */,
 				FD0EF8FE1ECF397C005F5ACF /* TockenService.swift in Sources */,
+				FD4E2F491EDF25D5009C74D3 /* FAQViewController.swift in Sources */,
 				FD59599A1ECAFF5900BB2D9D /* PoshikPresentationAnimator.swift in Sources */,
 				FDC9E3221EBFDFCE00B6DC25 /* PoshikCell.swift in Sources */,
 				FD974B081EC9EF3C0066AC27 /* CGPoint.swift in Sources */,
@@ -556,6 +567,7 @@
 				FD5F9F421EA776A300BD79B1 /* AppDelegate.swift in Sources */,
 				FD7DBAC41ED0A92E00D97D45 /* PoshikService.swift in Sources */,
 				FDC89DFE1EBA4B4E004D3F9F /* RegistrationViewController.swift in Sources */,
+				FD4E2F4B1EDF2700009C74D3 /* CommonQuestionCell.swift in Sources */,
 				FDC89DF61EBA3799004D3F9F /* RoundedView.swift in Sources */,
 				FD1F42F01EBB52BE008AE3ED /* UIColor.swift in Sources */,
 				FD5F9F5A1EA8073E00BD79B1 /* TopBarView.swift in Sources */,

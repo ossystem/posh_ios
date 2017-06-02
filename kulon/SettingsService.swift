@@ -8,6 +8,7 @@
 
 import Foundation
 import Alamofire
+import RxSwift
 
 protocol SettingsService : ApiService {
     
@@ -31,12 +32,25 @@ class ContactsSettingsService : SettingsService {
 
 }
 
-class FAQSettingsService: SettingsService {
+class FAQSettingsApiService: ApiService {
+    
+    static var shared = FAQSettingsApiService()
+    
     var method: HTTPMethod = .get
     var route: String = "faq"
     
     typealias Parameter = ParameterNone
-    typealias Response = ResponseNone
+    typealias Response = FAQuestions
+}
+
+class FAQSettingsService {
+    
+    var apiService = FAQSettingsApiService.shared
+    
+    func getQuestions() -> Observable<FAQuestions> {
+        return apiService.request(parameter: ParameterNone())
+    }
+    
 }
 
 class AdressesSettingsService: SettingsService {

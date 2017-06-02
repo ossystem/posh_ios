@@ -20,7 +20,7 @@ struct SettingItem {
         return [
             SettingItem(name: "ОТВЯЗАТЬ КУЛОН", descr: "Изменить кулон, управляемый с помощью приложения", image: #imageLiteral(resourceName: "icon_settigns_kulon_8F8D8D"),request: nil),
             SettingItem(name: "КОНТАКТЫ", descr: "Написать разработчику и задать свой вопрос", image: #imageLiteral(resourceName: "icon_settings_contacts_8F8D8D"),request: ContactsSettingsService().getRequest() ),
-            SettingItem(name: "ВОПРОСЫ И ОТВЕТЫ", descr: "Ответы на самые распространенные вопросы", image: #imageLiteral(resourceName: "icon_settings_question_8F8D8D"), request: FAQSettingsService().getRequest()),
+            SettingItem(name: "ВОПРОСЫ И ОТВЕТЫ", descr: "Ответы на самые распространенные вопросы", image: #imageLiteral(resourceName: "icon_settings_question_8F8D8D"), request: nil),
             SettingItem(name: "АДРЕСА МАГАЗИНОВ", descr: "Изменить кулон, управляемый с помощью приложения", image: #imageLiteral(resourceName: "icon_settings_geo_8F8D8D"), request:AdressesSettingsService().getRequest())
         ]
     }
@@ -71,8 +71,10 @@ class SettingsViewController: BaseViewController, UITableViewDataSource, UITable
         tableView.deselectRow(at: indexPath, animated: true)
         let item = SettingsItems(rawValue: indexPath.row)!
         switch item {
-        case .adresses,.contacts,.FAQ:
+        case .adresses,.contacts:
             performSegue(withIdentifier: Identifiers.Segue.SettingsWebViewControllerID, sender: item)
+        case .FAQ:
+            performSegue(withIdentifier: Identifiers.Segue.FAQViewController, sender: nil)
         default:
             //TODO: open culon connecting screen
             return

@@ -13,10 +13,12 @@ struct Identifiers {
         static let settingsCell = "SettingsCell"
         static let poshikCell =  "poshikCell"
         static let categoryCell = "CategoryCell"
+        static let FAQ = "FAQCell"
     }
     struct Segue {
         static let PoshikViewController = "PoshikViewControllerID"
         static let MainTabBarViewController = "MainTabBarViewControllerID"
         static let SettingsWebViewControllerID = "SettingsWebViewControllerID"
+        static let FAQViewController = "FAQViewController"
     }
 }

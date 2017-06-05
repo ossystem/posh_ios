@@ -58,7 +58,8 @@ class PoshikService {
     let dislikeApiService: DislikePoshikApiService
     let buyApiService: BuyPoshikApiService
     
-    init(with id: Int) {
+    init(with poshik: Poshik) {
+        let id = poshik.id
         likeApiService = LikePoshikApiService(with: id)
         dislikeApiService = DislikePoshikApiService(with: id)
         buyApiService = BuyPoshikApiService(with: id)

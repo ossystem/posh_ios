@@ -15,6 +15,7 @@
 		FD4E2F491EDF25D5009C74D3 /* FAQViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD4E2F481EDF25D5009C74D3 /* FAQViewController.swift */; };
 		FD4E2F4B1EDF2700009C74D3 /* CommonQuestionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD4E2F4A1EDF2700009C74D3 /* CommonQuestionCell.swift */; };
 		FD4E2F4D1EE07171009C74D3 /* CommonQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD4E2F4C1EE07171009C74D3 /* CommonQuestion.swift */; };
+		FD4E2F4F1EE1B7AD009C74D3 /* DeviceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD4E2F4E1EE1B7AD009C74D3 /* DeviceService.swift */; };
 		FD5409A91EC2699300E93B7F /* RedactorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD5409A81EC2699300E93B7F /* RedactorViewController.swift */; };
 		FD5409AD1EC32A2400E93B7F /* LikeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD5409AC1EC32A2400E93B7F /* LikeView.swift */; };
 		FD5409AF1EC5D78000E93B7F /* Poshik.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FD5409AE1EC5D78000E93B7F /* Poshik.storyboard */; };
@@ -84,6 +85,7 @@
 		FD4E2F481EDF25D5009C74D3 /* FAQViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FAQViewController.swift; sourceTree = "<group>"; };
 		FD4E2F4A1EDF2700009C74D3 /* CommonQuestionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommonQuestionCell.swift; sourceTree = "<group>"; };
 		FD4E2F4C1EE07171009C74D3 /* CommonQuestion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommonQuestion.swift; sourceTree = "<group>"; };
+		FD4E2F4E1EE1B7AD009C74D3 /* DeviceService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceService.swift; sourceTree = "<group>"; };
 		FD5409A81EC2699300E93B7F /* RedactorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RedactorViewController.swift; sourceTree = "<group>"; };
 		FD5409AC1EC32A2400E93B7F /* LikeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LikeView.swift; sourceTree = "<group>"; };
 		FD5409AE1EC5D78000E93B7F /* Poshik.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Poshik.storyboard; sourceTree = "<group>"; };
@@ -278,6 +280,7 @@
 				FD7DDF151EB3BE7800B963DC /* BLEService.swift */,
 				FD0EF8FB1ECF38D5005F5ACF /* ApiService.swift */,
 				FD0EF8FD1ECF397C005F5ACF /* TockenService.swift */,
+				FD4E2F4E1EE1B7AD009C74D3 /* DeviceService.swift */,
 			);
 			name = Services;
 			sourceTree = "<group>";
@@ -539,6 +542,7 @@
 				FD5F9F561EA79ED700BD79B1 /* FloatingPoint.swift in Sources */,
 				FD5959A21ECB973900BB2D9D /* Category.swift in Sources */,
 				FD5F9F581EA7BFB300BD79B1 /* RoundedButton.swift in Sources */,
+				FD4E2F4F1EE1B7AD009C74D3 /* DeviceService.swift in Sources */,
 				FD7DBAC21ED098DE00D97D45 /* MarketTagAutoCompletionService.swift in Sources */,
 				FD5409A91EC2699300E93B7F /* RedactorViewController.swift in Sources */,
 				FD7DBAC61ED1C90500D97D45 /* UserCredentialsService.swift in Sources */,

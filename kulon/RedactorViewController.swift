@@ -17,7 +17,7 @@ class RedactorViewController: BaseViewController, RedactorTextFieldDelegate, UIG
     @IBOutlet weak var newPoshikView: RoundedView!
     //TODO: resize poshik to fit space between top bar and keyboard
     let stepBag = DisposeBag()
-    
+    let poshikService = MyPoshiksService()
     @IBOutlet weak var textView: RedactorTextField!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,8 +47,16 @@ class RedactorViewController: BaseViewController, RedactorTextFieldDelegate, UIG
         newPoshikView.layer.render(in: UIGraphicsGetCurrentContext()!)
         let newPoshikImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
+        
+        let poshik = PoshikFromRedactor(with: newPoshikImage!)
         //TODO: send image
-        UIImageWriteToSavedPhotosAlbum(newPoshikImage!, nil, nil, nil)
+        poshikService.addPoshikFromRedactor(poshik).subscribe(onNext: {
+            _ in
+            self.showErrorMessage(ResponseError(message: "pfuhe;tyj"))
+        }, onError: { error in
+            self.showErrorMessage(error)
+        })
+//        UIImageWriteToSavedPhotosAlbum(newPoshikImage!, nil, nil, nil)
         textView.becomeFirstResponder()
     }
     

@@ -25,7 +25,7 @@ class PoshikViewController: BaseViewController, UIViewControllerTransitioningDel
         self.providesPresentationContextTransitionStyle = true
         self.definesPresentationContext = true
         self.transitioningDelegate = self
-        poshikService = PoshikService(with: model.poshik.id)
+        poshikService = PoshikService(with: model.poshik)
     }
     
     override func viewDidLayoutSubviews() {

@@ -16,6 +16,11 @@ protocol ParameterType {
     func toJSON() -> [String : Any]?
 }
 
+protocol UploadableParameter : ParameterType {
+    var content: Data? { get }
+    var contentName: String { get }
+}
+
 class ParameterNone : ParameterType {
     func toJSON() -> [String : Any]? {
         return nil
@@ -42,11 +47,18 @@ protocol ApiService : class {
     var baseRoute: String { get }
     var route: String { get }
     var headers: [String : String] { get }
-    
+    var sessionManager: SessionManager { get }
+        
     func request(parameter: Parameter) -> Observable<Response>
+    func upload(parameter: UploadableParameter) -> Observable<Response>
+    
 }
 
 extension ApiService {
+    
+    var sessionManager: SessionManager {
+        return SessionManager()
+    }
     
     var baseRoute: String {
         return "http://kulon.jwma.ru/api/v1/"
@@ -61,6 +73,7 @@ extension ApiService {
     
     func request(parameter: Parameter) -> Observable<Response> {
         return Observable.create { observer in
+            
             Alamofire.request(URL(string: self.baseRoute + self.route)!,
                               method: self.method,
                               parameters: parameter.toJSON(),
@@ -75,7 +88,13 @@ extension ApiService {
                         observer.onCompleted()
                     case .failure(let error):
                         //TODO: chek uwrap
-                        switch response.response!.statusCode {
+                        guard let innerResponse = response.response
+                            else {
+                                observer.on(.error(error))
+                                break
+                        }
+                        
+                        switch innerResponse.statusCode {
                         case 401:
                             observer.on(.error(UnauthorisedError()))
                         case 300:
@@ -100,6 +119,70 @@ extension ApiService {
         })
         
     }
+    
+    func upload(parameter: UploadableParameter) -> Observable<Response> {
+        
+        
+        return Observable.create { observer in
+            
+            guard let request = try? URLRequest(url: URL(string: self.baseRoute + self.route)!, method: self.method, headers: self.headers )
+                else {
+                    observer.onError( (ResponseError()))
+                    return Disposables.create()
+            }
+            Alamofire.upload(multipartFormData: { data in
+                guard let content = parameter.content else {
+                    observer.onError(ResponseError(message: "Can't attach file"))
+                    return
+                }
+                data.append(content, withName: parameter.contentName)
+                if let parameters = parameter.toJSON() {
+                    for (key, value) in parameters {
+                        data.append((value as AnyObject).data(using: String.Encoding.utf8.rawValue)!, withName: key)
+                    }
+                }
+            }, with: request  ) { result in
+                switch result {
+                case .success(let upload, _, _):
+                    upload.responseObject(keyPath: "data")
+                        { [unowned self] (response: DataResponse<Response>)  in
+                            switch response.result {
+                            case .success(let value):
+                                self.updateAuthorizationToken(response: response)
+                                observer.on(.next(value))
+                                observer.onCompleted()
+                            case .failure(let error):
+                                //TODO: chek uwrap
+                                switch response.response!.statusCode {
+                                case 401:
+                                    observer.on(.error(UnauthorisedError()))
+                                case 300:
+                                    observer.on(.error(UserNotExistError()))
+                                default:
+                                    if let data = response.data {
+                                        print(data)
+                                        observer.on(.error(self.getError(from: data)))
+                                    } else {
+                                        observer.on(.error(error))
+                                    }
+                                }
+                            }
+                    }
+                case .failure:
+                    break
+                }
+            }
+            return Disposables.create()
+            }.retryWhen({ (errorObservable : Observable<Error>) -> Observable<Void> in
+            return errorObservable.flatMap { (error) -> Observable<Void> in
+                if error is UnauthorisedError {
+                    return LoginService().loginWithStoredCredentials()
+                }
+                throw error
+            }
+        })
+    }
+
 
     
     private func updateAuthorizationToken(response: DataResponse<Response>) {
@@ -130,6 +213,10 @@ class ResponseError: LocalizedError, Mappable {
     
     init() {
         
+    }
+    
+    init(message: String) {
+        self.message = message
     }
     
     required init(map: Map) {

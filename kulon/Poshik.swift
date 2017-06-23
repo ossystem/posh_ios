@@ -10,20 +10,70 @@ import Foundation
 import UIKit
 import ObjectMapper
 
-struct Poshik: ImmutableMappable {
-    
-    var imageURLString: String = ""
-    var id: Int = -1
-    var imageURL: URL? {
-        return URL(string: imageURLString)
-    }
-    var image: UIImage? {
-        return UIImage.gif(url: imageURLString)
-    }
-    
-    init(map: Map) throws {
-        imageURLString <- map["image"]
-        id <- map["id"]
-    }
 
+enum ImageSize: String {
+    case big = "big", middle = "middle", small = "small"
 }
+
+protocol Poshik: IdiableObject {
+    
+    var isLiked: Bool { get set }
+    var isPurchased: Bool { get set }
+    var imageRoute: String { get }
+    func requestforImage(withSize size: ImageSize) -> URLRequest?
+}
+
+extension Poshik {
+    
+    func requestforImage(withSize size: ImageSize) -> URLRequest? {
+        let url = URL(string: "http://kulon.jwma.ru/api/v1/\(imageRoute)/\(id)/img?size=\(size.rawValue)")
+        
+        return try? URLRequest(url: url!, method: .get, headers: ["Authorization": "Bearer \(TokenService().token!)"])
+        
+    }
+    
+}
+
+class PoshikFromMarket: Poshik {
+    
+    var isPurchased: Bool = false
+    var isLiked: Bool = false
+    var imageRoute: String = "market"
+    var id: Int = -1
+    
+    required init(map: Map) throws {
+        id <- map["id"]
+        isLiked <- map["is_favorite"]
+        isPurchased <- map["is_purchased"]
+    }
+    
+}
+
+class MyPoshikFromMarket: Poshik {
+    
+    var isPurchased: Bool = false
+    var isLiked: Bool = false
+    var imageRoute: String = "poshiks/purchase"
+    var id: Int = -1
+    
+    required init(map: Map) throws {
+        id <- map["id"]
+        isLiked <- map["is_favorite"]
+        isPurchased <- map["is_purchased"]
+    }
+}
+
+class MyPoshikUploaded: Poshik {
+    
+    var isPurchased: Bool = false
+    var isLiked: Bool = false
+    var imageRoute: String = "poshiks/my"
+    var id: Int = -1
+    
+    required init(map: Map) throws {
+        id <- map["id"]
+        isLiked <- map["is_favorite"]
+        isPurchased <- map["is_purchased"]
+    }
+}
+

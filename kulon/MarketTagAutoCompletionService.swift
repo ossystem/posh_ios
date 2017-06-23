@@ -25,7 +25,17 @@ class TagAutocompletionParameter: ParameterType {
 }
 
 
-class MarketTag: IdiableObject { }
+class MarketTag: IdiableObject, NamedObject {
+    
+    var name: String = ""
+    var id: Int = -1
+    
+    required init(map: Map) throws {
+        name <- map["name"]
+        id <- map["id"]
+    }
+    
+}
 
 class TagAutocompletions: ResponseType {
     let tags : [MarketTag]

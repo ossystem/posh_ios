@@ -14,34 +14,79 @@ import CoreBluetooth
 
 class MyImagesViewController: BaseViewController, UICollectionViewDelegate, UICollectionViewDataSource, ExpandableButtonDelegate {
     
-    @IBOutlet weak var addButton: ExpandableButton!
+    @IBOutlet weak var addButton: RoundedButton!
     @IBOutlet weak var collectionView: UICollectionView! {
         didSet {
             collectionView.delegate = self
             collectionView.dataSource = self
         }
     }
-    var poshiks: [Poshik] = []
+    var myPoshiks: [Poshik] = []
+    var purchasedPoshiks: [Poshik] = []
     var bag = DisposeBag()
     let myPoshiksService = MyPoshiksService()
     var blurView: UIVisualEffectView!
     
+    class MyImagesSectionTitles {
+        
+        private var hasMy = false
+        private var hasPurchased = false
+        var titles: [String] {
+            var sections = [String]()
+            if hasMy { sections.append("My images") }
+            if hasPurchased { sections.append("Purchases") }
+            return sections
+        }
+        var count: Int {
+            return (hasMy ? 1 : 0) + (hasPurchased ? 1 : 0)
+        }
+        var purchasesIndex: Int {
+            return count - 1
+        }
+        var myIndex: Int {
+            return (hasMy ? 1 : 0) - 1
+        }
+        
+        func loadedMy(poshiks: [Poshik]) {
+            hasMy = poshiks.count > 0
+        }
+        
+        func loadedPurchased(poshiks: [Poshik]) {
+            hasPurchased =  poshiks.count > 0
+        }
+        
+    }
+    
+    private let sectionTitles = MyImagesSectionTitles()
+    
     override func viewDidLoad() {
-        addButton.delegate = self
-        addButton.type = .above
-        addButton.subButtons = [
-            RoundedButton.button(with: #imageLiteral(resourceName: "icon_vk-1"), target: self, action: #selector(addTextImage)),
-            RoundedButton.button(with: #imageLiteral(resourceName: "icon_fb-1"), target: self, action: #selector(addTextImage)),
-            RoundedButton.button(with: #imageLiteral(resourceName: "instagram"), target: self, action: #selector(addTextImage)),
-            RoundedButton.button(with: #imageLiteral(resourceName: "icon_snapchat"), target: self, action: #selector(addTextImage)),
-            RoundedButton.button(with: #imageLiteral(resourceName: "icon_text"), target: self, action: #selector(addTextImage)),
-            RoundedButton.button(with: #imageLiteral(resourceName: "icon_phone"), target: self, action: #selector(addTextImage)),
-        ]
+        addButton.rx.tap.subscribe(onNext: {
+            self.addTextImage()
+        }).disposed(by: bag)
+        collectionView.contentInset = UIEdgeInsets(top: 70, left: 0, bottom: 0, right: 0)
 
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        loadData()
+    }
+    
+    func loadData() {
         blurView = UIVisualEffectView(frame: view.bounds)
-        myPoshiksService.getPoshiks().subscribe(onNext: {
+        myPoshiksService.getMyPoshiks().subscribe(onNext: {
             poshiks in
-            self.poshiks = poshiks.poshiks
+            self.myPoshiks = poshiks.poshiks
+            self.sectionTitles.loadedMy(poshiks: poshiks.poshiks)
+            self.collectionView.reloadData()
+        }, onError: {
+            error in
+            print("myPoshiks: \(error.localizedDescription)")
+        }).addDisposableTo(bag)
+        myPoshiksService.getPurchasedPoshiks().subscribe(onNext: {
+            poshiks in
+            self.purchasedPoshiks = poshiks.poshiks
+            self.sectionTitles.loadedPurchased(poshiks: poshiks.poshiks)
+            self.collectionView.reloadData()
         }, onError: {
             error in
             print("myPoshiks: \(error.localizedDescription)")
@@ -55,18 +100,34 @@ class MyImagesViewController: BaseViewController, UICollectionViewDelegate, UICo
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Identifiers.Cell.poshikCell, for: indexPath) as! PoshikCell
-        cell.configure(with: poshiks[indexPath.row])
+        cell.configure(with: poshik(for: indexPath))
         return cell
     }
     
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        
+        let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "Header", for: indexPath) as! CollectionHeaderView
+        headerView.configure(with: sectionTitles.titles[indexPath.section])
+        return headerView
+
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return poshiks.count
+        if section == sectionTitles.myIndex {
+            return myPoshiks.count
+        } else {
+            return  purchasedPoshiks.count
+        }
+    }
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return sectionTitles.count
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let poshik = poshiks[indexPath.row]
+
         let frame = collectionView.cellForItem(at: indexPath)?.frame
-        let model = PoshikViewModel(poshik: poshik, startingFrame: frame!)
+        let model = PoshikViewModel(poshik: poshik(for: indexPath), startingFrame: frame!)
         performSegue(withIdentifier: Identifiers.Segue.PoshikViewController, sender: model)
     }
     
@@ -79,26 +140,16 @@ class MyImagesViewController: BaseViewController, UICollectionViewDelegate, UICo
         
     }
     
-    //MARK: expandable button delegate 
-    
-    func willExpand(_ button: ExpandableButton) {
-        view.insertSubview(blurView, belowSubview: topBar)
-        button.highlight(true)
-        UIView.animate(withDuration: 0.3, animations: {
-            self.blurView?.effect = UIBlurEffect(style: .extraLight)
-            button.transform = CGAffineTransform(rotationAngle: CGFloat(135.0.degreesToRadians))
-        })
+    private func poshik(for indexPath: IndexPath) -> Poshik {
+        var poshik: Poshik
+        if indexPath.section == sectionTitles.myIndex {
+            poshik = myPoshiks[indexPath.row]
+        } else {
+            poshik = purchasedPoshiks[indexPath.row]
+        }
+        return poshik
     }
-    
-    func willShrink(_ button: ExpandableButton) {
-        button.highlight(false)
-        UIView.animate(withDuration: 0.3, animations: {
-            self.blurView.effect = nil
-            button.transform = .identity
-        },completion: { completed in
-            self.blurView.removeFromSuperview()
-        })
-    }
-    
     
 }
+
+

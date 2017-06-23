@@ -37,14 +37,14 @@ class MarketParameter: ParameterType {
 
 class MarketPoshiks: ResponseType {
     
-    var poshiks: [Poshik] = []
+    var poshiks: [PoshikFromMarket] = []
     
     subscript(index: Int) -> Poshik {
         return poshiks[index]
     }
     
     required init(map: Map) throws {
-        poshiks = try map.value("poshiks") 
+        poshiks = try map.value("marketPoshiks")
     }
         
 }

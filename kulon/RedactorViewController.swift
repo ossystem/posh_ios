@@ -49,14 +49,12 @@ class RedactorViewController: BaseViewController, RedactorTextFieldDelegate, UIG
         UIGraphicsEndImageContext()
         
         let poshik = PoshikFromRedactor(with: newPoshikImage!)
-        //TODO: send image
         poshikService.addPoshikFromRedactor(poshik).subscribe(onNext: {
             _ in
             self.showErrorMessage(ResponseError(message: "pfuhe;tyj"))
         }, onError: { error in
             self.showErrorMessage(error)
-        })
-//        UIImageWriteToSavedPhotosAlbum(newPoshikImage!, nil, nil, nil)
+        }).disposed(by: stepBag)
         textView.becomeFirstResponder()
     }
     
@@ -71,15 +69,15 @@ class RedactorViewController: BaseViewController, RedactorTextFieldDelegate, UIG
         view.rx.pinchGesture().when(.changed)
             .subscribe(onNext: { [weak self] sender in
                 self?.textView.font = self?.textView.font?.withSize(self!.textView.font!.pointSize * sender.scale)
-                self?.textView.frame.applying(CGAffineTransform(scaleX: sender.scale, y: sender.scale))
+//                self?.textView.frame.applying(CGAffineTransform(scaleX: sender.scale, y: sender.scale))
                 sender.scale = 1
-            }).addDisposableTo(stepBag)
+            }).disposed(by: stepBag)
         
         view.rx.rotationGesture().when(.changed)
             .subscribe(onNext: { [weak self] sender in
                 self?.textView.transform = self!.textView.transform.rotated(by: sender.rotation)
                 sender.rotation = 0
-            }).addDisposableTo(stepBag)
+            }).disposed(by: stepBag)
     }
     
 }

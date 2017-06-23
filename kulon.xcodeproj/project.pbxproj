@@ -71,6 +71,7 @@
 		FDC9E3201EBFC0CF00B6DC25 /* SettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDC9E31F1EBFC0CF00B6DC25 /* SettingsCell.swift */; };
 		FDC9E3221EBFDFCE00B6DC25 /* PoshikCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDC9E3211EBFDFCE00B6DC25 /* PoshikCell.swift */; };
 		FDC9E3241EBFE02C00B6DC25 /* Poshik.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDC9E3231EBFE02C00B6DC25 /* Poshik.swift */; };
+		FDDA3EAD1EFD709A00AA8A19 /* CollectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDDA3EAC1EFD709A00AA8A19 /* CollectionHeaderView.swift */; };
 		FDEAE6991EAAB26500B9F504 /* MyImagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDEAE6981EAAB26500B9F504 /* MyImagesViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -143,6 +144,7 @@
 		FDC9E31F1EBFC0CF00B6DC25 /* SettingsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsCell.swift; sourceTree = "<group>"; };
 		FDC9E3211EBFDFCE00B6DC25 /* PoshikCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PoshikCell.swift; sourceTree = "<group>"; };
 		FDC9E3231EBFE02C00B6DC25 /* Poshik.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Poshik.swift; sourceTree = "<group>"; };
+		FDDA3EAC1EFD709A00AA8A19 /* CollectionHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionHeaderView.swift; sourceTree = "<group>"; };
 		FDEAE6981EAAB26500B9F504 /* MyImagesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyImagesViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -225,6 +227,7 @@
 				FD5409BD1EC6231D00E93B7F /* ColorPicker.xib */,
 				FD5409BF1EC99DDD00E93B7F /* ColorPickerView.swift */,
 				FD7DBAC91ED2254C00D97D45 /* MyImagesService.swift */,
+				FDDA3EAC1EFD709A00AA8A19 /* CollectionHeaderView.swift */,
 			);
 			name = MyImages;
 			sourceTree = "<group>";
@@ -526,6 +529,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FD59599E1ECB51B900BB2D9D /* UIView.swift in Sources */,
+				FDDA3EAD1EFD709A00AA8A19 /* CollectionHeaderView.swift in Sources */,
 				FD4E2F4D1EE07171009C74D3 /* CommonQuestion.swift in Sources */,
 				FD92DDDE1ED770A400E331A3 /* UIImage.swift in Sources */,
 				FD7DBAC01ED0918400D97D45 /* MarketViewModel.swift in Sources */,

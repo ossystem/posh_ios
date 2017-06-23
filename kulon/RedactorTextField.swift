@@ -41,7 +41,8 @@ class RedactorTextField: UITextView, FontPickerViewDelegate{
         let fontButton = UIBarButtonItem(image: #imageLiteral(resourceName: "icon_font_pink"), style: .plain, target: self, action: #selector(beginFontSelection))
         let textColorButton = UIBarButtonItem(image: #imageLiteral(resourceName: "icon_font_color_pink"), style: .plain, target: self, action: #selector(beginTextColorSelection))
         let backgroundColorButton = UIBarButtonItem(image: #imageLiteral(resourceName: "icon_fill_pink"), style: .plain, target: self, action: #selector(beginBackgroundColorSelection))
-        let doneButton = UIBarButtonItem(image: #imageLiteral(resourceName: "icon_text"), style: .done, target: self, action: #selector(createImage))
+        let doneButton = UIBarButtonItem(image: #imageLiteral(resourceName: "icon_save"), style: .done, target: self, action: #selector(createImage))
+
         let spaceButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         toolBar.tintColor = UIColor.Kulon.pink
         toolBar.setItems([textButton, spaceButton, fontButton, spaceButton, textColorButton, spaceButton, backgroundColorButton, spaceButton, doneButton], animated: false)
@@ -127,7 +128,7 @@ class RedactorTextField: UITextView, FontPickerViewDelegate{
     //MARK: - font picker delegate
     
     func fontPickerView(didSelect font: UIFont) {
-        self.font = font
+        self.font = font.withSize(self.font!.pointSize)
     }
     
 }

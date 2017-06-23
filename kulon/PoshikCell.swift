@@ -21,10 +21,12 @@ class PoshikCell: UICollectionViewCell {
     }
     
     func configure(with poshik: Poshik) {
-        //TODO: use different sizes
-        if let url = poshik.imageURL {
+        if let request = poshik.requestforImage(withSize: .small) {
             //TODO: Possibly not the best solution, alamofireImage 3.3 may bring better solution, check it release  
-            image.image = UIImage.gif(url: poshik.imageURLString)
+//            image.loadGif(url: url)
+//            image.image = UIImage.gif(url: url)
+//            image.af_setImage(withURLRequest: request)
+            image.setImage(with: request)
         }
     }
 }

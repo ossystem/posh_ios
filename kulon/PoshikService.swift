@@ -16,7 +16,7 @@ import ObjectMapper
 class LikePoshikApiService: ApiService {
     
     init(with id: Int) {
-        self.route = "market/\(id)/like"
+        self.route = "favorites/\(id)"
     }
     
     var method: HTTPMethod = .post
@@ -29,7 +29,7 @@ class LikePoshikApiService: ApiService {
 class DislikePoshikApiService: ApiService {
     
     init(with id: Int) {
-        self.route = "market/\(id)/like"
+        self.route = "favorites/\(id)"
     }
     
     var method: HTTPMethod = .delete
@@ -42,11 +42,24 @@ class DislikePoshikApiService: ApiService {
 class BuyPoshikApiService: ApiService {
     
     init(with id: Int) {
-        self.route = "market/\(id)/buy"
+        self.route = "market/\(id)"
     }
     
     var method: HTTPMethod = .post
     var route: String
+    
+    typealias Parameter = ParameterNone
+    typealias Response = ResponseNone
+}
+
+class DeletePoshikApiService: ApiService {
+    
+    var method: HTTPMethod = .delete
+    var route: String
+
+    init(with id: Int) {
+        self.route = "poshiks/my/\(id)"
+    }
     
     typealias Parameter = ParameterNone
     typealias Response = ResponseNone
@@ -57,23 +70,34 @@ class PoshikService {
     let likeApiService: LikePoshikApiService
     let dislikeApiService: DislikePoshikApiService
     let buyApiService: BuyPoshikApiService
+    let deleteApiService: DeletePoshikApiService
+    
+    let poshik: Poshik
     
     init(with poshik: Poshik) {
         let id = poshik.id
         likeApiService = LikePoshikApiService(with: id)
         dislikeApiService = DislikePoshikApiService(with: id)
         buyApiService = BuyPoshikApiService(with: id)
+        deleteApiService = DeletePoshikApiService(with: id)
+        self.poshik = poshik
     }
+    
     
     func like() -> Observable<ResponseNone> {
-        return likeApiService.request(parameter: ParameterNone())
-    }
-    
-    func dislike() -> Observable<ResponseNone> {
-        return dislikeApiService.request(parameter: ParameterNone())
+        if poshik.isLiked {
+            return likeApiService.request(parameter: ParameterNone())
+        } else {
+            return dislikeApiService.request(parameter: ParameterNone())
+        }
     }
 
     func buy() -> Observable<ResponseNone> {
         return buyApiService.request(parameter: ParameterNone())
+    }
+    
+    //TODO: move somewhere, diverse market and uploaded opshiks
+    func delete() -> Observable<ResponseNone> {
+        return deleteApiService.request(parameter: ParameterNone())
     }
 }

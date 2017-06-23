@@ -3,6 +3,8 @@
 //
 import UIKit
 import ImageIO
+import Alamofire
+import AlamofireImage
 
 extension UIImageView {
     
@@ -13,6 +15,25 @@ extension UIImageView {
                 self.image = image
             }
         }
+    }
+    
+    public func loadGif(url: URL) {
+        DispatchQueue.global().async {
+            let image = UIImage.gif(url: url)
+            DispatchQueue.main.async {
+                self.image = image
+            }
+        }
+    }
+    
+    public func setImage(with request: URLRequest) {
+        Alamofire.request(request).responseData {
+            response in
+            if let data = response.result.value {
+                self.image = UIImage.gif(data: data)
+            }
+        }
+
     }
     
 }
@@ -29,19 +50,28 @@ extension UIImage {
         return UIImage.animatedImageWithSource(source)
     }
     
-    public class func gif(url: String) -> UIImage? {
+    public class func gif(urlString: String) -> UIImage? {
         // Validate URL
-        guard let bundleURL = URL(string: url) else {
-            print("SwiftGif: This image named \"\(url)\" does not exist")
+        guard let bundleURL = URL(string: urlString) else {
+            print("SwiftGif: This image named \"\(urlString)\" does not exist")
             return nil
         }
         
         // Validate data
         guard let imageData = try? Data(contentsOf: bundleURL) else {
-            print("SwiftGif: Cannot turn image named \"\(url)\" into NSData")
+            print("SwiftGif: Cannot turn image named \"\(urlString)\" into NSData")
             return nil
         }
         
+        return gif(data: imageData)
+    }
+    
+    public class func gif(url: URL) -> UIImage? {
+        // Validate data
+        guard let imageData = try? Data(contentsOf: url) else {
+            print("SwiftGif: Cannot turn image named \"\(url)\" into NSData")
+            return nil
+        }
         return gif(data: imageData)
     }
     

@@ -7,6 +7,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -27,13 +28,13 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="16" minimumInteritemSpacing="16" id="bKv-2q-qgE">
                                     <size key="itemSize" width="84" height="84"/>
-                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="headerReferenceSize" width="50" height="50"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="17" minY="76" maxX="17" maxY="0.0"/>
+                                    <inset key="sectionInset" minX="17" minY="0.0" maxX="17" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="poshikCell" id="Bos-X2-x4g" customClass="PoshikCell" customModule="kulon" customModuleProvider="target">
-                                        <rect key="frame" x="17" y="76" width="84" height="84"/>
+                                        <rect key="frame" x="17" y="50" width="84" height="84"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="84" height="84"/>
@@ -60,6 +61,25 @@
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
+                                <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Header" id="mIN-Go-hLA" customClass="CollectionHeaderView" customModule="kulon" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My images" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="si1-zi-dLk">
+                                            <rect key="frame" x="17" y="12" width="122.5" height="27.5"/>
+                                            <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="23"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="si1-zi-dLk" firstAttribute="leading" secondItem="mIN-Go-hLA" secondAttribute="leadingMargin" constant="9" id="ZH1-zM-SxB"/>
+                                        <constraint firstItem="si1-zi-dLk" firstAttribute="centerY" secondItem="mIN-Go-hLA" secondAttribute="centerY" id="ewx-mV-dai"/>
+                                    </constraints>
+                                    <connections>
+                                        <outlet property="title" destination="si1-zi-dLk" id="Nnq-nz-ivy"/>
+                                    </connections>
+                                </collectionReusableView>
                             </collectionView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q13-h7-x9u" customClass="TopBarView" customModule="kulon" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="20" width="375" height="70"/>
@@ -117,7 +137,7 @@
                                     <outlet property="button" destination="SCX-VD-tfv" id="AOq-lq-kU2"/>
                                 </connections>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pVV-im-775" customClass="ExpandableButton" customModule="kulon" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pVV-im-775" customClass="RoundedButton" customModule="kulon" customModuleProvider="target">
                                 <rect key="frame" x="167.5" y="607" width="40" height="40"/>
                                 <color key="backgroundColor" red="0.99448782205581665" green="0.35271477699279785" blue="0.22732526063919067" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>

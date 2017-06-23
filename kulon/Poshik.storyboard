@@ -177,7 +177,9 @@
                     </view>
                     <connections>
                         <outlet property="blurView" destination="xnq-vz-MWz" id="OAg-kl-K8c"/>
+                        <outlet property="leftButton" destination="b1D-u8-BWQ" id="rll-Ps-iAG"/>
                         <outlet property="poshikImage" destination="MaV-5Z-fHg" id="pIv-Mc-7Mz"/>
+                        <outlet property="rightButton" destination="el9-sR-n3d" id="Yg3-XY-wgy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aPi-nE-daO" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -121,13 +121,11 @@ extension ApiService {
     }
     
     func upload(parameter: UploadableParameter) -> Observable<Response> {
-        
-        
+    
         return Observable.create { observer in
-            
             guard let request = try? URLRequest(url: URL(string: self.baseRoute + self.route)!, method: self.method, headers: self.headers )
                 else {
-                    observer.onError( (ResponseError()))
+                    observer.onError( (ResponseError(message: "Can't create request")))
                     return Disposables.create()
             }
             Alamofire.upload(multipartFormData: { data in
@@ -135,7 +133,8 @@ extension ApiService {
                     observer.onError(ResponseError(message: "Can't attach file"))
                     return
                 }
-                data.append(content, withName: parameter.contentName)
+                data.append(content, withName: "poshik", fileName: "poshik", mimeType: "image/jpeg")
+//                data.append(content, withName: parameter.contentName)
                 if let parameters = parameter.toJSON() {
                     for (key, value) in parameters {
                         data.append((value as AnyObject).data(using: String.Encoding.utf8.rawValue)!, withName: key)

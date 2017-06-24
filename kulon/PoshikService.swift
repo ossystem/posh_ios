@@ -16,7 +16,7 @@ import ObjectMapper
 class LikePoshikApiService: ApiService {
     
     init(with id: Int) {
-        self.route = "favorites/\(id)"
+        self.route = "market/\(id)/fav"
     }
     
     var method: HTTPMethod = .post
@@ -85,7 +85,7 @@ class PoshikService {
     
     
     func like() -> Observable<ResponseNone> {
-        if poshik.isLiked {
+        if !poshik.isLiked {
             return likeApiService.request(parameter: ParameterNone())
         } else {
             return dislikeApiService.request(parameter: ParameterNone())

@@ -10,7 +10,7 @@ import UIKit
 import RxBluetoothKit
 import RxSwift
 
-class StoreViewController: BaseViewController, UICollectionViewDelegate, UICollectionViewDataSource, ExpandableButtonDelegate, UITableViewDataSource, UITableViewDelegate {
+class StoreViewController: BaseViewController, UICollectionViewDelegate, UICollectionViewDataSource, ExpandableButtonDelegate, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate {
 
     @IBOutlet weak var collectionView: UICollectionView! {
         didSet {
@@ -26,7 +26,11 @@ class StoreViewController: BaseViewController, UICollectionViewDelegate, UIColle
     }
     @IBOutlet weak var topButton: ExpandableButton!
     @IBOutlet weak var tagInputView: UIView!
-    @IBOutlet weak var tagTextField: UITextField!
+    @IBOutlet weak var tagTextField: UITextField! {
+        didSet {
+            tagTextField.delegate = self
+        }
+    }
     @IBOutlet weak var tagBottomConstraint: NSLayoutConstraint!
 
     
@@ -47,14 +51,7 @@ class StoreViewController: BaseViewController, UICollectionViewDelegate, UIColle
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         categoriesTableView.contentInset = UIEdgeInsets(top: 140, left: 0, bottom: 0, right: 0)
-        categoriesTableView.tableFooterView = UIView() //hack to remove emty cells
-        
-        //--------- на всякий случай а то че то не спервого раза
-        loadData()
-        loadData()
-        loadData()
-        loadData()
-        //----------
+        categoriesTableView.tableFooterView = UIView() //hack to remove emty
     }
     
     @IBAction func unwindToThisViewController(segue: UIStoryboardSegue) {
@@ -143,6 +140,7 @@ class StoreViewController: BaseViewController, UICollectionViewDelegate, UIColle
     }
     
     func didSelect(category: PoshikCategory) {
+        marketParameter.category = category
         topButton.hideButtons()
     }
 
@@ -189,6 +187,7 @@ class StoreViewController: BaseViewController, UICollectionViewDelegate, UIColle
     func willShrink(_ button: ExpandableButton) {
         endSearching()
         endCategorySelection()
+        loadData()
         UIView.animate(withDuration: 0.3, animations: {
             self.blurView.effect = nil
         },completion: { completed in
@@ -229,6 +228,15 @@ class StoreViewController: BaseViewController, UICollectionViewDelegate, UIColle
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         didSelect(category: categories[indexPath.row])
+    }
+    
+    //MARK: - textField
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        marketParameter.tag = textField.text
+        loadData()
+        topButton.hideButtons()
+        return true
     }
 
 }

@@ -15,6 +15,7 @@ protocol RedactorTextFieldDelegate: class {
     func completeCreatingImage()
 }
 
+
 class RedactorTextField: UITextView, FontPickerViewDelegate{
     
     weak var redactorDelegate: RedactorTextFieldDelegate?
@@ -41,13 +42,20 @@ class RedactorTextField: UITextView, FontPickerViewDelegate{
         let fontButton = UIBarButtonItem(image: #imageLiteral(resourceName: "icon_font_pink"), style: .plain, target: self, action: #selector(beginFontSelection))
         let textColorButton = UIBarButtonItem(image: #imageLiteral(resourceName: "icon_font_color_pink"), style: .plain, target: self, action: #selector(beginTextColorSelection))
         let backgroundColorButton = UIBarButtonItem(image: #imageLiteral(resourceName: "icon_fill_pink"), style: .plain, target: self, action: #selector(beginBackgroundColorSelection))
-        let doneButton = UIBarButtonItem(image: #imageLiteral(resourceName: "icon_save"), style: .done, target: self, action: #selector(createImage))
+        let doneButton = UIBarButtonItem(image: #imageLiteral(resourceName: "icon_upload"), style: .done, target: self, action: #selector(createImage))
 
+        doneButton.rx.tap.subscribe(onNext: {
+            doneButton.isEnabled = false
+//            self.endEditing(true)
+            self.redactorDelegate?.completeCreatingImage()
+        })
         let spaceButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         toolBar.tintColor = UIColor.Kulon.pink
         toolBar.setItems([textButton, spaceButton, fontButton, spaceButton, textColorButton, spaceButton, backgroundColorButton, spaceButton, doneButton], animated: false)
         
         self.inputAccessoryView = toolBar
+        
+        
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyBoardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         beginTextChanging()

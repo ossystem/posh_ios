@@ -47,18 +47,23 @@ protocol ApiService : class {
     var baseRoute: String { get }
     var route: String { get }
     var headers: [String : String] { get }
-    var sessionManager: SessionManager { get }
-        
+    
     func request(parameter: Parameter) -> Observable<Response>
     func upload(parameter: UploadableParameter) -> Observable<Response>
     
 }
 
+extension SessionManager {
+    static var kulonManager: SessionManager {
+        let config = URLSessionConfiguration()
+        config.httpMaximumConnectionsPerHost = 1
+        return SessionManager(configuration: config)
+    }
+}
+
 extension ApiService {
     
-    var sessionManager: SessionManager {
-        return SessionManager()
-    }
+
     
     var baseRoute: String {
         return "http://kulon.jwma.ru/api/v1/"
@@ -72,8 +77,8 @@ extension ApiService {
     }
     
     func request(parameter: Parameter) -> Observable<Response> {
+        
         return Observable.create { observer in
-            
             Alamofire.request(URL(string: self.baseRoute + self.route)!,
                               method: self.method,
                               parameters: parameter.toJSON(),
@@ -87,16 +92,28 @@ extension ApiService {
                         observer.on(.next(value))
                         observer.onCompleted()
                     case .failure(let error):
-                        //TODO: chek uwrap
                         guard let innerResponse = response.response
                             else {
                                 observer.on(.error(error))
                                 break
                         }
-                        
                         switch innerResponse.statusCode {
                         case 401:
-                            observer.on(.error(UnauthorisedError()))
+                            
+                            //TODO: try to rewrite with retryWhen
+                            
+                            LoginService().loginWithStoredCredentials().subscribe(onNext: { _ in
+                                self.request(parameter: parameter).subscribe(onNext: { value in
+                                    observer.onNext(value)
+                                }, onError: { error in
+                                    observer.onError(error)
+                                }, onCompleted: {
+                                    observer.onCompleted()
+                                })
+                            }, onError: { error in
+                                observer.onError(error)
+                            })
+                            
                         case 300:
                             observer.on(.error(UserNotExistError()))
                         default:
@@ -109,14 +126,15 @@ extension ApiService {
                     }
             }
             return Disposables.create()
-            }.retryWhen({ (errorObservable : Observable<Error>) -> Observable<Void> in
-            return errorObservable.flatMap { (error) -> Observable<Void> in
-                if error is UnauthorisedError {
-                    return LoginService().loginWithStoredCredentials()
-                }
-                throw error
             }
-        })
+//            .retryWhen({ (errorObservable : Observable<Error>) -> Observable<Void> in
+//            return errorObservable.flatMap { (error) -> Observable<Void> in
+//                if error is UnauthorisedError {
+//                    return LoginService().loginWithStoredCredentials()
+//                }
+//                throw error
+//            }
+//        })
         
     }
     
@@ -134,7 +152,6 @@ extension ApiService {
                     return
                 }
                 data.append(content, withName: "poshik", fileName: "poshik", mimeType: "image/jpeg")
-//                data.append(content, withName: parameter.contentName)
                 if let parameters = parameter.toJSON() {
                     for (key, value) in parameters {
                         data.append((value as AnyObject).data(using: String.Encoding.utf8.rawValue)!, withName: key)
@@ -151,8 +168,12 @@ extension ApiService {
                                 observer.on(.next(value))
                                 observer.onCompleted()
                             case .failure(let error):
-                                //TODO: chek uwrap
-                                switch response.response!.statusCode {
+                                guard let innerResponse = response.response
+                                    else {
+                                        observer.on(.error(error))
+                                        break
+                                }
+                                switch innerResponse.statusCode {
                                 case 401:
                                     observer.on(.error(UnauthorisedError()))
                                 case 300:

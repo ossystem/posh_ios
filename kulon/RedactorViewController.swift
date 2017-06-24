@@ -47,12 +47,15 @@ class RedactorViewController: BaseViewController, RedactorTextFieldDelegate, UIG
         newPoshikView.layer.render(in: UIGraphicsGetCurrentContext()!)
         let newPoshikImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
+        
         let waitingView = UIView(frame: view.bounds)
         waitingView.backgroundColor = UIColor.Kulon.lightOrange.withAlphaComponent(0.4)
         let activiti = UIActivityIndicatorView(activityIndicatorStyle: .white)
         waitingView.addSubview(activiti)
+        activiti.center = view.center
         activiti.startAnimating()
         view.addSubview(waitingView)
+        
         let poshik = PoshikFromRedactor(with: newPoshikImage!)
         poshikService.addPoshikFromRedactor(poshik).subscribe(onNext: {
             _ in
@@ -76,7 +79,6 @@ class RedactorViewController: BaseViewController, RedactorTextFieldDelegate, UIG
         view.rx.pinchGesture().when(.changed)
             .subscribe(onNext: { [weak self] sender in
                 self?.textView.font = self?.textView.font?.withSize(self!.textView.font!.pointSize * sender.scale)
-//                self?.textView.frame.applying(CGAffineTransform(scaleX: sender.scale, y: sender.scale))
                 sender.scale = 1
             }).disposed(by: stepBag)
         

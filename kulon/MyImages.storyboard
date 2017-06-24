@@ -40,7 +40,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="84" height="84"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Agy-xq-Rv3" customClass="RoundedImageView" customModule="kulon" customModuleProvider="target">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Agy-xq-Rv3" customClass="KulonImageView" customModule="kulon" customModuleProvider="target">
                                                     <rect key="frame" x="0.0" y="0.0" width="84" height="84"/>
                                                     <color key="backgroundColor" red="1" green="0.56600409750000003" blue="0.5650827289" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <userDefinedRuntimeAttributes>

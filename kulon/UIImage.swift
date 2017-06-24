@@ -6,6 +6,30 @@ import ImageIO
 import Alamofire
 import AlamofireImage
 
+class KulonImageView: RoundedImageView {
+    var currentRequest: DataRequest?
+    
+    public override func setImage(with request: URLRequest) {
+        
+        currentRequest = Alamofire.request(request).responseData {
+            response in
+            if let token = response.response?.allHeaderFields["Authorization"] as? String {
+                TokenService().token = token
+            }
+            if let data = response.result.value {
+                self.image = UIImage.gif(data: data)
+            }
+            self.currentRequest = nil
+        }
+    }
+    
+    public func cancelRequest() {
+        if let request = currentRequest {
+            request.cancel()
+        }
+    }
+}
+
 extension UIImageView {
     
     public func loadGif(name: String) {
@@ -28,7 +52,7 @@ extension UIImageView {
     
     public func setImage(with request: URLRequest) {
         
-        Alamofire.request(request).responseData {
+         Alamofire.request(request).responseData {
             response in
             if let token = response.response?.allHeaderFields["Authorization"] as? String {
                 TokenService().token = token
@@ -37,7 +61,8 @@ extension UIImageView {
                 self.image = UIImage.gif(data: data)
             }
         }
-
+        
+        
     }
     
 }

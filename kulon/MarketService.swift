@@ -13,14 +13,19 @@ import RxSwift
 
 class MarketParameter: ParameterType {
     
+    
     var category: PoshikCategory? {
         didSet {
-            tag = nil
+            if category != nil {
+                tag = nil
+            }
         }
     }
     var tag: String? {
         didSet {
-            category = nil
+            if tag != nil {
+                category = nil
+            }
         }
     }
     
@@ -28,7 +33,7 @@ class MarketParameter: ParameterType {
         if let category = category {
             return ["category" : category.id]
         } else if let tag = tag {
-            return ["tag" : tag]
+            return ["search" : tag]
         } else {
             return nil
         }
@@ -51,9 +56,7 @@ class MarketPoshiks: ResponseType {
 
 
 class MarketApiService : ApiService {
-    
-    static let shared = MarketApiService()
-    
+        
     typealias Parameter = MarketParameter
     typealias Response = MarketPoshiks
     
@@ -71,7 +74,6 @@ class FavoritePoshiks: ResponseType {
 
 class FavoritesApiService: ApiService {
     
-    static let shared = FavoritesApiService()
 
     var method: HTTPMethod = .get
     var route: String = "favorites"
@@ -84,10 +86,10 @@ class FavoritesApiService: ApiService {
 
 class MarketService {
     
-    let marketApiService = MarketApiService.shared
-    let categoriesApiService = CategoriesApiService.shared
-    let tagApiService = TagAutocompletionApiService.shared
-    let favoritesApiService = FavoritesApiService.shared
+    let marketApiService = MarketApiService()
+    let categoriesApiService = CategoriesApiService()
+    let tagApiService = TagAutocompletionApiService()
+    let favoritesApiService = FavoritesApiService()
     
     func getPoshiks(parameter: MarketParameter) -> Observable<MarketPoshiks> {
         return marketApiService.request(parameter: parameter)

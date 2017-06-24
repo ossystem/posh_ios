@@ -13,20 +13,20 @@ import Alamofire
 
 class PoshikCell: UICollectionViewCell {
     
-    @IBOutlet weak var image: RoundedImageView!
+    @IBOutlet weak var image: KulonImageView!
     
     var request: URLRequest?
     override func prepareForReuse() {
         
-        Alamofire.SessionManager.default.session.getAllTasks { tasks in
-            for task in tasks {
-                if task.originalRequest == self.request {
-                    task.cancel()
-                }
-            }
-        }
-        image.af_cancelImageRequest()
-        image.image = nil
+//        Alamofire.SessionManager.default.session.getAllTasks { tasks in
+//            for task in tasks {
+//                if task.originalRequest == self.request {
+//                    task.cancel()
+//                }
+//            }
+//        }
+        image?.cancelRequest()
+        image?.image = nil
     }
     
     func configure(with poshik: Poshik) {

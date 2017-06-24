@@ -30,6 +30,7 @@ class RegistrationService {
         return apiService.request(parameter: parameter)
             .flatMap { (result) -> Observable<Void> in
                 TokenService().token = result.token
+                UserCredentialsService().credentials = parameter
                 return Observable<Void>.empty()
         }
     }

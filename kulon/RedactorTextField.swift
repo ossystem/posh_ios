@@ -84,6 +84,7 @@ class RedactorTextField: UITextView, FontPickerViewDelegate{
     }
     
     func createImage() {
+        
         redactorDelegate?.completeCreatingImage()
     }
     

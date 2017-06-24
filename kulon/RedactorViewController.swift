@@ -47,12 +47,19 @@ class RedactorViewController: BaseViewController, RedactorTextFieldDelegate, UIG
         newPoshikView.layer.render(in: UIGraphicsGetCurrentContext()!)
         let newPoshikImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
-        
+        let waitingView = UIView(frame: view.bounds)
+        waitingView.backgroundColor = UIColor.Kulon.lightOrange.withAlphaComponent(0.4)
+        let activiti = UIActivityIndicatorView(activityIndicatorStyle: .white)
+        waitingView.addSubview(activiti)
+        activiti.startAnimating()
+        view.addSubview(waitingView)
         let poshik = PoshikFromRedactor(with: newPoshikImage!)
         poshikService.addPoshikFromRedactor(poshik).subscribe(onNext: {
             _ in
-            self.showErrorMessage(ResponseError(message: "pfuhe;tyj"))
+            activiti.removeFromSuperview()
+            self.dismiss(animated: true, completion: nil)
         }, onError: { error in
+            activiti.removeFromSuperview()
             self.showErrorMessage(error)
         }).disposed(by: stepBag)
         textView.becomeFirstResponder()

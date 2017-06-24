@@ -103,6 +103,7 @@
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="topBarButtonTapped:" destination="z8M-vs-EmS" eventType="touchUpInside" id="w9H-jL-vNV"/>
+                                    <segue destination="JZF-qx-5tM" kind="unwind" identifier="unwind" unwindAction="unwindToThisViewControllerWithSegue:" id="Nga-k6-W5F"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b1D-u8-BWQ" customClass="RoundedButton" customModule="kulon" customModuleProvider="target">
@@ -183,6 +184,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aPi-nE-daO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="JZF-qx-5tM" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="125.59999999999999" y="164.16791604197903"/>
         </scene>

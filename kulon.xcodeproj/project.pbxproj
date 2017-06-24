@@ -30,7 +30,7 @@
 		FD5959A41ECC8DC700BB2D9D /* LoginService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD5959A31ECC8DC700BB2D9D /* LoginService.swift */; };
 		FD5F9F421EA776A300BD79B1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD5F9F411EA776A300BD79B1 /* AppDelegate.swift */; };
 		FD5F9F441EA776A300BD79B1 /* BaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD5F9F431EA776A300BD79B1 /* BaseController.swift */; };
-		FD5F9F461EA776A300BD79B1 /* StoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD5F9F451EA776A300BD79B1 /* StoreViewController.swift */; };
+		FD5F9F461EA776A300BD79B1 /* MarketViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD5F9F451EA776A300BD79B1 /* MarketViewController.swift */; };
 		FD5F9F491EA776A300BD79B1 /* Auth.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FD5F9F471EA776A300BD79B1 /* Auth.storyboard */; };
 		FD5F9F4B1EA776A300BD79B1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FD5F9F4A1EA776A300BD79B1 /* Assets.xcassets */; };
 		FD5F9F4E1EA776A300BD79B1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FD5F9F4C1EA776A300BD79B1 /* LaunchScreen.storyboard */; };
@@ -102,7 +102,7 @@
 		FD5F9F3E1EA776A300BD79B1 /* kulon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = kulon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD5F9F411EA776A300BD79B1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FD5F9F431EA776A300BD79B1 /* BaseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseController.swift; sourceTree = "<group>"; };
-		FD5F9F451EA776A300BD79B1 /* StoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreViewController.swift; sourceTree = "<group>"; };
+		FD5F9F451EA776A300BD79B1 /* MarketViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketViewController.swift; sourceTree = "<group>"; };
 		FD5F9F481EA776A300BD79B1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Auth.storyboard; sourceTree = "<group>"; };
 		FD5F9F4A1EA776A300BD79B1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FD5F9F4D1EA776A300BD79B1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -208,7 +208,7 @@
 				FDC3AB131EBB42A800141241 /* MarketPlace.storyboard */,
 				FD59599F1ECB96C500BB2D9D /* CategoryCell.swift */,
 				FD5959A11ECB973900BB2D9D /* Category.swift */,
-				FD5F9F451EA776A300BD79B1 /* StoreViewController.swift */,
+				FD5F9F451EA776A300BD79B1 /* MarketViewController.swift */,
 				FD7DBABF1ED0918400D97D45 /* MarketViewModel.swift */,
 				FD7DBABD1ED08D0600D97D45 /* CategoriesService.swift */,
 				FD7DBAC11ED098DE00D97D45 /* MarketTagAutoCompletionService.swift */,
@@ -568,7 +568,7 @@
 				FD7DBABE1ED08D0600D97D45 /* CategoriesService.swift in Sources */,
 				FDC9E3241EBFE02C00B6DC25 /* Poshik.swift in Sources */,
 				FDC89DFC1EBA4ABA004D3F9F /* AuthViewController.swift in Sources */,
-				FD5F9F461EA776A300BD79B1 /* StoreViewController.swift in Sources */,
+				FD5F9F461EA776A300BD79B1 /* MarketViewController.swift in Sources */,
 				FD974B061EC9C0100066AC27 /* RedactorTextField.swift in Sources */,
 				FD5959A41ECC8DC700BB2D9D /* LoginService.swift in Sources */,
 				FD7DBACA1ED2254C00D97D45 /* MyImagesService.swift in Sources */,

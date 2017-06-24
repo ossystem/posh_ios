@@ -27,8 +27,12 @@ extension UIImageView {
     }
     
     public func setImage(with request: URLRequest) {
+        
         Alamofire.request(request).responseData {
             response in
+            if let token = response.response?.allHeaderFields["Authorization"] as? String {
+                TokenService().token = token
+            }
             if let data = response.result.value {
                 self.image = UIImage.gif(data: data)
             }

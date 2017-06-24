@@ -13,7 +13,9 @@ extension UIButton {
     func setWaiting(_ waiting: Bool, activityIndicatorColor: UIColor? = nil) {
         isEnabled = !waiting
         setTitleColor(waiting ? titleLabel?.textColor.withAlphaComponent(0) : titleLabel?.textColor.withAlphaComponent(1), for: .normal)
+        
         if waiting {
+            setImage(nil, for: .normal)
             let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .white)
             activityIndicator.center = CGPoint(x: frame.width * 0.5, y: frame.height * 0.5)
             if let activityIndicatorColor = activityIndicatorColor {

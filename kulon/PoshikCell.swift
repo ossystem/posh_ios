@@ -15,7 +15,16 @@ class PoshikCell: UICollectionViewCell {
     
     @IBOutlet weak var image: RoundedImageView!
     
+    var request: URLRequest?
     override func prepareForReuse() {
+        
+        Alamofire.SessionManager.default.session.getAllTasks { tasks in
+            for task in tasks {
+                if task.originalRequest == self.request {
+                    task.cancel()
+                }
+            }
+        }
         image.af_cancelImageRequest()
         image.image = nil
     }
@@ -26,6 +35,7 @@ class PoshikCell: UICollectionViewCell {
 //            image.loadGif(url: url)
 //            image.image = UIImage.gif(url: url)
 //            image.af_setImage(withURLRequest: request)
+            self.request = request
             image.setImage(with: request)
         }
     }

@@ -55,6 +55,8 @@ class MyImagesViewController: BaseViewController, UICollectionViewDelegate, UICo
             hasPurchased =  poshiks.count > 0
         }
         
+        
+        
     }
     
     private let sectionTitles = MyImagesSectionTitles()
@@ -65,9 +67,17 @@ class MyImagesViewController: BaseViewController, UICollectionViewDelegate, UICo
         }).disposed(by: bag)
         collectionView.contentInset = UIEdgeInsets(top: 70, left: 0, bottom: 0, right: 0)
 
+        topBar.button.rx.tap.subscribe(onNext: {
+            self.addTextImage()
+        }).disposed(by: bag)
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        loadData()
+    }
+    
+    @IBAction func unwindToThisViewController(segue: UIStoryboardSegue) {
         loadData()
     }
     
@@ -125,7 +135,6 @@ class MyImagesViewController: BaseViewController, UICollectionViewDelegate, UICo
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-
         let frame = collectionView.cellForItem(at: indexPath)?.frame
         let model = PoshikViewModel(poshik: poshik(for: indexPath), startingFrame: frame!)
         performSegue(withIdentifier: Identifiers.Segue.PoshikViewController, sender: model)

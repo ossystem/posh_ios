@@ -48,12 +48,24 @@ class StoreViewController: BaseViewController, UICollectionViewDelegate, UIColle
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         categoriesTableView.contentInset = UIEdgeInsets(top: 140, left: 0, bottom: 0, right: 0)
         categoriesTableView.tableFooterView = UIView() //hack to remove emty cells
+        
+        //--------- на всякий случай а то че то не спервого раза
+        loadData()
+        loadData()
+        loadData()
+        loadData()
+        //----------
+    }
+    
+    @IBAction func unwindToThisViewController(segue: UIStoryboardSegue) {
+        loadData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setupInterface()
         loadData()
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {

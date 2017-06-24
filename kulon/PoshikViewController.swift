@@ -39,6 +39,8 @@ class PoshikViewController: BaseViewController, UIViewControllerTransitioningDel
         poshikService = PoshikService(with: model.poshik)
     }
     
+    
+    
     func setupButtons() {
         //TODO: refactor, setup buttons by poshik
         
@@ -46,7 +48,7 @@ class PoshikViewController: BaseViewController, UIViewControllerTransitioningDel
         if model.poshik is MyPoshikUploaded {
             leftImage = #imageLiteral(resourceName: "icon_top_trash")
         } else {
-            leftImage = model.poshik.isLiked ? #imageLiteral(resourceName: "icon_like") : #imageLiteral(resourceName: "icon_like_1")
+            leftImage = model.poshik.isLiked ? #imageLiteral(resourceName: "icon_like_2") : #imageLiteral(resourceName: "icon_like_1")
         }
         leftButton.setImage(leftImage, for: .normal)
         
@@ -55,7 +57,7 @@ class PoshikViewController: BaseViewController, UIViewControllerTransitioningDel
         }
         
         var rightImage: UIImage
-        if model.poshik.isPurchased || model.poshik is MyPoshikFromMarket {
+        if model.poshik.isPurchased || model.poshik is MyPoshikFromMarket || model.poshik is MyPoshikUploaded {
             rightImage = #imageLiteral(resourceName: "icon_install")
         } else {
             rightImage = #imageLiteral(resourceName: "icon_buy")
@@ -73,27 +75,35 @@ class PoshikViewController: BaseViewController, UIViewControllerTransitioningDel
     
     @IBAction func likeButtonTapped(_ sender: RoundedButton) {
         //TODO: change button state
+        sender.setWaiting(true, activityIndicatorColor: UIColor.Kulon.lightOrange)
         if model.poshik is PoshikFromMarket {
             poshikService.like().subscribe(onNext: { _ in
                 self.model.poshik.isLiked = !self.model.poshik.isLiked
+                sender.setWaiting(false)
                 self.setupButtons()
             }, onError: { error in
+                sender.setWaiting(false)
+                self.setupButtons()
                 self.showErrorMessage(error)
             }).disposed(by: disposeBag)
         } else {
             poshikService.delete().subscribe(onNext: { _ in
-                self.dismiss(animated: true, completion: nil)
+                sender.setWaiting(false)
+                self.performSegue(withIdentifier: "unwind", sender: nil)
             }, onError: { error in
+                sender.setWaiting(false)
                 self.showErrorMessage(error)
             }).disposed(by: disposeBag)
         }
     }
     
     @IBAction func buyButtonTapped(_ sender: RoundedButton) {
-        //TODO: react somehow
         if !model.poshik.isPurchased {
+            sender.setWaiting(true, activityIndicatorColor: UIColor.Kulon.lightOrange)
             poshikService.buy().subscribe(onNext: { _ in
-                sender.backgroundColor = .red
+                self.model.poshik.isPurchased = !self.model.poshik.isPurchased
+                sender.setWaiting(false)
+                self.setupButtons()
             }, onError: { error in
                 self.showErrorMessage(error)
             }).disposed(by: disposeBag)

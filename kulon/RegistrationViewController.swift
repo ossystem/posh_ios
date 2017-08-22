@@ -25,6 +25,7 @@ class RegistrationViewController: BaseViewController {
         self.providesPresentationContextTransitionStyle = true
         self.definesPresentationContext = true
         self.transitioningDelegate = self
+        
     }
     
     @IBAction func nextButtonTapped(_ sender: UIButton) {

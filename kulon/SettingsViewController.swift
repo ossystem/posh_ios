@@ -21,7 +21,8 @@ struct SettingItem {
             SettingItem(name: "ОТВЯЗАТЬ КУЛОН", descr: "Изменить кулон, управляемый с помощью приложения", image: #imageLiteral(resourceName: "icon_settigns_kulon_8F8D8D"),request: nil),
             SettingItem(name: "КОНТАКТЫ", descr: "Написать разработчику и задать свой вопрос", image: #imageLiteral(resourceName: "icon_settings_contacts_8F8D8D"),request: ContactsSettingsService().getRequest() ),
             SettingItem(name: "ВОПРОСЫ И ОТВЕТЫ", descr: "Ответы на самые распространенные вопросы", image: #imageLiteral(resourceName: "icon_settings_question_8F8D8D"), request: nil),
-            SettingItem(name: "АДРЕСА МАГАЗИНОВ", descr: "Изменить кулон, управляемый с помощью приложения", image: #imageLiteral(resourceName: "icon_settings_geo_8F8D8D"), request:AdressesSettingsService().getRequest())
+            SettingItem(name: "АДРЕСА МАГАЗИНОВ", descr: "Изменить кулон, управляемый с помощью приложения", image: #imageLiteral(resourceName: "icon_settings_geo_8F8D8D"), request:AdressesSettingsService().getRequest()),
+            SettingItem(name: "ВЫЙТИ", descr: "", image: #imageLiteral(resourceName: "icon_settings_question_8F8D8D"), request: nil)
         ]
     }
 }
@@ -32,7 +33,7 @@ struct SettingItem {
 class SettingsViewController: BaseViewController, UITableViewDataSource, UITableViewDelegate {
     
     enum SettingsItems: Int {
-        case deattachKulon = 0, contacts, FAQ, adresses
+        case deattachKulon = 0, contacts, FAQ, adresses, logout
         
         var item: SettingItem {
            return SettingItem.defaultSettingsSet[rawValue]
@@ -75,6 +76,8 @@ class SettingsViewController: BaseViewController, UITableViewDataSource, UITable
             performSegue(withIdentifier: Identifiers.Segue.SettingsWebViewControllerID, sender: item)
         case .FAQ:
             performSegue(withIdentifier: Identifiers.Segue.FAQViewController, sender: nil)
+        case .logout:
+            LoginService().logout()
         default:
             //TODO: open culon connecting screen
             return

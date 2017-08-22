@@ -15,6 +15,8 @@ class PoshikViewController: BaseViewController, UIViewControllerTransitioningDel
     var model: PoshikViewModel!
     var poshikService: PoshikService!
     
+    let bleService = BLEService.shared
+    
     private let disposeBag = DisposeBag()
     
     @IBOutlet weak var poshikImage: RoundedImageView!    
@@ -89,6 +91,8 @@ class PoshikViewController: BaseViewController, UIViewControllerTransitioningDel
         } else {
             poshikService.delete().subscribe(onNext: { _ in
                 sender.setWaiting(false)
+                
+                
                 self.performSegue(withIdentifier: "unwind", sender: nil)
             }, onError: { error in
                 sender.setWaiting(false)
@@ -107,6 +111,20 @@ class PoshikViewController: BaseViewController, UIViewControllerTransitioningDel
             }, onError: { error in
                 self.showErrorMessage(error)
             }).disposed(by: disposeBag)
+        } else {
+            var poshik: UploadablePoshik
+            //FIXME refactor this logic
+            if !(model.poshik is UploadablePoshik) {
+                poshik = MyPoshikFromMarket(fromMarket: model.poshik)
+            } else {
+                poshik = model.poshik as! UploadablePoshik
+            }
+            bleService.set(poshik)
+                .subscribe {
+                    print($0)
+                    print("set poshik")
+            }.disposed(by: disposeBag)
+            
         }
     }
 

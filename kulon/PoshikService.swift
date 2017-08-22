@@ -101,3 +101,5 @@ class PoshikService {
         return deleteApiService.request(parameter: ParameterNone())
     }
 }
+
+

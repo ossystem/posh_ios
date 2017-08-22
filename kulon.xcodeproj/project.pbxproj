@@ -16,6 +16,8 @@
 		FD4E2F4B1EDF2700009C74D3 /* CommonQuestionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD4E2F4A1EDF2700009C74D3 /* CommonQuestionCell.swift */; };
 		FD4E2F4D1EE07171009C74D3 /* CommonQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD4E2F4C1EE07171009C74D3 /* CommonQuestion.swift */; };
 		FD4E2F4F1EE1B7AD009C74D3 /* DeviceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD4E2F4E1EE1B7AD009C74D3 /* DeviceService.swift */; };
+		FD4FE91E1F1518D7006F2AE2 /* SocialService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD4FE91D1F1518D7006F2AE2 /* SocialService.swift */; };
+		FD4FE9201F15254D006F2AE2 /* SocialWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD4FE91F1F15254D006F2AE2 /* SocialWebViewController.swift */; };
 		FD5409A91EC2699300E93B7F /* RedactorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD5409A81EC2699300E93B7F /* RedactorViewController.swift */; };
 		FD5409AD1EC32A2400E93B7F /* LikeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD5409AC1EC32A2400E93B7F /* LikeView.swift */; };
 		FD5409AF1EC5D78000E93B7F /* Poshik.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FD5409AE1EC5D78000E93B7F /* Poshik.storyboard */; };
@@ -28,6 +30,7 @@
 		FD5959A01ECB96C500BB2D9D /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD59599F1ECB96C500BB2D9D /* CategoryCell.swift */; };
 		FD5959A21ECB973900BB2D9D /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD5959A11ECB973900BB2D9D /* Category.swift */; };
 		FD5959A41ECC8DC700BB2D9D /* LoginService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD5959A31ECC8DC700BB2D9D /* LoginService.swift */; };
+		FD5A914F1F3CBFA7008EE04F /* NSData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD5A914E1F3CBFA7008EE04F /* NSData.swift */; };
 		FD5F9F421EA776A300BD79B1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD5F9F411EA776A300BD79B1 /* AppDelegate.swift */; };
 		FD5F9F441EA776A300BD79B1 /* BaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD5F9F431EA776A300BD79B1 /* BaseController.swift */; };
 		FD5F9F461EA776A300BD79B1 /* MarketViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD5F9F451EA776A300BD79B1 /* MarketViewController.swift */; };
@@ -55,6 +58,7 @@
 		FD974B061EC9C0100066AC27 /* RedactorTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD974B051EC9C0100066AC27 /* RedactorTextField.swift */; };
 		FD974B081EC9EF3C0066AC27 /* CGPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD974B071EC9EF3C0066AC27 /* CGPoint.swift */; };
 		FDA3CB0C1EBC8F4A0048AE71 /* AndaleMono.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FDA3CB0B1EBC8F4A0048AE71 /* AndaleMono.ttf */; };
+		FDADA60A1F42FD3100D81892 /* Uploadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDADA6091F42FD3100D81892 /* Uploadable.swift */; };
 		FDC060341EB8D9D5007C6A71 /* ExpandableButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDC060331EB8D9D5007C6A71 /* ExpandableButton.swift */; };
 		FDC3AB101EBB36AF00141241 /* UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDC3AB0F1EBB36AF00141241 /* UITextField.swift */; };
 		FDC3AB121EBB428C00141241 /* TabBar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FDC3AB111EBB428C00141241 /* TabBar.storyboard */; };
@@ -87,6 +91,8 @@
 		FD4E2F4A1EDF2700009C74D3 /* CommonQuestionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommonQuestionCell.swift; sourceTree = "<group>"; };
 		FD4E2F4C1EE07171009C74D3 /* CommonQuestion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommonQuestion.swift; sourceTree = "<group>"; };
 		FD4E2F4E1EE1B7AD009C74D3 /* DeviceService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceService.swift; sourceTree = "<group>"; };
+		FD4FE91D1F1518D7006F2AE2 /* SocialService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocialService.swift; sourceTree = "<group>"; };
+		FD4FE91F1F15254D006F2AE2 /* SocialWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocialWebViewController.swift; sourceTree = "<group>"; };
 		FD5409A81EC2699300E93B7F /* RedactorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RedactorViewController.swift; sourceTree = "<group>"; };
 		FD5409AC1EC32A2400E93B7F /* LikeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LikeView.swift; sourceTree = "<group>"; };
 		FD5409AE1EC5D78000E93B7F /* Poshik.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Poshik.storyboard; sourceTree = "<group>"; };
@@ -99,6 +105,7 @@
 		FD59599F1ECB96C500BB2D9D /* CategoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
 		FD5959A11ECB973900BB2D9D /* Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		FD5959A31ECC8DC700BB2D9D /* LoginService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginService.swift; sourceTree = "<group>"; };
+		FD5A914E1F3CBFA7008EE04F /* NSData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSData.swift; sourceTree = "<group>"; };
 		FD5F9F3E1EA776A300BD79B1 /* kulon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = kulon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD5F9F411EA776A300BD79B1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FD5F9F431EA776A300BD79B1 /* BaseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseController.swift; sourceTree = "<group>"; };
@@ -128,6 +135,7 @@
 		FD974B051EC9C0100066AC27 /* RedactorTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RedactorTextField.swift; sourceTree = "<group>"; };
 		FD974B071EC9EF3C0066AC27 /* CGPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CGPoint.swift; sourceTree = "<group>"; };
 		FDA3CB0B1EBC8F4A0048AE71 /* AndaleMono.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = AndaleMono.ttf; sourceTree = "<group>"; };
+		FDADA6091F42FD3100D81892 /* Uploadable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Uploadable.swift; sourceTree = "<group>"; };
 		FDC060331EB8D9D5007C6A71 /* ExpandableButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpandableButton.swift; sourceTree = "<group>"; };
 		FDC3AB0F1EBB36AF00141241 /* UITextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITextField.swift; sourceTree = "<group>"; };
 		FDC3AB111EBB428C00141241 /* TabBar.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TabBar.storyboard; sourceTree = "<group>"; };
@@ -284,6 +292,7 @@
 				FD0EF8FB1ECF38D5005F5ACF /* ApiService.swift */,
 				FD0EF8FD1ECF397C005F5ACF /* TockenService.swift */,
 				FD4E2F4E1EE1B7AD009C74D3 /* DeviceService.swift */,
+				FDADA6091F42FD3100D81892 /* Uploadable.swift */,
 			);
 			name = Services;
 			sourceTree = "<group>";
@@ -364,6 +373,7 @@
 				FD974B071EC9EF3C0066AC27 /* CGPoint.swift */,
 				FD59599D1ECB51B900BB2D9D /* UIView.swift */,
 				FD92DDDD1ED770A400E331A3 /* UIImage.swift */,
+				FD5A914E1F3CBFA7008EE04F /* NSData.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -374,6 +384,7 @@
 				FD7DBAC51ED1C90500D97D45 /* UserCredentialsService.swift */,
 				FD5959A31ECC8DC700BB2D9D /* LoginService.swift */,
 				FD7DBAB81ECF597000D97D45 /* RegistrationService.swift */,
+				FD4FE91D1F1518D7006F2AE2 /* SocialService.swift */,
 			);
 			name = Services;
 			sourceTree = "<group>";
@@ -383,6 +394,7 @@
 			children = (
 				FDC89DFB1EBA4ABA004D3F9F /* AuthViewController.swift */,
 				FDC89DFD1EBA4B4E004D3F9F /* RegistrationViewController.swift */,
+				FD4FE91F1F15254D006F2AE2 /* SocialWebViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -541,6 +553,8 @@
 				FD5409AD1EC32A2400E93B7F /* LikeView.swift in Sources */,
 				FDC9E31C1EBFBE4000B6DC25 /* SettingsViewController.swift in Sources */,
 				FD59599C1ECB4ADB00BB2D9D /* PoshikViewModel.swift in Sources */,
+				FD4FE9201F15254D006F2AE2 /* SocialWebViewController.swift in Sources */,
+				FDADA60A1F42FD3100D81892 /* Uploadable.swift in Sources */,
 				FDC9E31E1EBFBF8700B6DC25 /* Identifiers.swift in Sources */,
 				FDEAE6991EAAB26500B9F504 /* MyImagesViewController.swift in Sources */,
 				FD5F9F561EA79ED700BD79B1 /* FloatingPoint.swift in Sources */,
@@ -562,6 +576,7 @@
 				FDC9E3201EBFC0CF00B6DC25 /* SettingsCell.swift in Sources */,
 				FD0EF9001ECF39AF005F5ACF /* MarketService.swift in Sources */,
 				FD5409C01EC99DDD00E93B7F /* ColorPickerView.swift in Sources */,
+				FD4FE91E1F1518D7006F2AE2 /* SocialService.swift in Sources */,
 				FD7DBAC81ED1DA6800D97D45 /* UIWindow.swift in Sources */,
 				FD5F9F5D1EA8093900BD79B1 /* TopBarBackgroundView.swift in Sources */,
 				FD7DBACC1ED2DDBD00D97D45 /* SettingsWebViewController.swift in Sources */,
@@ -570,6 +585,7 @@
 				FDC89DFC1EBA4ABA004D3F9F /* AuthViewController.swift in Sources */,
 				FD5F9F461EA776A300BD79B1 /* MarketViewController.swift in Sources */,
 				FD974B061EC9C0100066AC27 /* RedactorTextField.swift in Sources */,
+				FD5A914F1F3CBFA7008EE04F /* NSData.swift in Sources */,
 				FD5959A41ECC8DC700BB2D9D /* LoginService.swift in Sources */,
 				FD7DBACA1ED2254C00D97D45 /* MyImagesService.swift in Sources */,
 				FD5F9F421EA776A300BD79B1 /* AppDelegate.swift in Sources */,

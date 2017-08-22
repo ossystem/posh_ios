@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="bBw-4M-5oh">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="bBw-4M-5oh">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -67,6 +67,9 @@
                                                 <real key="value" value="8"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <segue destination="ym3-2X-oUr" kind="show" identifier="FBlogin" id="LFR-Jr-f6d"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TPL-1Y-g86" customClass="RoundedButton" customModule="kulon" customModuleProvider="target">
                                         <rect key="frame" x="40.5" y="362" width="295" height="50"/>
@@ -90,6 +93,9 @@
                                                 <real key="value" value="8"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <segue destination="ym3-2X-oUr" kind="show" identifier="VKlogin" id="A1R-rO-53u"/>
+                                        </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="или" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mDD-Ah-69K">
                                         <rect key="frame" x="170.5" y="429" width="34" height="24"/>
@@ -178,6 +184,40 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VXi-Bg-5L9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-2176.8000000000002" y="1227.4362818590705"/>
+        </scene>
+        <!--Social Web View Controller-->
+        <scene sceneID="NJa-fr-4P9">
+            <objects>
+                <viewController id="ym3-2X-oUr" customClass="SocialWebViewController" customModule="kulon" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="pRm-J1-uz4"/>
+                        <viewControllerLayoutGuide type="bottom" id="Ayy-zF-BAf"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="6sw-rE-4JE">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vRm-O4-UU8">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="vRm-O4-UU8" firstAttribute="top" secondItem="6sw-rE-4JE" secondAttribute="top" id="NNy-B7-zef"/>
+                            <constraint firstItem="Ayy-zF-BAf" firstAttribute="top" secondItem="vRm-O4-UU8" secondAttribute="bottom" id="SyU-0z-QCX"/>
+                            <constraint firstAttribute="trailing" secondItem="vRm-O4-UU8" secondAttribute="trailing" id="l6h-IZ-fBP"/>
+                            <constraint firstItem="vRm-O4-UU8" firstAttribute="leading" secondItem="6sw-rE-4JE" secondAttribute="leading" id="opW-K7-eEQ"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="webView" destination="vRm-O4-UU8" id="D6s-KF-Ifr"/>
+                        <segue destination="6pY-kJ-nUd" kind="show" identifier="MainTabBarViewControllerID" id="sgP-up-qVg"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1jP-rH-m5K" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1857" y="2005"/>
         </scene>
         <!--Registration View Controller-->
         <scene sceneID="HXt-Qd-xVD">
@@ -461,4 +501,8 @@
         <image name="icon_vk_rec" width="30" height="30"/>
         <image name="logo" width="140" height="139"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="sgP-up-qVg"/>
+        <segue reference="LFR-Jr-f6d"/>
+    </inferredMetricsTieBreakers>
 </document>

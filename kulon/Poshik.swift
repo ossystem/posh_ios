@@ -16,14 +16,19 @@ enum ImageSize: String {
 }
 
 protocol Poshik: IdiableObject {
-    
+    var name : String { get }
     var isLiked: Bool { get set }
     var isPurchased: Bool { get set }
     var imageRoute: String { get }
     func requestforImage(withSize size: ImageSize) -> URLRequest?
+    
 }
 
 extension Poshik {
+    
+    var name: String {
+        return "\(id)"
+    }
     
     func requestforImage(withSize size: ImageSize) -> URLRequest? {
         let url = URL(string: "http://kulon.jwma.ru/api/v1/\(imageRoute)/\(id)/img?size=\(size.rawValue)")
@@ -32,6 +37,10 @@ extension Poshik {
         
     }
     
+}
+
+protocol UploadablePoshik : Poshik {
+    var imageForUpload: ObservableUploadable { get }
 }
 
 class PoshikFromMarket: Poshik {
@@ -49,23 +58,33 @@ class PoshikFromMarket: Poshik {
     
 }
 
-class MyPoshikFromMarket: Poshik {
+class MyPoshikFromMarket: UploadablePoshik {
     
-    var isPurchased: Bool = false
+    lazy var imageForUpload: ObservableUploadable = UploadableImage(with: self)
+    
+    var isPurchased: Bool = true
     var isLiked: Bool = false
     var imageRoute: String = "poshiks/purchase"
     var id: Int = -1
+    
     
     required init(map: Map) throws {
         id <- map["id"]
         isLiked <- map["is_favorite"]
         isPurchased <- map["is_purchased"]
     }
+    
+    init(fromMarket poshik: Poshik) {
+        id = poshik.id
+        isLiked = poshik.isLiked
+    }
 }
 
-class MyPoshikUploaded: Poshik {
+class MyPoshikUploaded: UploadablePoshik {
+    lazy var imageForUpload: ObservableUploadable = UploadableImage(with: self)
+
     
-    var isPurchased: Bool = false
+    var isPurchased: Bool = true
     var isLiked: Bool = false
     var imageRoute: String = "poshiks/my"
     var id: Int = -1

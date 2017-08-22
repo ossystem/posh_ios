@@ -19,6 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if UserCredentialsService().isLoggedIn {
             window?.rootViewController = UIStoryboard(name: "TabBar", bundle: nil).instantiateInitialViewController()
         }
+        
         return true
     }
 

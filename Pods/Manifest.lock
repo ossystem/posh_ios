@@ -11,10 +11,15 @@ PODS:
     - RxSwift (~> 3.2)
   - RxCocoa (3.2.0):
     - RxSwift (~> 3.1)
+  - RxDataSources (1.0.4):
+    - RxCocoa (~> 3.0)
+    - RxSwift (~> 3.0)
   - RxGesture (1.0.0):
     - RxCocoa (~> 3.0)
     - RxSwift (~> 3.0)
   - RxSwift (3.2.0)
+  - SearchTextField (1.1.4)
+  - SnapKit (3.2.0)
 
 DEPENDENCIES:
   - Alamofire
@@ -22,7 +27,10 @@ DEPENDENCIES:
   - AlamofireObjectMapper
   - IMGLYColorPicker
   - RxBluetoothKit
+  - RxDataSources (~> 1.0)
   - RxGesture
+  - SearchTextField
+  - SnapKit (~> 3.2.0)
 
 SPEC CHECKSUMS:
   Alamofire: dc44b1600b800eb63da6a19039a0083d62a6a62d
@@ -32,9 +40,12 @@ SPEC CHECKSUMS:
   ObjectMapper: fb30f71e08470d1e5a20b199fafe1246281db898
   RxBluetoothKit: edf26cc5a1edbee8eff59cb9d0af88ac4e95c847
   RxCocoa: ccdf43101a70407097a29082f648ba1676075b30
+  RxDataSources: b3389acc5fe2eefb8fcd81a2b76a876ad08bc82a
   RxGesture: df17ca8be513640294c544b3165875e91de665ec
   RxSwift: 46574f70d416b7923c237195939cc488a7fbf3a0
+  SearchTextField: a8fe694213036c0c9c681dae049b6cc57ebbbea1
+  SnapKit: 1ca44df72cfa543218d177cb8aab029d10d86ea7
 
-PODFILE CHECKSUM: d7113b1ab66b76b7979290bd1115644986bcfca9
+PODFILE CHECKSUM: ce9499a2171a23453e8db5128d3ee4e1484fd279
 
-COCOAPODS: 1.1.1
+COCOAPODS: 1.2.1

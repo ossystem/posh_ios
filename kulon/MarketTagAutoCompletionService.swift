@@ -31,7 +31,7 @@ class MarketTag: IdiableObject, NamedObject {
     var id: Int = -1
     
     required init(map: Map) throws {
-        name <- map["name"]
+        name <- map["value"]
         id <- map["id"]
     }
     
@@ -48,7 +48,7 @@ class TagAutocompletionApiService: ApiService {
     
     static let shared = TagAutocompletionApiService()
     var method: HTTPMethod = .get
-    var route: String = "tag"
+    var route: String = "tags"
     
     typealias Parameter = TagAutocompletionParameter
     typealias Response = TagAutocompletions

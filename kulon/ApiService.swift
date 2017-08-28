@@ -102,7 +102,8 @@ extension ApiService {
                             
                             //TODO: try to rewrite with retryWhen
                             
-                            LoginService().loginWithStoredCredentials().subscribe(onNext: { _ in
+                            
+                            TokenService().refresh().subscribe(onNext: { _ in
                                 self.request(parameter: parameter).subscribe(onNext: { value in
                                     observer.onNext(value)
                                 }, onError: { error in

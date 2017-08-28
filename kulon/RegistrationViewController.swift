@@ -40,7 +40,7 @@ class RegistrationViewController: BaseViewController {
                     self.tryToCrateNewUrer(with: credentials)
                 } else {
                     sender.setWaiting(false)
-                    self.showErrorMessage(error)
+//                    self.showErrorMessage(error)
                 }
                 print(error.localizedDescription)
             }, onCompleted: {

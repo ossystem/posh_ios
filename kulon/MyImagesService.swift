@@ -16,7 +16,7 @@ class MyPoshiksApiService : ApiService {
     var method: HTTPMethod = .get
     var route: String = "poshiks/my"
     
-    typealias Response = MyPoshiks
+    typealias Response = MyPoshiksJSON
     typealias Parameter = ParameterNone
     
 }
@@ -26,7 +26,7 @@ class PurchasedPoshiksApiService : ApiService {
     var method: HTTPMethod = .get
     var route: String = "poshiks/purchase"
     
-    typealias Response = PurchasedPoshiks
+    typealias Response = PurchasedPoshiksJSON
     typealias Parameter = ParameterNone
     
 }
@@ -49,11 +49,11 @@ class MyPoshiksService {
     let purchasedPoshiksService = PurchasedPoshiksApiService()
     let addService = AddPoshikApiService()
     
-    func getMyPoshiks() -> Observable<MyPoshiks> {
+    func getMyPoshiks() -> Observable<MyPoshiksJSON> {
         return myPoshiksService.request(parameter: ParameterNone())
     }
     
-    func getPurchasedPoshiks() -> Observable<PurchasedPoshiks> {
+    func getPurchasedPoshiks() -> Observable<PurchasedPoshiksJSON> {
         return purchasedPoshiksService.request(parameter: ParameterNone())
     }
     
@@ -81,7 +81,7 @@ class PoshikFromRedactor : UploadableParameter {
     
 }
 
-class MyPoshiks : ResponseType {
+class MyPoshiksJSON : ResponseType {
     
     var poshiks: [MyPoshikUploaded] = []
     
@@ -94,7 +94,7 @@ class MyPoshiks : ResponseType {
     }
 }
 
-class PurchasedPoshiks: ResponseType {
+class PurchasedPoshiksJSON: ResponseType {
     var poshiks: [MyPoshikFromMarket] = []
     
     subscript(index: Int) -> Poshik {
@@ -103,5 +103,33 @@ class PurchasedPoshiks: ResponseType {
     
     required init(map: Map) throws {
         poshiks = try map.value("purchases")
+    }
+}
+
+class PurchasedPoshiks : ObservableType {
+    
+    private let service = MyPoshiksService()
+    
+    typealias E  = [Poshik]
+    
+    func subscribe<O:ObserverType>(_ observer: O) -> Disposable where O.E == E {
+        return service.getPurchasedPoshiks()
+            .asObservable()
+            .map { $0.poshiks }
+            .subscribe(observer)
+    }
+}
+
+class MyPsohiks : ObservableType {
+    
+    private let service = MyPoshiksService()
+    
+    typealias E  = [Poshik]
+    
+    func subscribe<O:ObserverType>(_ observer: O) -> Disposable where O.E == E {
+        return service.getMyPoshiks()
+            .asObservable()
+            .map { $0.poshiks }
+            .subscribe(observer)
     }
 }

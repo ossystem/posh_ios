@@ -5,21 +5,31 @@ import UIKit
 import ImageIO
 import Alamofire
 import AlamofireImage
+import SnapKit
 
 class KulonImageView: RoundedImageView {
     var currentRequest: DataRequest?
-    
+    let activity = UIActivityIndicatorView(activityIndicatorStyle: .white)
+
     public override func setImage(with request: URLRequest) {
         
+        addSubview(activity)
+        activity.snp.makeConstraints {
+            $0.center.equalToSuperview()
+        }
+        activity.startAnimating()
+        
         currentRequest = Alamofire.request(request).responseData {
-            response in
+            [weak self] response in
+            self?.activity.removeFromSuperview()
             if let token = response.response?.allHeaderFields["Authorization"] as? String {
                 TokenService().token = token
             }
             if let data = response.result.value {
-                self.image = UIImage.gif(data: data)
+                self?.image = UIImage.gif(data: data)
             }
-            self.currentRequest = nil
+            self?.currentRequest = nil
+            
         }
     }
     

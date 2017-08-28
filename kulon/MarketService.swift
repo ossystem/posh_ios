@@ -11,8 +11,7 @@ import Alamofire
 import ObjectMapper
 import RxSwift
 
-class MarketParameter: ParameterType {
-    
+class MarketParameter: ParameterType, PaginationParameter {
     
     var category: PoshikCategory? {
         didSet {
@@ -21,6 +20,7 @@ class MarketParameter: ParameterType {
             }
         }
     }
+    
     var tag: String? {
         didSet {
             if tag != nil {
@@ -29,14 +29,18 @@ class MarketParameter: ParameterType {
         }
     }
     
+    var page: Int = 1
+    
     func toJSON() -> [String : Any]? {
+        
+        var parameters: [String : Any]  = ["page": page]
         if let category = category {
-            return ["category" : category.id]
+            parameters["category"] = category.id
         } else if let tag = tag {
-            return ["search" : tag]
-        } else {
-            return nil
+            parameters["search"] = tag
         }
+        
+        return parameters
     }
 }
 
@@ -83,6 +87,10 @@ class FavoritesApiService: ApiService {
     
 }
 
+protocol PaginationParameter {
+    var page: Int { get set }
+}
+
 
 class MarketService {
     
@@ -108,3 +116,41 @@ class MarketService {
     }
     
 }
+
+protocol Parametrized {
+    var parameter: Variable<ParameterType> { get }
+    
+    func update(parameterValue: ParameterType)
+}
+
+class PoshiksFromMarket: ObservableType, Parametrized {
+    
+    let service = MarketService()
+    
+    typealias E = [Poshik]
+    
+    let parameter: Variable<ParameterType>
+    
+    func subscribe<O:ObserverType>(_ observer: O) -> Disposable where O.E == E {
+        return parameter.asObservable()
+            .flatMap { [unowned self] in
+            self.service.getPoshiks(parameter: $0 as! MarketParameter)
+        }
+            .map {
+            $0.poshiks
+        }
+        .subscribe(observer)
+        
+        
+    }
+    
+    init() {
+       parameter = Variable<ParameterType>(MarketParameter())
+    }
+    
+    func update(parameterValue: ParameterType) {
+        parameter.value = parameterValue
+    }
+}
+
+

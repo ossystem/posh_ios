@@ -9,15 +9,13 @@
 import UIKit
 import RxBluetoothKit
 import RxSwift
+import RxCocoa
+import RxDataSources
+import SearchTextField
 
-class StoreViewController: BaseViewController, UICollectionViewDelegate, UICollectionViewDataSource, ExpandableButtonDelegate, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate {
+class StoreViewController: BaseViewController, ExpandableButtonDelegate, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate {
 
-    @IBOutlet weak var collectionView: UICollectionView! {
-        didSet {
-            collectionView.delegate = self
-            collectionView.dataSource = self
-        }
-    }
+    @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var categoriesTableView: UITableView! {
         didSet {
             categoriesTableView.delegate = self
@@ -26,7 +24,7 @@ class StoreViewController: BaseViewController, UICollectionViewDelegate, UIColle
     }
     @IBOutlet weak var topButton: ExpandableButton!
     @IBOutlet weak var tagInputView: UIView!
-    @IBOutlet weak var tagTextField: UITextField! {
+    @IBOutlet weak var tagTextField: SearchTextField! {
         didSet {
             tagTextField.delegate = self
         }
@@ -39,7 +37,7 @@ class StoreViewController: BaseViewController, UICollectionViewDelegate, UIColle
     private let marketService = MarketService()
     
     var bag: DisposeBag = DisposeBag()
-    var poshiks: [Poshik] = []
+    var poshiks: PaginableAndRefreshablePoshiksFromMarket!
     var categories: [PoshikCategory] = []
     var marketParameter =  MarketParameter()
     
@@ -52,17 +50,67 @@ class StoreViewController: BaseViewController, UICollectionViewDelegate, UIColle
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         categoriesTableView.contentInset = UIEdgeInsets(top: 140, left: 0, bottom: 0, right: 0)
         categoriesTableView.tableFooterView = UIView() //hack to remove emty
-    }
-    
-    @IBAction func unwindToThisViewController(segue: UIStoryboardSegue) {
-        loadData()
+        
+        collectionView.refreshControl = UIRefreshControl()
+        
+        let dataSource = RxCollectionViewSectionedReloadDataSource<StandardSectionModel<Poshik>>()
+        
+        dataSource.configureCell = { ds, cv, ip, item in
+            let cell = cv.dequeueReusableCell(withReuseIdentifier: Identifiers.Cell.poshikCell, for: ip) as! PoshikCell
+            cell.configure(with: item)
+            self.poshiks.loadNextPageIfNeeded(for: ip)
+            return cell
+        }
+        
+        
+        
+        collectionView.rx.modelSelected(Poshik.self).subscribe(onNext: { [unowned self] poshik in
+            let model = PoshikViewModel(poshik: poshik, startingFrame: .zero)
+            self.performSegue(withIdentifier: Identifiers.Segue.PoshikViewController, sender: model)
+        }).disposed(by: bag)
+        
+        collectionView.contentInset = UIEdgeInsets(top: 70, left: 0, bottom: 0, right: 0)
+
+        let refreshConrol = UIRefreshControl()
+        
+        
+        poshiks = PaginableAndRefreshablePoshiksFromMarket(updatedOn: refreshConrol)
+        
+        poshiks
+            .asObservable()
+            .map{ [StandardSectionModel(items: $0)] }
+            .bindTo(collectionView.rx.items(dataSource: dataSource))
+            .disposed(by: bag)
+        
+        collectionView.refreshControl = refreshConrol
+        
+        tagTextField.inlineMode = true
+        tagTextField.userStoppedTypingHandler = { [unowned self] in
+            if let criteria = self.tagTextField.text {
+                if criteria.characters.count > 1 {
+                    self.tagTextField.showLoadingIndicator()
+                    
+                    self.marketService.getAutocompletedTagsFor(string: criteria)
+                        .map {
+                            $0.tags
+                                .map { SearchTextFieldItem(title: $0.name.uppercased()) }
+                        }
+                        .subscribe(onNext: {
+                            self.tagTextField.stopLoadingIndicator()
+                            self.tagTextField.filterItems($0)
+                        },
+                                   onError: { _ in
+                            self.tagTextField.stopLoadingIndicator()
+                        }).disposed(by: self.bag)
+                    
+                }
+            }
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setupInterface()
-        loadData()
-        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -72,27 +120,16 @@ class StoreViewController: BaseViewController, UICollectionViewDelegate, UIColle
     
     let categoryButton = RoundedButton.button(with: #imageLiteral(resourceName: "icon_top_category_red"), highlightIcon: #imageLiteral(resourceName: "icon_top_category_white"),target: self, action: #selector(searchCategories))
     let tagButton = RoundedButton.button(with: #imageLiteral(resourceName: "icon_top_tag"), highlightIcon: #imageLiteral(resourceName: "icon_top_tag_selected"), target: self, action: #selector(searchTags))
+    let resetButton = RoundedButton.button(with: #imageLiteral(resourceName: "icon_top_cancel"), highlightIcon: #imageLiteral(resourceName: "icon_top_tag_selected"), target: self, action: #selector(resetFilters))
 
     
     func setupInterface(){
         topButton.subButtons = [
             categoryButton,
+            resetButton,
             tagButton
         ]
         blurView = UIVisualEffectView(frame: view.bounds)
-    }
-    
-    func loadData() {
-        marketService.getPoshiks(parameter: marketParameter)
-            .subscribe(onNext: {
-                poshiks in
-                self.poshiks = poshiks.poshiks
-                self.collectionView.reloadData()
-            }, onError: {
-                error in
-                print(error.localizedDescription)
-            }).addDisposableTo(bag)
-        
     }
     
     func loadCategories() {
@@ -108,6 +145,11 @@ class StoreViewController: BaseViewController, UICollectionViewDelegate, UIColle
     
     func searchCategories() {
         startCategorySelection()
+    }
+    
+    func resetFilters() {
+        poshiks.update(parameterValue: MarketParameter())
+        topButton.hideButtons()
     }
     
     private func statrSearching() {
@@ -141,29 +183,10 @@ class StoreViewController: BaseViewController, UICollectionViewDelegate, UIColle
     
     func didSelect(category: PoshikCategory) {
         marketParameter.category = category
+        poshiks.update(parameterValue: marketParameter)
         topButton.hideButtons()
     }
 
-    
-    //MARK: - Collection view datasource
-
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Identifiers.Cell.poshikCell, for: indexPath) as! PoshikCell
-        cell.configure(with: poshiks[indexPath.row])
-        return cell
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return poshiks.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let poshik = poshiks[indexPath.row]
-        let frame = collectionView.cellForItem(at: indexPath)?.frame
-        let model = PoshikViewModel(poshik: poshik, startingFrame: frame!)
-        performSegue(withIdentifier: Identifiers.Segue.PoshikViewController, sender: model)
-    }
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == Identifiers.Segue.PoshikViewController,
             let sender = sender as? PoshikViewModel,
@@ -187,7 +210,6 @@ class StoreViewController: BaseViewController, UICollectionViewDelegate, UIColle
     func willShrink(_ button: ExpandableButton) {
         endSearching()
         endCategorySelection()
-        loadData()
         UIView.animate(withDuration: 0.3, animations: {
             self.blurView.effect = nil
         },completion: { completed in
@@ -234,8 +256,13 @@ class StoreViewController: BaseViewController, UICollectionViewDelegate, UIColle
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         marketParameter.tag = textField.text
-        loadData()
+        poshiks.update(parameterValue: marketParameter)
         topButton.hideButtons()
+        return true
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        print(string)
         return true
     }
 

@@ -63,7 +63,7 @@ class RedactorViewController: BaseViewController, RedactorTextFieldDelegate, UIG
             self.dismiss(animated: true, completion: nil)
         }, onError: { error in
             activiti.removeFromSuperview()
-            self.showErrorMessage(error)
+//            self.showErrorMessage(error)
         }).disposed(by: stepBag)
         textView.becomeFirstResponder()
     }

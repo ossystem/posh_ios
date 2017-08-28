@@ -10,6 +10,8 @@ import Foundation
 import UIKit
 import RxSwift
 
+import RxBluetoothKit
+
 class PoshikViewController: BaseViewController, UIViewControllerTransitioningDelegate {
     
     var model: PoshikViewModel!
@@ -19,7 +21,7 @@ class PoshikViewController: BaseViewController, UIViewControllerTransitioningDel
     
     private let disposeBag = DisposeBag()
     
-    @IBOutlet weak var poshikImage: RoundedImageView!    
+    @IBOutlet weak var poshikImage: KulonImageView!
     @IBOutlet weak var blurView: UIVisualEffectView!
     
     @IBOutlet weak var rightButton: RoundedButton!
@@ -30,7 +32,6 @@ class PoshikViewController: BaseViewController, UIViewControllerTransitioningDel
         
         if let request = model.poshik.requestforImage(withSize: .middle) {
             poshikImage.setImage(with: request)
-//            poshikImage.af_setImage(withURLRequest: request)
         }
         
         setupButtons()
@@ -86,7 +87,7 @@ class PoshikViewController: BaseViewController, UIViewControllerTransitioningDel
             }, onError: { error in
                 sender.setWaiting(false)
                 self.setupButtons()
-                self.showErrorMessage(error)
+//                self.showErrorMessage(error)
             }).disposed(by: disposeBag)
         } else {
             poshikService.delete().subscribe(onNext: { _ in
@@ -96,7 +97,7 @@ class PoshikViewController: BaseViewController, UIViewControllerTransitioningDel
                 self.performSegue(withIdentifier: "unwind", sender: nil)
             }, onError: { error in
                 sender.setWaiting(false)
-                self.showErrorMessage(error)
+//                self.showErrorMessage(error)
             }).disposed(by: disposeBag)
         }
     }
@@ -109,7 +110,7 @@ class PoshikViewController: BaseViewController, UIViewControllerTransitioningDel
                 sender.setWaiting(false)
                 self.setupButtons()
             }, onError: { error in
-                self.showErrorMessage(error)
+//                self.showErrorMessage(error)
             }).disposed(by: disposeBag)
         } else {
             var poshik: UploadablePoshik
@@ -119,11 +120,24 @@ class PoshikViewController: BaseViewController, UIViewControllerTransitioningDel
             } else {
                 poshik = model.poshik as! UploadablePoshik
             }
+            
+            sender.setWaiting(true, activityIndicatorColor: UIColor.Kulon.lightOrange)
             bleService.set(poshik)
-                .subscribe {
+                .subscribe(onNext:  {
+                    sender.setWaiting(false)
+                    self.setupButtons()
+
                     print($0)
                     print("set poshik")
-            }.disposed(by: disposeBag)
+            },
+                           onError: { error in
+                            //TODO: make more usefull error mapping
+                    sender.setWaiting(false)
+                    
+                    self.showErrorMessage(error.localizedDescription)
+                    self.setupButtons()
+
+                }).disposed(by: disposeBag)
             
         }
     }
@@ -140,5 +154,11 @@ class PoshikViewController: BaseViewController, UIViewControllerTransitioningDel
             return PoshikPresentationAnimator(with: model?.startingFrame ?? poshikImage.frame)
         }
         return nil
+    }
+}
+
+extension BluetoothError {
+    public var localizedDescription: String {
+            return self.description
     }
 }

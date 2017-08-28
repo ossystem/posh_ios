@@ -240,8 +240,8 @@
                             <view clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ytE-nE-SUQ" customClass="RoundedView" customModule="kulon" customModuleProvider="target">
                                 <rect key="frame" x="43.5" y="110" width="288" height="288"/>
                                 <subviews>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" text="ghbdt" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="jtl-60-391" customClass="RedactorTextField" customModule="kulon" customModuleProvider="target">
-                                        <rect key="frame" x="120.5" y="127.5" width="48.5" height="33"/>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" text="Text" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="jtl-60-391" customClass="RedactorTextField" customModule="kulon" customModuleProvider="target">
+                                        <rect key="frame" x="126" y="127.5" width="37.5" height="33"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="no" spellCheckingType="no"/>
@@ -287,7 +287,7 @@
                 <viewControllerPlaceholder storyboardName="Poshik" id="USw-RR-vDc" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jEv-Jn-ylT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1395" y="-18"/>
+            <point key="canvasLocation" x="1274" y="-66"/>
         </scene>
     </scenes>
     <resources>

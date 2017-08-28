@@ -52,7 +52,10 @@
 		FD7DBACA1ED2254C00D97D45 /* MyImagesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7DBAC91ED2254C00D97D45 /* MyImagesService.swift */; };
 		FD7DBACC1ED2DDBD00D97D45 /* SettingsWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7DBACB1ED2DDBD00D97D45 /* SettingsWebViewController.swift */; };
 		FD7DBACE1ED2E48800D97D45 /* SettingsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7DBACD1ED2E48800D97D45 /* SettingsService.swift */; };
+		FD7DC8331F4DBFF600C2DF5D /* Refreshable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7DC8321F4DBFF600C2DF5D /* Refreshable.swift */; };
 		FD7DDF161EB3BE7800B963DC /* BLEService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7DDF151EB3BE7800B963DC /* BLEService.swift */; };
+		FD90E89C1F4DCA5A00600017 /* StandardSectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD90E89B1F4DCA5A00600017 /* StandardSectionModel.swift */; };
+		FD90E89E1F4DEEE900600017 /* Paginable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD90E89D1F4DEEE900600017 /* Paginable.swift */; };
 		FD92DDDC1ED71EE200E331A3 /* UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD92DDDB1ED71EE200E331A3 /* UIButton.swift */; };
 		FD92DDDE1ED770A400E331A3 /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD92DDDD1ED770A400E331A3 /* UIImage.swift */; };
 		FD974B061EC9C0100066AC27 /* RedactorTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD974B051EC9C0100066AC27 /* RedactorTextField.swift */; };
@@ -129,7 +132,10 @@
 		FD7DBAC91ED2254C00D97D45 /* MyImagesService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyImagesService.swift; sourceTree = "<group>"; };
 		FD7DBACB1ED2DDBD00D97D45 /* SettingsWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsWebViewController.swift; sourceTree = "<group>"; };
 		FD7DBACD1ED2E48800D97D45 /* SettingsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsService.swift; sourceTree = "<group>"; };
+		FD7DC8321F4DBFF600C2DF5D /* Refreshable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Refreshable.swift; sourceTree = "<group>"; };
 		FD7DDF151EB3BE7800B963DC /* BLEService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BLEService.swift; sourceTree = "<group>"; };
+		FD90E89B1F4DCA5A00600017 /* StandardSectionModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StandardSectionModel.swift; sourceTree = "<group>"; };
+		FD90E89D1F4DEEE900600017 /* Paginable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Paginable.swift; sourceTree = "<group>"; };
 		FD92DDDB1ED71EE200E331A3 /* UIButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIButton.swift; sourceTree = "<group>"; };
 		FD92DDDD1ED770A400E331A3 /* UIImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImage.swift; sourceTree = "<group>"; };
 		FD974B051EC9C0100066AC27 /* RedactorTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RedactorTextField.swift; sourceTree = "<group>"; };
@@ -188,6 +194,7 @@
 		FD5409B21EC5FA1400E93B7F /* Stories */ = {
 			isa = PBXGroup;
 			children = (
+				FD90E89A1F4DCA3300600017 /* Base */,
 				FD5409BC1EC5FE5600E93B7F /* TabBar */,
 				FD5409B71EC5FD2F00E93B7F /* Poshik */,
 				FD5409B61EC5FAE700E93B7F /* Settings */,
@@ -293,6 +300,8 @@
 				FD0EF8FD1ECF397C005F5ACF /* TockenService.swift */,
 				FD4E2F4E1EE1B7AD009C74D3 /* DeviceService.swift */,
 				FDADA6091F42FD3100D81892 /* Uploadable.swift */,
+				FD7DC8321F4DBFF600C2DF5D /* Refreshable.swift */,
+				FD90E89D1F4DEEE900600017 /* Paginable.swift */,
 			);
 			name = Services;
 			sourceTree = "<group>";
@@ -358,6 +367,7 @@
 				FDC89DF51EBA3799004D3F9F /* RoundedView.swift */,
 				FD5F9F5F1EA80CF500BD79B1 /* RoundedImageView.swift */,
 				FDC060331EB8D9D5007C6A71 /* ExpandableButton.swift */,
+				FD90E89B1F4DCA5A00600017 /* StandardSectionModel.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -406,6 +416,13 @@
 				FDC89DF81EBA4A2B004D3F9F /* DismissAnimator.swift */,
 			);
 			name = PresentingAnimators;
+			sourceTree = "<group>";
+		};
+		FD90E89A1F4DCA3300600017 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Base;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -530,7 +547,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -543,6 +560,7 @@
 				FD59599E1ECB51B900BB2D9D /* UIView.swift in Sources */,
 				FDDA3EAD1EFD709A00AA8A19 /* CollectionHeaderView.swift in Sources */,
 				FD4E2F4D1EE07171009C74D3 /* CommonQuestion.swift in Sources */,
+				FD90E89C1F4DCA5A00600017 /* StandardSectionModel.swift in Sources */,
 				FD92DDDE1ED770A400E331A3 /* UIImage.swift in Sources */,
 				FD7DBAC01ED0918400D97D45 /* MarketViewModel.swift in Sources */,
 				FD7DBAB91ECF597000D97D45 /* RegistrationService.swift in Sources */,
@@ -550,11 +568,13 @@
 				FD5409B11EC5F9F900E93B7F /* PoshikViewController.swift in Sources */,
 				FD5F9F601EA80CF500BD79B1 /* RoundedImageView.swift in Sources */,
 				FD7DDF161EB3BE7800B963DC /* BLEService.swift in Sources */,
+				FD90E89E1F4DEEE900600017 /* Paginable.swift in Sources */,
 				FD5409AD1EC32A2400E93B7F /* LikeView.swift in Sources */,
 				FDC9E31C1EBFBE4000B6DC25 /* SettingsViewController.swift in Sources */,
 				FD59599C1ECB4ADB00BB2D9D /* PoshikViewModel.swift in Sources */,
 				FD4FE9201F15254D006F2AE2 /* SocialWebViewController.swift in Sources */,
 				FDADA60A1F42FD3100D81892 /* Uploadable.swift in Sources */,
+				FD7DC8331F4DBFF600C2DF5D /* Refreshable.swift in Sources */,
 				FDC9E31E1EBFBF8700B6DC25 /* Identifiers.swift in Sources */,
 				FDEAE6991EAAB26500B9F504 /* MyImagesViewController.swift in Sources */,
 				FD5F9F561EA79ED700BD79B1 /* FloatingPoint.swift in Sources */,

@@ -37,6 +37,7 @@ class MyImagesViewController: BaseViewController, UICollectionViewDelegate, UICo
             if hasPurchased { sections.append("Purchases") }
             return sections
         }
+        //TODO: I think it is needed to be refactor
         var count: Int {
             return (hasMy ? 1 : 0) + (hasPurchased ? 1 : 0)
         }
@@ -70,16 +71,26 @@ class MyImagesViewController: BaseViewController, UICollectionViewDelegate, UICo
         topBar.button.rx.tap.subscribe(onNext: {
             self.addTextImage()
         }).disposed(by: bag)
+        
+        let refreshControl = UIRefreshControl()
+        
+        collectionView.refreshControl = refreshControl
+        
+        refreshControl.rx.controlEvent(.valueChanged).startWith(())
+            .subscribe(onNext: { [unowned self] in
+            self.loadData()
+            refreshControl.endRefreshing()
+        }).disposed(by: bag)
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        loadData()
-    }
-    
-    @IBAction func unwindToThisViewController(segue: UIStoryboardSegue) {
-        loadData()
-    }
+//    override func viewWillAppear(_ animated: Bool) {
+//        super.viewWillAppear(animated)
+//        loadData()
+//    }
+//    
+//    @IBAction func unwindToThisViewController(segue: UIStoryboardSegue) {
+//        loadData()
+//    }
     
     func loadData() {
         blurView = UIVisualEffectView(frame: view.bounds)

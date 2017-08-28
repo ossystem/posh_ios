@@ -43,7 +43,7 @@ class FAQViewController: BaseViewController, UITableViewDataSource, UITableViewD
                 self?.tableView.reloadData()
             }, onError: {
                 [weak self] error in
-                self?.showErrorMessage(error)
+//                self?.showErrorMessage(error)
         }).addDisposableTo(bag)
     }
     

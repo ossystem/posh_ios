@@ -7,8 +7,15 @@ target ‘kulon’ do
     pod 'IMGLYColorPicker'
     # rx guestures wrapper
     pod 'RxGesture'
+    
+    pod 'RxDataSources', '~> 1.0'
+
     # networking
     pod 'Alamofire'
     pod 'AlamofireImage'
     pod 'AlamofireObjectMapper'
+    # layout
+    pod 'SnapKit', '~> 3.2.0'
+    
+    pod 'SearchTextField'
 end

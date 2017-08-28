@@ -58,4 +58,8 @@ class SocialWebViewController : UIViewController, UIWebViewDelegate {
     func showAuthError() {
         
     }
+    
+    @IBAction func cloButtonTapped(_ sender: Any) {
+        dismiss(animated:true, completion: nil)
+    }
 }

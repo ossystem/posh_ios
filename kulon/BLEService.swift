@@ -32,6 +32,8 @@ enum DeviceCharacteristic: String, CharacteristicIdentifier {
     }
 }
 
+
+
 enum DeviceService: String, ServiceIdentifier {
     
     case deviceInformation = "180A"
@@ -43,6 +45,8 @@ enum DeviceService: String, ServiceIdentifier {
         return CBUUID(string: self.rawValue.uppercased())
     }
 }
+
+
 
 class KulonService {
     
@@ -57,11 +61,19 @@ class KulonService {
         return notifications.setNotificationAndMonitorUpdates().debug()
     }
     
-    init(_ characteristics: [Characteristic]) {
+    init(_ characteristics: [Characteristic]) throws {
         service = characteristics[0].service
-        control = characteristics.first(where: { $0.uuid == DeviceCharacteristic.control.uuid })!
-        upload = characteristics.first(where: { $0.uuid == DeviceCharacteristic.fileUpload.uuid })!
-        notifications = characteristics.first(where: { $0.uuid == DeviceCharacteristic.notifications.uuid })!
+        guard
+            let control = characteristics.first(where: { $0.uuid == DeviceCharacteristic.control.uuid }),
+            let upload = characteristics.first(where: { $0.uuid == DeviceCharacteristic.fileUpload.uuid }),
+            let notifications = characteristics.first(where: { $0.uuid == DeviceCharacteristic.notifications.uuid })
+            else { throw RecognizingDeviceError() }
+        
+        self.control = control
+        self.upload = upload
+        self.notifications = notifications
+        
+        print(service.peripheral.identifier.uuidString)
     }
     
     deinit {
@@ -69,6 +81,10 @@ class KulonService {
         .subscribe().disposed(by: disposeBag)
         print("service deinited")
     }
+}
+
+class RecognizingDeviceError: Error {
+    
 }
 
 enum FileOperationResult {
@@ -94,9 +110,18 @@ enum FileOperationResult {
 }
 
 
-class DeviceError : Error {
-    
+class DeviceError : LocalizedError {
+    var localizedDescription: String {
+        return "Device error"
+    }
 }
+
+class BluetoothPoweredOffError : LocalizedError {
+    var localizedDescription: String {
+        return "Bluetooth is not active"
+    }
+}
+
 
 class BLEService {
 
@@ -104,22 +129,26 @@ class BLEService {
     
     let disposeBag = DisposeBag()
     let manager = BluetoothManager(queue: .main)
-    var imageServiceFound: PublishSubject<Service> = PublishSubject<Service>()
-    var controlCharacteristicDiscovered:  ReplaySubject<Characteristic> = ReplaySubject<Characteristic>.create(bufferSize: 1)
-    var uploadCharacteriscticDiscovered: ReplaySubject<Characteristic> = ReplaySubject<Characteristic>.create(bufferSize: 1)
-    
-    var notificationsCharacteristicChanged: PublishSubject<Characteristic> = PublishSubject<Characteristic>()
+
     
     init() {
-       // discover()
     }
 
     private func discover() -> Observable<KulonService>{
+       
+        
         return manager.rx_state
-            .filter { $0 == .poweredOn }
+            .do ( onNext: {
+                if $0 == .poweredOff {
+                    throw BluetoothPoweredOffError()
+                }
+            })
             .flatMap { _ -> Observable<Peripheral> in
                return self.manager
                     .scanForPeripherals(withServices: nil)
+//                .filter {
+//                    $0.peripheral.identifier.uuidString == "43028998-0F95-40CE-85C2-98292FA48EA7"
+//                }
                     .flatMap{ per -> Observable<Peripheral> in
                         //filter on uuid
                         return per.peripheral.connect()
@@ -138,45 +167,17 @@ class BLEService {
                 //TODO: cancel connections
                 return false
             }
+            .timeout(15, scheduler: MainScheduler.instance)
             .take(1)
             .flatMap { service in
                 service.first(where: { $0.uuid == DeviceService.imageService.uuid })!
                 .discoverCharacteristics(nil)
             }
             .map {
-                KulonService($0)
+                try KulonService($0)
             }
             .shareReplayLatestWhileConnected()
-            
-            /*.subscribe(onNext: { [unowned self] in
-                self.imageServiceFound.onNext($0)
-            }).disposed(by: disposeBag)
         
-        imageServiceFound
-            .flatMap {
-            $0.discoverCharacteristics(nil)
-            }
-            .filter { chars in
-            for char in chars {
-                    if char.uuid == DeviceCharacteristic.control.uuid {
-                       return true
-                    }
-                }
-                return false
-            }
-            .take(1)
-            
-            .do(onNext: { [unowned self] chars in
-                self.controlCharacteristicDiscovered.onNext(chars.first(where: { $0.uuid == DeviceCharacteristic.control.uuid })!)
-                self.uploadCharacteriscticDiscovered.onNext(chars.first(where: { $0.uuid == DeviceCharacteristic.fileUpload.uuid })!)
-            })
-            .flatMap { chars in
-                chars.first(where: { $0.uuid == DeviceCharacteristic.notifications.uuid })!
-                    .setNotificationAndMonitorUpdates()
-            }
-            .bindTo(self.notificationsCharacteristicChanged)
-            .disposed(by: self.disposeBag)
- */
     }
     
     private func sendCommand(_ command: BLEControlCommand, to service: KulonService? = nil) -> Observable<(FileOperationResult, KulonService)> {
@@ -203,29 +204,6 @@ class BLEService {
                     }
         }
         
-                /*service.control.writeValue(command.data, type: .withoutResponse)
-                    
-                    .withLatestFrom(service.notifications)
-                    .map {
-                        (FileOperationResult($0.value), service)
-                    }
-                    .retry(3)
-        }
-        */
-        
-       /* return controlCharacteristicDiscovered
-            .flatMap {
-                $0.writeValue(command.data, type: .withoutResponse)
-                .delay(0.5, scheduler: MainScheduler.instance)
-            }
-            .retryWhen { [unowned self] in
-                $0.do(onNext: { _ in
-                    self.discover()
-                })
-                .map { _ in }
-            }
-            .withLatestFrom(notificationsCharacteristicChanged)
- */
     }
     
     func set(_ poshik: UploadablePoshik) -> Observable<Void> {

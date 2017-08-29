@@ -114,11 +114,23 @@ class DeviceError : LocalizedError {
     var localizedDescription: String {
         return "Device error"
     }
+    var errorDescription: String? {
+        return localizedDescription
+    }
 }
 
 class BluetoothPoweredOffError : LocalizedError {
     var localizedDescription: String {
         return "Bluetooth is not active"
+    }
+    var errorDescription: String? {
+        return localizedDescription
+    }
+}
+
+extension BluetoothError: LocalizedError {
+    public var errorDescription: String? {
+        return localizedDescription
     }
 }
 

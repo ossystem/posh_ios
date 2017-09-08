@@ -14,12 +14,14 @@ class UserCredentialsService {
     private let loggedInKey = "isLoggedInKey"
     private let userDefaults = UserDefaults.standard
     
-    var credentials: UserCredentials {
+    var credentials: UserCredentials? {
         set {
+            guard let newValue = newValue else {return}
             userDefaults.set(newValue.toJSON(), forKey: credentialsKey)
         }
         get {
-            return UserCredentials(from: userDefaults.value(forKey: credentialsKey) as! [String : Any])
+            guard let dict = userDefaults.dictionary(forKey: credentialsKey) else { return nil }
+            return UserCredentials(from: dict)
         }
     }
     

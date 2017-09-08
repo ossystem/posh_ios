@@ -30,6 +30,14 @@ class LoginApiService: ApiService {
 
 }
 
+class NoCredentilasError: LocalizedError {
+    
+    var localizedDescription: String  = "User credentials not provided"
+    var errorDescription: String? {
+        return localizedDescription
+    }
+}
+
 class LoginService {
     
     let userCredentialsService = UserCredentialsService()
@@ -47,7 +55,9 @@ class LoginService {
     }
     
     func loginWithStoredCredentials() -> Observable<Void> {
-        let credentials = userCredentialsService.credentials
+        guard let credentials = userCredentialsService.credentials else {
+            return Observable.error(NoCredentilasError())
+        }
         return loginApiService.request(parameter: credentials)
             .flatMap { (result) -> Observable<Void> in
                 TokenService().token = result.token

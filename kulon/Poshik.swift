@@ -20,6 +20,7 @@ protocol Poshik: IdiableObject {
     var isLiked: Bool { get set }
     var isPurchased: Bool { get set }
     var imageRoute: String { get }
+    var fileType: String { get }
     func requestforImage(withSize size: ImageSize) -> URLRequest?
     
 }
@@ -27,7 +28,7 @@ protocol Poshik: IdiableObject {
 extension Poshik {
     
     var name: String {
-        return "\(id)"
+        return "\(id).\(fileType)"
     }
     
     func requestforImage(withSize size: ImageSize) -> URLRequest? {
@@ -49,11 +50,16 @@ class PoshikFromMarket: Poshik {
     var isLiked: Bool = false
     var imageRoute: String = "market"
     var id: Int = -1
+    var fileType: String
     
     required init(map: Map) throws {
         id <- map["id"]
         isLiked <- map["is_favorite"]
         isPurchased <- map["is_purchased"]
+        fileType = try map.value("extension")
+        if fileType != "jpg" {
+            fileType = "mjpeg"
+        }
     }
     
 }
@@ -66,17 +72,27 @@ class MyPoshikFromMarket: UploadablePoshik {
     var isLiked: Bool = false
     var imageRoute: String = "poshiks/purchase"
     var id: Int = -1
+    var fileType: String
     
     
     required init(map: Map) throws {
         id <- map["id"]
         isLiked <- map["is_favorite"]
         isPurchased <- map["is_purchased"]
+        fileType = try map.value("extension")
+        if fileType != "jpg" {
+            fileType = "mjpeg"
+        }
+
     }
     
     init(fromMarket poshik: Poshik) {
         id = poshik.id
         isLiked = poshik.isLiked
+        fileType = poshik.fileType
+        if fileType != "jpg" {
+            fileType = "mjpeg"
+        }
     }
 }
 
@@ -88,11 +104,13 @@ class MyPoshikUploaded: UploadablePoshik {
     var isLiked: Bool = false
     var imageRoute: String = "poshiks/my"
     var id: Int = -1
+    var fileType: String
     
     required init(map: Map) throws {
         id <- map["id"]
         isLiked <- map["is_favorite"]
         isPurchased <- map["is_purchased"]
+        fileType = try map.value("extension")
     }
 }
 

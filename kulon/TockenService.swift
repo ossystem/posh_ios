@@ -31,6 +31,8 @@ class TokenService {
         return service.request(parameter: TokenParameter(token))
             .do(onNext: { [unowned self] in
                 self.token = $0.token
+                }, onError: { _ in
+                    LoginService().logout()
             })
             .map { _ in  }
     }

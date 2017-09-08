@@ -77,7 +77,8 @@ extension ApiService {
     }
     
     func request(parameter: Parameter) -> Observable<Response> {
-        
+        let tokenService = TokenService()
+        let loginService = LoginService()
         return Observable.create { observer in
             Alamofire.request(URL(string: self.baseRoute + self.route)!,
                               method: self.method,
@@ -103,16 +104,26 @@ extension ApiService {
                             //TODO: try to rewrite with retryWhen
                             
                             
-                            TokenService().refresh().subscribe(onNext: { _ in
-                                self.request(parameter: parameter).subscribe(onNext: { value in
+                            tokenService.refresh().subscribe(onNext: { _ in
+                                self.request(parameter: parameter).subscribe(
+                                    onNext: { value in
                                     observer.onNext(value)
-                                }, onError: { error in
-                                    observer.onError(error)
-                                }, onCompleted: {
+                                },  onError: {
+                                    observer.onError($0)
+                                },
+                                    onCompleted: {
                                     observer.onCompleted()
                                 })
                             }, onError: { error in
-                                observer.onError(error)
+                                    loginService.loginWithStoredCredentials().subscribe(onNext: {
+                                        self.request(parameter: parameter).subscribe(onNext: { value in
+                                            observer.onNext(value)
+                                        }, onError: {
+                                            observer.onError($0)
+                                        }, onCompleted: {
+                                            observer.onCompleted()
+                                        })
+                                })
                             })
                             
                         case 300:

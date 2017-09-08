@@ -58,7 +58,9 @@ class KulonService {
     var notifications: Characteristic
 
     var notificationValueUpldated: Observable<Characteristic> {
-        return notifications.setNotificationAndMonitorUpdates().debug()
+        return notifications.setNotificationAndMonitorUpdates()
+            .catchError {_ in Observable.empty() }
+            .debug()
     }
     
     init(_ characteristics: [Characteristic]) throws {
@@ -78,7 +80,9 @@ class KulonService {
     
     deinit {
         service.peripheral.cancelConnection()
-        .subscribe().disposed(by: disposeBag)
+            .subscribe( {_ in 
+                print("service deinited")
+                }).disposed(by: disposeBag)
         print("service deinited")
     }
 }
@@ -188,15 +192,16 @@ class BLEService {
             .map {
                 try KulonService($0)
             }
-            .shareReplayLatestWhileConnected()
         
     }
     
     private func sendCommand(_ command: BLEControlCommand, to service: KulonService? = nil) -> Observable<(FileOperationResult, KulonService)> {
+        //todo: use connect
         if service != nil && service!.service.peripheral.isConnected {
-            return service!.notificationValueUpldated
-                .withLatestFrom(
+            return  Observable.combineLatest(
+                service!.notificationValueUpldated,
                     service!.control.writeValue(command.data, type: .withoutResponse)
+                    .delaySubscription(3, scheduler: MainScheduler.instance)
                     )
                 {
                     notificaction, control in
@@ -206,14 +211,27 @@ class BLEService {
         }
         return discover()
             .flatMap { service in
-                service.notificationValueUpldated
-                    .withLatestFrom(
-                        service.control.writeValue(command.data, type: .withoutResponse)
+                Observable.combineLatest(
+                    service.notificationValueUpldated
+                    .take(1),
+                        service.control.writeValue(command.data, type: .withoutResponse).debug()
+                        .delaySubscription(5, scheduler: MainScheduler.instance)
                     )
                     {
-                        notificaction, control in
+                    notificaction, control in
                         return (FileOperationResult(notificaction.value), service)
                     }
+//                service.notificationValueUpldated
+//                    .take(1)
+//                    .debug()
+//                    .withLatestFrom(
+//                        service.control.writeValue(command.data, type: .withoutResponse).debug()
+//
+//                    )
+//                    {
+//                        notificaction, control in
+//                        return (FileOperationResult(notificaction.value), service)
+//                    }
         }
         
     }
@@ -223,7 +241,8 @@ class BLEService {
             .flatMap { [unowned self] result, service -> Observable<Void> in
                 switch result {
                 case .opened:
-                    return Observable.just()
+                    return service.service.peripheral.cancelConnection().map{ _ in }
+                // Observable.just()
                 case .error:
                     return self.upload(poshik, with: service)
                 case .undefined:

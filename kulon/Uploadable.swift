@@ -25,9 +25,9 @@ enum BLEControlCommand : Uploadable {
         case .closeWriting:
             return "2".data(using: .utf8)!
         case let .openImage(name):
-            return "4\(name).jpg#".data(using: .utf8)!
+            return "4\(name)#".data(using: .utf8)!
         case let .createImage(name):
-            return "0\(name).jpg#".data(using: .utf8)!
+            return "0\(name)#".data(using: .utf8)!
         }
     }
     

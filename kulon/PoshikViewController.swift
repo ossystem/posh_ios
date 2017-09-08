@@ -137,7 +137,15 @@ class PoshikViewController: BaseViewController, UIViewControllerTransitioningDel
                     self.showErrorMessage(error.localizedDescription)
                     self.setupButtons()
 
-                }).disposed(by: disposeBag)
+                },
+                           onCompleted: {
+                    sender.setWaiting(false)
+                    self.setupButtons()
+                    
+                    print($0)
+                    print("set poshik")
+                }
+                ).disposed(by: disposeBag)
             
         }
     }

@@ -93,8 +93,28 @@ class RecognizingDeviceError: Error {
 
 enum FileOperationResult {
     case opened
-    case error
+    case error(FileOperationError)
     case undefined
+    
+    enum FileOperationError {
+        case fileNotExist
+        case decodingError
+        case resolutionError
+        case undefined
+        init(_ code: Int) {
+            switch code {
+            case -1:
+                self = .fileNotExist
+            case -2:
+                self = .decodingError
+            case -3:
+                self = .resolutionError
+            default:
+                self = .undefined
+            }
+        }
+        
+    }
     
     init(_ data: Data?) {
         guard let data = data
@@ -104,7 +124,7 @@ enum FileOperationResult {
             }
         switch data[0] {
         case 101: // 'e'
-            self = .error
+            self = .error(FileOperationError(Int(data[1])))
         case 111: // 'o'
             self = .opened
         default:
@@ -117,6 +137,15 @@ enum FileOperationResult {
 class DeviceError : LocalizedError {
     var localizedDescription: String {
         return "Device error"
+    }
+    var errorDescription: String? {
+        return localizedDescription
+    }
+}
+
+class ImageErorr : LocalizedError {
+    var localizedDescription: String {
+        return "Something wrong with the image"
     }
     var errorDescription: String? {
         return localizedDescription
@@ -221,17 +250,6 @@ class BLEService {
                     notificaction, control in
                         return (FileOperationResult(notificaction.value), service)
                     }
-//                service.notificationValueUpldated
-//                    .take(1)
-//                    .debug()
-//                    .withLatestFrom(
-//                        service.control.writeValue(command.data, type: .withoutResponse).debug()
-//
-//                    )
-//                    {
-//                        notificaction, control in
-//                        return (FileOperationResult(notificaction.value), service)
-//                    }
         }
         
     }
@@ -243,8 +261,15 @@ class BLEService {
                 case .opened:
                     return service.service.peripheral.cancelConnection().map{ _ in }
                 // Observable.just()
-                case .error:
-                    return self.upload(poshik, with: service)
+                case  let .error(errorType):
+                    switch errorType {
+                    case .fileNotExist:
+                        return self.upload(poshik, with: service)
+                    case .decodingError, .resolutionError:
+                        return Observable.error(ImageErorr())
+                    case .undefined:
+                        return Observable.error(DeviceError())
+                    }
                 case .undefined:
                     return Observable.error(DeviceError())
                 }

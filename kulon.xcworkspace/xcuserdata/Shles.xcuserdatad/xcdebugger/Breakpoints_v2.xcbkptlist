@@ -234,11 +234,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "kulon/BLEService.swift"
-            timestampString = "526480085.055117"
+            timestampString = "526580188.301899"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "313"
-            endingLineNumber = "313">
+            startingLineNumber = "338"
+            endingLineNumber = "338">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -248,11 +248,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "kulon/BLEService.swift"
-            timestampString = "526480085.055117"
+            timestampString = "526580188.301899"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "252"
-            endingLineNumber = "252"
+            startingLineNumber = "277"
+            endingLineNumber = "277"
             landmarkName = "set(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -264,11 +264,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "kulon/BLEService.swift"
-            timestampString = "526480085.055117"
+            timestampString = "526580188.301899"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "248"
-            endingLineNumber = "248"
+            startingLineNumber = "273"
+            endingLineNumber = "273"
             landmarkName = "set(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -280,11 +280,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "kulon/BLEService.swift"
-            timestampString = "526480085.055117"
+            timestampString = "526580188.301899"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "314"
-            endingLineNumber = "314">
+            startingLineNumber = "339"
+            endingLineNumber = "339">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -294,11 +294,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "kulon/BLEService.swift"
-            timestampString = "526480085.055117"
+            timestampString = "526580188.301899"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "320"
-            endingLineNumber = "320">
+            startingLineNumber = "345"
+            endingLineNumber = "345">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -324,11 +324,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "kulon/BLEService.swift"
-            timestampString = "526479796.279194"
+            timestampString = "526580188.301899"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "128"
-            endingLineNumber = "128"
+            startingLineNumber = "157"
+            endingLineNumber = "157"
             landmarkName = "localizedDescription"
             landmarkType = "24">
          </BreakpointContent>
@@ -452,11 +452,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "kulon/BLEService.swift"
-            timestampString = "526480085.055117"
+            timestampString = "526580188.301899"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "207"
-            endingLineNumber = "207"
+            startingLineNumber = "236"
+            endingLineNumber = "236"
             landmarkName = "sendCommand(_:to:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -468,59 +468,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "kulon/BLEService.swift"
-            timestampString = "526480085.055117"
+            timestampString = "526580188.301899"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "233"
-            endingLineNumber = "233"
-            landmarkName = "sendCommand(_:to:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "kulon.BLEService.(sendCommand in _0E8D8FDEB67A3926A2159B5B68B01452) (kulon.BLEControlCommand, to : Swift.Optional&lt;kulon.KulonService&gt;) -&gt; RxSwift.Observable&lt;(kulon.FileOperationResult, kulon.KulonService)&gt;"
-                  moduleName = "kulon"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Shles/Documents/Xcode/Jufy/kulon/kulon/BLEService.swift"
-                  timestampString = "526480085.31741"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "235"
-                  endingLineNumber = "235"
-                  offsetFromSymbolStart = "1260">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "kulon.BLEService.((sendCommand in _0E8D8FDEB67A3926A2159B5B68B01452) (kulon.BLEControlCommand, to : Swift.Optional&lt;kulon.KulonService&gt;) -&gt; RxSwift.Observable&lt;(kulon.FileOperationResult, kulon.KulonService)&gt;).(closure #2)"
-                  moduleName = "kulon"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Shles/Documents/Xcode/Jufy/kulon/kulon/BLEService.swift"
-                  timestampString = "526480085.318851"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "235"
-                  endingLineNumber = "235"
-                  offsetFromSymbolStart = "876">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "kulon/BLEService.swift"
-            timestampString = "526480085.055117"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "202"
-            endingLineNumber = "202"
+            startingLineNumber = "231"
+            endingLineNumber = "231"
             landmarkName = "sendCommand(_:to:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -532,59 +484,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "kulon/BLEService.swift"
-            timestampString = "526480085.055117"
+            timestampString = "526580188.301899"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "229"
-            endingLineNumber = "229"
-            landmarkName = "sendCommand(_:to:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "kulon.BLEService.(sendCommand in _0E8D8FDEB67A3926A2159B5B68B01452) (kulon.BLEControlCommand, to : Swift.Optional&lt;kulon.KulonService&gt;) -&gt; RxSwift.Observable&lt;(kulon.FileOperationResult, kulon.KulonService)&gt;"
-                  moduleName = "kulon"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Shles/Documents/Xcode/Jufy/kulon/kulon/BLEService.swift"
-                  timestampString = "526480085.324828"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "235"
-                  endingLineNumber = "235"
-                  offsetFromSymbolStart = "1260">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "kulon.BLEService.((sendCommand in _0E8D8FDEB67A3926A2159B5B68B01452) (kulon.BLEControlCommand, to : Swift.Optional&lt;kulon.KulonService&gt;) -&gt; RxSwift.Observable&lt;(kulon.FileOperationResult, kulon.KulonService)&gt;).(closure #2)"
-                  moduleName = "kulon"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Shles/Documents/Xcode/Jufy/kulon/kulon/BLEService.swift"
-                  timestampString = "526480085.326295"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "235"
-                  endingLineNumber = "235"
-                  offsetFromSymbolStart = "876">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "kulon/BLEService.swift"
-            timestampString = "526480085.055117"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "211"
-            endingLineNumber = "211"
+            startingLineNumber = "240"
+            endingLineNumber = "240"
             landmarkName = "sendCommand(_:to:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -612,11 +516,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "kulon/BLEService.swift"
-            timestampString = "526480085.055117"
+            timestampString = "526580188.301899"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "240"
-            endingLineNumber = "240"
+            startingLineNumber = "258"
+            endingLineNumber = "258"
             landmarkName = "set(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -628,11 +532,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "kulon/BLEService.swift"
-            timestampString = "526480085.055117"
+            timestampString = "526580188.301899"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "222"
-            endingLineNumber = "222"
+            startingLineNumber = "251"
+            endingLineNumber = "251"
             landmarkName = "sendCommand(_:to:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -644,11 +548,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "kulon/BLEService.swift"
-            timestampString = "526480085.055117"
+            timestampString = "526580188.301899"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "217"
-            endingLineNumber = "217"
+            startingLineNumber = "246"
+            endingLineNumber = "246"
             landmarkName = "sendCommand(_:to:)"
             landmarkType = "7">
          </BreakpointContent>

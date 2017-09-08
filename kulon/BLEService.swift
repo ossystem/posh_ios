@@ -124,7 +124,7 @@ enum FileOperationResult {
             }
         switch data[0] {
         case 101: // 'e'
-            self = .error(FileOperationError(Int(data[1])))
+            self = .error(FileOperationError(Int(data[1]) - 256))
         case 111: // 'o'
             self = .opened
         default:

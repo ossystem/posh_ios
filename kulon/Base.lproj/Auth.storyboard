@@ -458,6 +458,9 @@
                                                 <real key="value" value="8"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <segue destination="ym3-2X-oUr" kind="show" identifier="FBlogin" id="Fz9-BO-Z0r"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gAQ-tp-COP" customClass="RoundedButton" customModule="kulon" customModuleProvider="target">
                                         <rect key="frame" x="190" y="264" width="30" height="30"/>
@@ -479,6 +482,9 @@
                                                 <real key="value" value="8"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <segue destination="ym3-2X-oUr" kind="show" identifier="VKlogin" id="W5a-fV-EgP"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -573,7 +579,7 @@
         <image name="logo" width="140" height="139"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="sgP-up-qVg"/>
-        <segue reference="LFR-Jr-f6d"/>
+        <segue reference="gxC-h7-Klc"/>
+        <segue reference="Fz9-BO-Z0r"/>
     </inferredMetricsTieBreakers>
 </document>

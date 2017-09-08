@@ -74,6 +74,18 @@ class RegistrationViewController: BaseViewController {
         present(alertController, animated: true, completion: nil)
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let identifier = segue.identifier else { return }
+        switch identifier {
+        case "VKlogin":
+            (segue.destination as! SocialWebViewController).socialNetwork = .vkontakte
+        case "FBlogin":
+            (segue.destination as! SocialWebViewController).socialNetwork = .facebook
+        default:
+            return
+        }
+    }
+    
 }
 
 

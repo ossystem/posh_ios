@@ -28,6 +28,10 @@ import CoreBluetooth
  */
 protocol RxDescriptorType {
 
+    /// Unique identifier of an object. Should be removed in 4.0
+    @available(*, deprecated)
+    var objectId: UInt { get }
+
     /// Descriptor UUID
     var uuid: CBUUID { get }
 
@@ -36,8 +40,13 @@ protocol RxDescriptorType {
 
     /// Descriptor's value
     var value: Any? { get }
+
+    /// True if the two descriptor objects considered equal
+    func isEqualTo(descriptor: RxDescriptorType) -> Bool
 }
 
+extension Equatable where Self: RxDescriptorType {}
+
 func == (lhs: RxDescriptorType, rhs: RxDescriptorType) -> Bool {
-    return lhs.uuid == rhs.uuid
+    return lhs.isEqualTo(descriptor: rhs)
 }

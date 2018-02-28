@@ -14,7 +14,7 @@ class CategoryCell : UITableViewCell {
     
     @IBOutlet weak var title: UILabel!
     
-    func configure(with category: PoshikCategory) {
+    func configure(with category: NamedObject) {
         title.text = category.name
     }
 }

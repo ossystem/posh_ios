@@ -28,6 +28,10 @@ import CoreBluetooth
  */
 protocol RxCharacteristicType {
 
+    /// Unique identifier of an object. Should be removed in 4.0
+    @available(*, deprecated)
+    var objectId: UInt { get }
+
     /// Characteristic UUID
     var uuid: CBUUID { get }
 
@@ -45,7 +49,12 @@ protocol RxCharacteristicType {
 
     /// Characteristic service
     var service: RxServiceType { get }
+
+    /// True if the two characteristic objects considered equal
+    func isEqualTo(characteristic: RxCharacteristicType) -> Bool
 }
+
+extension Equatable where Self: RxCharacteristicType {}
 
 /**
  Characteristics are equal if their UUIDs are equal
@@ -55,7 +64,7 @@ protocol RxCharacteristicType {
  - returns: True if characteristics are the same
  */
 func == (lhs: RxCharacteristicType, rhs: RxCharacteristicType) -> Bool {
-    return lhs.uuid == rhs.uuid
+    return lhs.isEqualTo(characteristic: rhs)
 }
 
 /**

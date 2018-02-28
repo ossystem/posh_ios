@@ -8,7 +8,7 @@
 
 import Foundation
 import UIKit
-import IMGLYColorPicker
+//import IMGLYColorPicker
 import RxGesture
 import RxSwift
 

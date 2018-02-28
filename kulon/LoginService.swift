@@ -19,15 +19,43 @@ import ObjectMapper
 
 
 class LoginApiService: ApiService {
-    
-    static let shared = LoginApiService()
+
     
     typealias Parameter = UserCredentials
     typealias Response = AuthResult
     
+    var route: String = "login"
+    var method: HTTPMethod = .post
+
+}
+
+class AuthApiService: ApiService {
+
+
+    typealias Parameter = PhoneNumber
+    typealias Response = AuthResult
+
     var route: String = "auth"
     var method: HTTPMethod = .post
 
+}
+
+class PhoneNumber: ParameterType, ResponseType {
+
+
+    private var string: String
+
+    init(with string: String) {
+        self.string = string
+    }
+
+    required init(map: Map) throws {
+        string = try map.value("phone")
+    }
+
+    func toJSON() -> [String: Any]? {
+        return ["phone": string]
+    }
 }
 
 class NoCredentilasError: LocalizedError {
@@ -41,8 +69,14 @@ class NoCredentilasError: LocalizedError {
 class LoginService {
     
     let userCredentialsService = UserCredentialsService()
-    let loginApiService = LoginApiService.shared
+    let loginApiService = LoginApiService()
     let tokenService = TokenService()
+    let authService = AuthApiService()
+
+    func auth(with phoneNumber: PhoneNumber) -> Observable<Void> {
+        return Observable.never()
+        
+    }
     
     func login(with credentials: UserCredentials) -> Observable<Void> {
          return loginApiService.request(parameter: credentials)

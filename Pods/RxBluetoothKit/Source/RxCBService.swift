@@ -31,6 +31,11 @@ class RxCBService: RxServiceType {
         self.service = service
     }
 
+    @available(*, deprecated)
+    var objectId: UInt {
+        return UInt(bitPattern: ObjectIdentifier(service))
+    }
+
     var uuid: CBUUID {
         return service.uuid
     }
@@ -42,5 +47,10 @@ class RxCBService: RxServiceType {
     }
     var isPrimary: Bool {
         return service.isPrimary
+    }
+
+    func isEqualTo(service: RxServiceType) -> Bool {
+        guard let rhs = service as? RxCBService else { return false }
+        return self.service === rhs.service
     }
 }

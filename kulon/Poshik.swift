@@ -114,3 +114,20 @@ class MyPoshikUploaded: UploadablePoshik {
     }
 }
 
+class FavoritePoshik: Poshik {
+    var isPurchased: Bool = false
+    var isLiked: Bool = true
+    var imageRoute: String = "market"
+    var id: Int = -1
+    var fileType: String
+    
+    required init(map: Map) throws {
+        id <- map["id"]
+
+        fileType = try map.value("extension")
+        if fileType != "jpg" {
+            fileType = "mjpeg"
+        }
+    }
+}
+

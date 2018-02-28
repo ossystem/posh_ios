@@ -31,6 +31,10 @@ class RxCBDescriptor: RxDescriptorType {
         self.descriptor = descriptor
     }
 
+    @available(*, deprecated)
+    var objectId: UInt {
+        return UInt(bitPattern: ObjectIdentifier(descriptor))
+    }
     var uuid: CBUUID {
         return descriptor.uuid
     }
@@ -39,5 +43,10 @@ class RxCBDescriptor: RxDescriptorType {
     }
     var value: Any? {
         return descriptor.value
+    }
+
+    func isEqualTo(descriptor: RxDescriptorType) -> Bool {
+        guard let rhs = descriptor as? RxCBDescriptor else { return false }
+        return self.descriptor === rhs.descriptor
     }
 }

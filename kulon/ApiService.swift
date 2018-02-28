@@ -86,7 +86,7 @@ extension ApiService {
                               encoding: URLEncoding.default,
                               headers: self.headers)
                 .responseObject(keyPath: "data")
-                { [unowned self] (response: DataResponse<Response>)  in
+                {  (response: DataResponse<Response>)  in
                     switch response.result {
                     case .success(let value):
                         self.updateAuthorizationToken(response: response)
@@ -102,7 +102,6 @@ extension ApiService {
                         case 401:
                             
                             //TODO: try to rewrite with retryWhen
-                            
                             
                             tokenService.refresh().subscribe(onNext: { _ in
                                 self.request(parameter: parameter).subscribe(

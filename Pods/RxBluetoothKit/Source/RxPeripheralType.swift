@@ -35,6 +35,13 @@ protocol RxPeripheralType {
     /// Peripheral's identifier
     var identifier: UUID { get }
 
+    /// Unique identifier of object. Should be removed in 4.0
+    @available(*, deprecated)
+    var objectId: UInt { get }
+
+    /// Underlying `CBPeripheral` instance
+    var peripheral: CBPeripheral { get }
+
     /// Peripheral's state
     var state: CBPeripheralState { get }
 

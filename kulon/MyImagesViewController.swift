@@ -25,31 +25,32 @@ class MyImagesViewController: BaseViewController, UICollectionViewDelegate, UICo
     var purchasedPoshiks: [Poshik] = []
     var bag = DisposeBag()
     let myPoshiksService = MyPoshiksService()
+    let favoriteService = FavoritesApiService()
     var blurView: UIVisualEffectView!
     
     class MyImagesSectionTitles {
         
-        private var hasMy = false
+        private var hasFavorite = false
         private var hasPurchased = false
         var titles: [String] {
             var sections = [String]()
-            if hasMy { sections.append("My images") }
             if hasPurchased { sections.append("Purchases") }
+            if hasFavorite { sections.append("Favorite") }
             return sections
         }
         //TODO: I think it is needed to be refactor
         var count: Int {
-            return (hasMy ? 1 : 0) + (hasPurchased ? 1 : 0)
-        }
-        var purchasesIndex: Int {
-            return count - 1
+            return (hasFavorite ? 1 : 0) + (hasPurchased ? 1 : 0)
         }
         var myIndex: Int {
-            return (hasMy ? 1 : 0) - 1
+            return count - 1
+        }
+        var purchasesIndex: Int {
+            return (hasFavorite ? 1 : 0) - 1
         }
         
-        func loadedMy(poshiks: [Poshik]) {
-            hasMy = poshiks.count > 0
+        func loadedFavorite(poshiks: [Poshik]) {
+            hasFavorite = poshiks.count > 0
         }
         
         func loadedPurchased(poshiks: [Poshik]) {
@@ -63,14 +64,8 @@ class MyImagesViewController: BaseViewController, UICollectionViewDelegate, UICo
     private let sectionTitles = MyImagesSectionTitles()
     
     override func viewDidLoad() {
-        addButton.rx.tap.subscribe(onNext: {
-            self.addTextImage()
-        }).disposed(by: bag)
+        
         collectionView.contentInset = UIEdgeInsets(top: 70, left: 0, bottom: 0, right: 0)
-
-        topBar.button.rx.tap.subscribe(onNext: {
-            self.addTextImage()
-        }).disposed(by: bag)
         
         let refreshControl = UIRefreshControl()
         
@@ -83,21 +78,12 @@ class MyImagesViewController: BaseViewController, UICollectionViewDelegate, UICo
         }).disposed(by: bag)
     }
     
-//    override func viewWillAppear(_ animated: Bool) {
-//        super.viewWillAppear(animated)
-//        loadData()
-//    }
-//    
-//    @IBAction func unwindToThisViewController(segue: UIStoryboardSegue) {
-//        loadData()
-//    }
-    
     func loadData() {
         blurView = UIVisualEffectView(frame: view.bounds)
-        myPoshiksService.getMyPoshiks().subscribe(onNext: {
+        favoriteService.request(parameter: ParameterNone()).subscribe(onNext: {
             poshiks in
             self.myPoshiks = poshiks.poshiks
-            self.sectionTitles.loadedMy(poshiks: poshiks.poshiks)
+            self.sectionTitles.loadedFavorite(poshiks: poshiks.poshiks)
             self.collectionView.reloadData()
         }, onError: {
             error in

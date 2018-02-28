@@ -30,8 +30,16 @@ import CoreBluetooth
  */
 class RxCBCentralManager: RxCentralManagerType {
 
-    private let centralManager: CBCentralManager
+    let centralManager: CBCentralManager
     private let internalDelegate = InternalDelegate()
+
+    /**
+     Unique identifier of an object. Should be removed in 4.0
+     */
+    @available(*, deprecated)
+    var objectId: UInt {
+        return UInt(bitPattern: ObjectIdentifier(centralManager))
+    }
 
     /**
      Create Core Bluetooth implementation of RxCentralManagerType which is used by BluetoothManager class.
@@ -45,7 +53,7 @@ class RxCBCentralManager: RxCentralManagerType {
 
     @objc private class InternalDelegate: NSObject, CBCentralManagerDelegate {
         let didUpdateStateSubject = PublishSubject<BluetoothState>()
-        let willRestoreStateSubject = PublishSubject<[String: Any]>()
+        let willRestoreStateSubject = ReplaySubject<[String: Any]>.create(bufferSize: 1)
         let didDiscoverPeripheralSubject = PublishSubject<(RxPeripheralType, [String: Any], NSNumber)>()
         let didConnectPerihperalSubject = PublishSubject<RxPeripheralType>()
         let didFailToConnectPeripheralSubject = PublishSubject<(RxPeripheralType, Error?)>()
@@ -53,10 +61,12 @@ class RxCBCentralManager: RxCentralManagerType {
 
         @objc func centralManagerDidUpdateState(_ central: CBCentralManager) {
             guard let bleState = BluetoothState(rawValue: central.state.rawValue) else { return }
+            RxBluetoothKitLog.d("\(central.logDescription) didUpdateState(state: \(bleState.logDescription))")
             didUpdateStateSubject.onNext(bleState)
         }
 
         @objc func centralManager(_ central: CBCentralManager, willRestoreState dict: [String: Any]) {
+            RxBluetoothKitLog.d("\(central.logDescription) willRestoreState(restoredState: \(dict))")
             willRestoreStateSubject.onNext(dict)
         }
 
@@ -64,47 +74,54 @@ class RxCBCentralManager: RxCentralManagerType {
                                   didDiscover peripheral: CBPeripheral,
                                   advertisementData: [String: Any],
                                   rssi: NSNumber) {
-                didDiscoverPeripheralSubject.onNext((RxCBPeripheral(peripheral: peripheral), advertisementData, rssi))
+            // swiftlint:disable:next line_length TODO: multiline string in Swift 4
+            RxBluetoothKitLog.d("\(central.logDescription) didDiscover(peripheral: \(peripheral.logDescription), rssi: \(rssi))")
+            didDiscoverPeripheralSubject.onNext((RxCBPeripheral(peripheral: peripheral), advertisementData, rssi))
         }
 
         @objc func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
+            RxBluetoothKitLog.d("\(central.logDescription) didConnect(to: \(peripheral.logDescription))")
             didConnectPerihperalSubject.onNext(RxCBPeripheral(peripheral: peripheral))
         }
 
         @objc func centralManager(_ central: CBCentralManager,
                                   didFailToConnect peripheral: CBPeripheral,
                                   error: Error?) {
-                didFailToConnectPeripheralSubject.onNext((RxCBPeripheral(peripheral: peripheral), error))
+            // swiftlint:disable:next line_length TODO: multiline string in Swift 4
+            RxBluetoothKitLog.d("\(central.logDescription) didFailToConnect(to: \(peripheral.logDescription), error: \(String(describing: error)))")
+            didFailToConnectPeripheralSubject.onNext((RxCBPeripheral(peripheral: peripheral), error))
         }
 
         @objc func centralManager(_ central: CBCentralManager,
                                   didDisconnectPeripheral peripheral: CBPeripheral,
                                   error: Error?) {
-                didDisconnectPeripheral.onNext((RxCBPeripheral(peripheral: peripheral), error))
+            // swiftlint:disable:next line_length TODO: multiline string in Swift 4
+            RxBluetoothKitLog.d("\(central.logDescription) didDisconnect(from: \(peripheral.logDescription), error: \(String(describing: error)))")
+            didDisconnectPeripheral.onNext((RxCBPeripheral(peripheral: peripheral), error))
         }
     }
 
-    /// Observable which infroms when central manager did change its state
+    /// Observable which informs when central manager did change its state
     var rx_didUpdateState: Observable<BluetoothState> {
         return internalDelegate.didUpdateStateSubject
     }
-    /// Observable which infroms when central manager is about to restore its state
+    /// Observable which informs when central manager is about to restore its state
     var rx_willRestoreState: Observable<[String: Any]> {
         return internalDelegate.willRestoreStateSubject
     }
-    /// Observable which infroms when central manage discovered peripheral
+    /// Observable which informs when central manage discovered peripheral
     var rx_didDiscoverPeripheral: Observable<(RxPeripheralType, [String: Any], NSNumber)> {
         return internalDelegate.didDiscoverPeripheralSubject
     }
-    /// Observable which infroms when central manager connected to peripheral
+    /// Observable which informs when central manager connected to peripheral
     var rx_didConnectPeripheral: Observable<RxPeripheralType> {
         return internalDelegate.didConnectPerihperalSubject
     }
-    /// Observable which infroms when central manager failed to connect to peripheral
+    /// Observable which informs when central manager failed to connect to peripheral
     var rx_didFailToConnectPeripheral: Observable<(RxPeripheralType, Error?)> {
         return internalDelegate.didFailToConnectPeripheralSubject
     }
-    /// Observable which infroms when central manager disconnected from peripheral
+    /// Observable which informs when central manager disconnected from peripheral
     var rx_didDisconnectPeripheral: Observable<(RxPeripheralType, Error?)> {
         return internalDelegate.didDisconnectPeripheral
     }

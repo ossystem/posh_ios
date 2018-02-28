@@ -24,8 +24,6 @@ import Foundation
 import CoreBluetooth
 import RxSwift
 
-// swiftlint:disable line_length
-
 /**
  Descriptor is a class implementing ReactiveX which wraps CoreBluetooth functions related to interaction with
  [`CBDescriptor`](https://developer.apple.com/library/ios/documentation/CoreBluetooth/Reference/CBDescriptor_Class/)
@@ -39,6 +37,14 @@ public class Descriptor {
     Characteristic to which this descriptor belongs.
     */
     public let characteristic: Characteristic
+
+    /**
+    Unique identifier of an object. Should be removed in 4.0
+     */
+    @available(*, deprecated)
+    public var objectId: UInt {
+        return descriptor.objectId
+    }
 
     /**
      The Bluetooth UUID of the `Descriptor` instance.

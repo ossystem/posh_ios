@@ -29,6 +29,10 @@ import CoreBluetooth
 */
 protocol RxCentralManagerType {
 
+    /// Unique identifier of an object. Should be removed in 4.0
+    @available(*, deprecated)
+    var objectId: UInt { get }
+
     /// Observable which emits state changes of central manager after subscriptions
     var rx_didUpdateState: Observable<BluetoothState> { get }
     /// Observable which emits elements after subsciption when central manager want to restore its state
@@ -44,6 +48,9 @@ protocol RxCentralManagerType {
 
     /// Current state of Central Manager
     var state: BluetoothState { get }
+
+    /// Underlying `CBPeripheral` instance
+    var centralManager: CBCentralManager { get }
 
     /**
      Start scanning for peripherals with specified services. Results will be available on rx_didDiscoverPeripheral

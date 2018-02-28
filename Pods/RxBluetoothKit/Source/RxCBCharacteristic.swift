@@ -32,6 +32,10 @@ class RxCBCharacteristic: RxCharacteristicType {
         self.characteristic = characteristic
     }
 
+    @available(*, deprecated)
+    var objectId: UInt {
+        return UInt(bitPattern: ObjectIdentifier(characteristic))
+    }
     var uuid: CBUUID {
         return characteristic.uuid
     }
@@ -51,4 +55,8 @@ class RxCBCharacteristic: RxCharacteristicType {
         return RxCBService(service: characteristic.service)
     }
 
+    func isEqualTo(characteristic: RxCharacteristicType) -> Bool {
+        guard let rhs = characteristic as? RxCBCharacteristic else { return false }
+        return self.characteristic === rhs.characteristic
+    }
 }

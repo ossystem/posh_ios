@@ -11,7 +11,7 @@ import RxBluetoothKit
 import RxSwift
 import RxCocoa
 import RxDataSources
-import SearchTextField
+//import SearchTextField
 
 class StoreViewController: BaseViewController, ExpandableButtonDelegate, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate {
 
@@ -24,7 +24,7 @@ class StoreViewController: BaseViewController, ExpandableButtonDelegate, UITable
     }
     @IBOutlet weak var topButton: ExpandableButton!
     @IBOutlet weak var tagInputView: UIView!
-    @IBOutlet weak var tagTextField: SearchTextField! {
+    @IBOutlet weak var tagTextField: UITextField! {
         didSet {
             tagTextField.delegate = self
         }
@@ -38,8 +38,15 @@ class StoreViewController: BaseViewController, ExpandableButtonDelegate, UITable
     
     var bag: DisposeBag = DisposeBag()
     var poshiks: PaginableAndRefreshablePoshiksFromMarket!
-    var categories: [PoshikCategory] = []
+    var names: [NamedObject & IdiableObject] = []
+    var getNamesMethod: Observable<[NamedObject & IdiableObject]>?
     var marketParameter =  MarketParameter()
+    
+    enum SelectionMode {
+        case tag, category, artist, none
+    }
+    
+    var currentSelectionMode = SelectionMode.none
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,8 +69,6 @@ class StoreViewController: BaseViewController, ExpandableButtonDelegate, UITable
             return cell
         }
         
-        
-        
         collectionView.rx.modelSelected(Poshik.self).subscribe(onNext: { [unowned self] poshik in
             let model = PoshikViewModel(poshik: poshik, startingFrame: .zero)
             self.performSegue(withIdentifier: Identifiers.Segue.PoshikViewController, sender: model)
@@ -84,28 +89,28 @@ class StoreViewController: BaseViewController, ExpandableButtonDelegate, UITable
         
         collectionView.refreshControl = refreshConrol
         
-        tagTextField.inlineMode = true
-        tagTextField.userStoppedTypingHandler = { [unowned self] in
-            if let criteria = self.tagTextField.text {
-                if criteria.characters.count > 1 {
-                    self.tagTextField.showLoadingIndicator()
-                    
-                    self.marketService.getAutocompletedTagsFor(string: criteria)
-                        .map {
-                            $0.tags
-                                .map { SearchTextFieldItem(title: $0.name.uppercased()) }
-                        }
-                        .subscribe(onNext: {
-                            self.tagTextField.stopLoadingIndicator()
-                            self.tagTextField.filterItems($0)
-                        },
-                                   onError: { _ in
-                            self.tagTextField.stopLoadingIndicator()
-                        }).disposed(by: self.bag)
-                    
-                }
-            }
-        }
+//        tagTextField.inlineMode = true
+//        tagTextField.userStoppedTypingHandler = { [unowned self] in
+//            if let criteria = self.tagTextField.text {
+//                if criteria.characters.count > 1 {
+//                    self.tagTextField.showLoadingIndicator()
+//                    
+//                    self.marketService.getAutocompletedTagsFor(string: criteria)
+//                        .map {
+//                            $0.tags
+//                                .map { SearchTextFieldItem(title: $0.name.uppercased()) }
+//                        }
+//                        .subscribe(onNext: {
+//                            self.tagTextField.stopLoadingIndicator()
+//                            self.tagTextField.filterItems($0)
+//                        },
+//                                   onError: { _ in
+//                            self.tagTextField.stopLoadingIndicator()
+//                        }).disposed(by: self.bag)
+//                    
+//                }
+//            }
+//        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -121,22 +126,24 @@ class StoreViewController: BaseViewController, ExpandableButtonDelegate, UITable
     let categoryButton = RoundedButton.button(with: #imageLiteral(resourceName: "icon_top_category_red"), highlightIcon: #imageLiteral(resourceName: "icon_top_category_white"),target: self, action: #selector(searchCategories))
     let tagButton = RoundedButton.button(with: #imageLiteral(resourceName: "icon_top_tag"), highlightIcon: #imageLiteral(resourceName: "icon_top_tag_selected"), target: self, action: #selector(searchTags))
     let resetButton = RoundedButton.button(with: #imageLiteral(resourceName: "icon_top_cancel"), highlightIcon: #imageLiteral(resourceName: "icon_top_tag_selected"), target: self, action: #selector(resetFilters))
+    let artistsButton = RoundedButton.button(with: #imageLiteral(resourceName: "icon_top_tag"), highlightIcon: #imageLiteral(resourceName: "icon_top_tag_selected"), target: self, action: #selector(searchArtists))
 
     
     func setupInterface(){
         topButton.subButtons = [
             categoryButton,
-            resetButton,
-            tagButton
+            artistsButton,
+            tagButton,
+            resetButton
         ]
         blurView = UIVisualEffectView(frame: view.bounds)
     }
     
     func loadCategories() {
-        marketService.getCategories().subscribe(onNext: { categories in
-            self.categories = categories.categories
+        getNamesMethod?.subscribe(onNext: { names in
+            self.names = names
             self.categoriesTableView.reloadData()
-        }).addDisposableTo(bag)
+        }).disposed(by: bag)
     }
     
     func searchTags() {
@@ -147,12 +154,17 @@ class StoreViewController: BaseViewController, ExpandableButtonDelegate, UITable
         startCategorySelection()
     }
     
+    func searchArtists() {
+        startArtistsSelection()
+    }
+    
     func resetFilters() {
         poshiks.update(parameterValue: MarketParameter())
         topButton.hideButtons()
     }
     
     private func statrSearching() {
+        currentSelectionMode = .tag
         endCategorySelection()
         tagInputView.isHidden = false
         tagTextField.becomeFirstResponder()
@@ -168,7 +180,10 @@ class StoreViewController: BaseViewController, ExpandableButtonDelegate, UITable
     }
     
     private func startCategorySelection() {
+        currentSelectionMode = .category
         endSearching()
+        endArtistsSelection()
+        getNamesMethod = marketService.getCategories().map { $0.categories }.asObservable()
         loadCategories()
         categoryButton.highlight(true)
         categoryButton.backgroundColor = UIColor.Kulon.orange
@@ -176,13 +191,34 @@ class StoreViewController: BaseViewController, ExpandableButtonDelegate, UITable
     }
     
     private func endCategorySelection() {
+        
         categoryButton.highlight(false)
         categoryButton.backgroundColor = .white
         categoriesTableView.isHidden = true
     }
     
-    func didSelect(category: PoshikCategory) {
-        marketParameter.category = category
+    private func startArtistsSelection() {
+        currentSelectionMode = .artist
+        endSearching()
+        artistsButton.highlight(true)
+        artistsButton.backgroundColor = UIColor.Kulon.orange
+        categoriesTableView.isHidden = false
+        
+    }
+    
+    private func endArtistsSelection() {
+        artistsButton.highlight(false)
+        artistsButton.backgroundColor = .white
+        categoriesTableView.isHidden = true
+    }
+    
+    func didSelect(_ object: IdiableObject) {
+        if case .category = currentSelectionMode {
+            marketParameter.category = object
+        }
+        if case .tag = currentSelectionMode {
+            marketParameter.artist = object
+        }
         poshiks.update(parameterValue: marketParameter)
         topButton.hideButtons()
     }
@@ -238,18 +274,18 @@ class StoreViewController: BaseViewController, ExpandableButtonDelegate, UITable
     //MARK: - tableView 
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return categories.count
+        return names.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: Identifiers.Cell.categoryCell) as! CategoryCell
-        cell.configure(with: categories[indexPath.row])
+        cell.configure(with: names[indexPath.row])
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        didSelect(category: categories[indexPath.row])
+        didSelect(names[indexPath.row])
     }
     
     //MARK: - textField

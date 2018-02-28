@@ -13,10 +13,11 @@ import RxSwift
 
 class MarketParameter: ParameterType, PaginationParameter {
     
-    var category: PoshikCategory? {
+    var category: IdiableObject? {
         didSet {
             if category != nil {
                 tag = nil
+                artist = nil
             }
         }
     }
@@ -25,6 +26,16 @@ class MarketParameter: ParameterType, PaginationParameter {
         didSet {
             if tag != nil {
                 category = nil
+                artist = nil
+            }
+        }
+    }
+    
+    var artist: IdiableObject? {
+        didSet {
+            if artist != nil {
+                category = nil
+                tag = nil
             }
         }
     }
@@ -38,6 +49,8 @@ class MarketParameter: ParameterType, PaginationParameter {
             parameters["category"] = category.id
         } else if let tag = tag {
             parameters["search"] = tag
+        } else if let artist = artist {
+            parameters["artist"] = artist.id
         }
         
         return parameters
@@ -70,7 +83,7 @@ class MarketApiService : ApiService {
 }
 
 class FavoritePoshiks: ResponseType {
-    var poshiks: [Poshik]
+    var poshiks: [FavoritePoshik]
     required init(map: Map) throws {
         poshiks = try map.value("favorites")
     }

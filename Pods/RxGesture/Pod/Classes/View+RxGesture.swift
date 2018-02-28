@@ -89,8 +89,6 @@ extension Reactive where Base: View {
             control.isUserInteractionEnabled = true
         #endif
 
-        gesture.delegate = gesture.delegate ?? PermissiveGestureRecognizerDelegate.shared
-
         let source: Observable<G> = Observable
             .create { observer in
                 MainScheduler.ensureExecutingOnScheduler()
@@ -100,7 +98,7 @@ extension Reactive where Base: View {
                 let disposable = genericGesture.rx.event
                     .map { $0 as! G }
                     .startWith(gesture)
-                    .bindNext(observer.onNext)
+                    .bind(onNext: observer.onNext)
 
                 return Disposables.create {
                     control.removeGestureRecognizer(gesture)

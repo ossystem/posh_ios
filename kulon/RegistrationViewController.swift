@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import RxSwift
+import RxCocoa
 
 class RegistrationViewController: BaseViewController {
     
@@ -26,12 +27,33 @@ class RegistrationViewController: BaseViewController {
         self.definesPresentationContext = true
         self.transitioningDelegate = self
         
+        nextButton.rx.tap
+            .map { [unowned self] in self.emailField.text }
+            .filter {
+                $0 != nil && $0 != ""
+            }
+            .map { $0! }
+            .do(onNext: { [unowned self] _ in
+               self.showCodeField()
+            })
+            .filter {[unowned self] _ in
+                self.passwordField.text != nil && self.passwordField.text != ""
+            }
+            .map { [unowned self] in UserCredentials(email: $0, password: self.passwordField.text!)}
+            .subscribe(onNext: {_ in } )
+            
+        
+    }
+    func showCodeField() {
+        
     }
     
     @IBAction func nextButtonTapped(_ sender: UIButton) {
         guard let email = emailField.text,
             let password = passwordField.text
             else { return }
+        
+        
         sender.setWaiting(true)
         let credentials = UserCredentials(email: email, password: password)
         loginService.login(with: credentials)

@@ -60,6 +60,16 @@ public class BluetoothManager {
     /// Queue of scan operations which are waiting for an execution
     private var scanQueue: [ScanOperation] = []
 
+    /// Unique identifier of an object. Should be removed in 4.0
+    @available(*, deprecated)
+    public var objectId: UInt {
+        return centralManager.objectId
+    }
+
+    public var manager: CBCentralManager {
+        return centralManager.centralManager
+    }
+
     // MARK: Initialization
 
     /**
@@ -395,7 +405,8 @@ public class BluetoothManager {
 
     #if os(iOS)
     /**
-     Emits `RestoredState` instance, when state of `BluetoothManager` has been restored
+     Emits `RestoredState` instance, when state of `BluetoothManager` has been restored,
+     Should only be called once in the lifetime of the app
      - Returns: Observable which emits next events state has been restored
      */
     public func listenOnRestoredState() -> Observable<RestoredState> {

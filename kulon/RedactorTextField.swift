@@ -8,7 +8,7 @@
 
 import Foundation
 import UIKit
-import IMGLYColorPicker
+//import IMGLYColorPicker
 
 protocol RedactorTextFieldDelegate: class {
     func redactorTextField(_ redactorTextField: RedactorTextField, didSelectBackground color: UIColor)
@@ -63,20 +63,20 @@ class RedactorTextField: UITextView, FontPickerViewDelegate{
     
     func beginTextColorSelection() {
         selectBarButton(.textColor)
-        let colorPicker = ColorPickerView()
-        colorPicker.addTarget(self, action: #selector(textColorPicked(_:)), for: .valueChanged)
-        colorPicker.frame = CGRect(x: 0, y: 0, width: 0, height: actualtKeyBoardHeight)
-        colorPicker.color = textColor ?? .white
-        changeInputView(to: colorPicker)
+//        let colorPicker = ColorPickerView()
+//        colorPicker.addTarget(self, action: #selector(textColorPicked(_:)), for: .valueChanged)
+//        colorPicker.frame = CGRect(x: 0, y: 0, width: 0, height: actualtKeyBoardHeight)
+//        colorPicker.color = textColor ?? .white
+//        changeInputView(to: colorPicker)
     }
     
     func beginBackgroundColorSelection() {
         selectBarButton(.fillColor)
-        let colorPicker = ColorPickerView()
-        colorPicker.addTarget(self, action: #selector(backgroundColorPicked(_:)), for: .valueChanged)
-        colorPicker.frame = CGRect(x: 0, y: 0, width: 0, height: actualtKeyBoardHeight)
-        colorPicker.color = poshikBackgroundColor ?? .lightGray
-        changeInputView(to: colorPicker)
+//        let colorPicker = ColorPickerView()
+//        colorPicker.addTarget(self, action: #selector(backgroundColorPicked(_:)), for: .valueChanged)
+//        colorPicker.frame = CGRect(x: 0, y: 0, width: 0, height: actualtKeyBoardHeight)
+//        colorPicker.color = poshikBackgroundColor ?? .lightGray
+//        changeInputView(to: colorPicker)
     }
     
     func beginFontSelection() {
@@ -118,14 +118,14 @@ class RedactorTextField: UITextView, FontPickerViewDelegate{
     
     //MARK: - colorPickerDelegate
     
-    func textColorPicked(_ colorPickerView: ColorPickerView) {
-        textColor = colorPickerView.color
-    }
-    
-    func backgroundColorPicked(_ colorPickerView: ColorPickerView) {
-        poshikBackgroundColor = colorPickerView.color
-        redactorDelegate?.redactorTextField(self, didSelectBackground: colorPickerView.color)
-    }
+//    func textColorPicked(_ colorPickerView: ColorPickerView) {
+//        textColor = colorPickerView.color
+//    }
+//
+//    func backgroundColorPicked(_ colorPickerView: ColorPickerView) {
+//        poshikBackgroundColor = colorPickerView.color
+//        redactorDelegate?.redactorTextField(self, didSelectBackground: colorPickerView.color)
+//    }
     
     func keyBoardWillShow(notification: NSNotification) {
         let userInfo:NSDictionary = notification.userInfo! as NSDictionary

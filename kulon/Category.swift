@@ -11,23 +11,23 @@ import UIKit
 import AlamofireObjectMapper
 import ObjectMapper
 
-protocol IdiableObject: ImmutableMappable {
-    var id: Int { set get }
+protocol IdiableObject {
+    var id: String { set get }
 }
 
 
-protocol NamedObject: ImmutableMappable {
+protocol NamedObject  {
     var name: String { set get }    
 }
 
 
 
-class PoshikCategory: IdiableObject, NamedObject {
-    var name: String = ""
-    var id: Int = -1
+class PoshikCategory: IdiableObject, NamedObject, ImmutableMappable {
+    var name: String
+    var id: String
 
     required init(map: Map) throws {
-        name <- map["name"]
-        id <- map["id"]
+        name = try map.value("name")
+        id = try map.value("id")
     }
 }

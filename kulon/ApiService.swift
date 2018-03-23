@@ -1,4 +1,4 @@
-//
+  //
 //  ApiService.swift
 //  kulon
 //
@@ -12,7 +12,7 @@ import Alamofire
 import AlamofireObjectMapper
 import ObjectMapper
 
-protocol ParameterType {
+public protocol ParameterType {
     func toJSON() -> [String : Any]?
 }
 
@@ -66,14 +66,14 @@ extension ApiService {
 
     
     var baseRoute: String {
-        return "http://kulon.jwma.ru/api/v1/"
+        return "https://posh.jwma.ru/api/v1/"
     }
     var headers: [String : String] {
+        var headers = ["Accept":"application/json"]
         if let token = TokenService().token {
-            return ["Authorization" : "Bearer \(token)"]
-        } else {
-            return [:]
+            headers["Authorization"] = "Bearer \(token)"
         }
+        return headers
     }
     
     func request(parameter: Parameter) -> Observable<Response> {
@@ -100,30 +100,9 @@ extension ApiService {
                         }
                         switch innerResponse.statusCode {
                         case 401:
+                            loginService.logout()
                             
                             //TODO: try to rewrite with retryWhen
-                            
-                            tokenService.refresh().subscribe(onNext: { _ in
-                                self.request(parameter: parameter).subscribe(
-                                    onNext: { value in
-                                    observer.onNext(value)
-                                },  onError: {
-                                    observer.onError($0)
-                                },
-                                    onCompleted: {
-                                    observer.onCompleted()
-                                })
-                            }, onError: { error in
-                                    loginService.loginWithStoredCredentials().subscribe(onNext: {
-                                        self.request(parameter: parameter).subscribe(onNext: { value in
-                                            observer.onNext(value)
-                                        }, onError: {
-                                            observer.onError($0)
-                                        }, onCompleted: {
-                                            observer.onCompleted()
-                                        })
-                                })
-                            })
                             
                         case 300:
                             observer.on(.error(UserNotExistError()))

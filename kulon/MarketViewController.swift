@@ -38,7 +38,12 @@ class StoreViewController: BaseViewController, ExpandableButtonDelegate, UITable
     
     var bag: DisposeBag = DisposeBag()
     var poshiks: PaginableAndRefreshablePoshiksFromMarket!
-    var names: [NamedObject & IdiableObject] = []
+    var names: [NamedObject & IdiableObject] = [] {
+        didSet {
+            filteredNames = names
+        }
+    }
+    var filteredNames: [NamedObject & IdiableObject] = []
     var getNamesMethod: Observable<[NamedObject & IdiableObject]>?
     var marketParameter =  MarketParameter()
     
@@ -83,34 +88,13 @@ class StoreViewController: BaseViewController, ExpandableButtonDelegate, UITable
         
         poshiks
             .asObservable()
+            .catchErrorJustReturn([])
             .map{ [StandardSectionModel(items: $0)] }
             .bindTo(collectionView.rx.items(dataSource: dataSource))
             .disposed(by: bag)
         
         collectionView.refreshControl = refreshConrol
         
-//        tagTextField.inlineMode = true
-//        tagTextField.userStoppedTypingHandler = { [unowned self] in
-//            if let criteria = self.tagTextField.text {
-//                if criteria.characters.count > 1 {
-//                    self.tagTextField.showLoadingIndicator()
-//                    
-//                    self.marketService.getAutocompletedTagsFor(string: criteria)
-//                        .map {
-//                            $0.tags
-//                                .map { SearchTextFieldItem(title: $0.name.uppercased()) }
-//                        }
-//                        .subscribe(onNext: {
-//                            self.tagTextField.stopLoadingIndicator()
-//                            self.tagTextField.filterItems($0)
-//                        },
-//                                   onError: { _ in
-//                            self.tagTextField.stopLoadingIndicator()
-//                        }).disposed(by: self.bag)
-//                    
-//                }
-//            }
-//        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -126,7 +110,7 @@ class StoreViewController: BaseViewController, ExpandableButtonDelegate, UITable
     let categoryButton = RoundedButton.button(with: #imageLiteral(resourceName: "icon_top_category_red"), highlightIcon: #imageLiteral(resourceName: "icon_top_category_white"),target: self, action: #selector(searchCategories))
     let tagButton = RoundedButton.button(with: #imageLiteral(resourceName: "icon_top_tag"), highlightIcon: #imageLiteral(resourceName: "icon_top_tag_selected"), target: self, action: #selector(searchTags))
     let resetButton = RoundedButton.button(with: #imageLiteral(resourceName: "icon_top_cancel"), highlightIcon: #imageLiteral(resourceName: "icon_top_tag_selected"), target: self, action: #selector(resetFilters))
-    let artistsButton = RoundedButton.button(with: #imageLiteral(resourceName: "icon_top_tag"), highlightIcon: #imageLiteral(resourceName: "icon_top_tag_selected"), target: self, action: #selector(searchArtists))
+    let artistsButton = RoundedButton.button(with: #imageLiteral(resourceName: "icon_artist_black"), highlightIcon: #imageLiteral(resourceName: "icon_artist_white"), target: self, action: #selector(searchArtists))
 
     
     func setupInterface(){
@@ -139,11 +123,17 @@ class StoreViewController: BaseViewController, ExpandableButtonDelegate, UITable
         blurView = UIVisualEffectView(frame: view.bounds)
     }
     
-    func loadCategories() {
+    func loadNames() {
+        names = []
         getNamesMethod?.subscribe(onNext: { names in
             self.names = names
             self.categoriesTableView.reloadData()
         }).disposed(by: bag)
+    }
+    
+    func applyFilterToNames(string: String) {
+        filteredNames = names.filter { $0.name.lowercased().range(of: string.lowercased()) != nil }
+        categoriesTableView.reloadData()
     }
     
     func searchTags() {
@@ -164,10 +154,12 @@ class StoreViewController: BaseViewController, ExpandableButtonDelegate, UITable
     }
     
     private func statrSearching() {
+        tagTextField.placeholder = "TAG"
         currentSelectionMode = .tag
         endCategorySelection()
-        tagInputView.isHidden = false
-        tagTextField.becomeFirstResponder()
+        endArtistsSelection()
+        getNamesMethod = marketService.getTags().map { $0.tags }.asObservable()
+        loadNames()
         tagButton.highlight(true)
         tagButton.backgroundColor = UIColor.Kulon.orange
     }
@@ -175,41 +167,39 @@ class StoreViewController: BaseViewController, ExpandableButtonDelegate, UITable
     private func endSearching() {
         tagButton.highlight(false)
         tagButton.backgroundColor = .white
-        view.endEditing(true)
-        tagInputView.isHidden = true
     }
     
     private func startCategorySelection() {
+        tagTextField.placeholder = "CATEGORY"
         currentSelectionMode = .category
         endSearching()
         endArtistsSelection()
         getNamesMethod = marketService.getCategories().map { $0.categories }.asObservable()
-        loadCategories()
+        loadNames()
         categoryButton.highlight(true)
         categoryButton.backgroundColor = UIColor.Kulon.orange
-        categoriesTableView.isHidden = false
     }
     
     private func endCategorySelection() {
-        
         categoryButton.highlight(false)
         categoryButton.backgroundColor = .white
-        categoriesTableView.isHidden = true
     }
     
     private func startArtistsSelection() {
+        tagTextField.placeholder = "ARTIST"
         currentSelectionMode = .artist
         endSearching()
+        endCategorySelection()
+        getNamesMethod = marketService.getArtists().map { $0.artists }.asObservable()
+        loadNames()
         artistsButton.highlight(true)
         artistsButton.backgroundColor = UIColor.Kulon.orange
-        categoriesTableView.isHidden = false
         
     }
     
     private func endArtistsSelection() {
         artistsButton.highlight(false)
         artistsButton.backgroundColor = .white
-        categoriesTableView.isHidden = true
     }
     
     func didSelect(_ object: IdiableObject) {
@@ -239,15 +229,22 @@ class StoreViewController: BaseViewController, ExpandableButtonDelegate, UITable
         UIView.animate(withDuration: 0.3, animations: {
             self.blurView?.effect = UIBlurEffect(style: .extraLight)
         }, completion: { _ in
+                self.categoriesTableView.isHidden = false
                 self.statrSearching()
+                self.tagInputView.isHidden = false
+                self.tagTextField.becomeFirstResponder()
         })
     }
     
     func willShrink(_ button: ExpandableButton) {
         endSearching()
         endCategorySelection()
+        view.endEditing(true)
+        tagInputView.isHidden = true
+        categoriesTableView.isHidden = true
         UIView.animate(withDuration: 0.3, animations: {
             self.blurView.effect = nil
+            
         },completion: { completed in
             self.blurView.removeFromSuperview()
         })
@@ -256,7 +253,7 @@ class StoreViewController: BaseViewController, ExpandableButtonDelegate, UITable
     //MARK: - keyboard events handling
     
     func keyboardWillShow(notification: NSNotification) {
-        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
             if tagBottomConstraint.constant == -49 {
                 tagBottomConstraint.constant += keyboardSize.height
             }
@@ -274,18 +271,18 @@ class StoreViewController: BaseViewController, ExpandableButtonDelegate, UITable
     //MARK: - tableView 
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return names.count
+        return filteredNames.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: Identifiers.Cell.categoryCell) as! CategoryCell
-        cell.configure(with: names[indexPath.row])
+        cell.configure(with: filteredNames[indexPath.row])
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        didSelect(names[indexPath.row])
+        didSelect(filteredNames[indexPath.row])
     }
     
     //MARK: - textField
@@ -298,9 +295,12 @@ class StoreViewController: BaseViewController, ExpandableButtonDelegate, UITable
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        print(string)
+        if let fieldString = textField.text {
+            applyFilterToNames(string: fieldString.replacingCharacters(in: Range(range, in: fieldString)!, with: string))
+        }
         return true
     }
-
+    
+    
 }
 

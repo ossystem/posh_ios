@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="7Sz-kD-qw3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="7Sz-kD-qw3">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -64,7 +63,7 @@
                                 </cells>
                             </collectionView>
                             <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="72" sectionHeaderHeight="70" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="lYJ-8K-W7w">
-                                <rect key="frame" x="1" y="20" width="373" height="647"/>
+                                <rect key="frame" x="1" y="20" width="373" height="616"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <inset key="separatorInset" minX="20" minY="0.0" maxX="20" maxY="0.0"/>
                                 <prototypes>
@@ -76,7 +75,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="НА ВСЕ БАБКИ" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EVB-Xt-1v3">
-                                                    <rect key="frame" x="28" y="26" width="317" height="20"/>
+                                                    <rect key="frame" x="35" y="26" width="303" height="20"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -137,7 +136,7 @@
                                 </connections>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3y1-UM-NDL" customClass="ExpandableButton" customModule="kulon" customModuleProvider="target">
-                                <rect key="frame" x="168" y="40" width="40" height="40"/>
+                                <rect key="frame" x="167.5" y="40" width="40" height="40"/>
                                 <color key="backgroundColor" red="0.99681133031845093" green="0.96478229761123657" blue="0.95604163408279419" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="3y1-UM-NDL" secondAttribute="height" id="djw-U9-gby"/>
@@ -199,12 +198,12 @@
                             <constraint firstItem="NSV-Ns-VWJ" firstAttribute="top" secondItem="C8w-Ji-LuW" secondAttribute="bottom" constant="-49" id="1kR-vu-0YP"/>
                             <constraint firstItem="C8w-Ji-LuW" firstAttribute="width" secondItem="oVc-Lu-Ne5" secondAttribute="width" id="34J-DJ-Un5"/>
                             <constraint firstAttribute="trailingMargin" secondItem="lYJ-8K-W7w" secondAttribute="trailingMargin" id="JK4-HF-Rma"/>
-                            <constraint firstItem="NSV-Ns-VWJ" firstAttribute="top" secondItem="lYJ-8K-W7w" secondAttribute="bottom" id="KDT-co-BM8"/>
                             <constraint firstAttribute="trailing" secondItem="Dxi-Cd-tdk" secondAttribute="trailing" id="Z1d-QN-XlG"/>
                             <constraint firstItem="lYJ-8K-W7w" firstAttribute="top" secondItem="WOC-Uj-Kjq" secondAttribute="bottom" id="ddm-31-LEA"/>
                             <constraint firstItem="Dxi-Cd-tdk" firstAttribute="top" secondItem="WOC-Uj-Kjq" secondAttribute="bottom" id="grn-Nw-IRd"/>
                             <constraint firstItem="NSV-Ns-VWJ" firstAttribute="top" secondItem="Dxi-Cd-tdk" secondAttribute="bottom" id="hvD-AU-aT9"/>
                             <constraint firstItem="ZGF-8B-8cu" firstAttribute="centerX" secondItem="oVc-Lu-Ne5" secondAttribute="centerX" id="lhV-gL-ub5"/>
+                            <constraint firstItem="C8w-Ji-LuW" firstAttribute="top" secondItem="lYJ-8K-W7w" secondAttribute="bottom" id="rqv-Ua-Zaf"/>
                             <constraint firstItem="3y1-UM-NDL" firstAttribute="top" secondItem="WOC-Uj-Kjq" secondAttribute="bottom" constant="20" id="sq4-Xp-Gi0"/>
                             <constraint firstItem="Dxi-Cd-tdk" firstAttribute="leading" secondItem="oVc-Lu-Ne5" secondAttribute="leading" id="vTL-d0-pVm"/>
                             <constraint firstItem="C8w-Ji-LuW" firstAttribute="centerX" secondItem="oVc-Lu-Ne5" secondAttribute="centerX" id="vhS-qU-WlM"/>

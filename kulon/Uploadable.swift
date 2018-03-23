@@ -9,6 +9,7 @@
 import Foundation
 import RxSwift
 import Alamofire
+import ObjectMapper
 
 protocol Uploadable {
     var data: Data { get }
@@ -44,6 +45,35 @@ protocol ObservableUploadable {
 
 protocol ObservableImage {
     func asObservable() -> Observable<UIImage>
+}
+
+class FakeEmptyObservableImage: ObservableImage {
+    func asObservable() -> Observable<UIImage> {
+        return Observable.just(UIImage())
+    }
+}
+
+class ObservableImageFromJSON: ObservableImage, ImmutableMappable, ObservableType {
+
+    private var link: String
+    
+    typealias E = UIImage
+    func subscribe<O:ObserverType>(_ observer: O) -> Disposable where O.E == E {
+        let request = try! URLRequest(url: URL(string: link)!,
+                method: .get,
+                headers: ["Authorization": "Bearer \(TokenService().token!)"])
+        return Observable.create { [unowned self] observer  in
+            Alamofire.request(request).responseData(completionHandler: { data in
+                observer.on(.next(UIImage(data: data.data!)!))
+                observer.on(.completed)
+            })
+            return Disposables.create()
+        }.subscribe(observer)
+    }
+
+    required init(map: Map) throws {
+        self.link = try map.value("link")
+    }
 }
 
 class UploadableImage : ObservableUploadable, ObservableType {

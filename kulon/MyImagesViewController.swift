@@ -23,30 +23,41 @@ class MyImagesViewController: BaseViewController, UICollectionViewDelegate, UICo
     }
     var myPoshiks: [Poshik] = []
     var purchasedPoshiks: [Poshik] = []
+    var balance: Balance = Balance()
     var bag = DisposeBag()
     let myPoshiksService = MyPoshiksService()
     let favoriteService = FavoritesApiService()
+    let balanceService = BalanceService()
     var blurView: UIVisualEffectView!
     
     class MyImagesSectionTitles {
+        
+        var balance: Variable<Balance> = Variable<Balance>(Balance())
+        
+        subscript(index: Int) -> String {
+            get {
+                if index == 0 {
+                    return "Balance: \(balance.value.toString())"
+                }
+                return titles[index]
+            }
+        }
         
         private var hasFavorite = false
         private var hasPurchased = false
         var titles: [String] {
             var sections = [String]()
+            sections.append("Balance: Loading")
             if hasPurchased { sections.append("Purchases") }
             if hasFavorite { sections.append("Favorite") }
             return sections
         }
         //TODO: I think it is needed to be refactor
         var count: Int {
-            return (hasFavorite ? 1 : 0) + (hasPurchased ? 1 : 0)
+            return 1 + (hasFavorite ? 1 : 0) + (hasPurchased ? 1 : 0)
         }
         var myIndex: Int {
             return count - 1
-        }
-        var purchasesIndex: Int {
-            return (hasFavorite ? 1 : 0) - 1
         }
         
         func loadedFavorite(poshiks: [Poshik]) {
@@ -98,6 +109,9 @@ class MyImagesViewController: BaseViewController, UICollectionViewDelegate, UICo
             error in
             print("myPoshiks: \(error.localizedDescription)")
         }).addDisposableTo(bag)
+        balanceService.balance()
+            .do(onNext: { [unowned self ] _ in self.collectionView.reloadData() })
+            .bind(to: sectionTitles.balance).addDisposableTo(bag)
     }
     
     func addTextImage() {
@@ -114,7 +128,7 @@ class MyImagesViewController: BaseViewController, UICollectionViewDelegate, UICo
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         
         let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "Header", for: indexPath) as! CollectionHeaderView
-        headerView.configure(with: sectionTitles.titles[indexPath.section])
+        headerView.configure(with: sectionTitles[indexPath.section])
         return headerView
 
     }

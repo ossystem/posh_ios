@@ -15,7 +15,7 @@ import ObjectMapper
 
 class LikePoshikApiService: ApiService {
     
-    init(with id: Int) {
+    init(with id: String) {
         self.route = "market/\(id)/fav"
     }
     
@@ -28,7 +28,7 @@ class LikePoshikApiService: ApiService {
 
 class DislikePoshikApiService: ApiService {
     
-    init(with id: Int) {
+    init(with id: String) {
         self.route = "favorites/\(id)"
     }
     
@@ -41,7 +41,7 @@ class DislikePoshikApiService: ApiService {
 
 class BuyPoshikApiService: ApiService {
     
-    init(with id: Int) {
+    init(with id: String) {
         self.route = "market/\(id)"
     }
     
@@ -57,7 +57,7 @@ class DeletePoshikApiService: ApiService {
     var method: HTTPMethod = .delete
     var route: String
 
-    init(with id: Int) {
+    init(with id: String) {
         self.route = "poshiks/my/\(id)"
     }
     

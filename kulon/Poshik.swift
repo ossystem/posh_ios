@@ -49,7 +49,7 @@ class PoshikFromMarket: Poshik {
     var isPurchased: Bool = false
     var isLiked: Bool = false
     var imageRoute: String = "market"
-    var id: Int = -1
+    var id: String = "-1"
     var fileType: String
     
     required init(map: Map) throws {
@@ -71,7 +71,7 @@ class MyPoshikFromMarket: UploadablePoshik {
     var isPurchased: Bool = true
     var isLiked: Bool = false
     var imageRoute: String = "poshiks/purchase"
-    var id: Int = -1
+    var id: String = "-1"
     var fileType: String
     
     
@@ -103,7 +103,7 @@ class MyPoshikUploaded: UploadablePoshik {
     var isPurchased: Bool = true
     var isLiked: Bool = false
     var imageRoute: String = "poshiks/my"
-    var id: Int = -1
+    var id: String = "-1"
     var fileType: String
     
     required init(map: Map) throws {
@@ -118,7 +118,7 @@ class FavoritePoshik: Poshik {
     var isPurchased: Bool = false
     var isLiked: Bool = true
     var imageRoute: String = "market"
-    var id: Int = -1
+    var id: String = "-1"
     var fileType: String
     
     required init(map: Map) throws {

@@ -133,3 +133,61 @@ class MyPsohiks : ObservableType {
             .subscribe(observer)
     }
 }
+
+class BalanceService  {
+    
+    private var balanceApiService = BalanceApiService()
+    
+    func balance() -> Observable<Balance> {
+        return balanceApiService.request(parameter: ParameterNone()).catchErrorJustReturn(Balance())
+    }
+}
+
+class BalanceApiService: ApiService {
+    typealias Parameter = ParameterNone
+    typealias Response = Balance
+    
+    var method: HTTPMethod = .get
+    var route: String = "balance"
+    
+}
+
+//protocol Balance: StringConvertable {
+//    
+//}
+
+//class BalanceLoading: Balance {
+//    func toString() -> String {
+//        return "Loading..."
+//    }
+//}
+
+//class BalanceFromValue: Balance {
+//
+//    private var value: Float
+//
+//    init(value: Float) {
+//        self.value = value
+//    }
+//
+//    func toString() -> String {
+//        return "\(self.value)"
+//    }
+//}
+
+class Balance: ResponseType, StringConvertable {
+    
+    var value: Float
+    required init(map: Map) throws {
+        value = try map.value("total")
+    }
+    init() {
+        value = 0
+    }
+    
+    func toString() -> String {
+        return "\(self.value)"
+    }
+    
+    
+}

@@ -105,12 +105,54 @@ protocol PaginationParameter {
 }
 
 
+class ArtistFromJSON: Artist, ResponseType {
+    
+    var id: String
+    var name: String
+    var avatar: ObservableImage
+    
+    required init(map: Map) throws {
+        id = try map.value("id")
+        name = try map.value("name")
+        avatar = try ObservableImageFromJSON(map: map.value("avatar"))
+    }
+    
+    init() {
+        id = "-1"
+        name = "Shlesberg"
+        avatar = FakeEmptyObservableImage()
+    }
+}
+
+class ArtistsFromApi : ResponseType  {
+    var artists: [Artist]
+    
+    init() {
+        artists = [ArtistFromJSON()]
+    }
+    
+    required init(map: Map) throws {
+        artists = try map.value("artists")
+    }
+}
+
+class ArtistsApiService: ApiService {
+    
+    typealias Parameter = ParameterNone
+    typealias Response = ArtistsFromApi
+    
+    var method: HTTPMethod = .get
+    var route: String = "artists"
+}
+
+
 class MarketService {
     
     let marketApiService = MarketApiService()
     let categoriesApiService = CategoriesApiService()
     let tagApiService = TagAutocompletionApiService()
     let favoritesApiService = FavoritesApiService()
+    let artistsApiService = ArtistsApiService()
     
     func getPoshiks(parameter: MarketParameter) -> Observable<MarketPoshiks> {
         return marketApiService.request(parameter: parameter)
@@ -119,9 +161,11 @@ class MarketService {
     func getCategories() -> Observable<PoshikCategories> {
         return categoriesApiService.request(parameter: ParameterNone())
     }
-    
-    func getAutocompletedTagsFor(string: String) -> Observable<TagAutocompletions> {
-        return tagApiService.request(parameter: TagAutocompletionParameter(string))
+    func getArtists() -> Observable<ArtistsFromApi> {
+        return artistsApiService.request(parameter: ParameterNone())
+    }
+    func getTags() -> Observable<TagAutocompletions> {
+        return tagApiService.request(parameter: ParameterNone())
     }
     
     func getFavoritePoshiks() -> Observable<FavoritePoshiks> {

@@ -25,22 +25,29 @@ class TagAutocompletionParameter: ParameterType {
 }
 
 
-class MarketTag: IdiableObject, NamedObject {
+class MarketTag: IdiableObject, NamedObject, ImmutableMappable {
     
     var name: String = ""
-    var id: Int = -1
+    var id: String = "-1"
     
     required init(map: Map) throws {
         name <- map["value"]
         id <- map["id"]
     }
     
+    init() {
+        id = "-1"
+        name = "Cats"
+    }
 }
 
 class TagAutocompletions: ResponseType {
     let tags : [MarketTag]
     required init(map: Map) throws {
         tags = try map.value("tags")
+    }
+    init() {
+        tags = [MarketTag()]
     }
 }
 
@@ -50,6 +57,6 @@ class TagAutocompletionApiService: ApiService {
     var method: HTTPMethod = .get
     var route: String = "tags"
     
-    typealias Parameter = TagAutocompletionParameter
+    typealias Parameter = ParameterNone
     typealias Response = TagAutocompletions
 }

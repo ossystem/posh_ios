@@ -20,54 +20,61 @@ class RegistrationViewController: BaseViewController {
     let registrationService = RegistrationService()
     let bag = DisposeBag()
     
+    @IBOutlet weak var sendCodeButton: RoundedButton!
+    @IBOutlet var codeViewsGroup: [UIView]!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-    
         self.providesPresentationContextTransitionStyle = true
         self.definesPresentationContext = true
         self.transitioningDelegate = self
+    
         
-        nextButton.rx.tap
+        let firstObs = sendCodeButton.rx.tap
             .map { [unowned self] in self.emailField.text }
             .filter {
                 $0 != nil && $0 != ""
             }
-            .map { $0! }
-            .do(onNext: { [unowned self] _ in
-               self.showCodeField()
+            .map { PhoneNumber(with: $0!) }
+            .do(onNext: { _ in
+                self.sendCodeButton.setWaiting(true)
             })
-            .filter {[unowned self] _ in
-                self.passwordField.text != nil && self.passwordField.text != ""
+            .flatMap { [unowned self] in
+                 self.loginService.auth(with: $0)
             }
-            .map { [unowned self] in UserCredentials(email: $0, password: self.passwordField.text!)}
-            .subscribe(onNext: {_ in } )
-            
+            .do(onNext: { [unowned self] _ in
+                self.sendCodeButton.setWaiting(false)
+                self.showCodeField()
+            })
+
+        Observable.combineLatest(
+            firstObs,
+            nextButton.rx.tap
+                .map { [unowned self] in self.passwordField.text }
+                .filter {
+                    $0 != nil && $0 != ""
+                }
+        )
+        .flatMap {
+            return self.loginService.login(with: UserCredentials(phone: $0, password: $1!))
+        }
+        .subscribe(onNext: { 
+            self.enterApplication()
+        })
+        .disposed(by: bag)
         
-    }
-    func showCodeField() {
-        
+        //add another button to use fro commiting code, show only afte
     }
     
-    @IBAction func nextButtonTapped(_ sender: UIButton) {
-        guard let email = emailField.text,
-            let password = passwordField.text
-            else { return }
-        
-        
-        sender.setWaiting(true)
-        let credentials = UserCredentials(email: email, password: password)
-        loginService.login(with: credentials)
-            .subscribe(onError: { error in
-                if error is UserNotExistError {
-                    self.tryToCrateNewUrer(with: credentials)
-                } else {
-                    sender.setWaiting(false)
-//                    self.showErrorMessage(error)
-                }
-                print(error.localizedDescription)
-            }, onCompleted: {
-                self.enterApplication()
-            }).addDisposableTo(bag)
+    func showCodeField() {
+        //expand
+        UIView.animate(withDuration: 0.4) {
+            self.sendCodeButton.isHidden = true
+            self.codeViewsGroup.forEach {
+                $0.isHidden = false
+            }
+        }
     }
     
     @IBAction func backButtonTapped(_ sender: RoundedButton) {

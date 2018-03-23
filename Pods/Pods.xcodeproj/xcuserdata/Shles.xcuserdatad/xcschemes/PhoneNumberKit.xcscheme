@@ -13,11 +13,11 @@
             buildForProfiling = "YES"
             buildForArchiving = "YES">
             <BuildableReference
-               BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '8C5BD10883BD185426DD737247F56DEC'
-               BlueprintName = 'PhoneNumberKit'
-               ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'PhoneNumberKit.framework'>
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "8C5BD10883BD185426DD737247F56DEC"
+               BlueprintName = "PhoneNumberKit"
+               ReferencedContainer = "container:Pods.xcodeproj"
+               BuildableName = "PhoneNumberKit.framework">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

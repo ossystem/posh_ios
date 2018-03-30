@@ -56,6 +56,11 @@
 		FD7DBACE1ED2E48800D97D45 /* SettingsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7DBACD1ED2E48800D97D45 /* SettingsService.swift */; };
 		FD7DC8331F4DBFF600C2DF5D /* Refreshable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7DC8321F4DBFF600C2DF5D /* Refreshable.swift */; };
 		FD7DDF161EB3BE7800B963DC /* BLEService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7DDF151EB3BE7800B963DC /* BLEService.swift */; };
+		FD8971862066ADD600027B38 /* UILabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD8971852066ADD600027B38 /* UILabel.swift */; };
+		FD8971892066ADED00027B38 /* StandardLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD8971872066ADED00027B38 /* StandardLabel.swift */; };
+		FD89718A2066ADED00027B38 /* StandardTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD8971882066ADED00027B38 /* StandardTableView.swift */; };
+		FD89718C2066AE0A00027B38 /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD89718B2066AE0A00027B38 /* UIImageView.swift */; };
+		FD89718E206A6FAD00027B38 /* ArtworkAcquisitionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD89718D206A6FAD00027B38 /* ArtworkAcquisitionController.swift */; };
 		FD90E89C1F4DCA5A00600017 /* StandardSectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD90E89B1F4DCA5A00600017 /* StandardSectionModel.swift */; };
 		FD90E89E1F4DEEE900600017 /* Paginable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD90E89D1F4DEEE900600017 /* Paginable.swift */; };
 		FD92DDDC1ED71EE200E331A3 /* UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD92DDDB1ED71EE200E331A3 /* UIButton.swift */; };
@@ -145,6 +150,11 @@
 		FD7DBACD1ED2E48800D97D45 /* SettingsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsService.swift; sourceTree = "<group>"; };
 		FD7DC8321F4DBFF600C2DF5D /* Refreshable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Refreshable.swift; sourceTree = "<group>"; };
 		FD7DDF151EB3BE7800B963DC /* BLEService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BLEService.swift; sourceTree = "<group>"; };
+		FD8971852066ADD600027B38 /* UILabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UILabel.swift; sourceTree = "<group>"; };
+		FD8971872066ADED00027B38 /* StandardLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StandardLabel.swift; sourceTree = "<group>"; };
+		FD8971882066ADED00027B38 /* StandardTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StandardTableView.swift; sourceTree = "<group>"; };
+		FD89718B2066AE0A00027B38 /* UIImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
+		FD89718D206A6FAD00027B38 /* ArtworkAcquisitionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtworkAcquisitionController.swift; sourceTree = "<group>"; };
 		FD90E89B1F4DCA5A00600017 /* StandardSectionModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StandardSectionModel.swift; sourceTree = "<group>"; };
 		FD90E89D1F4DEEE900600017 /* Paginable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Paginable.swift; sourceTree = "<group>"; };
 		FD92DDDB1ED71EE200E331A3 /* UIButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIButton.swift; sourceTree = "<group>"; };
@@ -243,6 +253,7 @@
 				FD59599F1ECB96C500BB2D9D /* CategoryCell.swift */,
 				FD5959A11ECB973900BB2D9D /* Category.swift */,
 				FD5F9F451EA776A300BD79B1 /* MarketViewController.swift */,
+				FD89718D206A6FAD00027B38 /* ArtworkAcquisitionController.swift */,
 				FD7DBABF1ED0918400D97D45 /* MarketViewModel.swift */,
 				FD7DBABD1ED08D0600D97D45 /* CategoriesService.swift */,
 				FD7DBAC11ED098DE00D97D45 /* MarketTagAutoCompletionService.swift */,
@@ -396,6 +407,10 @@
 		FD5F9F5E1EA80A9600BD79B1 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				FD8971872066ADED00027B38 /* StandardLabel.swift */,
+				FD8971882066ADED00027B38 /* StandardTableView.swift */,
+				FD8971852066ADD600027B38 /* UILabel.swift */,
+				FD89718B2066AE0A00027B38 /* UIImageView.swift */,
 				FD92DDDB1ED71EE200E331A3 /* UIButton.swift */,
 				FD7DBAC71ED1DA6800D97D45 /* UIWindow.swift */,
 				FD1F42EF1EBB52BE008AE3ED /* UIColor.swift */,
@@ -495,7 +510,7 @@
 				TargetAttributes = {
 					FD5F9F3D1EA776A200BD79B1 = {
 						CreatedOnToolsVersion = 8.3.1;
-						DevelopmentTeam = Y2V78VDHEV;
+						DevelopmentTeam = W9HXCUL7KS;
 						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 					};
@@ -642,7 +657,9 @@
 				FDC9E31C1EBFBE4000B6DC25 /* SettingsViewController.swift in Sources */,
 				FD59599C1ECB4ADB00BB2D9D /* PoshikViewModel.swift in Sources */,
 				FD4FE9201F15254D006F2AE2 /* SocialWebViewController.swift in Sources */,
+				FD8971862066ADD600027B38 /* UILabel.swift in Sources */,
 				FDADA60A1F42FD3100D81892 /* Uploadable.swift in Sources */,
+				FD89718E206A6FAD00027B38 /* ArtworkAcquisitionController.swift in Sources */,
 				FD7DC8331F4DBFF600C2DF5D /* Refreshable.swift in Sources */,
 				FDC9E31E1EBFBF8700B6DC25 /* Identifiers.swift in Sources */,
 				FDEAE6991EAAB26500B9F504 /* MyImagesViewController.swift in Sources */,
@@ -650,6 +667,7 @@
 				FD5959A21ECB973900BB2D9D /* Category.swift in Sources */,
 				FD5F9F581EA7BFB300BD79B1 /* RoundedButton.swift in Sources */,
 				FD4E2F4F1EE1B7AD009C74D3 /* DeviceService.swift in Sources */,
+				FD89718C2066AE0A00027B38 /* UIImageView.swift in Sources */,
 				FDA302C92062BD4F00E93D44 /* Artwork.swift in Sources */,
 				FD7DBAC21ED098DE00D97D45 /* MarketTagAutoCompletionService.swift in Sources */,
 				FD5409A91EC2699300E93B7F /* RedactorViewController.swift in Sources */,
@@ -657,6 +675,7 @@
 				FD92DDDC1ED71EE200E331A3 /* UIButton.swift in Sources */,
 				FD9789B6204D91860048B501 /* URLPostRequest.swift in Sources */,
 				FD7DBACE1ED2E48800D97D45 /* SettingsService.swift in Sources */,
+				FD8971892066ADED00027B38 /* StandardLabel.swift in Sources */,
 				FD0EF8FC1ECF38D5005F5ACF /* ApiService.swift in Sources */,
 				FDC3AB101EBB36AF00141241 /* UITextField.swift in Sources */,
 				FD0EF8FE1ECF397C005F5ACF /* TockenService.swift in Sources */,
@@ -686,6 +705,7 @@
 				FDC89DF61EBA3799004D3F9F /* RoundedView.swift in Sources */,
 				FD1F42F01EBB52BE008AE3ED /* UIColor.swift in Sources */,
 				FD5F9F5A1EA8073E00BD79B1 /* TopBarView.swift in Sources */,
+				FD89718A2066ADED00027B38 /* StandardTableView.swift in Sources */,
 				FD5F9F441EA776A300BD79B1 /* BaseController.swift in Sources */,
 				FDC060341EB8D9D5007C6A71 /* ExpandableButton.swift in Sources */,
 				FDC89DFA1EBA4A2B004D3F9F /* DismissAnimator.swift in Sources */,
@@ -815,11 +835,11 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = Y2V78VDHEV;
+				DEVELOPMENT_TEAM = W9HXCUL7KS;
 				INFOPLIST_FILE = kulon/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = jufy.kulon;
+				PRODUCT_BUNDLE_IDENTIFIER = jufy.posh;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -831,11 +851,11 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = Y2V78VDHEV;
+				DEVELOPMENT_TEAM = W9HXCUL7KS;
 				INFOPLIST_FILE = kulon/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = jufy.kulon;
+				PRODUCT_BUNDLE_IDENTIFIER = jufy.posh;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};

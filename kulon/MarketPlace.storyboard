@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="7Sz-kD-qw3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="H6T-VR-phJ">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -10,6 +10,22 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="hnL-Td-wq5">
+            <objects>
+                <navigationController id="H6T-VR-phJ" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Xgc-oc-dcM">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="7Sz-kD-qw3" kind="relationship" relationship="rootViewController" id="J3F-hk-aCp"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fOQ-HL-BBe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-552" y="-379"/>
+        </scene>
         <!--Store-->
         <scene sceneID="PUb-p1-txq">
             <objects>
@@ -213,6 +229,8 @@
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Store" image="icon_tab_cloud" id="qt9-DD-5ss"/>
+                    <navigationItem key="navigationItem" id="ccb-bA-xgl"/>
+                    <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="categoriesTableView" destination="lYJ-8K-W7w" id="0Fb-42-qec"/>
                         <outlet property="collectionView" destination="Dxi-Cd-tdk" id="gLk-9F-X1v"/>

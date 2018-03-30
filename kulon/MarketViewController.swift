@@ -47,6 +47,8 @@ class StoreViewController: BaseViewController, ExpandableButtonDelegate, UITable
     var getNamesMethod: Observable<[NamedObject & IdiableObject]>?
     var marketParameter =  MarketParameter()
     
+    var artworks: MarketableArtworks = FakeMarketableArtworks()
+    
     enum SelectionMode {
         case tag, category, artist, none
     }
@@ -62,39 +64,34 @@ class StoreViewController: BaseViewController, ExpandableButtonDelegate, UITable
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         categoriesTableView.contentInset = UIEdgeInsets(top: 140, left: 0, bottom: 0, right: 0)
         categoriesTableView.tableFooterView = UIView() //hack to remove emty
-        
-        collectionView.refreshControl = UIRefreshControl()
-        
-        let dataSource = RxCollectionViewSectionedReloadDataSource<StandardSectionModel<Poshik>>()
+                
+        let dataSource = RxCollectionViewSectionedReloadDataSource<StandardSectionModel<MarketableArtwork>>()
         
         dataSource.configureCell = { ds, cv, ip, item in
             let cell = cv.dequeueReusableCell(withReuseIdentifier: Identifiers.Cell.poshikCell, for: ip) as! PoshikCell
             cell.configure(with: item)
-            self.poshiks.loadNextPageIfNeeded(for: ip)
+//            self.poshiks.loadNextPageIfNeeded(for: ip)
             return cell
         }
         
-        collectionView.rx.modelSelected(Poshik.self).subscribe(onNext: { [unowned self] poshik in
-            let model = PoshikViewModel(poshik: poshik, startingFrame: .zero)
-            self.performSegue(withIdentifier: Identifiers.Segue.PoshikViewController, sender: model)
+        artworks
+            .asObservable()
+            .catchErrorJustReturn([])
+            .map{ [StandardSectionModel(items: $0)] }
+            
+            .bind(to: collectionView.rx.items(dataSource: dataSource))
+            .disposed(by: bag)
+        
+        collectionView.rx.modelSelected(MarketableArtwork.self).subscribe(onNext: { [unowned self] in
+            self.navigationController?.pushViewController(ArtworkController.init(with: $0), animated: true)
         }).disposed(by: bag)
         
         collectionView.contentInset = UIEdgeInsets(top: 70, left: 0, bottom: 0, right: 0)
 
         let refreshConrol = UIRefreshControl()
         
-        
-        poshiks = PaginableAndRefreshablePoshiksFromMarket(updatedOn: refreshConrol)
-        
-        poshiks
-            .asObservable()
-            .catchErrorJustReturn([])
-            .map{ [StandardSectionModel(items: $0)] }
-            .bindTo(collectionView.rx.items(dataSource: dataSource))
-            .disposed(by: bag)
-        
-        collectionView.refreshControl = refreshConrol
-        
+//        collectionView.refreshControl = refreshConrol
+        //TODO: make artworks refreshable
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -120,6 +117,7 @@ class StoreViewController: BaseViewController, ExpandableButtonDelegate, UITable
             tagButton,
             resetButton
         ]
+        navigationController?.isNavigationBarHidden = true
         blurView = UIVisualEffectView(frame: view.bounds)
     }
     

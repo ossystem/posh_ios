@@ -53,6 +53,12 @@ class FakeEmptyObservableImage: ObservableImage {
     }
 }
 
+class FakeObservableImage: ObservableImage {
+    func asObservable() -> Observable<UIImage> {
+        return Observable.just(#imageLiteral(resourceName: "sample_poshik_3"))
+    }
+}
+
 class ObservableImageFromJSON: ObservableImage, ImmutableMappable, ObservableType {
 
     private var link: String

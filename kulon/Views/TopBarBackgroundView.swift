@@ -15,10 +15,10 @@ class TopBarBackgroundView: UIView {
     @IBInspectable var mainColor: UIColor = .white
     @IBInspectable var shadowSize: CGFloat = 3.0
     @IBInspectable var shadowColor: UIColor = .black
-    @IBInspectable var topOffsetHeight: CGFloat = 20
+    @IBInspectable var topOffsetHeight: CGFloat = 24
     ///In degrees
-    @IBInspectable var angle: CGFloat = 30
-    @IBInspectable var buttonRadius: CGFloat = 50
+    @IBInspectable var angle: CGFloat = 20
+    @IBInspectable var buttonRadius: CGFloat = 27
         
     override func draw(_ rect: CGRect) {
         let outterPath = outterRadialBacground(for: rect)

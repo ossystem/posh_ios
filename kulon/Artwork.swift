@@ -11,6 +11,7 @@ import RxSwift
 
 protocol Artwork: IdiableObject, NamedObject {
     var info: Observable<ArtworkInfo> { get }
+    var image: ArtworkImage { get }
 }
 
 protocol OwnedArtwork: Artwork {
@@ -29,13 +30,15 @@ protocol Acquisition {
     var purchasable: Purchasable { get }
     var seller: Artist { get } //FIXME: TEMP
 
+    func purchase() -> Observable<Void>
+    
 }
 
 protocol Purchasable: NamedObject {
-    var image: ArtworkImage { get } //FIXME: TEMP
+    var image: ObservableImage { get } 
 }
 
-protocol ArtworkInfo {
+protocol ArtworkInfo: NamedObject {
     var min_price: Int { get }
     var acquisition_params: [String: Any] { get }
     var image: ArtworkImage { get }
@@ -59,6 +62,8 @@ protocol ArtworkFormat: IdiableObject {
 }
 
 class FakeArtworkInfo: ArtworkInfo {
+    var name: String = "Jaconda"
+    
     var min_price: Int = 29
     
     var acquisition_params: [String : Any] = [
@@ -86,6 +91,8 @@ class FakeArtworkImage: ArtworkImage {
 }
 
 class FakeArtwork: Artwork {
+    var image: ArtworkImage = FakeArtworkImage()
+    
     var id: String = "-1"
     
     var name: String = "Perfect"
@@ -95,12 +102,65 @@ class FakeArtwork: Artwork {
     }
 }
 
+class FakeMarketableArtwork: MarketableArtwork {
+    func acquire() -> Observable<Acquisition> {
+        return Observable.just(FakeAqcuisition())
+    }
+    
+    func like() -> Observable<Void> {
+        return Observable<Void>.never()
+    }
+    
+    var image: ArtworkImage = FakeArtworkImage()
+    
+    var id: String = "-1"
+    
+    var name: String = "Perfect"
+    
+    var info: Observable<ArtworkInfo> {
+        return Observable.just(FakeArtworkInfo())
+    }
+    
+}
+
+class FakeAqcuisition: Acquisition {
+    var price: Float = 999.99
+    
+    var purchase_params: [String : Any] = ["":""]
+    
+    var purchasable: Purchasable = FakePurchasable()
+    
+    var seller: Artist = ArtistFromJSON()
+    
+    func purchase() -> Observable<Void> {
+        return Observable.just({}())
+    }
+    
+}
+
+class FakePurchasable: Purchasable {
+    var name: String = "Monalisa"
+    
+    var image: ObservableImage = FakeObservableImage()
+}
+
 protocol Artworks {
     func asObservable() ->  Observable<[Artwork]>
 }
 
+
 class FakeArtworks: Artworks {
     func asObservable() -> Observable<[Artwork]> {
         return Observable.just([FakeArtwork()])
+    }
+}
+
+protocol MarketableArtworks {
+    func asObservable() ->  Observable<[MarketableArtwork]>
+}
+
+class FakeMarketableArtworks: MarketableArtworks {
+    func asObservable() -> Observable<[MarketableArtwork]> {
+        return Observable.just([FakeMarketableArtwork()])
     }
 }

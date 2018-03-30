@@ -39,4 +39,14 @@ class PoshikCell: UICollectionViewCell {
             image.setImage(with: request)
         }
     }
+    
+    func configure(with artwork: Artwork) {
+        //TODO: design more elegant image
+        request = try? URLRequest(url: URL(string: artwork.image.link)!, method: .get, headers: ["Authorization": "Bearer \(TokenService().token!)"])
+        if let request = request {
+            image.setImage(with: request)
+        } else {
+            print("image request error: \n\turl: \(artwork.image.link)")
+        }
+    }
 }

@@ -114,7 +114,7 @@ class ArtistFromJSON: Artist, ResponseType {
     required init(map: Map) throws {
         id = try map.value("id")
         name = try map.value("name")
-        avatar = try ObservableImageFromJSON(map: map.value("avatar"))
+        avatar = FakeEmptyObservableImage()//try ObservableImageFromJSON(map: map.value("avatar"))
     }
     
     init() {
@@ -132,7 +132,7 @@ class ArtistsFromApi : ResponseType  {
     }
     
     required init(map: Map) throws {
-        artists = try map.value("artists")
+        artists = try map.value("artists") as [ArtistFromJSON]
     }
 }
 

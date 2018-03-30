@@ -11,7 +11,7 @@ import SnapKit
 class ArtworkController: UIViewController {
 
     private var artwork: MarketableArtwork
-    private var infoView = ArtworkInfoView()
+    private var infoView: ArtworkInfoView
 
     private var disposeBag = DisposeBag()
     
@@ -19,6 +19,7 @@ class ArtworkController: UIViewController {
     
     init(with artwork: MarketableArtwork) {
         self.artwork = artwork
+        self.infoView = ArtworkInfoView(artwork: artwork)
         super.init(nibName: nil, bundle: nil)
         let topBG = TopBarBackgroundView()
         topBG.backgroundColor = .clear
@@ -48,7 +49,7 @@ class ArtworkController: UIViewController {
                 //TODO: make waiting
             }
             .subscribe(onNext: { [unowned self] in
-                self.present(ArtworkAcquisitionController(acquisition: $0), animated: true)
+                self.present(ArtworkAcquisitionController(acquisition: $0, artwork: artwork as! FakeMarketableArtwork), animated: true)
             }).disposed(by: disposeBag)
     }
     
@@ -58,9 +59,7 @@ class ArtworkController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        artwork.info.subscribe(onNext: { [unowned self] in
-            self.infoView.setup(with: $0)
-        }).disposed(by: disposeBag)
+        
         navigationController?.isNavigationBarHidden = true
     }
     
@@ -89,8 +88,11 @@ class ArtworkInfoView: UIView {
         .aligned(by: .center)
     private var buyButton = UIButton()
         .with(roundedEdges: 8)
-    
     private var likeButton = UIButton()
+    
+    private var disposeBag = DisposeBag()
+    private var request: URLRequest?
+
     
     var wantsToAqcuire: Observable<Void> {
         return buyButton.rx.tap.asObservable()
@@ -101,7 +103,7 @@ class ArtworkInfoView: UIView {
         artworkImage.layer.cornerRadius = artworkImage.frame.width/2
     }
     
-    init() {
+    init(artwork: MarketableArtwork) {
         super.init(frame: .zero)
         [artistImage, artworkImage, artistName, artworkName, price, buyButton, likeButton]
                 .forEach { [unowned self] in self.addSubview($0) }
@@ -138,25 +140,29 @@ class ArtworkInfoView: UIView {
         buyButton.setTitleColor(.white, for: .normal)
         buyButton.backgroundColor = UIColor.Kulon.lightOrange
         
+        artwork.info.subscribe(onNext: { [unowned self] info  in
+            self.artistName.text = info.artist.name
+            self.artworkName.text = info.name
+            self.price.text = "\(info.min_price)POS"
+            self.request = try? URLRequest(url: URL(string: info.image.link)!, method: .get, headers: ["Authorization": "Bearer \(TokenService().token!)"])
+            if let request = self.request {
+                self.artworkImage.setImage(with: request)
+            } else {
+                print("image request error: \n\turl: \(info.image.link)")
+            }
+        }).disposed(by: disposeBag)
+        
+        artwork.purchased.subscribe(onNext: {
+            self.buyButton.setTitle("Download", for: .normal)
+        }).disposed(by: disposeBag)
+        
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    var request: URLRequest?
 
-    func setup(with info: ArtworkInfo) {
-        artistName.text = info.artist.name
-        artworkName.text = info.name
-        price.text = "\(info.min_price)POS"
-        request = try? URLRequest(url: URL(string: info.image.link)!, method: .get, headers: ["Authorization": "Bearer \(TokenService().token!)"])
-        if let request = request {
-            artworkImage.setImage(with: request)
-        } else {
-            print("image request error: \n\turl: \(info.image.link)")
-        }
-    }
 }
 
 

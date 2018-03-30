@@ -19,7 +19,7 @@ class ArtworkAcquisitionController: UIViewController {
     
     private var disposeBag = DisposeBag()
     
-    init(acquisition: Acquisition) {
+    init(acquisition: Acquisition, artwork: FakeMarketableArtwork) {
         self.acquisition = acquisition
         self.acquisitionView = ArtworkAcquisitionView(acquisition: acquisition)
         super.init(nibName: nil, bundle: nil)
@@ -48,7 +48,8 @@ class ArtworkAcquisitionController: UIViewController {
         acquisitionView.wantsToPurchase
             .flatMap { acquisition.purchase() }
             .subscribe(onNext: {
-            self.dismiss(animated: true)
+                artwork.purchaseSubject.on(.next())
+                self.dismiss(animated: true)
         }).disposed(by: disposeBag)
     }
     

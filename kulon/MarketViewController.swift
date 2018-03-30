@@ -123,7 +123,8 @@ class StoreViewController: BaseViewController, ExpandableButtonDelegate, UITable
     
     func loadNames() {
         names = []
-        getNamesMethod?.subscribe(onNext: { names in
+        self.categoriesTableView.reloadData()
+        getNamesMethod?.subscribe(onNext: { [unowned self] names in 
             self.names = names
             self.categoriesTableView.reloadData()
         }).disposed(by: bag)
@@ -147,7 +148,7 @@ class StoreViewController: BaseViewController, ExpandableButtonDelegate, UITable
     }
     
     func resetFilters() {
-        poshiks.update(parameterValue: MarketParameter())
+//        poshiks.update(parameterValue: MarketParameter())
         topButton.hideButtons()
     }
     

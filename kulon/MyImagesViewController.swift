@@ -121,7 +121,7 @@ class MyImagesViewController: BaseViewController, UICollectionViewDelegate, UICo
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Identifiers.Cell.poshikCell, for: indexPath) as! PoshikCell
-        cell.configure(with: poshik(for: indexPath))
+        cell.configure(with: FakeMarketableArtwork())
         return cell
     }
     
@@ -137,7 +137,8 @@ class MyImagesViewController: BaseViewController, UICollectionViewDelegate, UICo
         if section == sectionTitles.myIndex {
             return myPoshiks.count
         } else {
-            return  purchasedPoshiks.count
+            return 2
+            return purchasedPoshiks.count
         }
     }
     
@@ -165,6 +166,7 @@ class MyImagesViewController: BaseViewController, UICollectionViewDelegate, UICo
         if indexPath.section == sectionTitles.myIndex {
             poshik = myPoshiks[indexPath.row]
         } else {
+            
             poshik = purchasedPoshiks[indexPath.row]
         }
         return poshik

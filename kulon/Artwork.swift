@@ -21,6 +21,8 @@ protocol OwnedArtwork: Artwork {
 protocol MarketableArtwork: Artwork {
     func acquire() -> Observable<Acquisition>
     func like() -> Observable<Void>
+    //FIXME: it is temp to update "buy" button. Develop architecture to hold this process
+    var purchased: Observable<Void> { get }
 }
 
 protocol Acquisition {
@@ -103,6 +105,13 @@ class FakeArtwork: Artwork {
 }
 
 class FakeMarketableArtwork: MarketableArtwork {
+    
+    var purchased: Observable<Void> {
+        return purchaseSubject.asObservable()
+    }
+    
+    var purchaseSubject = PublishSubject<Void>()
+    
     func acquire() -> Observable<Acquisition> {
         return Observable.just(FakeAqcuisition())
     }

@@ -134,6 +134,7 @@ class MyImagesViewController: BaseViewController, UICollectionViewDelegate, UICo
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 2
         if section == sectionTitles.myIndex {
             return myPoshiks.count
         } else {
@@ -147,9 +148,9 @@ class MyImagesViewController: BaseViewController, UICollectionViewDelegate, UICo
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let frame = collectionView.cellForItem(at: indexPath)?.frame
-        let model = PoshikViewModel(poshik: poshik(for: indexPath), startingFrame: frame!)
-        performSegue(withIdentifier: Identifiers.Segue.PoshikViewController, sender: model)
+//        let frame = collectionView.cellForItem(at: indexPath)?.frame
+//        let model = PoshikViewModel(poshik: poshik(for: indexPath), startingFrame: frame!)
+//        performSegue(withIdentifier: Identifiers.Segue.PoshikViewController, sender: model)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

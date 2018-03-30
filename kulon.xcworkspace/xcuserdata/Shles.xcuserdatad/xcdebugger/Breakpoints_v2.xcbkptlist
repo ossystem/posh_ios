@@ -170,7 +170,7 @@
                   moduleName = "kulon"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Shles/Documents/Xcode/Jufy/kulon/kulon/RedactorViewController.swift"
-                  timestampString = "544127863.62912"
+                  timestampString = "544128565.286177"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "67"
@@ -185,7 +185,7 @@
                   moduleName = "kulon"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Shles/Documents/Xcode/Jufy/kulon/kulon/RedactorViewController.swift"
-                  timestampString = "544127863.632129"
+                  timestampString = "544128565.295324"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "67"
@@ -388,7 +388,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "kulon/MarketService.swift"
-            timestampString = "544127862.327075"
+            timestampString = "544128562.717275"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "135"
@@ -404,28 +404,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "kulon/MarketService.swift"
-            timestampString = "544127862.3305269"
+            timestampString = "544128562.722869"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "115"
             endingLineNumber = "115"
             landmarkName = "init(map:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "kulon/MyImagesViewController.swift"
-            timestampString = "544127913.380803"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "140"
-            endingLineNumber = "140"
-            landmarkName = "collectionView(_:numberOfItemsInSection:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

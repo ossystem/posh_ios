@@ -6,12 +6,6 @@ PODS:
     - Alamofire (~> 4.1)
     - ObjectMapper (~> 3.0)
   - ObjectMapper (3.1.0)
-  - PhoneNumberKit (2.1.0):
-    - PhoneNumberKit/PhoneNumberKitCore (= 2.1.0)
-    - PhoneNumberKit/UIKit (= 2.1.0)
-  - PhoneNumberKit/PhoneNumberKitCore (2.1.0)
-  - PhoneNumberKit/UIKit (2.1.0):
-    - PhoneNumberKit/PhoneNumberKitCore
   - RxBluetoothKit (3.1.2):
     - RxSwift (~> 3.2)
   - RxCocoa (3.6.1):
@@ -30,7 +24,6 @@ DEPENDENCIES:
   - Alamofire
   - AlamofireImage
   - AlamofireObjectMapper
-  - PhoneNumberKit (~> 2.1)
   - RxBluetoothKit
   - RxDataSources (~> 1.0)
   - RxGesture
@@ -42,7 +35,6 @@ SPEC CHECKSUMS:
   AlamofireImage: 2e784dc5d00f04903a52c1d169181469c805c3df
   AlamofireObjectMapper: 5fafc816351cbbc0d486611aaeba7461c0cbad49
   ObjectMapper: 20505058f54e5c3ca69e1d6de9897d152a5369a6
-  PhoneNumberKit: 62003f40ff75315fd3738286558bc365365ac222
   RxBluetoothKit: 03cd96e38e8239e1c50ce7068f343730aad9372a
   RxCocoa: 84a08739ab186248c7f31ce4ee92d6f8a947d690
   RxDataSources: b3389acc5fe2eefb8fcd81a2b76a876ad08bc82a
@@ -51,6 +43,6 @@ SPEC CHECKSUMS:
   SnapKit: 1ca44df72cfa543218d177cb8aab029d10d86ea7
   SwiftyJSON: 070dabdcb1beb81b247c65ffa3a79dbbfb3b48aa
 
-PODFILE CHECKSUM: 3faae374d75a02938dba45163a9c9d9f0e9307c9
+PODFILE CHECKSUM: ddcc8411bd6bd1781f29158449c8c2adc7175a7e
 
 COCOAPODS: 1.3.1

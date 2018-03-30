@@ -61,6 +61,21 @@
 		FD89718A2066ADED00027B38 /* StandardTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD8971882066ADED00027B38 /* StandardTableView.swift */; };
 		FD89718C2066AE0A00027B38 /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD89718B2066AE0A00027B38 /* UIImageView.swift */; };
 		FD89718E206A6FAD00027B38 /* ArtworkAcquisitionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD89718D206A6FAD00027B38 /* ArtworkAcquisitionController.swift */; };
+		FD89721E206E3BC500027B38 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD89720B206E3BC500027B38 /* Constants.swift */; };
+		FD89721F206E3BC500027B38 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD89720D206E3BC500027B38 /* TextField.swift */; };
+		FD897220206E3BC500027B38 /* PhoneNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD89720E206E3BC500027B38 /* PhoneNumber.swift */; };
+		FD897221206E3BC500027B38 /* RegexManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD89720F206E3BC500027B38 /* RegexManager.swift */; };
+		FD897222206E3BC500027B38 /* MetadataTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD897210206E3BC500027B38 /* MetadataTypes.swift */; };
+		FD897223206E3BC500027B38 /* ParseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD897211206E3BC500027B38 /* ParseManager.swift */; };
+		FD897224206E3BC500027B38 /* PhoneNumberMetadata.xml in Resources */ = {isa = PBXBuildFile; fileRef = FD897214206E3BC500027B38 /* PhoneNumberMetadata.xml */; };
+		FD897225206E3BC500027B38 /* PhoneNumberMetadata.json in Resources */ = {isa = PBXBuildFile; fileRef = FD897215206E3BC500027B38 /* PhoneNumberMetadata.json */; };
+		FD897226206E3BC500027B38 /* NSRegularExpression+Swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD897217206E3BC500027B38 /* NSRegularExpression+Swift.swift */; };
+		FD897227206E3BC500027B38 /* Formatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD897218206E3BC500027B38 /* Formatter.swift */; };
+		FD897228206E3BC500027B38 /* MetadataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD897219206E3BC500027B38 /* MetadataManager.swift */; };
+		FD897229206E3BC500027B38 /* PartialFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD89721A206E3BC500027B38 /* PartialFormatter.swift */; };
+		FD89722A206E3BC500027B38 /* PhoneNumberKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD89721B206E3BC500027B38 /* PhoneNumberKit.swift */; };
+		FD89722B206E3BC500027B38 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FD89721C206E3BC500027B38 /* Info.plist */; };
+		FD89722C206E3BC500027B38 /* PhoneNumberParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD89721D206E3BC500027B38 /* PhoneNumberParser.swift */; };
 		FD90E89C1F4DCA5A00600017 /* StandardSectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD90E89B1F4DCA5A00600017 /* StandardSectionModel.swift */; };
 		FD90E89E1F4DEEE900600017 /* Paginable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD90E89D1F4DEEE900600017 /* Paginable.swift */; };
 		FD92DDDC1ED71EE200E331A3 /* UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD92DDDB1ED71EE200E331A3 /* UIButton.swift */; };
@@ -155,6 +170,22 @@
 		FD8971882066ADED00027B38 /* StandardTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StandardTableView.swift; sourceTree = "<group>"; };
 		FD89718B2066AE0A00027B38 /* UIImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
 		FD89718D206A6FAD00027B38 /* ArtworkAcquisitionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtworkAcquisitionController.swift; sourceTree = "<group>"; };
+		FD89720B206E3BC500027B38 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		FD89720D206E3BC500027B38 /* TextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
+		FD89720E206E3BC500027B38 /* PhoneNumber.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhoneNumber.swift; sourceTree = "<group>"; };
+		FD89720F206E3BC500027B38 /* RegexManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegexManager.swift; sourceTree = "<group>"; };
+		FD897210206E3BC500027B38 /* MetadataTypes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MetadataTypes.swift; sourceTree = "<group>"; };
+		FD897211206E3BC500027B38 /* ParseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseManager.swift; sourceTree = "<group>"; };
+		FD897214206E3BC500027B38 /* PhoneNumberMetadata.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = PhoneNumberMetadata.xml; sourceTree = "<group>"; };
+		FD897215206E3BC500027B38 /* PhoneNumberMetadata.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = PhoneNumberMetadata.json; sourceTree = "<group>"; };
+		FD897216206E3BC500027B38 /* PhoneNumberKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhoneNumberKit.h; sourceTree = "<group>"; };
+		FD897217206E3BC500027B38 /* NSRegularExpression+Swift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSRegularExpression+Swift.swift"; sourceTree = "<group>"; };
+		FD897218206E3BC500027B38 /* Formatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Formatter.swift; sourceTree = "<group>"; };
+		FD897219206E3BC500027B38 /* MetadataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MetadataManager.swift; sourceTree = "<group>"; };
+		FD89721A206E3BC500027B38 /* PartialFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PartialFormatter.swift; sourceTree = "<group>"; };
+		FD89721B206E3BC500027B38 /* PhoneNumberKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhoneNumberKit.swift; sourceTree = "<group>"; };
+		FD89721C206E3BC500027B38 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FD89721D206E3BC500027B38 /* PhoneNumberParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhoneNumberParser.swift; sourceTree = "<group>"; };
 		FD90E89B1F4DCA5A00600017 /* StandardSectionModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StandardSectionModel.swift; sourceTree = "<group>"; };
 		FD90E89D1F4DEEE900600017 /* Paginable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Paginable.swift; sourceTree = "<group>"; };
 		FD92DDDB1ED71EE200E331A3 /* UIButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIButton.swift; sourceTree = "<group>"; };
@@ -378,6 +409,7 @@
 		FD5F9F401EA776A300BD79B1 /* kulon */ = {
 			isa = PBXGroup;
 			children = (
+				FD89720A206E3BC500027B38 /* PhoneNumberKit */,
 				FD5F9F411EA776A300BD79B1 /* AppDelegate.swift */,
 				FD5F9F431EA776A300BD79B1 /* BaseController.swift */,
 				FD5409B21EC5FA1400E93B7F /* Stories */,
@@ -468,6 +500,53 @@
 			name = PresentingAnimators;
 			sourceTree = "<group>";
 		};
+		FD89720A206E3BC500027B38 /* PhoneNumberKit */ = {
+			isa = PBXGroup;
+			children = (
+				FD89720B206E3BC500027B38 /* Constants.swift */,
+				FD89720C206E3BC500027B38 /* UI */,
+				FD89720E206E3BC500027B38 /* PhoneNumber.swift */,
+				FD89720F206E3BC500027B38 /* RegexManager.swift */,
+				FD897210206E3BC500027B38 /* MetadataTypes.swift */,
+				FD897211206E3BC500027B38 /* ParseManager.swift */,
+				FD897212206E3BC500027B38 /* Resources */,
+				FD897216206E3BC500027B38 /* PhoneNumberKit.h */,
+				FD897217206E3BC500027B38 /* NSRegularExpression+Swift.swift */,
+				FD897218206E3BC500027B38 /* Formatter.swift */,
+				FD897219206E3BC500027B38 /* MetadataManager.swift */,
+				FD89721A206E3BC500027B38 /* PartialFormatter.swift */,
+				FD89721B206E3BC500027B38 /* PhoneNumberKit.swift */,
+				FD89721C206E3BC500027B38 /* Info.plist */,
+				FD89721D206E3BC500027B38 /* PhoneNumberParser.swift */,
+			);
+			path = PhoneNumberKit;
+			sourceTree = "<group>";
+		};
+		FD89720C206E3BC500027B38 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				FD89720D206E3BC500027B38 /* TextField.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		FD897212206E3BC500027B38 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				FD897213206E3BC500027B38 /* Original */,
+				FD897215206E3BC500027B38 /* PhoneNumberMetadata.json */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		FD897213206E3BC500027B38 /* Original */ = {
+			isa = PBXGroup;
+			children = (
+				FD897214206E3BC500027B38 /* PhoneNumberMetadata.xml */,
+			);
+			path = Original;
+			sourceTree = "<group>";
+		};
 		FD90E89A1F4DCA3300600017 /* Base */ = {
 			isa = PBXGroup;
 			children = (
@@ -539,6 +618,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FD897225206E3BC500027B38 /* PhoneNumberMetadata.json in Resources */,
 				FDC3AB181EBB463F00141241 /* MyImages.storyboard in Resources */,
 				FDC3AB141EBB42A800141241 /* MarketPlace.storyboard in Resources */,
 				FDC3AB1A1EBB465C00141241 /* Settings.storyboard in Resources */,
@@ -549,6 +629,8 @@
 				FD5409AF1EC5D78000E93B7F /* Poshik.storyboard in Resources */,
 				FDA3CB0C1EBC8F4A0048AE71 /* AndaleMono.ttf in Resources */,
 				FD5F9F491EA776A300BD79B1 /* Auth.storyboard in Resources */,
+				FD897224206E3BC500027B38 /* PhoneNumberMetadata.xml in Resources */,
+				FD89722B206E3BC500027B38 /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -566,7 +648,6 @@
 				"${BUILT_PRODUCTS_DIR}/AlamofireImage/AlamofireImage.framework",
 				"${BUILT_PRODUCTS_DIR}/AlamofireObjectMapper/AlamofireObjectMapper.framework",
 				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
-				"${BUILT_PRODUCTS_DIR}/PhoneNumberKit/PhoneNumberKit.framework",
 				"${BUILT_PRODUCTS_DIR}/RxBluetoothKit/RxBluetoothKit.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxDataSources/RxDataSources.framework",
@@ -581,7 +662,6 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireObjectMapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PhoneNumberKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxBluetoothKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxDataSources.framework",
@@ -637,6 +717,7 @@
 			files = (
 				FD59599E1ECB51B900BB2D9D /* UIView.swift in Sources */,
 				FD9789B4204D91860048B501 /* JSON.swift in Sources */,
+				FD89722C206E3BC500027B38 /* PhoneNumberParser.swift in Sources */,
 				FDDA3EAD1EFD709A00AA8A19 /* CollectionHeaderView.swift in Sources */,
 				FD30D7CC205C02D1008CEF6F /* FilterableNames.swift in Sources */,
 				FD9789B3204D91860048B501 /* URLSession.swift in Sources */,
@@ -649,10 +730,12 @@
 				FD9789B7204D91860048B501 /* Network.swift in Sources */,
 				FD9789B2204D91860048B501 /* DescribedError.swift in Sources */,
 				FD5409B11EC5F9F900E93B7F /* PoshikViewController.swift in Sources */,
+				FD897229206E3BC500027B38 /* PartialFormatter.swift in Sources */,
 				FD9789B5204D91860048B501 /* SimpleNetwork.swift in Sources */,
 				FD5F9F601EA80CF500BD79B1 /* RoundedImageView.swift in Sources */,
 				FD7DDF161EB3BE7800B963DC /* BLEService.swift in Sources */,
 				FD90E89E1F4DEEE900600017 /* Paginable.swift in Sources */,
+				FD89722A206E3BC500027B38 /* PhoneNumberKit.swift in Sources */,
 				FD5409AD1EC32A2400E93B7F /* LikeView.swift in Sources */,
 				FDC9E31C1EBFBE4000B6DC25 /* SettingsViewController.swift in Sources */,
 				FD59599C1ECB4ADB00BB2D9D /* PoshikViewModel.swift in Sources */,
@@ -661,6 +744,7 @@
 				FDADA60A1F42FD3100D81892 /* Uploadable.swift in Sources */,
 				FD89718E206A6FAD00027B38 /* ArtworkAcquisitionController.swift in Sources */,
 				FD7DC8331F4DBFF600C2DF5D /* Refreshable.swift in Sources */,
+				FD897222206E3BC500027B38 /* MetadataTypes.swift in Sources */,
 				FDC9E31E1EBFBF8700B6DC25 /* Identifiers.swift in Sources */,
 				FDEAE6991EAAB26500B9F504 /* MyImagesViewController.swift in Sources */,
 				FD5F9F561EA79ED700BD79B1 /* FloatingPoint.swift in Sources */,
@@ -670,6 +754,7 @@
 				FD89718C2066AE0A00027B38 /* UIImageView.swift in Sources */,
 				FDA302C92062BD4F00E93D44 /* Artwork.swift in Sources */,
 				FD7DBAC21ED098DE00D97D45 /* MarketTagAutoCompletionService.swift in Sources */,
+				FD897221206E3BC500027B38 /* RegexManager.swift in Sources */,
 				FD5409A91EC2699300E93B7F /* RedactorViewController.swift in Sources */,
 				FD7DBAC61ED1C90500D97D45 /* UserCredentialsService.swift in Sources */,
 				FD92DDDC1ED71EE200E331A3 /* UIButton.swift in Sources */,
@@ -683,8 +768,11 @@
 				FD59599A1ECAFF5900BB2D9D /* PoshikPresentationAnimator.swift in Sources */,
 				FDC9E3221EBFDFCE00B6DC25 /* PoshikCell.swift in Sources */,
 				FD974B081EC9EF3C0066AC27 /* CGPoint.swift in Sources */,
+				FD897228206E3BC500027B38 /* MetadataManager.swift in Sources */,
 				FDC9E3201EBFC0CF00B6DC25 /* SettingsCell.swift in Sources */,
+				FD897223206E3BC500027B38 /* ParseManager.swift in Sources */,
 				FD0EF9001ECF39AF005F5ACF /* MarketService.swift in Sources */,
+				FD897220206E3BC500027B38 /* PhoneNumber.swift in Sources */,
 				FD5409C01EC99DDD00E93B7F /* ColorPickerView.swift in Sources */,
 				FD4FE91E1F1518D7006F2AE2 /* SocialService.swift in Sources */,
 				FD7DBAC81ED1DA6800D97D45 /* UIWindow.swift in Sources */,
@@ -692,19 +780,23 @@
 				FD7DBACC1ED2DDBD00D97D45 /* SettingsWebViewController.swift in Sources */,
 				FD7DBABE1ED08D0600D97D45 /* CategoriesService.swift in Sources */,
 				FDC9E3241EBFE02C00B6DC25 /* Poshik.swift in Sources */,
+				FD89721F206E3BC500027B38 /* TextField.swift in Sources */,
 				FDC89DFC1EBA4ABA004D3F9F /* AuthViewController.swift in Sources */,
 				FD5F9F461EA776A300BD79B1 /* MarketViewController.swift in Sources */,
 				FD974B061EC9C0100066AC27 /* RedactorTextField.swift in Sources */,
 				FD5A914F1F3CBFA7008EE04F /* NSData.swift in Sources */,
+				FD897227206E3BC500027B38 /* Formatter.swift in Sources */,
 				FD5959A41ECC8DC700BB2D9D /* LoginService.swift in Sources */,
 				FD7DBACA1ED2254C00D97D45 /* MyImagesService.swift in Sources */,
 				FD5F9F421EA776A300BD79B1 /* AppDelegate.swift in Sources */,
 				FD7DBAC41ED0A92E00D97D45 /* PoshikService.swift in Sources */,
 				FDC89DFE1EBA4B4E004D3F9F /* RegistrationViewController.swift in Sources */,
 				FD4E2F4B1EDF2700009C74D3 /* CommonQuestionCell.swift in Sources */,
+				FD89721E206E3BC500027B38 /* Constants.swift in Sources */,
 				FDC89DF61EBA3799004D3F9F /* RoundedView.swift in Sources */,
 				FD1F42F01EBB52BE008AE3ED /* UIColor.swift in Sources */,
 				FD5F9F5A1EA8073E00BD79B1 /* TopBarView.swift in Sources */,
+				FD897226206E3BC500027B38 /* NSRegularExpression+Swift.swift in Sources */,
 				FD89718A2066ADED00027B38 /* StandardTableView.swift in Sources */,
 				FD5F9F441EA776A300BD79B1 /* BaseController.swift in Sources */,
 				FDC060341EB8D9D5007C6A71 /* ExpandableButton.swift in Sources */,

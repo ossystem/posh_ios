@@ -27,8 +27,8 @@ class LoginApiService: ApiService {
 class AuthApiService: ApiService {
 
 
-    typealias Parameter = PhoneNumber
-    typealias Response = PhoneNumber
+    typealias Parameter = UserPhoneNumber
+    typealias Response = UserPhoneNumber
 
     var route: String = "auth"
     var method: HTTPMethod = .post
@@ -39,7 +39,7 @@ protocol StringConvertable {
     func toString() -> String
 }
 
-class PhoneNumber: ParameterType, ResponseType, StringConvertable {
+class UserPhoneNumber: ParameterType, ResponseType, StringConvertable {
 
 
     private var string: String
@@ -98,7 +98,7 @@ class LoginService {
         poshNetwork = PoshNetwork()
     }
 
-    func auth(with phoneNumber: PhoneNumber) -> Observable<PhoneNumber> {
+    func auth(with phoneNumber: UserPhoneNumber) -> Observable<UserPhoneNumber> {
         
         return authService.request(parameter: phoneNumber)
         
@@ -152,7 +152,7 @@ class UserCredentials: NSObject, ParameterType {
     let password : String
     let phone : String
     
-    init(phone: PhoneNumber, password: String) {
+    init(phone: UserPhoneNumber, password: String) {
         self.password = password
         self.phone = phone.toString()
     }

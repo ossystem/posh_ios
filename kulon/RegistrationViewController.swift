@@ -36,7 +36,7 @@ class RegistrationViewController: BaseViewController {
             .filter {
                 $0 != nil && $0 != ""
             }
-            .map { PhoneNumber(with: $0!) }
+            .map { UserPhoneNumber(with: $0!) }
             .do(onNext: { _ in
                 self.sendCodeButton.setWaiting(true)
             })

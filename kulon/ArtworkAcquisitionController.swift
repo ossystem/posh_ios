@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import RxSwift
+import  RxCocoa
 
 class ArtworkAcquisitionController: UIViewController {
     
@@ -40,14 +41,13 @@ class ArtworkAcquisitionController: UIViewController {
             $0.centerX.equalToSuperview()
             $0.top.equalTo(self.topLayoutGuide.snp.bottom).offset(20)
             $0.width.height.equalTo(40)
-        }        
+        }
         
         topButton.rx.tap.subscribe(onNext: { [unowned self] in
             self.dismiss(animated: true)
         }).disposed(by: disposeBag)
         
         acquisitionView.wantsToPurchase
-            .flatMap { acquisition.purchase() }
             .subscribe(onNext: {
                 artwork.purchaseSubject.on(.next())
                 self.dismiss(animated: true)
@@ -90,10 +90,32 @@ class ArtworkAcquisitionView: UIView {
     private var disposeBag = DisposeBag()
     
     var wantsToPurchase: Observable<Void> {
-        return buyButton.rx.tap.asObservable()
+        return purchaseSubject
+    }
+    var wantsToShowError: Observable<Error> {
+        return errorSubject
     }
     
+    private let recoverSubject = PublishSubject<Void>()
+    private let errorSubject = PublishSubject<Error>()
+    private let purchaseSubject = PublishSubject<Void>()
+    
     init(acquisition: Acquisition) {
+    
+        Recoverable(origin: buyButton.rx.tap.flatMap { acquisition.purchase() },
+                                              recoveringOn: recoverSubject,
+                                              reportingErrorsTo: errorSubject
+            ).debug()
+            .bind(to: purchaseSubject).disposed(by: disposeBag)
+        
+        buyButton.rx.tap.asObservable()
+            .withLatestFrom(errorSubject)
+            .debug()
+            .map { _ in}
+            .bind(to: recoverSubject)
+            .disposed(by: disposeBag)
+        
+        
         super.init(frame: .zero)
         backgroundColor = .white
         
@@ -145,6 +167,10 @@ class ArtworkAcquisitionView: UIView {
             $0.leading.equalToSuperview().offset(34)
             $0.centerY.equalTo(artworkName)
         }
+        
+
+        
+        
         
     }
     

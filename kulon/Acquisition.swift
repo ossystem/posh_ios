@@ -80,6 +80,7 @@ class AcquisitionFromJSON: Acquisition, ResponseType {
 class ObservablePurchaseOperation: ObservableType {
     
     private var acquisition: Acquisition
+    private var service = PurchaseAPIService()
     typealias E = Void
     
     init(acquisition: Acquisition) {
@@ -87,29 +88,24 @@ class ObservablePurchaseOperation: ObservableType {
     }
     
     func subscribe<O:ObserverType>(_ observer: O) -> Disposable where O.E == E {
-        return Observable.create { [unowned self] observer  in
-            Alamofire.request(URL(string: "https:/posh.jwma.ru/api/v1/purchase")!,
-                              method: .post,
-                              parameters: self.acquisition.purchase_params,
-                              headers: ["Authorization": "Bearer \(TokenService().token!)"])
-                .responseJSON(completionHandler: { response in
-                    switch response.result {
-                    case .success(_):
-                        observer.onNext()
-                        observer.onCompleted()
-                    case let .failure(error):
-                        observer.onError(error)
-                    }
-                })
-
-            return Disposables.create()
-            }.subscribe(observer)
-        
+        return service.request(parameter: DictionaryParams(dict: acquisition.purchase_params))
+            .map{ _ in }
+            .subscribe(observer)        
     }
     
 }
 
-class AcquisitionParams: ParameterType {
+
+
+class PurchaseAPIService: ApiService {
+    typealias Parameter = DictionaryParams
+    typealias Response = ResponseNone
+    
+    var route: String = "purchase"
+    var method: HTTPMethod = .post
+}
+
+class DictionaryParams: ParameterType {
     private var dict: [String: Any]
     
     init(dict: [String: Any]) {
@@ -122,7 +118,7 @@ class AcquisitionParams: ParameterType {
 }
 
 class AcquisitionApiService: ApiService {
-    typealias Parameter = AcquisitionParams
+    typealias Parameter = DictionaryParams
     
     typealias Response = AcquisitionFromJSON
     

@@ -22,7 +22,7 @@ protocol Purchasable {
 
 protocol ArtworkInfo: NamedObject, IdiableObject {
     var minPrice: Int { get }
-    var acquisitionParams: AcquisitionParams { get }
+    var acquisitionParams: DictionaryParams { get }
     var image: ArtworkImage { get }
     var artist: Artist { get }
     var formats: [ArtworkFormat] { get }
@@ -64,7 +64,7 @@ class ArtworkInfoFromJSON: ArtworkInfo, ResponseType {
     
     var id: String
     var minPrice: Int
-    var acquisitionParams: AcquisitionParams
+    var acquisitionParams: DictionaryParams
     var image: ArtworkImage
     var artist: Artist
     var formats: [ArtworkFormat] = []
@@ -75,7 +75,7 @@ class ArtworkInfoFromJSON: ArtworkInfo, ResponseType {
         name = try map.value("artwork.name")
         image = try map.value("artwork.image") as ArtworkImageFromJSON
         minPrice = try map.value("artwork.min_price")
-        acquisitionParams = try AcquisitionParams(dict: map.value("artwork.acquisition_params"))
+        acquisitionParams = try DictionaryParams(dict: map.value("artwork.acquisition_params"))
         artist = try map.value("artwork.artist") as ArtistFromJSON
         
     }
@@ -130,7 +130,7 @@ class FakeArtworkInfo: ArtworkInfo {
     
     var minPrice: Int = 29
     
-    var acquisitionParams = AcquisitionParams(dict: [
+    var acquisitionParams = DictionaryParams(dict: [
         "id": "8a5674eb-b26d-484a-8c87-841cb0492694",
         "type": "artwork"
     ])

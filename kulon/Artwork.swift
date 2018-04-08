@@ -8,41 +8,21 @@
 
 import Foundation
 import RxSwift
+import ObjectMapper
+import Alamofire
 
 protocol Artwork: IdiableObject, NamedObject {
     var info: Observable<ArtworkInfo> { get }
     var image: ArtworkImage { get }
 }
 
-protocol OwnedArtwork: Artwork {
-    func setToDevice() -> Observable<Void> //FIXME: TEMP
+protocol Purchasable {
+    var purchased: Observable<Void> {get}
 }
 
-protocol MarketableArtwork: Artwork {
-    func acquire() -> Observable<Acquisition>
-    func like() -> Observable<Void>
-    //FIXME: it is temp to update "buy" button. Develop architecture to hold this process
-    var purchased: Observable<Void> { get }
-}
-
-protocol Acquisition {
-
-    var price: Float { get }
-    var purchase_params: [String: Any] { get }
-    var purchasable: Purchasable { get }
-    var seller: Artist { get } //FIXME: TEMP
-
-    func purchase() -> Observable<Void>
-    
-}
-
-protocol Purchasable: NamedObject {
-    var image: ObservableImage { get } 
-}
-
-protocol ArtworkInfo: NamedObject {
-    var min_price: Int { get }
-    var acquisition_params: [String: Any] { get }
+protocol ArtworkInfo: NamedObject, IdiableObject {
+    var minPrice: Int { get }
+    var acquisitionParams: AcquisitionParams { get }
     var image: ArtworkImage { get }
     var artist: Artist { get }
     var formats: [ArtworkFormat] { get }
@@ -55,6 +35,23 @@ protocol ArtworkImage {
     var mime: String { get }
 }
 
+class ArtworkImageFromJSON: ArtworkImage, ResponseType {
+    
+    var link: String
+    var height: Float
+    var width: Float
+    var mime: String
+    
+    required init(map: Map) throws {
+        link = try map.value("link")
+        height = try map.value("height")
+        width = try map.value("width")
+        mime = try map.value("mime")
+    }
+    
+    
+}
+
 protocol Artist: IdiableObject, NamedObject {
     var avatar: ObservableImage { get }
 }
@@ -63,15 +60,80 @@ protocol ArtworkFormat: IdiableObject {
     var deviceCode: String {get}
 }
 
+class ArtworkInfoFromJSON: ArtworkInfo, ResponseType {
+    
+    var id: String
+    var minPrice: Int
+    var acquisitionParams: AcquisitionParams
+    var image: ArtworkImage
+    var artist: Artist
+    var formats: [ArtworkFormat] = []
+    var name: String
+    
+    required init(map: Map) throws {
+        id = try map.value("artwork.id")
+        name = try map.value("artwork.name")
+        image = try map.value("artwork.image") as ArtworkImageFromJSON
+        minPrice = try map.value("artwork.min_price")
+        acquisitionParams = try AcquisitionParams(dict: map.value("artwork.acquisition_params"))
+        artist = try map.value("artwork.artist") as ArtistFromJSON
+        
+    }
+}
+
+
+class ObservableArtworkInfo {
+    
+    func asObservable() -> Observable<ArtworkInfoFromJSON> {
+        return artworkInfoApiService.request(parameter: ParameterNone())
+    }
+    private var artworkInfoApiService : ArtworkInfoApiService
+    init(artwork: Artwork) {
+        self.artworkInfoApiService = ArtworkInfoApiService(artwork: artwork)
+    }
+    
+}
+
+
+class IdParameter: ParameterType {
+    private var id: String
+    
+    init(id: String) {
+        self.id = id
+    }
+    
+    init(object: IdiableObject) {
+        self.id = object.id
+    }
+    
+    func toJSON() -> [String : Any]? {
+        return ["id": id]
+    }
+}
+class ArtworkInfoApiService: ApiService {
+    typealias Response = ArtworkInfoFromJSON
+    typealias Parameter = ParameterNone
+    
+    var route: String
+    var method: HTTPMethod = .get
+    
+    init(artwork: Artwork) {
+        route = "artworks/\(artwork.id)"
+    }
+    
+}
+
 class FakeArtworkInfo: ArtworkInfo {
+    var id: String = "-1"
+    
     var name: String = "Jaconda"
     
-    var min_price: Int = 29
+    var minPrice: Int = 29
     
-    var acquisition_params: [String : Any] = [
+    var acquisitionParams = AcquisitionParams(dict: [
         "id": "8a5674eb-b26d-484a-8c87-841cb0492694",
         "type": "artwork"
-    ]
+    ])
     
     var image: ArtworkImage = FakeArtworkImage()
     
@@ -102,55 +164,35 @@ class FakeArtwork: Artwork {
     var info: Observable<ArtworkInfo> {
         return Observable.just(FakeArtworkInfo())
     }
-}
-
-class FakeMarketableArtwork: MarketableArtwork {
     
     var purchased: Observable<Void> {
-        return purchaseSubject.asObservable()
+        return Observable.never()
     }
-    
-    var purchaseSubject = PublishSubject<Void>()
-    
-    func acquire() -> Observable<Acquisition> {
-        return Observable.just(FakeAqcuisition())
-    }
-    
-    func like() -> Observable<Void> {
-        return Observable<Void>.never()
-    }
-    
-    var image: ArtworkImage = FakeArtworkImage()
-    
-    var id: String = "-1"
-    
-    var name: String = "Perfect"
-    
+}
+
+class ArtworkFromJSON: Artwork, ResponseType {
     var info: Observable<ArtworkInfo> {
-        return Observable.just(FakeArtworkInfo())
+        return ObservableArtworkInfo(artwork: self).asObservable().map { $0 as ArtworkInfo }
     }
     
-}
-
-class FakeAqcuisition: Acquisition {
-    var price: Float = 999.99
+    var image: ArtworkImage
     
-    var purchase_params: [String : Any] = ["":""]
+    var id: String
     
-    var purchasable: Purchasable = FakePurchasable()
+    var name: String
     
-    var seller: Artist = ArtistFromJSON()
-    
-    func purchase() -> Observable<Void> {
-        return Observable.just({}())
+    required init(map: Map) throws {
+        do {
+        id = try map.value("id")
+        name = try map.value("name")
+        image = try map.value("image") as ArtworkImageFromJSON
+        }
+        catch { //FIXME: to handle purchases
+            id = try map.value("artwork.id")
+            name = try map.value("artwork.name")
+            image = try map.value("artwork.image") as ArtworkImageFromJSON
+        }
     }
-    
-}
-
-class FakePurchasable: Purchasable {
-    var name: String = "Monalisa"
-    
-    var image: ObservableImage = FakeObservableImage()
 }
 
 protocol Artworks {
@@ -164,12 +206,19 @@ class FakeArtworks: Artworks {
     }
 }
 
-protocol MarketableArtworks {
-    func asObservable() ->  Observable<[MarketableArtwork]>
+protocol Selectable {
+    var viewControllerToPresentt: UIViewController { get }
 }
 
-class FakeMarketableArtworks: MarketableArtworks {
-    func asObservable() -> Observable<[MarketableArtwork]> {
-        return Observable.just([FakeMarketableArtwork()])
+class ArtworksFromJSON: ResponseType {
+    let artworks: [ArtworkFromJSON]
+    
+    required init(map: Map) throws {
+        do  {
+            artworks = try map.value("artworks") as [ArtworkFromJSON]
+        }
+        catch { //FIXME: to handle purchases
+            artworks = try map.value("purchases") as [ArtworkFromJSON]
+        }
     }
 }

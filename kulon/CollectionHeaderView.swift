@@ -17,3 +17,12 @@ class CollectionHeaderView: UICollectionReusableView {
         self.title.text = title
     }
 }
+
+class CollectionHeaderViewCell: UICollectionViewCell {
+    
+    @IBOutlet weak var title: UILabel!
+    
+    func configure(with title: String) {
+        self.title.text = title
+    }
+}

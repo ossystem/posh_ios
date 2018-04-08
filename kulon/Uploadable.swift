@@ -70,8 +70,12 @@ class ObservableImageFromJSON: ObservableImage, ImmutableMappable, ObservableTyp
                 headers: ["Authorization": "Bearer \(TokenService().token!)"])
         return Observable.create { [unowned self] observer  in
             Alamofire.request(request).responseData(completionHandler: { data in
-                observer.on(.next(UIImage(data: data.data!)!))
-                observer.on(.completed)
+                if let data = data.data, let image = UIImage(data: data) {
+                    observer.on(.next(image))
+                    observer.on(.completed)
+                } else {
+//                    observer.on(.error(ResponseError(message: "Image error")))
+                }
             })
             return Disposables.create()
         }.subscribe(observer)
@@ -106,4 +110,5 @@ class UploadableImage : ObservableUploadable, ObservableType {
                    method: .get,
                    headers: ["Authorization": "Bearer \(TokenService().token!)"])
     }
+
 }

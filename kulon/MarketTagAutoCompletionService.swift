@@ -27,12 +27,12 @@ class TagAutocompletionParameter: ParameterType {
 
 class MarketTag: IdiableObject, NamedObject, ImmutableMappable {
     
-    var name: String = ""
-    var id: String = "-1"
+    var name: String
+    var id: String
     
     required init(map: Map) throws {
-        name <- map["value"]
-        id <- map["id"]
+        name = try map.value("name")
+        id = try map.value("id")
     }
     
     init() {

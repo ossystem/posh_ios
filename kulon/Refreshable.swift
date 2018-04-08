@@ -16,7 +16,6 @@ class RefreshableByRefreshControl<T>: ObservableType {
         return refreshControl.rx.controlEvent(.valueChanged).asObservable().startWith(()) //Begin execution immidiately
             .flatMapLatest{ [unowned self] in
                 return self.origin
-                
             }
             .do(
                 onNext: { [unowned self] _ in

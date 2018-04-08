@@ -12,12 +12,12 @@ import AlamofireObjectMapper
 import ObjectMapper
 
 protocol IdiableObject {
-    var id: String { set get }
+    var id: String { get }
 }
 
 
 protocol NamedObject  {
-    var name: String { set get }    
+    var name: String { get }
 }
 
 

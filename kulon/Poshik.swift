@@ -44,6 +44,8 @@ protocol UploadablePoshik : Poshik {
     var imageForUpload: ObservableUploadable { get }
 }
 
+
+
 class PoshikFromMarket: Poshik {
     
     var isPurchased: Bool = false

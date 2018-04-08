@@ -11,28 +11,19 @@ import UIKit
 import RxBluetoothKit
 import RxSwift
 import CoreBluetooth
-
-class MyImagesViewController: BaseViewController, UICollectionViewDelegate, UICollectionViewDataSource, ExpandableButtonDelegate {
+import RxDataSources
+class MyImagesViewController: BaseViewController, ExpandableButtonDelegate {
     
     @IBOutlet weak var addButton: RoundedButton!
-    @IBOutlet weak var collectionView: UICollectionView! {
-        didSet {
-            collectionView.delegate = self
-            collectionView.dataSource = self
-        }
-    }
+    @IBOutlet weak var collectionView: UICollectionView!
     var myPoshiks: [Poshik] = []
     var purchasedPoshiks: [Poshik] = []
-    var balance: Balance = Balance()
     var bag = DisposeBag()
-    let myPoshiksService = MyPoshiksService()
-    let favoriteService = FavoritesApiService()
     let balanceService = BalanceService()
-    var blurView: UIVisualEffectView!
     
     class MyImagesSectionTitles {
         
-        var balance: Variable<Balance> = Variable<Balance>(Balance())
+        var balance: Variable<BalanceTo> = Variable<BalanceTo>(BalanceLoading().toBalance())
         
         subscript(index: Int) -> String {
             get {
@@ -43,8 +34,8 @@ class MyImagesViewController: BaseViewController, UICollectionViewDelegate, UICo
             }
         }
         
-        private var hasFavorite = false
-        private var hasPurchased = false
+        private var hasFavorite = true
+        private var hasPurchased = true
         var titles: [String] {
             var sections = [String]()
             sections.append("Balance: Loading")
@@ -59,20 +50,14 @@ class MyImagesViewController: BaseViewController, UICollectionViewDelegate, UICo
         var myIndex: Int {
             return count - 1
         }
-        
-        func loadedFavorite(poshiks: [Poshik]) {
-            hasFavorite = poshiks.count > 0
-        }
-        
-        func loadedPurchased(poshiks: [Poshik]) {
-            hasPurchased =  poshiks.count > 0
-        }
-        
-        
-        
     }
     
     private let sectionTitles = MyImagesSectionTitles()
+    
+    private let disposeBag = DisposeBag()
+    
+    private let ownedArtworks: OwnedArtworks = OwnedArtworksFromAPI()
+    private let likedArtworks: MarketableArtworks = LikedArtworksFromAPI()
     
     override func viewDidLoad() {
         
@@ -82,96 +67,50 @@ class MyImagesViewController: BaseViewController, UICollectionViewDelegate, UICo
         
         collectionView.refreshControl = refreshControl
         
-        refreshControl.rx.controlEvent(.valueChanged).startWith(())
-            .subscribe(onNext: { [unowned self] in
-            self.loadData()
-            refreshControl.endRefreshing()
-        }).disposed(by: bag)
-    }
-    
-    func loadData() {
-        blurView = UIVisualEffectView(frame: view.bounds)
-        favoriteService.request(parameter: ParameterNone()).subscribe(onNext: {
-            poshiks in
-            self.myPoshiks = poshiks.poshiks
-            self.sectionTitles.loadedFavorite(poshiks: poshiks.poshiks)
-            self.collectionView.reloadData()
-        }, onError: {
-            error in
-            print("myPoshiks: \(error.localizedDescription)")
-        }).addDisposableTo(bag)
-        myPoshiksService.getPurchasedPoshiks().subscribe(onNext: {
-            poshiks in
-            self.purchasedPoshiks = poshiks.poshiks
-            self.sectionTitles.loadedPurchased(poshiks: poshiks.poshiks)
-            self.collectionView.reloadData()
-        }, onError: {
-            error in
-            print("myPoshiks: \(error.localizedDescription)")
-        }).addDisposableTo(bag)
-        balanceService.balance()
-            .do(onNext: { [unowned self ] _ in self.collectionView.reloadData() })
-            .bind(to: sectionTitles.balance).addDisposableTo(bag)
-    }
-    
-    func addTextImage() {
-        performSegue(withIdentifier: "AddTextImageID", sender: nil)
-    }
-    //MARK: collectionView delegate
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Identifiers.Cell.poshikCell, for: indexPath) as! PoshikCell
-        cell.configure(with: FakeMarketableArtwork())
-        return cell
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        
-        let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "Header", for: indexPath) as! CollectionHeaderView
-        headerView.configure(with: sectionTitles[indexPath.section])
-        return headerView
 
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 2
-        if section == sectionTitles.myIndex {
-            return myPoshiks.count
-        } else {
-            return 2
-            return purchasedPoshiks.count
-        }
-    }
-    
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return sectionTitles.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        let frame = collectionView.cellForItem(at: indexPath)?.frame
-//        let model = PoshikViewModel(poshik: poshik(for: indexPath), startingFrame: frame!)
-//        performSegue(withIdentifier: Identifiers.Segue.PoshikViewController, sender: model)
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == Identifiers.Segue.PoshikViewController,
-            let sender = sender as? PoshikViewModel,
-            let poshikViewController = segue.destination as? PoshikViewController {
-            poshikViewController.model = sender
+        
+        let dataSource = RxCollectionViewSectionedReloadDataSource<StandardSectionModel<Artwork>>()
+        dataSource.configureCell = { ds, cv, ip, artwork in
+            let cell = cv.dequeueReusableCell(withReuseIdentifier: Identifiers.Cell.poshikCell, for: ip) as! PoshikCell
+            cell.configure(with: artwork)
+            return cell
         }
         
-    }
-    
-    private func poshik(for indexPath: IndexPath) -> Poshik {
-        var poshik: Poshik
-        if indexPath.section == sectionTitles.myIndex {
-            poshik = myPoshiks[indexPath.row]
-        } else {
-            
-            poshik = purchasedPoshiks[indexPath.row]
+        dataSource.supplementaryViewFactory = { [unowned self] ds, cv, kind, ip in
+            let view = cv.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "Header", for: ip) as! CollectionHeaderView
+            view.configure(with: self.sectionTitles[ip.section])
+            return view
         }
-        return poshik
+        
+        //TODO: make refresh
+        RefreshableByRefreshControl(origin: Observable.combineLatest(ownedArtworks.asObservable()
+                                                                     .catchErrorJustReturn([]),
+                                                                     likedArtworks.asObservable()
+                                                                     .catchErrorJustReturn([])),
+                                    updatedOn: refreshControl)
+            .debug()
+            .map {
+                [StandardSectionModel<Artwork>(items: []),
+                 StandardSectionModel<Artwork>(items: $0),
+                 StandardSectionModel<Artwork>(items: $1)]
+            }
+            .bind(to: collectionView.rx.items(dataSource: dataSource))
+            .disposed(by: disposeBag)
+
+        
+        collectionView.rx.modelSelected((Artwork & Selectable).self).subscribe(onNext: {
+             self.navigationController?.pushViewController( $0.viewControllerToPresentt, animated: true)
+        }).disposed(by: disposeBag)
+
+        
+        balanceService.balance()
+            .map { $0.toBalance() }
+            .startWith(BalanceLoading().toBalance())
+            .catchErrorJustReturn(BalanceFromValue(value: 0).toBalance())
+            .do(onNext: { [unowned self] _ in self.collectionView.reloadData() })
+        .bind(to: sectionTitles.balance).disposed(by: disposeBag)
     }
+
     
 }
 

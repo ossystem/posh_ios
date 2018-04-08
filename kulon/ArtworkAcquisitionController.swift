@@ -16,10 +16,12 @@ class ArtworkAcquisitionController: UIViewController {
     
     private var acquisitionView: ArtworkAcquisitionView
     private var topButton = RoundedButton()
+    .with(image: #imageLiteral(resourceName: "icon_top_cancel"))
+    .with(tintColor: UIColor.Kulon.orange)
     
     private var disposeBag = DisposeBag()
     
-    init(acquisition: Acquisition, artwork: FakeMarketableArtwork) {
+    init(acquisition: Acquisition, artwork: MarketableArtwork) {
         self.acquisition = acquisition
         self.acquisitionView = ArtworkAcquisitionView(acquisition: acquisition)
         super.init(nibName: nil, bundle: nil)
@@ -38,8 +40,7 @@ class ArtworkAcquisitionController: UIViewController {
             $0.centerX.equalToSuperview()
             $0.top.equalTo(self.topLayoutGuide.snp.bottom).offset(20)
             $0.width.height.equalTo(40)
-        }
-        topButton.setImage(#imageLiteral(resourceName: "icon_top_cancel"), for: .normal)
+        }        
         
         topButton.rx.tap.subscribe(onNext: { [unowned self] in
             self.dismiss(animated: true)
@@ -52,6 +53,7 @@ class ArtworkAcquisitionController: UIViewController {
                 self.dismiss(animated: true)
         }).disposed(by: disposeBag)
     }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()

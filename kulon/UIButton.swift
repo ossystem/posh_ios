@@ -85,4 +85,8 @@ extension UIButton {
         return self
     }
     
+    func with(tintColor: UIColor) -> Self {
+        self.tintColor = tintColor
+        return self
+    }
 }

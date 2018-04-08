@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="DbO-EW-J5X">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Dk5-NV-xU4">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -60,6 +61,29 @@
                                             <outlet property="image" destination="Agy-xq-Rv3" id="adl-cp-cld"/>
                                         </connections>
                                     </collectionViewCell>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="headerCell" id="pkO-Sb-IkK" customClass="CollectionHeaderViewCell" customModule="kulon" customModuleProvider="target">
+                                        <rect key="frame" x="145.5" y="50" width="84" height="84"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="84" height="84"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My images" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b1O-u7-3an">
+                                                    <rect key="frame" x="16" y="29" width="121" height="27.5"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="23"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstItem="b1O-u7-3an" firstAttribute="leading" secondItem="pkO-Sb-IkK" secondAttribute="leading" constant="16" id="7Lz-Yj-GQt"/>
+                                            <constraint firstItem="b1O-u7-3an" firstAttribute="centerY" secondItem="pkO-Sb-IkK" secondAttribute="centerY" id="PL2-8a-ypb"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="title" destination="b1O-u7-3an" id="LmY-Zl-6Nr"/>
+                                        </connections>
+                                    </collectionViewCell>
                                 </cells>
                                 <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Header" id="mIN-Go-hLA" customClass="CollectionHeaderView" customModule="kulon" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
@@ -84,7 +108,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q13-h7-x9u" customClass="TopBarView" customModule="kulon" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="20" width="375" height="70"/>
                                 <subviews>
-                                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tx2-KR-3QE" userLabel="Top Bar" customClass="TopBarBackgroundView" customModule="kulon" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tx2-KR-3QE" userLabel="Top Bar" customClass="TopBarBackgroundView" customModule="kulon" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="70"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
@@ -120,9 +144,9 @@
                                     <outlet property="background" destination="Tx2-KR-3QE" id="GcI-Yv-JdV"/>
                                 </connections>
                             </view>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="4h9-ql-Ser">
-                                <rect key="frame" x="167" y="37" width="40" height="40"/>
-                                <color key="backgroundColor" red="1" green="0.56600409750000003" blue="0.5650827289" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Posh space photo prof 320 " translatesAutoresizingMaskIntoConstraints="NO" id="4h9-ql-Ser">
+                                <rect key="frame" x="167" y="41" width="40" height="40"/>
+                                <color key="backgroundColor" red="0.0" green="1" blue="0.23529411759999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="40" id="eam-Nn-xTb"/>
                                     <constraint firstAttribute="width" secondItem="4h9-ql-Ser" secondAttribute="height" multiplier="1:1" id="zyK-dI-gEu"/>
@@ -157,7 +181,7 @@
                             <constraint firstAttribute="trailing" secondItem="6xi-4H-ona" secondAttribute="trailing" id="2e4-gB-Zoa"/>
                             <constraint firstItem="q13-h7-x9u" firstAttribute="top" secondItem="mpV-C3-WXY" secondAttribute="bottom" id="4zT-nA-d2x"/>
                             <constraint firstItem="6xi-4H-ona" firstAttribute="leading" secondItem="wHK-f6-gWC" secondAttribute="leading" id="9vf-RX-veM"/>
-                            <constraint firstItem="4h9-ql-Ser" firstAttribute="top" secondItem="mpV-C3-WXY" secondAttribute="bottom" constant="17" id="P9y-Ix-kOy"/>
+                            <constraint firstItem="4h9-ql-Ser" firstAttribute="top" secondItem="mpV-C3-WXY" secondAttribute="bottom" constant="21" id="P9y-Ix-kOy"/>
                             <constraint firstItem="pVV-im-775" firstAttribute="centerX" secondItem="wHK-f6-gWC" secondAttribute="centerX" id="PKZ-91-QWH"/>
                             <constraint firstItem="pVV-im-775" firstAttribute="width" secondItem="pVV-im-775" secondAttribute="height" id="TwH-Yh-P9w"/>
                             <constraint firstItem="q13-h7-x9u" firstAttribute="leading" secondItem="wHK-f6-gWC" secondAttribute="leading" id="XId-i1-Lh5"/>
@@ -169,6 +193,7 @@
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="My images" image="icon_tab_picture" id="8ij-h8-hFs"/>
+                    <navigationItem key="navigationItem" id="63T-6B-p1g"/>
                     <connections>
                         <outlet property="addButton" destination="pVV-im-775" id="zk8-pp-6kd"/>
                         <outlet property="collectionView" destination="6xi-4H-ona" id="5di-AV-yvr"/>
@@ -278,6 +303,22 @@
             </objects>
             <point key="canvasLocation" x="1636" y="358.4707646176912"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="UWf-zy-LIb">
+            <objects>
+                <navigationController navigationBarHidden="YES" id="Dk5-NV-xU4" sceneMemberID="viewController">
+                    <nil key="simulatedTopBarMetrics"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Sxz-w6-xNi">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="DbO-EW-J5X" kind="relationship" relationship="rootViewController" id="QX3-Ou-b77"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="q2z-z8-Z1y" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-186" y="-307"/>
+        </scene>
         <!--Poshik-->
         <scene sceneID="2sI-hd-p7u">
             <objects>
@@ -288,9 +329,9 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Posh space photo prof 320 " width="320" height="320"/>
         <image name="icon_add" width="27" height="27"/>
         <image name="icon_tab_picture" width="30" height="25"/>
         <image name="icon_top_cancel" width="24" height="24"/>
-        <image name="logo" width="140" height="139"/>
     </resources>
 </document>

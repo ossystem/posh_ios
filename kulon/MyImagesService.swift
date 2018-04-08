@@ -138,46 +138,68 @@ class BalanceService  {
     
     private var balanceApiService = BalanceApiService()
     
-    func balance() -> Observable<Balance> {
-        return balanceApiService.request(parameter: ParameterNone()).catchErrorJustReturn(Balance())
+    func balance() -> Observable<BalanceFromAPI> {
+        return balanceApiService.request(parameter: ParameterNone())
     }
 }
 
 class BalanceApiService: ApiService {
     typealias Parameter = ParameterNone
-    typealias Response = Balance
+    typealias Response = BalanceFromAPI
     
     var method: HTTPMethod = .get
     var route: String = "balance"
     
 }
 
-//protocol Balance: StringConvertable {
-//    
-//}
+protocol Balance: StringConvertable {
+    func toBalance() -> BalanceTo
+}
 
-//class BalanceLoading: Balance {
-//    func toString() -> String {
-//        return "Loading..."
-//    }
-//}
+extension Balance {
+    func toBalance() -> BalanceTo {
+        return BalanceTo(origin: self)
+    }
+}
 
-//class BalanceFromValue: Balance {
-//
-//    private var value: Float
-//
-//    init(value: Float) {
-//        self.value = value
-//    }
-//
-//    func toString() -> String {
-//        return "\(self.value)"
-//    }
-//}
+class BalanceTo: Balance {
+    func toString() -> String {
+        return origin.toString()
+    }
 
-class Balance: ResponseType, StringConvertable {
+    var origin: Balance
+    
+    init(origin: Balance) {
+        self.origin = origin
+    }
+    
+}
+
+class BalanceLoading: Balance {
+    func toString() -> String {
+        return "Loading..."
+    }
+}
+
+class BalanceFromValue: Balance {
+
+    private var value: Float
+
+    init(value: Float) {
+        self.value = value
+    }
+
+    func toString() -> String {
+        return "\(self.value)"
+    }
+}
+
+
+
+class BalanceFromAPI: Balance, ResponseType {
     
     var value: Float
+    
     required init(map: Map) throws {
         value = try map.value("total")
     }

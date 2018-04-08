@@ -22,7 +22,7 @@ class MarketParameter: ParameterType, PaginationParameter {
         }
     }
     
-    var tag: String? {
+    var tag: IdiableObject? {
         didSet {
             if tag != nil {
                 category = nil
@@ -48,13 +48,29 @@ class MarketParameter: ParameterType, PaginationParameter {
         if let category = category {
             parameters["category"] = category.id
         } else if let tag = tag {
-            parameters["search"] = tag
+            parameters["search"] = tag.id
         } else if let artist = artist {
             parameters["artist"] = artist.id
         }
         
         return parameters
     }
+}
+
+class ObservableMarketParameter: ObservableType {
+    
+    typealias E = MarketParameter
+    
+    private var publisSubject: PublishSubject<MarketParameter> = PublishSubject<MarketParameter>()
+    
+    func subscribe<O>(_ observer: O) -> Disposable where O : ObserverType, ObservableMarketParameter.E == O.E {
+        return publisSubject.startWith(MarketParameter()).subscribe(observer)
+    }
+    
+    func update(_ parameter: MarketParameter) {
+        publisSubject.onNext(parameter)
+    }
+    
 }
 
 class MarketPoshiks: ResponseType {

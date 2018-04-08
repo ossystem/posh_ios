@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="wS5-63-7h1">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="wS5-63-7h1">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -47,13 +46,13 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ОТВЯЗАТЬ КУЛОН" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5aG-JY-z5n">
-                                                    <rect key="frame" x="119" y="28" width="228" height="20"/>
+                                                    <rect key="frame" x="119" y="28" width="221" height="20"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Изменить кулон, управляемый с помощью приложения" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kes-vf-Zfd">
-                                                    <rect key="frame" x="119" y="55.5" width="228" height="20"/>
+                                                    <rect key="frame" x="119" y="55.5" width="221" height="20"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -113,6 +112,7 @@
                                             <constraint firstAttribute="width" secondItem="IgY-D6-OWK" secondAttribute="height" id="1s4-tc-QPg"/>
                                             <constraint firstAttribute="width" constant="40" id="3Xb-8H-bvK"/>
                                         </constraints>
+                                        <color key="tintColor" red="0.0" green="1" blue="0.23529411759999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <state key="normal" image="icon_top_power_btn"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -209,6 +209,7 @@
                                             <constraint firstAttribute="width" secondItem="7zB-0B-LOq" secondAttribute="height" id="CiO-mW-PcZ"/>
                                             <constraint firstAttribute="width" constant="40" id="nwO-Sz-JrD"/>
                                         </constraints>
+                                        <color key="tintColor" red="0.0" green="1" blue="0.23529411759999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <state key="normal" image="icon_top_cancel"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -278,7 +279,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VKL-bk-mdY">
-                                                    <rect key="frame" x="20" y="8" width="335" height="114"/>
+                                                    <rect key="frame" x="20" y="11" width="335" height="108"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ответ" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zrP-Bf-6qA">
                                                             <rect key="frame" x="20" y="64" width="295" height="23"/>
@@ -362,6 +363,7 @@
                                             <constraint firstAttribute="width" constant="40" id="Hf6-no-r4w"/>
                                             <constraint firstAttribute="width" secondItem="uPg-cx-Axg" secondAttribute="height" id="Mo9-aR-S0a"/>
                                         </constraints>
+                                        <color key="tintColor" red="0.0" green="1" blue="0.23529411759999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <state key="normal" image="icon_top_cancel"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">

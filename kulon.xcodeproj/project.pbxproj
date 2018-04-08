@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1672FF080B66D197357069F0 /* Pods_kulon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A2BB5303706A4077BBA6097 /* Pods_kulon.framework */; };
-		4C28767B759DBCA753CE4EAA /* ArtworkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C287552934E3ED5C35C375C /* ArtworkController.swift */; };
+		4C28767B759DBCA753CE4EAA /* MarketableArtworkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C287552934E3ED5C35C375C /* MarketableArtworkController.swift */; };
 		FD0EF8FC1ECF38D5005F5ACF /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD0EF8FB1ECF38D5005F5ACF /* ApiService.swift */; };
 		FD0EF8FE1ECF397C005F5ACF /* TockenService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD0EF8FD1ECF397C005F5ACF /* TockenService.swift */; };
 		FD0EF9001ECF39AF005F5ACF /* MarketService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD0EF8FF1ECF39AF005F5ACF /* MarketService.swift */; };
@@ -46,7 +46,6 @@
 		FD5F9F601EA80CF500BD79B1 /* RoundedImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD5F9F5F1EA80CF500BD79B1 /* RoundedImageView.swift */; };
 		FD7DBAB91ECF597000D97D45 /* RegistrationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7DBAB81ECF597000D97D45 /* RegistrationService.swift */; };
 		FD7DBABE1ED08D0600D97D45 /* CategoriesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7DBABD1ED08D0600D97D45 /* CategoriesService.swift */; };
-		FD7DBAC01ED0918400D97D45 /* MarketViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7DBABF1ED0918400D97D45 /* MarketViewModel.swift */; };
 		FD7DBAC21ED098DE00D97D45 /* MarketTagAutoCompletionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7DBAC11ED098DE00D97D45 /* MarketTagAutoCompletionService.swift */; };
 		FD7DBAC41ED0A92E00D97D45 /* PoshikService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7DBAC31ED0A92E00D97D45 /* PoshikService.swift */; };
 		FD7DBAC61ED1C90500D97D45 /* UserCredentialsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7DBAC51ED1C90500D97D45 /* UserCredentialsService.swift */; };
@@ -108,12 +107,18 @@
 		FDC9E3221EBFDFCE00B6DC25 /* PoshikCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDC9E3211EBFDFCE00B6DC25 /* PoshikCell.swift */; };
 		FDC9E3241EBFE02C00B6DC25 /* Poshik.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDC9E3231EBFE02C00B6DC25 /* Poshik.swift */; };
 		FDDA3EAD1EFD709A00AA8A19 /* CollectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDDA3EAC1EFD709A00AA8A19 /* CollectionHeaderView.swift */; };
+		FDE63E802073BE1200E93371 /* MarketableArtwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDE63E7F2073BE1200E93371 /* MarketableArtwork.swift */; };
+		FDE63E832073BE5F00E93371 /* OwnedArtwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDE63E822073BE5F00E93371 /* OwnedArtwork.swift */; };
+		FDE63E8720777B6800E93371 /* Recoverable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDE63E8420777B6700E93371 /* Recoverable.swift */; };
+		FDE63E8820777B6800E93371 /* RefreshableAndRecoverable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDE63E8520777B6700E93371 /* RefreshableAndRecoverable.swift */; };
+		FDE63E8D2077A0BA00E93371 /* Acquisition.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDE63E8C2077A0BA00E93371 /* Acquisition.swift */; };
+		FDE7AB8620724B6200302E52 /* UICollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDE7AB8520724B6200302E52 /* UICollectionView.swift */; };
 		FDEAE6991EAAB26500B9F504 /* MyImagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDEAE6981EAAB26500B9F504 /* MyImagesViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		3A2BB5303706A4077BBA6097 /* Pods_kulon.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_kulon.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		4C287552934E3ED5C35C375C /* ArtworkController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArtworkController.swift; sourceTree = "<group>"; };
+		4C287552934E3ED5C35C375C /* MarketableArtworkController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarketableArtworkController.swift; sourceTree = "<group>"; };
 		72BB98DF18CBD9B63AF9681F /* Pods-kulon.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-kulon.release.xcconfig"; path = "Pods/Target Support Files/Pods-kulon/Pods-kulon.release.xcconfig"; sourceTree = "<group>"; };
 		91E6D5B414977C880C7C4136 /* Pods-kulon.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-kulon.debug.xcconfig"; path = "Pods/Target Support Files/Pods-kulon/Pods-kulon.debug.xcconfig"; sourceTree = "<group>"; };
 		FD0EF8FB1ECF38D5005F5ACF /* ApiService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiService.swift; sourceTree = "<group>"; };
@@ -155,7 +160,6 @@
 		FD5F9F5F1EA80CF500BD79B1 /* RoundedImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedImageView.swift; sourceTree = "<group>"; };
 		FD7DBAB81ECF597000D97D45 /* RegistrationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationService.swift; sourceTree = "<group>"; };
 		FD7DBABD1ED08D0600D97D45 /* CategoriesService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoriesService.swift; sourceTree = "<group>"; };
-		FD7DBABF1ED0918400D97D45 /* MarketViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarketViewModel.swift; sourceTree = "<group>"; };
 		FD7DBAC11ED098DE00D97D45 /* MarketTagAutoCompletionService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarketTagAutoCompletionService.swift; sourceTree = "<group>"; };
 		FD7DBAC31ED0A92E00D97D45 /* PoshikService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PoshikService.swift; sourceTree = "<group>"; };
 		FD7DBAC51ED1C90500D97D45 /* UserCredentialsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserCredentialsService.swift; sourceTree = "<group>"; };
@@ -218,6 +222,12 @@
 		FDC9E3211EBFDFCE00B6DC25 /* PoshikCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PoshikCell.swift; sourceTree = "<group>"; };
 		FDC9E3231EBFE02C00B6DC25 /* Poshik.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Poshik.swift; sourceTree = "<group>"; };
 		FDDA3EAC1EFD709A00AA8A19 /* CollectionHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionHeaderView.swift; sourceTree = "<group>"; };
+		FDE63E7F2073BE1200E93371 /* MarketableArtwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketableArtwork.swift; sourceTree = "<group>"; };
+		FDE63E822073BE5F00E93371 /* OwnedArtwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnedArtwork.swift; sourceTree = "<group>"; };
+		FDE63E8420777B6700E93371 /* Recoverable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Recoverable.swift; sourceTree = "<group>"; };
+		FDE63E8520777B6700E93371 /* RefreshableAndRecoverable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefreshableAndRecoverable.swift; sourceTree = "<group>"; };
+		FDE63E8C2077A0BA00E93371 /* Acquisition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Acquisition.swift; sourceTree = "<group>"; };
+		FDE7AB8520724B6200302E52 /* UICollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UICollectionView.swift; sourceTree = "<group>"; };
 		FDEAE6981EAAB26500B9F504 /* MyImagesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyImagesViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -285,12 +295,11 @@
 				FD5959A11ECB973900BB2D9D /* Category.swift */,
 				FD5F9F451EA776A300BD79B1 /* MarketViewController.swift */,
 				FD89718D206A6FAD00027B38 /* ArtworkAcquisitionController.swift */,
-				FD7DBABF1ED0918400D97D45 /* MarketViewModel.swift */,
 				FD7DBABD1ED08D0600D97D45 /* CategoriesService.swift */,
 				FD7DBAC11ED098DE00D97D45 /* MarketTagAutoCompletionService.swift */,
 				FD0EF8FF1ECF39AF005F5ACF /* MarketService.swift */,
-				FDA302C82062BD4F00E93D44 /* Artwork.swift */,
-				4C287552934E3ED5C35C375C /* ArtworkController.swift */,
+				FDE63E812073BE4D00E93371 /* Artwork */,
+				4C287552934E3ED5C35C375C /* MarketableArtworkController.swift */,
 			);
 			name = Store;
 			sourceTree = "<group>";
@@ -350,6 +359,8 @@
 		FD5409B91EC5FDD200E93B7F /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				FDE63E8420777B6700E93371 /* Recoverable.swift */,
+				FDE63E8520777B6700E93371 /* RefreshableAndRecoverable.swift */,
 				FDC9E31D1EBFBF8700B6DC25 /* Identifiers.swift */,
 			);
 			name = Utils;
@@ -439,6 +450,7 @@
 		FD5F9F5E1EA80A9600BD79B1 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				FDE7AB8520724B6200302E52 /* UICollectionView.swift */,
 				FD8971872066ADED00027B38 /* StandardLabel.swift */,
 				FD8971882066ADED00027B38 /* StandardTableView.swift */,
 				FD8971852066ADD600027B38 /* UILabel.swift */,
@@ -552,6 +564,17 @@
 			children = (
 			);
 			name = Base;
+			sourceTree = "<group>";
+		};
+		FDE63E812073BE4D00E93371 /* Artwork */ = {
+			isa = PBXGroup;
+			children = (
+				FDA302C82062BD4F00E93D44 /* Artwork.swift */,
+				FDE63E7F2073BE1200E93371 /* MarketableArtwork.swift */,
+				FDE63E822073BE5F00E93371 /* OwnedArtwork.swift */,
+				FDE63E8C2077A0BA00E93371 /* Acquisition.swift */,
+			);
+			name = Artwork;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -724,9 +747,9 @@
 				FD4E2F4D1EE07171009C74D3 /* CommonQuestion.swift in Sources */,
 				FD90E89C1F4DCA5A00600017 /* StandardSectionModel.swift in Sources */,
 				FD92DDDE1ED770A400E331A3 /* UIImage.swift in Sources */,
-				FD7DBAC01ED0918400D97D45 /* MarketViewModel.swift in Sources */,
 				FD7DBAB91ECF597000D97D45 /* RegistrationService.swift in Sources */,
 				FDC89DF91EBA4A2B004D3F9F /* PresentationAnimtor.swift in Sources */,
+				FDE7AB8620724B6200302E52 /* UICollectionView.swift in Sources */,
 				FD9789B7204D91860048B501 /* Network.swift in Sources */,
 				FD9789B2204D91860048B501 /* DescribedError.swift in Sources */,
 				FD5409B11EC5F9F900E93B7F /* PoshikViewController.swift in Sources */,
@@ -743,9 +766,11 @@
 				FD8971862066ADD600027B38 /* UILabel.swift in Sources */,
 				FDADA60A1F42FD3100D81892 /* Uploadable.swift in Sources */,
 				FD89718E206A6FAD00027B38 /* ArtworkAcquisitionController.swift in Sources */,
+				FDE63E8D2077A0BA00E93371 /* Acquisition.swift in Sources */,
 				FD7DC8331F4DBFF600C2DF5D /* Refreshable.swift in Sources */,
 				FD897222206E3BC500027B38 /* MetadataTypes.swift in Sources */,
 				FDC9E31E1EBFBF8700B6DC25 /* Identifiers.swift in Sources */,
+				FDE63E832073BE5F00E93371 /* OwnedArtwork.swift in Sources */,
 				FDEAE6991EAAB26500B9F504 /* MyImagesViewController.swift in Sources */,
 				FD5F9F561EA79ED700BD79B1 /* FloatingPoint.swift in Sources */,
 				FD5959A21ECB973900BB2D9D /* Category.swift in Sources */,
@@ -772,10 +797,12 @@
 				FDC9E3201EBFC0CF00B6DC25 /* SettingsCell.swift in Sources */,
 				FD897223206E3BC500027B38 /* ParseManager.swift in Sources */,
 				FD0EF9001ECF39AF005F5ACF /* MarketService.swift in Sources */,
+				FDE63E8820777B6800E93371 /* RefreshableAndRecoverable.swift in Sources */,
 				FD897220206E3BC500027B38 /* PhoneNumber.swift in Sources */,
 				FD5409C01EC99DDD00E93B7F /* ColorPickerView.swift in Sources */,
 				FD4FE91E1F1518D7006F2AE2 /* SocialService.swift in Sources */,
 				FD7DBAC81ED1DA6800D97D45 /* UIWindow.swift in Sources */,
+				FDE63E802073BE1200E93371 /* MarketableArtwork.swift in Sources */,
 				FD5F9F5D1EA8093900BD79B1 /* TopBarBackgroundView.swift in Sources */,
 				FD7DBACC1ED2DDBD00D97D45 /* SettingsWebViewController.swift in Sources */,
 				FD7DBABE1ED08D0600D97D45 /* CategoriesService.swift in Sources */,
@@ -794,6 +821,7 @@
 				FD4E2F4B1EDF2700009C74D3 /* CommonQuestionCell.swift in Sources */,
 				FD89721E206E3BC500027B38 /* Constants.swift in Sources */,
 				FDC89DF61EBA3799004D3F9F /* RoundedView.swift in Sources */,
+				FDE63E8720777B6800E93371 /* Recoverable.swift in Sources */,
 				FD1F42F01EBB52BE008AE3ED /* UIColor.swift in Sources */,
 				FD5F9F5A1EA8073E00BD79B1 /* TopBarView.swift in Sources */,
 				FD897226206E3BC500027B38 /* NSRegularExpression+Swift.swift in Sources */,
@@ -802,7 +830,7 @@
 				FDC060341EB8D9D5007C6A71 /* ExpandableButton.swift in Sources */,
 				FDC89DFA1EBA4A2B004D3F9F /* DismissAnimator.swift in Sources */,
 				FD5959A01ECB96C500BB2D9D /* CategoryCell.swift in Sources */,
-				4C28767B759DBCA753CE4EAA /* ArtworkController.swift in Sources */,
+				4C28767B759DBCA753CE4EAA /* MarketableArtworkController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -869,7 +897,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -913,7 +941,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -929,7 +957,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = W9HXCUL7KS;
 				INFOPLIST_FILE = kulon/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = jufy.posh;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -945,7 +973,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = W9HXCUL7KS;
 				INFOPLIST_FILE = kulon/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = jufy.posh;
 				PRODUCT_NAME = "$(TARGET_NAME)";

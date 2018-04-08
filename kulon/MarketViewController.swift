@@ -11,8 +11,8 @@ import RxBluetoothKit
 import RxSwift
 import RxCocoa
 import RxDataSources
-//import SearchTextField
 
+ 
 class StoreViewController: BaseViewController, ExpandableButtonDelegate, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate {
 
     @IBOutlet weak var collectionView: UICollectionView!
@@ -37,7 +37,6 @@ class StoreViewController: BaseViewController, ExpandableButtonDelegate, UITable
     private let marketService = MarketService()
     
     var bag: DisposeBag = DisposeBag()
-    var poshiks: PaginableAndRefreshablePoshiksFromMarket!
     var names: [NamedObject & IdiableObject] = [] {
         didSet {
             filteredNames = names
@@ -46,8 +45,7 @@ class StoreViewController: BaseViewController, ExpandableButtonDelegate, UITable
     var filteredNames: [NamedObject & IdiableObject] = []
     var getNamesMethod: Observable<[NamedObject & IdiableObject]>?
     var marketParameter =  MarketParameter()
-    
-    var artworks: MarketableArtworks = FakeMarketableArtworks()
+    var observableParameter = ObservableMarketParameter()
     
     enum SelectionMode {
         case tag, category, artist, none
@@ -63,7 +61,7 @@ class StoreViewController: BaseViewController, ExpandableButtonDelegate, UITable
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         categoriesTableView.contentInset = UIEdgeInsets(top: 140, left: 0, bottom: 0, right: 0)
-        categoriesTableView.tableFooterView = UIView() //hack to remove emty
+        categoriesTableView.tableFooterView = UIView() //hack to remove empty
                 
         let dataSource = RxCollectionViewSectionedReloadDataSource<StandardSectionModel<MarketableArtwork>>()
         
@@ -73,25 +71,28 @@ class StoreViewController: BaseViewController, ExpandableButtonDelegate, UITable
 //            self.poshiks.loadNextPageIfNeeded(for: ip)
             return cell
         }
-        
-        artworks
-            .asObservable()
-            .catchErrorJustReturn([])
-            .map{ [StandardSectionModel(items: $0)] }
-            
-            .bind(to: collectionView.rx.items(dataSource: dataSource))
-            .disposed(by: bag)
-        
-        collectionView.rx.modelSelected(MarketableArtwork.self).subscribe(onNext: { [unowned self] in
-            self.navigationController?.pushViewController(ArtworkController.init(with: $0), animated: true)
-        }).disposed(by: bag)
-        
+
         collectionView.contentInset = UIEdgeInsets(top: 70, left: 0, bottom: 0, right: 0)
 
         let refreshConrol = UIRefreshControl()
         
-//        collectionView.refreshControl = refreshConrol
-        //TODO: make artworks refreshable
+        observableParameter.flatMap {
+            RefreshableByRefreshControl(
+                origin: MarketableArtworksFromAPI(parameter: $0).asObservable(),
+                updatedOn: refreshConrol).debug()
+            }
+            .asObservable()
+            .debug()
+            .catchErrorJustReturn([])
+            .map{ [StandardSectionModel(items: $0)] }            
+            .bind(to: collectionView.rx.items(dataSource: dataSource))
+            .disposed(by: bag)
+        
+        collectionView.rx.modelSelected(MarketableArtwork.self).subscribe(onNext: { [unowned self] in
+            self.navigationController?.pushViewController(MarketableArtworkController(marketableArtwork: $0), animated: true)
+        }).disposed(by: bag)
+    
+        collectionView.refreshControl = refreshConrol
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -105,9 +106,13 @@ class StoreViewController: BaseViewController, ExpandableButtonDelegate, UITable
     }
     
     let categoryButton = RoundedButton.button(with: #imageLiteral(resourceName: "icon_top_category_red"), highlightIcon: #imageLiteral(resourceName: "icon_top_category_white"),target: self, action: #selector(searchCategories))
+    .with(tintColor: UIColor.Kulon.orange)
     let tagButton = RoundedButton.button(with: #imageLiteral(resourceName: "icon_top_tag"), highlightIcon: #imageLiteral(resourceName: "icon_top_tag_selected"), target: self, action: #selector(searchTags))
+    .with(tintColor: UIColor.Kulon.orange)
     let resetButton = RoundedButton.button(with: #imageLiteral(resourceName: "icon_top_cancel"), highlightIcon: #imageLiteral(resourceName: "icon_top_tag_selected"), target: self, action: #selector(resetFilters))
+        .with(tintColor: UIColor.Kulon.orange)
     let artistsButton = RoundedButton.button(with: #imageLiteral(resourceName: "icon_artist_black"), highlightIcon: #imageLiteral(resourceName: "icon_artist_white"), target: self, action: #selector(searchArtists))
+        .with(tintColor: UIColor.Kulon.orange)
 
     
     func setupInterface(){
@@ -148,7 +153,7 @@ class StoreViewController: BaseViewController, ExpandableButtonDelegate, UITable
     }
     
     func resetFilters() {
-//        poshiks.update(parameterValue: MarketParameter())
+        observableParameter.update(MarketParameter())
         topButton.hideButtons()
     }
     
@@ -206,9 +211,12 @@ class StoreViewController: BaseViewController, ExpandableButtonDelegate, UITable
             marketParameter.category = object
         }
         if case .tag = currentSelectionMode {
+            marketParameter.tag = object
+        }
+        if case .artist = currentSelectionMode {
             marketParameter.artist = object
         }
-        poshiks.update(parameterValue: marketParameter)
+        observableParameter.update(marketParameter)
         topButton.hideButtons()
     }
 
@@ -287,8 +295,8 @@ class StoreViewController: BaseViewController, ExpandableButtonDelegate, UITable
     //MARK: - textField
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        marketParameter.tag = textField.text
-        poshiks.update(parameterValue: marketParameter)
+//        marketParameter.tag = textField.text
+//        poshiks.update(parameterValue: marketParameter)
         topButton.hideButtons()
         return true
     }

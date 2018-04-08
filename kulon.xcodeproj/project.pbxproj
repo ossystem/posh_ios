@@ -7,8 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		08554D51D5F22CB256D952D4 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BD4A7C7D049F3C5467245D4 /* CoreMedia.framework */; };
+		14DFE406C5D34F15302866A9 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A0B3A212B1CB6BA9AF8FE20 /* AssetsLibrary.framework */; };
 		1672FF080B66D197357069F0 /* Pods_kulon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A2BB5303706A4077BBA6097 /* Pods_kulon.framework */; };
+		2E4C6BF9DEE44F5A7E79099A /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99C48D6988C7E1F3494B3152 /* AVFoundation.framework */; };
+		40A864161815C3F7CE6680D9 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D5A4ED50B726D08831FC68F /* CoreTelephony.framework */; };
+		45141AFC1664B9BBAFE7005A /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD43377E2C08A812F1C40259 /* SystemConfiguration.framework */; };
 		4C28767B759DBCA753CE4EAA /* MarketableArtworkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C287552934E3ED5C35C375C /* MarketableArtworkController.swift */; };
+		6B9B357FC0EB1BD092A60B61 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ACB361325BA7CF68D32641EC /* QuartzCore.framework */; };
+		9EB65A69FC296768893056F9 /* BuddyBuildSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0ECBF6C36493BB7F272F343C /* BuddyBuildSDK.framework */; };
+		AA45F2EA85FC149EEEF87095 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3FA7F87B08C3C36A51C4542 /* CoreVideo.framework */; };
+		B221AA2624021F68EC4F831A /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C821FD3B50FAC8A2EC0C596A /* CoreText.framework */; };
 		FD0EF8FC1ECF38D5005F5ACF /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD0EF8FB1ECF38D5005F5ACF /* ApiService.swift */; };
 		FD0EF8FE1ECF397C005F5ACF /* TockenService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD0EF8FD1ECF397C005F5ACF /* TockenService.swift */; };
 		FD0EF9001ECF39AF005F5ACF /* MarketService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD0EF8FF1ECF39AF005F5ACF /* MarketService.swift */; };
@@ -117,10 +126,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0ECBF6C36493BB7F272F343C /* BuddyBuildSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BuddyBuildSDK.framework; path = BuddyBuildSDK.framework; sourceTree = "<group>"; };
+		25E409BC574E5E05DD146BB6 /* Bridging-Header.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
+		2BD4A7C7D049F3C5467245D4 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		3A2BB5303706A4077BBA6097 /* Pods_kulon.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_kulon.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C287552934E3ED5C35C375C /* MarketableArtworkController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarketableArtworkController.swift; sourceTree = "<group>"; };
 		72BB98DF18CBD9B63AF9681F /* Pods-kulon.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-kulon.release.xcconfig"; path = "Pods/Target Support Files/Pods-kulon/Pods-kulon.release.xcconfig"; sourceTree = "<group>"; };
+		7A0B3A212B1CB6BA9AF8FE20 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		91E6D5B414977C880C7C4136 /* Pods-kulon.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-kulon.debug.xcconfig"; path = "Pods/Target Support Files/Pods-kulon/Pods-kulon.debug.xcconfig"; sourceTree = "<group>"; };
+		99C48D6988C7E1F3494B3152 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		9D5A4ED50B726D08831FC68F /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		ACB361325BA7CF68D32641EC /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		B3FA7F87B08C3C36A51C4542 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
+		C821FD3B50FAC8A2EC0C596A /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+		DD43377E2C08A812F1C40259 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		FD0EF8FB1ECF38D5005F5ACF /* ApiService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiService.swift; sourceTree = "<group>"; };
 		FD0EF8FD1ECF397C005F5ACF /* TockenService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TockenService.swift; sourceTree = "<group>"; };
 		FD0EF8FF1ECF39AF005F5ACF /* MarketService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarketService.swift; sourceTree = "<group>"; };
@@ -237,6 +256,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				1672FF080B66D197357069F0 /* Pods_kulon.framework in Frameworks */,
+				9EB65A69FC296768893056F9 /* BuddyBuildSDK.framework in Frameworks */,
+				14DFE406C5D34F15302866A9 /* AssetsLibrary.framework in Frameworks */,
+				B221AA2624021F68EC4F831A /* CoreText.framework in Frameworks */,
+				40A864161815C3F7CE6680D9 /* CoreTelephony.framework in Frameworks */,
+				45141AFC1664B9BBAFE7005A /* SystemConfiguration.framework in Frameworks */,
+				6B9B357FC0EB1BD092A60B61 /* QuartzCore.framework in Frameworks */,
+				2E4C6BF9DEE44F5A7E79099A /* AVFoundation.framework in Frameworks */,
+				08554D51D5F22CB256D952D4 /* CoreMedia.framework in Frameworks */,
+				AA45F2EA85FC149EEEF87095 /* CoreVideo.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -256,6 +284,15 @@
 			isa = PBXGroup;
 			children = (
 				3A2BB5303706A4077BBA6097 /* Pods_kulon.framework */,
+				0ECBF6C36493BB7F272F343C /* BuddyBuildSDK.framework */,
+				7A0B3A212B1CB6BA9AF8FE20 /* AssetsLibrary.framework */,
+				C821FD3B50FAC8A2EC0C596A /* CoreText.framework */,
+				9D5A4ED50B726D08831FC68F /* CoreTelephony.framework */,
+				DD43377E2C08A812F1C40259 /* SystemConfiguration.framework */,
+				ACB361325BA7CF68D32641EC /* QuartzCore.framework */,
+				99C48D6988C7E1F3494B3152 /* AVFoundation.framework */,
+				2BD4A7C7D049F3C5467245D4 /* CoreMedia.framework */,
+				B3FA7F87B08C3C36A51C4542 /* CoreVideo.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -406,6 +443,7 @@
 				FD5F9F3F1EA776A300BD79B1 /* Products */,
 				7C18980662C3862DB2A64FCC /* Pods */,
 				FCEBDA3AFE95C956D8ADDB16 /* Frameworks */,
+				25E409BC574E5E05DD146BB6 /* Bridging-Header.h */,
 			);
 			sourceTree = "<group>";
 		};
@@ -956,11 +994,16 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = W9HXCUL7KS;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = kulon/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = jufy.posh;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -972,11 +1015,16 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = W9HXCUL7KS;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = kulon/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = jufy.posh;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;

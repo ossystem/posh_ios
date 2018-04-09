@@ -29,14 +29,10 @@
 		FD4E2F4F1EE1B7AD009C74D3 /* DeviceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD4E2F4E1EE1B7AD009C74D3 /* DeviceService.swift */; };
 		FD4FE91E1F1518D7006F2AE2 /* SocialService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD4FE91D1F1518D7006F2AE2 /* SocialService.swift */; };
 		FD4FE9201F15254D006F2AE2 /* SocialWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD4FE91F1F15254D006F2AE2 /* SocialWebViewController.swift */; };
-		FD5409A91EC2699300E93B7F /* RedactorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD5409A81EC2699300E93B7F /* RedactorViewController.swift */; };
 		FD5409AD1EC32A2400E93B7F /* LikeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD5409AC1EC32A2400E93B7F /* LikeView.swift */; };
 		FD5409AF1EC5D78000E93B7F /* Poshik.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FD5409AE1EC5D78000E93B7F /* Poshik.storyboard */; };
-		FD5409B11EC5F9F900E93B7F /* PoshikViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD5409B01EC5F9F900E93B7F /* PoshikViewController.swift */; };
 		FD5409BE1EC6231D00E93B7F /* ColorPicker.xib in Resources */ = {isa = PBXBuildFile; fileRef = FD5409BD1EC6231D00E93B7F /* ColorPicker.xib */; };
 		FD5409C01EC99DDD00E93B7F /* ColorPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD5409BF1EC99DDD00E93B7F /* ColorPickerView.swift */; };
-		FD59599A1ECAFF5900BB2D9D /* PoshikPresentationAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD5959991ECAFF5900BB2D9D /* PoshikPresentationAnimator.swift */; };
-		FD59599C1ECB4ADB00BB2D9D /* PoshikViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD59599B1ECB4ADB00BB2D9D /* PoshikViewModel.swift */; };
 		FD59599E1ECB51B900BB2D9D /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD59599D1ECB51B900BB2D9D /* UIView.swift */; };
 		FD5959A01ECB96C500BB2D9D /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD59599F1ECB96C500BB2D9D /* CategoryCell.swift */; };
 		FD5959A21ECB973900BB2D9D /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD5959A11ECB973900BB2D9D /* Category.swift */; };
@@ -56,7 +52,6 @@
 		FD7DBAB91ECF597000D97D45 /* RegistrationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7DBAB81ECF597000D97D45 /* RegistrationService.swift */; };
 		FD7DBABE1ED08D0600D97D45 /* CategoriesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7DBABD1ED08D0600D97D45 /* CategoriesService.swift */; };
 		FD7DBAC21ED098DE00D97D45 /* MarketTagAutoCompletionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7DBAC11ED098DE00D97D45 /* MarketTagAutoCompletionService.swift */; };
-		FD7DBAC41ED0A92E00D97D45 /* PoshikService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7DBAC31ED0A92E00D97D45 /* PoshikService.swift */; };
 		FD7DBAC61ED1C90500D97D45 /* UserCredentialsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7DBAC51ED1C90500D97D45 /* UserCredentialsService.swift */; };
 		FD7DBAC81ED1DA6800D97D45 /* UIWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7DBAC71ED1DA6800D97D45 /* UIWindow.swift */; };
 		FD7DBACA1ED2254C00D97D45 /* MyImagesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7DBAC91ED2254C00D97D45 /* MyImagesService.swift */; };
@@ -88,7 +83,6 @@
 		FD90E89E1F4DEEE900600017 /* Paginable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD90E89D1F4DEEE900600017 /* Paginable.swift */; };
 		FD92DDDC1ED71EE200E331A3 /* UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD92DDDB1ED71EE200E331A3 /* UIButton.swift */; };
 		FD92DDDE1ED770A400E331A3 /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD92DDDD1ED770A400E331A3 /* UIImage.swift */; };
-		FD974B061EC9C0100066AC27 /* RedactorTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD974B051EC9C0100066AC27 /* RedactorTextField.swift */; };
 		FD974B081EC9EF3C0066AC27 /* CGPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD974B071EC9EF3C0066AC27 /* CGPoint.swift */; };
 		FD9789B2204D91860048B501 /* DescribedError.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD9789AC204D91830048B501 /* DescribedError.swift */; };
 		FD9789B3204D91860048B501 /* URLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD9789AD204D91840048B501 /* URLSession.swift */; };
@@ -126,7 +120,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0ECBF6C36493BB7F272F343C /* BuddyBuildSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BuddyBuildSDK.framework; path = BuddyBuildSDK.framework; sourceTree = "<group>"; };
+		0ECBF6C36493BB7F272F343C /* BuddyBuildSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BuddyBuildSDK.framework; sourceTree = "<group>"; };
 		25E409BC574E5E05DD146BB6 /* Bridging-Header.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
 		2BD4A7C7D049F3C5467245D4 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		3A2BB5303706A4077BBA6097 /* Pods_kulon.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_kulon.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -151,14 +145,10 @@
 		FD4E2F4E1EE1B7AD009C74D3 /* DeviceService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceService.swift; sourceTree = "<group>"; };
 		FD4FE91D1F1518D7006F2AE2 /* SocialService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocialService.swift; sourceTree = "<group>"; };
 		FD4FE91F1F15254D006F2AE2 /* SocialWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocialWebViewController.swift; sourceTree = "<group>"; };
-		FD5409A81EC2699300E93B7F /* RedactorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RedactorViewController.swift; sourceTree = "<group>"; };
 		FD5409AC1EC32A2400E93B7F /* LikeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LikeView.swift; sourceTree = "<group>"; };
 		FD5409AE1EC5D78000E93B7F /* Poshik.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Poshik.storyboard; sourceTree = "<group>"; };
-		FD5409B01EC5F9F900E93B7F /* PoshikViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PoshikViewController.swift; sourceTree = "<group>"; };
 		FD5409BD1EC6231D00E93B7F /* ColorPicker.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ColorPicker.xib; sourceTree = "<group>"; };
 		FD5409BF1EC99DDD00E93B7F /* ColorPickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorPickerView.swift; sourceTree = "<group>"; };
-		FD5959991ECAFF5900BB2D9D /* PoshikPresentationAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PoshikPresentationAnimator.swift; sourceTree = "<group>"; };
-		FD59599B1ECB4ADB00BB2D9D /* PoshikViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PoshikViewModel.swift; sourceTree = "<group>"; };
 		FD59599D1ECB51B900BB2D9D /* UIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 		FD59599F1ECB96C500BB2D9D /* CategoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
 		FD5959A11ECB973900BB2D9D /* Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
@@ -180,7 +170,6 @@
 		FD7DBAB81ECF597000D97D45 /* RegistrationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationService.swift; sourceTree = "<group>"; };
 		FD7DBABD1ED08D0600D97D45 /* CategoriesService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoriesService.swift; sourceTree = "<group>"; };
 		FD7DBAC11ED098DE00D97D45 /* MarketTagAutoCompletionService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarketTagAutoCompletionService.swift; sourceTree = "<group>"; };
-		FD7DBAC31ED0A92E00D97D45 /* PoshikService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PoshikService.swift; sourceTree = "<group>"; };
 		FD7DBAC51ED1C90500D97D45 /* UserCredentialsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserCredentialsService.swift; sourceTree = "<group>"; };
 		FD7DBAC71ED1DA6800D97D45 /* UIWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIWindow.swift; sourceTree = "<group>"; };
 		FD7DBAC91ED2254C00D97D45 /* MyImagesService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyImagesService.swift; sourceTree = "<group>"; };
@@ -213,7 +202,6 @@
 		FD90E89D1F4DEEE900600017 /* Paginable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Paginable.swift; sourceTree = "<group>"; };
 		FD92DDDB1ED71EE200E331A3 /* UIButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIButton.swift; sourceTree = "<group>"; };
 		FD92DDDD1ED770A400E331A3 /* UIImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImage.swift; sourceTree = "<group>"; };
-		FD974B051EC9C0100066AC27 /* RedactorTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RedactorTextField.swift; sourceTree = "<group>"; };
 		FD974B071EC9EF3C0066AC27 /* CGPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CGPoint.swift; sourceTree = "<group>"; };
 		FD9789AC204D91830048B501 /* DescribedError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DescribedError.swift; sourceTree = "<group>"; };
 		FD9789AD204D91840048B501 /* URLSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLSession.swift; sourceTree = "<group>"; };
@@ -344,8 +332,6 @@
 		FD5409B51EC5FAB000E93B7F /* MyImages */ = {
 			isa = PBXGroup;
 			children = (
-				FD5409A81EC2699300E93B7F /* RedactorViewController.swift */,
-				FD974B051EC9C0100066AC27 /* RedactorTextField.swift */,
 				FDEAE6981EAAB26500B9F504 /* MyImagesViewController.swift */,
 				FDC3AB171EBB463F00141241 /* MyImages.storyboard */,
 				FD5409BD1EC6231D00E93B7F /* ColorPicker.xib */,
@@ -376,10 +362,6 @@
 			children = (
 				FDC9E3211EBFDFCE00B6DC25 /* PoshikCell.swift */,
 				FD5409AE1EC5D78000E93B7F /* Poshik.storyboard */,
-				FD5409B01EC5F9F900E93B7F /* PoshikViewController.swift */,
-				FD59599B1ECB4ADB00BB2D9D /* PoshikViewModel.swift */,
-				FD5959991ECAFF5900BB2D9D /* PoshikPresentationAnimator.swift */,
-				FD7DBAC31ED0A92E00D97D45 /* PoshikService.swift */,
 			);
 			name = Poshik;
 			sourceTree = "<group>";
@@ -790,7 +772,6 @@
 				FDE7AB8620724B6200302E52 /* UICollectionView.swift in Sources */,
 				FD9789B7204D91860048B501 /* Network.swift in Sources */,
 				FD9789B2204D91860048B501 /* DescribedError.swift in Sources */,
-				FD5409B11EC5F9F900E93B7F /* PoshikViewController.swift in Sources */,
 				FD897229206E3BC500027B38 /* PartialFormatter.swift in Sources */,
 				FD9789B5204D91860048B501 /* SimpleNetwork.swift in Sources */,
 				FD5F9F601EA80CF500BD79B1 /* RoundedImageView.swift in Sources */,
@@ -799,7 +780,6 @@
 				FD89722A206E3BC500027B38 /* PhoneNumberKit.swift in Sources */,
 				FD5409AD1EC32A2400E93B7F /* LikeView.swift in Sources */,
 				FDC9E31C1EBFBE4000B6DC25 /* SettingsViewController.swift in Sources */,
-				FD59599C1ECB4ADB00BB2D9D /* PoshikViewModel.swift in Sources */,
 				FD4FE9201F15254D006F2AE2 /* SocialWebViewController.swift in Sources */,
 				FD8971862066ADD600027B38 /* UILabel.swift in Sources */,
 				FDADA60A1F42FD3100D81892 /* Uploadable.swift in Sources */,
@@ -818,7 +798,6 @@
 				FDA302C92062BD4F00E93D44 /* Artwork.swift in Sources */,
 				FD7DBAC21ED098DE00D97D45 /* MarketTagAutoCompletionService.swift in Sources */,
 				FD897221206E3BC500027B38 /* RegexManager.swift in Sources */,
-				FD5409A91EC2699300E93B7F /* RedactorViewController.swift in Sources */,
 				FD7DBAC61ED1C90500D97D45 /* UserCredentialsService.swift in Sources */,
 				FD92DDDC1ED71EE200E331A3 /* UIButton.swift in Sources */,
 				FD9789B6204D91860048B501 /* URLPostRequest.swift in Sources */,
@@ -828,7 +807,6 @@
 				FDC3AB101EBB36AF00141241 /* UITextField.swift in Sources */,
 				FD0EF8FE1ECF397C005F5ACF /* TockenService.swift in Sources */,
 				FD4E2F491EDF25D5009C74D3 /* FAQViewController.swift in Sources */,
-				FD59599A1ECAFF5900BB2D9D /* PoshikPresentationAnimator.swift in Sources */,
 				FDC9E3221EBFDFCE00B6DC25 /* PoshikCell.swift in Sources */,
 				FD974B081EC9EF3C0066AC27 /* CGPoint.swift in Sources */,
 				FD897228206E3BC500027B38 /* MetadataManager.swift in Sources */,
@@ -848,13 +826,11 @@
 				FD89721F206E3BC500027B38 /* TextField.swift in Sources */,
 				FDC89DFC1EBA4ABA004D3F9F /* AuthViewController.swift in Sources */,
 				FD5F9F461EA776A300BD79B1 /* MarketViewController.swift in Sources */,
-				FD974B061EC9C0100066AC27 /* RedactorTextField.swift in Sources */,
 				FD5A914F1F3CBFA7008EE04F /* NSData.swift in Sources */,
 				FD897227206E3BC500027B38 /* Formatter.swift in Sources */,
 				FD5959A41ECC8DC700BB2D9D /* LoginService.swift in Sources */,
 				FD7DBACA1ED2254C00D97D45 /* MyImagesService.swift in Sources */,
 				FD5F9F421EA776A300BD79B1 /* AppDelegate.swift in Sources */,
-				FD7DBAC41ED0A92E00D97D45 /* PoshikService.swift in Sources */,
 				FDC89DFE1EBA4B4E004D3F9F /* RegistrationViewController.swift in Sources */,
 				FD4E2F4B1EDF2700009C74D3 /* CommonQuestionCell.swift in Sources */,
 				FD89721E206E3BC500027B38 /* Constants.swift in Sources */,

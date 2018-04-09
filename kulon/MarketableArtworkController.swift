@@ -132,11 +132,12 @@ class ArtworkInfoView: UIView {
     private var artworkImage = KulonImageView()
         .with(roundedEdges: 272/2)
         .with(contentMode: .scaleAspectFill)
-        .with(backgroundColor: .gray)
+        .with(backgroundColor: UIColor.Kulon.lightOrange)
     private var artistImage = UIImageView()
         .with(roundedEdges: 32/2)
         .with(contentMode: .scaleAspectFill)
-        .with(backgroundColor: .gray)
+        .with(backgroundColor: UIColor.Kulon.lightOrange)
+    
     private var artistName = StandardLabel(font: .systemFont(ofSize: 20))
         .aligned(by: .center)
     private var artworkName = StandardLabel(font: .systemFont(ofSize: 24))
@@ -145,13 +146,13 @@ class ArtworkInfoView: UIView {
         .aligned(by: .center)
     private var buyButton = UIButton()
         .with(title: "Buy")
-        .with(titleColor: .white)
+        .with(titleColor: .black)
         .with(backgroundColor: UIColor.Kulon.lightOrange)
         .with(roundedEdges: 8)
     private var likeButton = UIButton()
     private var downloadButton = UIButton()
         .with(title: "Download")
-        .with(titleColor: .white)
+        .with(titleColor: .black)
         .with(backgroundColor: UIColor.Kulon.lightOrange)
         .with(roundedEdges: 8)
     private var disposeBag = DisposeBag()
@@ -189,7 +190,11 @@ class ArtworkInfoView: UIView {
             $0.edges.equalTo(buyButton)
         }
         
-        downloadButton.isHidden = true
+        artistImage.tintColor = .black
+        
+        
+        downloadButton.isHidden = !artwork.isPurchased
+        buyButton.isHidden = artwork.isPurchased
         
         artworkImage.setBelow(view: artistImage, offset: 16)
         artistImage.setBelow(view: artistName, offset: 16)
@@ -213,8 +218,10 @@ class ArtworkInfoView: UIView {
             $0.bottom.equalToSuperview().inset(60)
         }
 
+        self.buyButton.isEnabled = false
         
         artwork.info.subscribe(onNext: { [unowned self] info  in
+            self.buyButton.isEnabled = true
             self.artistName.text = info.artist.name
             self.artworkName.text = info.name
             self.price.text = "\(info.minPrice)POS"
@@ -224,6 +231,9 @@ class ArtworkInfoView: UIView {
             } else {
                 print("image request error: \n\turl: \(info.image.link)")
             }
+            info.artist.avatar.asObservable().bind(to:
+                self.artistImage.rx.image
+            ).disposed(by: self.disposeBag)
         }).disposed(by: disposeBag)
         
         artwork.purchased.subscribe(onNext: {
@@ -240,6 +250,8 @@ class ArtworkInfoView: UIView {
             .debug()
             .subscribe(onNext: { [unowned self] in
                 self.downloadButton.setWaiting(false)
+                }, onError: { [unowned self] _ in
+                    self.downloadButton.setWaiting(false)
             })
             .disposed(by: disposeBag)
         }

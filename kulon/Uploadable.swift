@@ -59,6 +59,12 @@ class FakeObservableImage: ObservableImage {
     }
 }
 
+class DefaultUserImage: ObservableImage {
+    func asObservable() -> Observable<UIImage> {
+        return Observable.just(#imageLiteral(resourceName: "icon_artist_black"))
+    }
+}
+
 class ObservableImageFromJSON: ObservableImage, ImmutableMappable, ObservableType {
 
     private var link: String
@@ -105,10 +111,18 @@ class UploadableImage : ObservableUploadable, ObservableType {
 
     
     init(with poshik: UploadablePoshik ) {
-        let url = URL(string:"http://kulon.jwma.ru/api/v1/\(poshik.imageRoute)/set/\(poshik.id)")!
+        fatalError("poshiks are deprecated")
+        let url = URL(string:"http://kulon.jwma.ru/api/v1/set/")!
         request = try! URLRequest(url: url,
                    method: .get,
                    headers: ["Authorization": "Bearer \(TokenService().token!)"])
     }
 
+    
+    init(artworkInfo: ArtworkInfo) {
+        
+        request = try! URLRequest(url: "",
+                                  method: .get,
+                                  headers: ["Authorization": "Bearer \(TokenService().token!)"])
+    }
 }

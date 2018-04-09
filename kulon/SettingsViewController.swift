@@ -18,11 +18,11 @@ struct SettingItem {
     
     static var defaultSettingsSet: [SettingItem] {
         return [
-            SettingItem(name: "ОТВЯЗАТЬ КУЛОН", descr: "Изменить кулон, управляемый с помощью приложения", image: #imageLiteral(resourceName: "icon_settigns_kulon_8F8D8D"),request: nil),
-            SettingItem(name: "КОНТАКТЫ", descr: "Написать разработчику и задать свой вопрос", image: #imageLiteral(resourceName: "icon_settings_contacts_8F8D8D"),request: ContactsSettingsService().getRequest() ),
-            SettingItem(name: "ВОПРОСЫ И ОТВЕТЫ", descr: "Ответы на самые распространенные вопросы", image: #imageLiteral(resourceName: "icon_settings_question_8F8D8D"), request: nil),
-            SettingItem(name: "АДРЕСА МАГАЗИНОВ", descr: "Изменить кулон, управляемый с помощью приложения", image: #imageLiteral(resourceName: "icon_settings_geo_8F8D8D"), request:AdressesSettingsService().getRequest()),
-            SettingItem(name: "ВЫЙТИ", descr: "", image: #imageLiteral(resourceName: "icon_settings_logout"), request: nil)
+//            SettingItem(name: "ОТВЯЗАТЬ КУЛОН", descr: "Изменить кулон, управляемый с помощью приложения", image: #imageLiteral(resourceName: "icon_settigns_kulon_8F8D8D"),request: nil),
+            SettingItem(name: "Contacts", descr: "Write a letter to the developers", image: #imageLiteral(resourceName: "icon_settings_contacts_8F8D8D"),request: ContactsSettingsService().getRequest() ),
+            SettingItem(name: "FAQ", descr: "The most frequently asked questions", image: #imageLiteral(resourceName: "icon_settings_question_8F8D8D"), request: nil),
+            SettingItem(name: "Store locations", descr: "Find the closest store to buy our gear", image: #imageLiteral(resourceName: "icon_settings_geo_8F8D8D"), request:AdressesSettingsService().getRequest()),
+            SettingItem(name: "LOGOUT", descr: "", image: #imageLiteral(resourceName: "icon_settings_logout"), request: nil)
         ]
     }
 }
@@ -33,7 +33,7 @@ struct SettingItem {
 class SettingsViewController: BaseViewController, UITableViewDataSource, UITableViewDelegate {
     
     enum SettingsItems: Int {
-        case deattachKulon = 0, contacts, FAQ, adresses, logout
+        case contacts, FAQ, adresses, logout
         
         var item: SettingItem {
            return SettingItem.defaultSettingsSet[rawValue]

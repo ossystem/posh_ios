@@ -179,9 +179,7 @@ class BLEService {
     init() {
     }
 
-    private func discover() -> Observable<KulonService>{
-       
-        
+    private func discover() -> Observable<KulonService> {
         return manager.rx_state
             .do ( onNext: {
                 if $0 == .poweredOff {
@@ -254,7 +252,7 @@ class BLEService {
         
     }
     
-    func set(_ poshik: UploadablePoshik) -> Observable<Void> {
+    func set(_ poshik: UploadablePoshik & NamedObject) -> Observable<Void> {
         return  sendCommand(.openImage(poshik.name))
             .flatMap { [unowned self] result, service -> Observable<Void> in
                 switch result {
@@ -276,7 +274,7 @@ class BLEService {
             }
     }
     
-    func upload(_ poshik: UploadablePoshik, with service: KulonService) -> Observable<Void> {
+    func upload(_ poshik: UploadablePoshik & NamedObject, with service: KulonService) -> Observable<Void> {
         
         let file = poshik.imageForUpload
         return sendCommand(.createImage(poshik.name), to: service)

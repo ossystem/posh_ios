@@ -14,6 +14,7 @@ import Alamofire
 protocol Artwork: IdiableObject, NamedObject {
     var info: Observable<ArtworkInfo> { get }
     var image: ArtworkImage { get }
+    var isPurchased: Bool { get }
 }
 
 protocol Purchasable {
@@ -26,6 +27,7 @@ protocol ArtworkInfo: NamedObject, IdiableObject {
     var image: ArtworkImage { get }
     var artist: Artist { get }
     var formats: [ArtworkFormat] { get }
+    
 }
 
 protocol ArtworkImage {
@@ -168,6 +170,7 @@ class FakeArtwork: Artwork {
     var purchased: Observable<Void> {
         return Observable.never()
     }
+    var isPurchased: Bool = false
 }
 
 class ArtworkFromJSON: Artwork, ResponseType {
@@ -181,16 +184,21 @@ class ArtworkFromJSON: Artwork, ResponseType {
     
     var name: String
     
+    var isPurchased: Bool
+
+    
     required init(map: Map) throws {
         do {
-        id = try map.value("id")
-        name = try map.value("name")
-        image = try map.value("image") as ArtworkImageFromJSON
+            id = try map.value("id")
+            name = try map.value("name")
+            image = try map.value("image") as ArtworkImageFromJSON
+            isPurchased = try map.value("is_purchased")
         }
         catch { //FIXME: to handle purchases
             id = try map.value("artwork.id")
             name = try map.value("artwork.name")
             image = try map.value("artwork.image") as ArtworkImageFromJSON
+            isPurchased = true
         }
     }
 }

@@ -22,16 +22,21 @@ class RegistrationViewController: BaseViewController {
     
     @IBOutlet weak var sendCodeButton: RoundedButton!
     @IBOutlet var codeViewsGroup: [UIView]!
+    @IBOutlet weak var backButton: RoundedButton!
     
+    
+    private let recoverSubject = PublishSubject<Void>()
+    private let errorSubject = PublishSubject<Error>()
+    private let purchaseSubject = PublishSubject<Void>()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.providesPresentationContextTransitionStyle = true
         self.definesPresentationContext = true
         self.transitioningDelegate = self
-    
         
         let firstObs = sendCodeButton.rx.tap
+            
             .map { [unowned self] in self.emailField.text }
             .filter {
                 $0 != nil && $0 != ""
@@ -64,7 +69,13 @@ class RegistrationViewController: BaseViewController {
         })
         .disposed(by: bag)
         
-        //add another button to use fro commiting code, show only afte
+        backButton.rx.tap.subscribe(onNext: {
+            self.sendCodeButton.isHidden = false
+            self.codeViewsGroup.forEach {
+                $0.isHidden = true
+            }
+        }).disposed(by: bag)
+        
     }
     
     func showCodeField() {
@@ -75,10 +86,6 @@ class RegistrationViewController: BaseViewController {
                 $0.isHidden = false
             }
         }
-    }
-    
-    @IBAction func backButtonTapped(_ sender: RoundedButton) {
-        self.dismiss(animated: true, completion: nil)
     }
     
     func enterApplication() {

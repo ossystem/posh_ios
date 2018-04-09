@@ -72,7 +72,7 @@ class StoreViewController: BaseViewController, ExpandableButtonDelegate, UITable
             return cell
         }
 
-        collectionView.contentInset = UIEdgeInsets(top: 70, left: 0, bottom: 0, right: 0)
+        collectionView.contentInset = UIEdgeInsets(top: 80, left: 0, bottom: 0, right: 0)
 
         let refreshConrol = UIRefreshControl()
         
@@ -136,7 +136,11 @@ class StoreViewController: BaseViewController, ExpandableButtonDelegate, UITable
     }
     
     func applyFilterToNames(string: String) {
-        filteredNames = names.filter { $0.name.lowercased().range(of: string.lowercased()) != nil }
+        if string == "" {
+            filteredNames = names
+        } else {
+            filteredNames = names.filter { $0.name.lowercased().range(of: string.lowercased()) != nil }
+        }
         categoriesTableView.reloadData()
     }
     
@@ -220,14 +224,6 @@ class StoreViewController: BaseViewController, ExpandableButtonDelegate, UITable
         topButton.hideButtons()
     }
 
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == Identifiers.Segue.PoshikViewController,
-            let sender = sender as? PoshikViewModel,
-            let poshikViewController = segue.destination as? PoshikViewController {
-            poshikViewController.model = sender
-        }
-        
-    }
     
     //MARK: - Expandable button delegate
     

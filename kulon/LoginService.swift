@@ -45,7 +45,8 @@ class UserPhoneNumber: ParameterType, ResponseType, StringConvertable {
     private var string: String
 
     init(with string: String) {
-        self.string = string
+        if string.first != "+" { self.string = "+" + string }
+        else { self.string = string }
     }
 
     required init(map: Map) throws {

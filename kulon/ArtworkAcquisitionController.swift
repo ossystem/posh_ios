@@ -76,11 +76,11 @@ class ArtworkAcquisitionView: UIView {
     private var artworkImage = KulonImageView()
         .with(roundedEdges: 21)
         .with(contentMode: .scaleAspectFill)
-        .with(backgroundColor: .gray)
+        .with(backgroundColor: UIColor.Kulon.lightOrange)
     private var artistImage = UIImageView()
         .with(roundedEdges: 16)
         .with(contentMode: .scaleAspectFill)
-        .with(backgroundColor: .gray)
+        .with(backgroundColor: UIColor.Kulon.lightOrange)
     private var artistName = StandardLabel(font: .boldSystemFont(ofSize: 24))
     private var artworkName = StandardLabel(font: .boldSystemFont(ofSize: 24))
     private var price = StandardLabel(font: .boldSystemFont(ofSize: 18))
@@ -119,6 +119,8 @@ class ArtworkAcquisitionView: UIView {
         super.init(frame: .zero)
         backgroundColor = .white
         
+        artistImage.tintColor = .black
+        
         artworkName.text = acquisition.purchasable.name
         artistName.text = acquisition.seller.name
         acquisition.seller.avatar.asObservable().bind(to: artistImage.rx.image).disposed(by: disposeBag)
@@ -153,7 +155,7 @@ class ArtworkAcquisitionView: UIView {
             $0.centerX.equalToSuperview()
         }
         buyButton.setTitle("Purchase", for: .normal)
-        buyButton.setTitleColor(.white, for: .normal)
+        buyButton.setTitleColor(.black, for: .normal)
         buyButton.backgroundColor = UIColor.Kulon.lightOrange
         
         artistImage.snp.makeConstraints {
@@ -167,10 +169,6 @@ class ArtworkAcquisitionView: UIView {
             $0.leading.equalToSuperview().offset(34)
             $0.centerY.equalTo(artworkName)
         }
-        
-
-        
-        
         
     }
     

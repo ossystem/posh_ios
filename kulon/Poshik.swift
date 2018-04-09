@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 import ObjectMapper
-
+import RxSwift
 
 enum ImageSize: String {
     case big = "big", middle = "middle", small = "small"
@@ -40,8 +40,10 @@ extension Poshik {
     
 }
 
-protocol UploadablePoshik : Poshik {
-    var imageForUpload: ObservableUploadable { get }
+
+
+protocol UploadablePoshik {
+    var imageForUpload: Observable<Uploadable> { get }
 }
 
 
@@ -68,7 +70,7 @@ class PoshikFromMarket: Poshik {
 
 class MyPoshikFromMarket: UploadablePoshik {
     
-    lazy var imageForUpload: ObservableUploadable = UploadableImage(with: self)
+    lazy var imageForUpload: Observable<Uploadable> = UploadableImage(with: self).asObservable()
     
     var isPurchased: Bool = true
     var isLiked: Bool = false
@@ -99,7 +101,7 @@ class MyPoshikFromMarket: UploadablePoshik {
 }
 
 class MyPoshikUploaded: UploadablePoshik {
-    lazy var imageForUpload: ObservableUploadable = UploadableImage(with: self)
+    lazy var imageForUpload: Observable<Uploadable> = UploadableImage(with: self).asObservable()
 
     
     var isPurchased: Bool = true

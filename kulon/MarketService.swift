@@ -125,12 +125,14 @@ class ArtistFromJSON: Artist, ResponseType {
     
     var id: String
     var name: String
-    var avatar: ObservableImage
+    var avatar: ObservableImage = DefaultUserImage()
     
     required init(map: Map) throws {
         id = try map.value("id")
         name = try map.value("name")
-        avatar = FakeEmptyObservableImage()//try ObservableImageFromJSON(map: map.value("avatar"))
+        if let im = try? ObservableImageFromJSON(map: map.value("avatar")) {
+            avatar = im
+        }
     }
     
     init() {

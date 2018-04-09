@@ -39,6 +39,7 @@ class FakeOwnedArtwork: OwnedArtwork {
     var id: String = "-1"
     
     var name: String = "Jaconda"
+        var isPurchased: Bool = false
 }
 
 protocol OwnedArtworks {
@@ -51,14 +52,22 @@ class FakeOwnedArtworks : OwnedArtworks {
     }
 }
 
-class OwnedArtworkFromArtwork: OwnedArtwork {
+class OwnedArtworkFromArtwork: OwnedArtwork, UploadablePoshik {    
+    
+    var imageForUpload: Observable<Uploadable> {
+        
+        return info.asObservable()
+            .flatMap { UploadableImage(artworkInfo: $0) }
+    }
+    
     var id: String
     
     var name: String
     
+    var bleService = BLEService.shared
+    
     func setToDevice() -> Observable<Void> {
-        fatalError("downlad not implemented")
-        return Observable.never()
+        return bleService.set(self)
     }
     
     var info: Observable<ArtworkInfo> {
@@ -71,6 +80,10 @@ class OwnedArtworkFromArtwork: OwnedArtwork {
     
     var purchased: Observable<Void> {
         return Observable.just()
+    }
+    
+    var isPurchased: Bool {
+        return origin.isPurchased
     }
     
     private var origin: Artwork

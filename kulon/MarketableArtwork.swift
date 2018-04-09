@@ -62,6 +62,8 @@ class FakeMarketableArtwork: MarketableArtwork {
     
     var name: String = "Perfect"
     
+        var isPurchased: Bool = false
+    
     var info: Observable<ArtworkInfo> {
         return Observable.just(FakeArtworkInfo())
     }
@@ -95,6 +97,10 @@ class MarketableArtworkFromArtwork: MarketableArtwork {
     
     var purchased: Observable<Void> {
         return purchaseSubject.asObservable()
+    }
+    
+    var isPurchased: Bool {
+        return origin.isPurchased
     }
     
     var purchaseSubject = PublishSubject<Void>()

@@ -122,30 +122,30 @@ class PoshikViewController: BaseViewController, UIViewControllerTransitioningDel
             }
             
             sender.setWaiting(true, activityIndicatorColor: UIColor.Kulon.lightOrange)
-            bleService.set(poshik)
-                .subscribe(onNext:  {
-                    sender.setWaiting(false)
-                    self.setupButtons()
-
-                    print($0)
-                    print("set poshik")
-            },
-                           onError: { error in
-                            //TODO: make more usefull error mapping
-                    sender.setWaiting(false)
-                    
-                    self.showErrorMessage(error.localizedDescription)
-                    self.setupButtons()
-
-                },
-                           onCompleted: {
-                    sender.setWaiting(false)
-                    self.setupButtons()
-                    
-                    print($0)
-                    print("set poshik")
-                }
-                ).disposed(by: disposeBag)
+//            bleService.set(poshik)
+//                .subscribe(onNext:  {
+//                    sender.setWaiting(false)
+//                    self.setupButtons()
+//
+//                    print($0)
+//                    print("set poshik")
+//            },
+//                           onError: { error in
+//                            //TODO: make more usefull error mapping
+//                    sender.setWaiting(false)
+//                    
+//                    self.showErrorMessage(error.localizedDescription)
+//                    self.setupButtons()
+//
+//                },
+//                           onCompleted: {
+//                    sender.setWaiting(false)
+//                    self.setupButtons()
+//                    
+//                    print($0)
+//                    print("set poshik")
+//                }
+//                ).disposed(by: disposeBag)
             
         }
     }

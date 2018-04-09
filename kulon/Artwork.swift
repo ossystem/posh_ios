@@ -15,7 +15,11 @@ protocol Artwork: IdiableObject, NamedObject {
     var info: Observable<ArtworkInfo> { get }
     var image: ArtworkImage { get }
     var isPurchased: Bool { get }
+    var isLiked: Bool { get }
+    func like() -> Observable<Void>
 }
+
+
 
 protocol Purchasable {
     var purchased: Observable<Void> {get}
@@ -157,6 +161,12 @@ class FakeArtworkImage: ArtworkImage {
 }
 
 class FakeArtwork: Artwork {
+    var isLiked: Bool = true
+    
+    func like() -> Observable<Void> {
+        return Observable.never()
+    }
+    
     var image: ArtworkImage = FakeArtworkImage()
     
     var id: String = "-1"
@@ -174,6 +184,8 @@ class FakeArtwork: Artwork {
 }
 
 class ArtworkFromJSON: Artwork, ResponseType {
+    var isLiked: Bool
+    
     var info: Observable<ArtworkInfo> {
         return ObservableArtworkInfo(artwork: self).asObservable().map { $0 as ArtworkInfo }
     }
@@ -186,6 +198,11 @@ class ArtworkFromJSON: Artwork, ResponseType {
     
     var isPurchased: Bool
 
+    private lazy var likeService = LikeApiService(artwork: self)
+    
+    func like() -> Observable<Void> {
+        return likeService.request(parameter: ParameterNone()).map {_ in }
+    }
     
     required init(map: Map) throws {
         do {
@@ -193,15 +210,31 @@ class ArtworkFromJSON: Artwork, ResponseType {
             name = try map.value("name")
             image = try map.value("image") as ArtworkImageFromJSON
             isPurchased = try map.value("is_purchased")
+            isLiked = try map.value("is_favorite")
         }
         catch { //FIXME: to handle purchases
             id = try map.value("artwork.id")
             name = try map.value("artwork.name")
             image = try map.value("artwork.image") as ArtworkImageFromJSON
             isPurchased = true
+            isLiked = try map.value("is_favorite")
         }
     }
 }
+
+class LikeApiService: ApiService {
+    
+    typealias Parameter = ParameterNone
+    typealias Response = ResponseNone
+    
+    var route: String
+    var method: HTTPMethod = .post
+    
+    init(artwork: Artwork) {
+        route = "artworks/favorites/\(artwork.id)"
+    }
+}
+
 
 protocol Artworks {
     func asObservable() ->  Observable<[Artwork]>

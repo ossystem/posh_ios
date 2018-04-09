@@ -26,6 +26,12 @@ extension OwnedArtwork {
 }
 
 class FakeOwnedArtwork: OwnedArtwork {
+    var isLiked: Bool = false
+    
+    func like() -> Observable<Void> {
+        return Observable.never()
+    }
+    
     func setToDevice() -> Observable<Void> {
         return Observable.just()
     }
@@ -52,7 +58,15 @@ class FakeOwnedArtworks : OwnedArtworks {
     }
 }
 
-class OwnedArtworkFromArtwork: OwnedArtwork, UploadablePoshik {    
+class OwnedArtworkFromArtwork: OwnedArtwork, UploadablePoshik {
+    var isLiked: Bool {
+        return origin.isLiked
+    }
+    
+    
+    func like() -> Observable<Void> {
+        return Observable.never()
+    }
     
     var imageForUpload: Observable<Uploadable> {
         

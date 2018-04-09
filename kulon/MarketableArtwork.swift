@@ -41,6 +41,8 @@ class PurchaseFromJSON: Purchase, ResponseType {
 }
 
 class FakeMarketableArtwork: MarketableArtwork {
+    var isLiked: Bool = false
+    
     
     var purchased: Observable<Void> {
         return purchaseSubject.asObservable()
@@ -74,17 +76,21 @@ class FakeMarketableArtwork: MarketableArtwork {
 
 
 class MarketableArtworkFromArtwork: MarketableArtwork {
-    var id: String
-    
-    var name: String
-    
-    func acquire() -> Observable<Acquisition> {
-        return info.flatMap { ObservableAcquisitionFromAPI(artworkInfo: $0).asObservable() }
+    var isLiked: Bool {
+        return origin.isLiked
     }
     
     func like() -> Observable<Void> {
-        fatalError("Like() not implemented")
-        return Observable.never()
+        return origin.like()
+    }
+    
+    var id: String
+    
+    var name: String
+        
+    
+    func acquire() -> Observable<Acquisition> {
+        return info.flatMap { ObservableAcquisitionFromAPI(artworkInfo: $0).asObservable() }
     }
     
     var info: Observable<ArtworkInfo> {
@@ -155,6 +161,7 @@ class MarketArtworksApiService: ApiService {
     var route: String = "artworks"
     var method: Alamofire.HTTPMethod = .get
 }
+
 
 class LikedArtworksFromAPI: MarketableArtworks {
     func asObservable() -> Observable<[MarketableArtwork]> {

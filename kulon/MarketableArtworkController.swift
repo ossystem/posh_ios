@@ -150,6 +150,8 @@ class ArtworkInfoView: UIView {
         .with(backgroundColor: UIColor.Kulon.lightOrange)
         .with(roundedEdges: 8)
     private var likeButton = UIButton()
+        .with(image: #imageLiteral(resourceName: "icon_like_1"))
+        .with(roundedEdges: 16)
     private var downloadButton = UIButton()
         .with(title: "Download")
         .with(titleColor: .black)
@@ -162,10 +164,6 @@ class ArtworkInfoView: UIView {
     
     var wantsToAqcuire: Observable<Void> {
         return buyButton.rx.tap.asObservable()
-    }
-    
-    var wantsToLike: Observable<Void> {
-        return likeButton.rx.tap.asObservable()
     }
     
     override func layoutSubviews() {
@@ -191,6 +189,8 @@ class ArtworkInfoView: UIView {
         }
         
         artistImage.tintColor = .black
+        likeButton.tintColor = UIColor.Kulon.lightOrange
+        
         
         
         downloadButton.isHidden = !artwork.isPurchased
@@ -217,6 +217,12 @@ class ArtworkInfoView: UIView {
             $0.width.equalTo(268)
             $0.bottom.equalToSuperview().inset(60)
         }
+        
+        likeButton.snp.makeConstraints {
+            $0.top.equalTo(artworkImage)
+            $0.trailing.equalTo(artworkImage)
+            $0.width.height.equalTo(32)
+        }
 
         self.buyButton.isEnabled = false
         
@@ -241,22 +247,33 @@ class ArtworkInfoView: UIView {
             self.downloadButton.isHidden = false
         }).disposed(by: disposeBag)
         
-        if let owned = artwork as? OwnedArtwork {
-            downloadButton.rx.tap.asObservable()
+       
+        downloadButton.rx.tap.asObservable()
             .do(onNext: {
                 self.downloadButton.setWaiting(true)
             })
-            .flatMap { return owned.setToDevice() }
-            .debug()
-            .subscribe(onNext: { [unowned self] in
+        .flatMap {
+            OwnedArtworkFromArtwork(artwork: artwork).setToDevice()
+            }
+        
+        .debug()
+        .subscribe(onNext: { [unowned self] in
+            self.downloadButton.setWaiting(false)
+            }, onError: { [unowned self] _ in
                 self.downloadButton.setWaiting(false)
-                }, onError: { [unowned self] _ in
-                    self.downloadButton.setWaiting(false)
-            })
-            .disposed(by: disposeBag)
+        })
+        .disposed(by: disposeBag)
+        
+        
+        
+        likeButton.rx.tap.asObservable()
+            .flatMap {
+            artwork.like()
         }
-        
-        
+            .subscribe(onNext: { [unowned self] in
+                self.likeButton.setImage(#imageLiteral(resourceName: "icon_like_2"), for: .normal)
+            })
+        .disposed(by: disposeBag)
     }
     
     required init?(coder aDecoder: NSCoder) {

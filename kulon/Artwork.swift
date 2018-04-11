@@ -16,7 +16,7 @@ protocol Artwork: IdiableObject, NamedObject {
     var image: ArtworkImage { get }
     var isPurchased: Bool { get }
     var isLiked: Bool { get }
-    func like() -> Observable<Void>
+    func like() -> Observable<Bool>
 }
 
 
@@ -163,7 +163,7 @@ class FakeArtworkImage: ArtworkImage {
 class FakeArtwork: Artwork {
     var isLiked: Bool = true
     
-    func like() -> Observable<Void> {
+    func like() -> Observable<Bool> {
         return Observable.never()
     }
     
@@ -199,9 +199,14 @@ class ArtworkFromJSON: Artwork, ResponseType {
     var isPurchased: Bool
 
     private lazy var likeService = LikeApiService(artwork: self)
+    private lazy var dislikeService = DisikeApiService(artwork: self)
     
-    func like() -> Observable<Void> {
-        return likeService.request(parameter: ParameterNone()).map {_ in }
+    func like() -> Observable<Bool> {
+        if isLiked {
+            return dislikeService.request(parameter: ParameterNone()).map{ _ in false}
+        } else {
+            return likeService.request(parameter: ParameterNone()).map {_ in true }
+        }
     }
     
     required init(map: Map) throws {
@@ -234,6 +239,20 @@ class LikeApiService: ApiService {
         route = "artworks/favorites/\(artwork.id)"
     }
 }
+
+class DisikeApiService: ApiService {
+    
+    typealias Parameter = ParameterNone
+    typealias Response = ResponseNone
+    
+    var route: String
+    var method: HTTPMethod = .delete
+    
+    init(artwork: Artwork) {
+        route = "artworks/favorites/\(artwork.id)"
+    }
+}
+
 
 
 protocol Artworks {

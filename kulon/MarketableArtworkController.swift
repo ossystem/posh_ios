@@ -8,7 +8,7 @@ import UIKit
 import RxSwift
 import SnapKit
 
-class MarketableArtworkController: UIViewController {
+class MarketableArtworkController: UIViewController, UIGestureRecognizerDelegate {
 
     private var artwork: MarketableArtwork
     private var infoView: ArtworkInfoView
@@ -58,15 +58,21 @@ class MarketableArtworkController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldBeRequiredToFailBy otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         navigationController?.isNavigationBarHidden = true
+        navigationController?.interactivePopGestureRecognizer?.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.isNavigationBarHidden = true
+        navigationController?.interactivePopGestureRecognizer?.isEnabled = true
     }
     
 }
@@ -191,10 +197,10 @@ class ArtworkInfoView: UIView {
         artistImage.tintColor = .black
         likeButton.tintColor = UIColor.Kulon.lightOrange
         
-        
-        
         downloadButton.isHidden = !artwork.isPurchased
         buyButton.isHidden = artwork.isPurchased
+        
+        likeButton.setImage(artwork.isLiked ? #imageLiteral(resourceName: "icon_like_2") : #imageLiteral(resourceName: "icon_like_1"), for: .normal)
         
         artworkImage.setBelow(view: artistImage, offset: 16)
         artistImage.setBelow(view: artistName, offset: 16)
@@ -242,6 +248,8 @@ class ArtworkInfoView: UIView {
             ).disposed(by: self.disposeBag)
         }).disposed(by: disposeBag)
         
+        
+        
         artwork.purchased.subscribe(onNext: {
             self.buyButton.isHidden = true
             self.downloadButton.isHidden = false
@@ -271,7 +279,7 @@ class ArtworkInfoView: UIView {
             artwork.like()
         }
             .subscribe(onNext: { [unowned self] in
-                self.likeButton.setImage(#imageLiteral(resourceName: "icon_like_2"), for: .normal)
+                self.likeButton.setImage($0 ? #imageLiteral(resourceName: "icon_like_2") : #imageLiteral(resourceName: "icon_like_1"), for: .normal)
             })
         .disposed(by: disposeBag)
     }

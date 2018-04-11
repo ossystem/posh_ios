@@ -13,7 +13,7 @@ import Alamofire
 
 protocol MarketableArtwork: Artwork, Purchasable, Selectable {
     func acquire() -> Observable<Acquisition>
-    func like() -> Observable<Void>
+    func like() -> Observable<Bool>
     var purchaseSubject : PublishSubject<Void> { get }
     
 }
@@ -41,6 +41,7 @@ class PurchaseFromJSON: Purchase, ResponseType {
 }
 
 class FakeMarketableArtwork: MarketableArtwork {
+    
     var isLiked: Bool = false
     
     
@@ -54,8 +55,8 @@ class FakeMarketableArtwork: MarketableArtwork {
         return Observable.just(FakeAqcuisition())
     }
     
-    func like() -> Observable<Void> {
-        return Observable<Void>.never()
+    func like() -> Observable<Bool> {
+        return Observable<Bool>.never()
     }
     
     var image: ArtworkImage = FakeArtworkImage()
@@ -80,7 +81,7 @@ class MarketableArtworkFromArtwork: MarketableArtwork {
         return origin.isLiked
     }
     
-    func like() -> Observable<Void> {
+    func like() -> Observable<Bool> {
         return origin.like()
     }
     

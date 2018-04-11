@@ -28,7 +28,7 @@ extension OwnedArtwork {
 class FakeOwnedArtwork: OwnedArtwork {
     var isLiked: Bool = false
     
-    func like() -> Observable<Void> {
+    func like() -> Observable<Bool> {
         return Observable.never()
     }
     
@@ -64,7 +64,7 @@ class OwnedArtworkFromArtwork: OwnedArtwork, UploadablePoshik {
     }
     
     
-    func like() -> Observable<Void> {
+    func like() -> Observable<Bool> {
         return Observable.never()
     }
     

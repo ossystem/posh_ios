@@ -14,13 +14,17 @@ import RxSwift
 
 class SocialApiService: ApiService {
     var method: HTTPMethod = .get
-    var route: String = "socialite"
+    var route: String
     typealias Parameter = SocialLoginParameter
     typealias Response = SocialLoginLink
+    
+    init(provider: SocialAuthProvider) {
+        route = "social/\(provider.rawValue)"
+    }
 }
 
 enum SocialAuthProvider: String {
-    case vkontakte = "vkontakte", facebook = "facebook"
+    case vkontakte = "vkontakte", facebook = "facebook", instagram = "instagram"
 }
 
 class SocialLoginParameter : ParameterType {
@@ -47,7 +51,11 @@ class SocialLoginLink: ResponseType {
 
 class SocialService {
     
-    let apiService = SocialApiService()
+    let apiService: SocialApiService
+    
+    init(provider: SocialAuthProvider) {
+        apiService = SocialApiService(provider: provider)
+    }
     
     func requestLogin(with socialNetworktype: SocialAuthProvider) -> Observable<SocialLoginLink> {
         return apiService.request(parameter: SocialLoginParameter(with: socialNetworktype))

@@ -18,8 +18,12 @@ import RxSwift
 class SocialWebViewController : UIViewController, UIWebViewDelegate {
     
     let disposeBag = DisposeBag()
-    let service = SocialService()
-    var socialNetwork: SocialAuthProvider!
+    private var service : SocialService!
+    var socialNetwork: SocialAuthProvider! {
+        didSet {
+            service = SocialService(provider: socialNetwork)
+        }
+    }
     
     @IBOutlet weak var webView: UIWebView!
     

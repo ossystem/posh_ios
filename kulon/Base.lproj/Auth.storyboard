@@ -438,7 +438,7 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </button>
-                                    <button hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LGo-7c-rUY" customClass="RoundedButton" customModule="kulon" customModuleProvider="target">
+                                    <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LGo-7c-rUY" customClass="RoundedButton" customModule="kulon" customModuleProvider="target">
                                         <rect key="frame" x="115.5" y="264" width="30" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="OPE-bn-NSO"/>
@@ -462,21 +462,21 @@
                                             <segue destination="ym3-2X-oUr" kind="show" identifier="FBlogin" id="Fz9-BO-Z0r"/>
                                         </connections>
                                     </button>
-                                    <button hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gAQ-tp-COP" customClass="RoundedButton" customModule="kulon" customModuleProvider="target">
+                                    <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gAQ-tp-COP" customClass="RoundedButton" customModule="kulon" customModuleProvider="target">
                                         <rect key="frame" x="190" y="264" width="30" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="30" id="VL4-sU-DdF"/>
                                             <constraint firstAttribute="height" constant="30" id="rah-ja-cXs"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                        <state key="normal" image="icon_vk_rec"/>
+                                        <state key="normal" image="icon-instagram"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="hasBlur" value="NO"/>
                                             <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
                                                 <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                                <real key="value" value="0.0"/>
+                                                <real key="value" value="1"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                 <real key="value" value="8"/>
@@ -604,12 +604,12 @@
         <image name="auth_background" width="375" height="667"/>
         <image name="auth_background_blured" width="375" height="667"/>
         <image name="icon-cell-phone" width="100" height="100"/>
+        <image name="icon-instagram" width="512" height="512"/>
         <image name="icon_fb" width="39" height="34"/>
         <image name="icon_fb_rec" width="30" height="30"/>
         <image name="icon_pin_code" width="100" height="100"/>
         <image name="icon_top_cancel" width="24" height="24"/>
         <image name="icon_vk" width="48" height="34"/>
-        <image name="icon_vk_rec" width="30" height="30"/>
         <image name="logo" width="140" height="139"/>
     </resources>
     <inferredMetricsTieBreakers>

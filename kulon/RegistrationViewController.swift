@@ -114,7 +114,7 @@ class RegistrationViewController: BaseViewController {
         guard let identifier = segue.identifier else { return }
         switch identifier {
         case "VKlogin":
-            (segue.destination as! SocialWebViewController).socialNetwork = .vkontakte
+            (segue.destination as! SocialWebViewController).socialNetwork = .instagram
         case "FBlogin":
             (segue.destination as! SocialWebViewController).socialNetwork = .facebook
         default:

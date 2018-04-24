@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Branch
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,6 +17,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         BuddyBuildSDK.setup()
+        
+        // for debug and development only
+        Branch.getInstance().setDebug()
+        // listener for Branch Deep Link data
+        Branch.getInstance().initSession(launchOptions: launchOptions) { (params, error) in
+            // do stuff with deep link data (nav to page, display content, etc)
+            print(params as? [String: AnyObject] ?? {})
+            
+            if let params = params,
+                let isFirst = params["+is_first_session"] as? Bool,
+                let refCode = params["referral_code"] as? String {
+                if isFirst {
+                    UserDefaults.standard.set(refCode, forKey: "refferalCodeKey")
+                }
+            }
+        }
         
         // Override point for customization after application launch.
         if UserCredentialsService().isLoggedIn {
@@ -45,6 +62,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    }
+    
+    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+        Branch.getInstance().application(app, open: url, options: options)
+        return true
+    }
+    
+    func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([Any]?) -> Void) -> Bool {
+        // handler for Universal Links
+        Branch.getInstance().continue(userActivity)
+        return true
+    }
+    
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        // handler for Push Notifications
+        Branch.getInstance().handlePushNotification(userInfo)
     }
 
 

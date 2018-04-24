@@ -8,6 +8,8 @@
 
 import Foundation
 import UIKit
+import Branch
+import RxSwift
 
 struct SettingItem {
     
@@ -22,7 +24,9 @@ struct SettingItem {
             SettingItem(name: "Contacts", descr: "Write a letter to the developers", image: #imageLiteral(resourceName: "icon_settings_contacts_8F8D8D"),request: ContactsSettingsService().getRequest() ),
             SettingItem(name: "FAQ", descr: "The most frequently asked questions", image: #imageLiteral(resourceName: "icon_settings_question_8F8D8D"), request: nil),
             SettingItem(name: "Store locations", descr: "Find the closest store to buy our gear", image: #imageLiteral(resourceName: "icon_settings_geo_8F8D8D"), request:AdressesSettingsService().getRequest()),
-            SettingItem(name: "LOGOUT", descr: "", image: #imageLiteral(resourceName: "icon_settings_logout"), request: nil)
+            SettingItem(name: "Share", descr: "Share your personal link with friends to achive tokens", image: #imageLiteral(resourceName: "logo"), request: nil),
+            SettingItem(name: "LOGOUT", descr: "", image: #imageLiteral(resourceName: "icon_settings_logout"), request: nil),
+            
         ]
     }
 }
@@ -33,7 +37,7 @@ struct SettingItem {
 class SettingsViewController: BaseViewController, UITableViewDataSource, UITableViewDelegate {
     
     enum SettingsItems: Int {
-        case contacts, FAQ, adresses, logout
+        case contacts, FAQ, adresses, share, logout
         
         var item: SettingItem {
            return SettingItem.defaultSettingsSet[rawValue]
@@ -47,6 +51,7 @@ class SettingsViewController: BaseViewController, UITableViewDataSource, UITable
         }
     }
     var settings = SettingItem.defaultSettingsSet
+    private var disposeBag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -76,6 +81,8 @@ class SettingsViewController: BaseViewController, UITableViewDataSource, UITable
             performSegue(withIdentifier: Identifiers.Segue.SettingsWebViewControllerID, sender: item)
         case .FAQ:
             performSegue(withIdentifier: Identifiers.Segue.FAQViewController, sender: nil)
+        case .share:
+            shareLink()
         case .logout:
             LoginService().logout()
         default:
@@ -83,6 +90,23 @@ class SettingsViewController: BaseViewController, UITableViewDataSource, UITable
             return
         }
     }
+    
+    var referralService = GetRefferalApiService()
+    
+    func shareLink() {
+        
+        referralService.request(parameter: ParameterNone())
+            .subscribe(onNext: {
+                let buo = BranchUniversalObject(canonicalIdentifier: "referral")
+                let lp = BranchLinkProperties()
+                lp.addControlParam("referral_code", withValue: $0.refferalCode)
+                buo.showShareSheet(with: lp, andShareText: "Install this awesome app", from: self) { (activityType, completed) in
+                    print(activityType ?? "")
+                }
+            }).disposed(by: disposeBag)
+
+    }
+    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == Identifiers.Segue.SettingsWebViewControllerID,

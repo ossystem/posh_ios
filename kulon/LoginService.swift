@@ -12,6 +12,7 @@ import Alamofire
 import AlamofireObjectMapper
 import ObjectMapper
 import SwiftyJSON
+import Branch
 
 class LoginApiService: ApiService {
 
@@ -92,7 +93,7 @@ class LoginService {
     let loginApiService = LoginApiService()
     let tokenService = TokenService()
     let authService = AuthApiService()
-    
+    let refService = PerformReferralApiService()
     let poshNetwork: Network
     
     init(){
@@ -100,29 +101,29 @@ class LoginService {
     }
 
     func auth(with phoneNumber: UserPhoneNumber) -> Observable<UserPhoneNumber> {
-        
         return authService.request(parameter: phoneNumber)
-        
-        
-//        return Observable.create{ observer in
-//            do {
-//                observer.on(.next(try JSON(data: self.poshNetwork.call(method: "auth", params: phoneNumber))["data.phone"].string()))
-//                observer.on(.completed)
-//            } catch let err {
-//                observer.on(.error(err))
-//            }
-//            return Disposables.create()
-//        }
-        
     }
     
     func login(with credentials: UserCredentials) -> Observable<Void> {
          return loginApiService.request(parameter: credentials)
-            .flatMap { (result) -> Observable<Void> in
+            .do(onNext: { (result) in
                 self.userCredentialsService.credentials = credentials
                 self.tokenService.token = result.token
                 self.userCredentialsService.isLoggedIn = true
-                return Observable<Void>.just()
+                Branch.getInstance().setIdentity("\(result.userId)")
+               
+        })
+            
+            .flatMap { [unowned self] res -> Observable<Void> in
+                if let refCode = UserDefaults.standard.value(forKey: "refferalCodeKey") as? String {
+                    return self.refService.request(parameter:
+                        ReferralParameter(code: refCode,
+                                          id: res.userId))
+                        .map { _ in  UserDefaults.standard.set(nil, forKey: "refferalCodeKey") }
+                        .catchErrorJustReturn()
+                } else {
+                    return Observable.just()
+                }
         }
     }
     
@@ -142,11 +143,50 @@ class LoginService {
     func logout() {
         let authController = UIStoryboard.init(name: "Auth", bundle: nil).instantiateInitialViewController()
         userCredentialsService.isLoggedIn = false
+        Branch.getInstance().logout()
         UIApplication.shared.windows.first?.replaceRootViewControllerWith(authController!)
     }
 }
 
 
+class PerformReferralApiService: ApiService {
+    typealias Parameter = ReferralParameter
+    typealias Response = ResponseNone
+    
+    var route: String = "perform-referral"
+    var method: HTTPMethod = .post
+}
+
+class ReferralParameter: ParameterType {
+    private var refCode: String
+    private var id: String
+    init(code: String, id: String) {
+        refCode = code
+        self.id = id
+    }
+    
+    func toJSON() -> [String : Any]? {
+        return ["refferal_code": refCode,
+                "user_id": id]
+    }
+}
+
+class GetRefferalApiService: ApiService {
+    typealias Parameter = ParameterNone
+    typealias Response = ReferralCodeFromJSON
+    
+    var route: String = "referral-code"
+    var method: HTTPMethod = .get
+}
+
+class ReferralCodeFromJSON: ResponseType {
+    var refferalCode: String
+    
+    required init(map: Map) throws {
+        refferalCode = try map.value("referral_code")
+    }
+    
+}
 
 class UserCredentials: NSObject, ParameterType {
     
@@ -172,8 +212,10 @@ class UserCredentials: NSObject, ParameterType {
 
 class AuthResult: ResponseType {
     var token: String = ""
+    var userId: String
     required init(map: Map) throws {
         token <- map["token"]
+        userId = try map.value("user_id")
     }
 }
 

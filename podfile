@@ -1,4 +1,4 @@
-platform :ios, '11.0'
+platform :ios, '10.0'
 target ‘kulon’ do
     use_frameworks!
     # BLE
@@ -18,4 +18,6 @@ target ‘kulon’ do
     pod 'SnapKit', '~> 3.2.0'
 #    pod 'PhoneNumberKit', '~> 2.1'
     pod 'SwiftyJSON'
+    # referal and analitics
+    pod 'Branch'
 end

@@ -18,6 +18,19 @@
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>jufy.posh</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>poshspace</string>
+			</array>
+		</dict>
+	</array>
 	<key>CFBundleVersion</key>
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
@@ -78,5 +91,9 @@
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
 	</array>
+	<key>branch_app_domain</key>
+	<string>h6cs.app.link</string>
+	<key>branch_key</key>
+	<string>key_live_fgs8nNwGldzJgBTXlKaMCanmEEfghqJJ</string>
 </dict>
 </plist>

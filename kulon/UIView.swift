@@ -8,7 +8,6 @@
 
 import Foundation
 import UIKit
-import SnapKit
 extension UIView
 {
     func addCornerRadiusAnimation(to: CGFloat, duration: CFTimeInterval)

@@ -29,6 +29,7 @@
 		FD4E2F4F1EE1B7AD009C74D3 /* DeviceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD4E2F4E1EE1B7AD009C74D3 /* DeviceService.swift */; };
 		FD4FE91E1F1518D7006F2AE2 /* SocialService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD4FE91D1F1518D7006F2AE2 /* SocialService.swift */; };
 		FD4FE9201F15254D006F2AE2 /* SocialWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD4FE91F1F15254D006F2AE2 /* SocialWebViewController.swift */; };
+		FD52CB3C208F0F0500B6E4E0 /* kulon.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = FDF8295B208B9068003E4EFC /* kulon.entitlements */; };
 		FD5409AD1EC32A2400E93B7F /* LikeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD5409AC1EC32A2400E93B7F /* LikeView.swift */; };
 		FD5409AF1EC5D78000E93B7F /* Poshik.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FD5409AE1EC5D78000E93B7F /* Poshik.storyboard */; };
 		FD5409BE1EC6231D00E93B7F /* ColorPicker.xib in Resources */ = {isa = PBXBuildFile; fileRef = FD5409BD1EC6231D00E93B7F /* ColorPicker.xib */; };
@@ -236,6 +237,7 @@
 		FDE63E8C2077A0BA00E93371 /* Acquisition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Acquisition.swift; sourceTree = "<group>"; };
 		FDE7AB8520724B6200302E52 /* UICollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UICollectionView.swift; sourceTree = "<group>"; };
 		FDEAE6981EAAB26500B9F504 /* MyImagesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyImagesViewController.swift; sourceTree = "<group>"; };
+		FDF8295B208B9068003E4EFC /* kulon.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = kulon.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -440,6 +442,7 @@
 		FD5F9F401EA776A300BD79B1 /* kulon */ = {
 			isa = PBXGroup;
 			children = (
+				FDF8295B208B9068003E4EFC /* kulon.entitlements */,
 				FD89720A206E3BC500027B38 /* PhoneNumberKit */,
 				FD5F9F411EA776A300BD79B1 /* AppDelegate.swift */,
 				FD5F9F431EA776A300BD79B1 /* BaseController.swift */,
@@ -635,6 +638,11 @@
 						DevelopmentTeam = W9HXCUL7KS;
 						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.SafariKeychain = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -661,6 +669,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FD52CB3C208F0F0500B6E4E0 /* kulon.entitlements in Resources */,
 				FD897225206E3BC500027B38 /* PhoneNumberMetadata.json in Resources */,
 				FDC3AB181EBB463F00141241 /* MyImages.storyboard in Resources */,
 				FDC3AB141EBB42A800141241 /* MarketPlace.storyboard in Resources */,
@@ -690,6 +699,7 @@
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/AlamofireImage/AlamofireImage.framework",
 				"${BUILT_PRODUCTS_DIR}/AlamofireObjectMapper/AlamofireObjectMapper.framework",
+				"${BUILT_PRODUCTS_DIR}/Branch/Branch.framework",
 				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
 				"${BUILT_PRODUCTS_DIR}/RxBluetoothKit/RxBluetoothKit.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
@@ -704,6 +714,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireObjectMapper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Branch.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxBluetoothKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
@@ -969,6 +980,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = kulon/kulon.entitlements;
 				DEVELOPMENT_TEAM = W9HXCUL7KS;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -990,6 +1002,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = kulon/kulon.entitlements;
 				DEVELOPMENT_TEAM = W9HXCUL7KS;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

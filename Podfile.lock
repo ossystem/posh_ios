@@ -5,6 +5,9 @@ PODS:
   - AlamofireObjectMapper (5.0.0):
     - Alamofire (~> 4.1)
     - ObjectMapper (~> 3.0)
+  - Branch (0.23.4):
+    - Branch/Core (= 0.23.4)
+  - Branch/Core (0.23.4)
   - ObjectMapper (3.1.0)
   - RxBluetoothKit (3.1.2):
     - RxSwift (~> 3.2)
@@ -24,6 +27,7 @@ DEPENDENCIES:
   - Alamofire
   - AlamofireImage
   - AlamofireObjectMapper
+  - Branch
   - RxBluetoothKit
   - RxDataSources (~> 1.0)
   - RxGesture
@@ -34,6 +38,7 @@ SPEC CHECKSUMS:
   Alamofire: 2d95912bf4c34f164fdfc335872e8c312acaea4a
   AlamofireImage: 2e784dc5d00f04903a52c1d169181469c805c3df
   AlamofireObjectMapper: 5fafc816351cbbc0d486611aaeba7461c0cbad49
+  Branch: e1d239276ff9b30910f3bf4374d9e3e77f7fc7e9
   ObjectMapper: 20505058f54e5c3ca69e1d6de9897d152a5369a6
   RxBluetoothKit: 03cd96e38e8239e1c50ce7068f343730aad9372a
   RxCocoa: 84a08739ab186248c7f31ce4ee92d6f8a947d690
@@ -43,6 +48,6 @@ SPEC CHECKSUMS:
   SnapKit: 1ca44df72cfa543218d177cb8aab029d10d86ea7
   SwiftyJSON: 070dabdcb1beb81b247c65ffa3a79dbbfb3b48aa
 
-PODFILE CHECKSUM: ddcc8411bd6bd1781f29158449c8c2adc7175a7e
+PODFILE CHECKSUM: 261b325aae80289d6f811190914d95b3268803cd
 
 COCOAPODS: 1.3.1

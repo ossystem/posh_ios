@@ -222,7 +222,7 @@ class ArtworkFromJSON: Artwork, ResponseType {
             name = try map.value("artwork.name")
             image = try map.value("artwork.image") as ArtworkImageFromJSON
             isPurchased = true
-            isLiked = try map.value("is_favorite")
+            isLiked = try map.value("artwork.is_favorite")
         }
     }
 }

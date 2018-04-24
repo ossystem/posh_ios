@@ -221,7 +221,7 @@ class ArtworkInfoView: UIView {
         buyButton.snp.makeConstraints {
             $0.height.equalTo(36)
             $0.width.equalTo(268)
-            $0.bottom.equalToSuperview().inset(60)
+            $0.bottom.equalToSuperview().inset(80)
         }
         
         likeButton.snp.makeConstraints {

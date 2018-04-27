@@ -203,9 +203,17 @@ class ArtworkFromJSON: Artwork, ResponseType {
     
     func like() -> Observable<Bool> {
         if isLiked {
-            return dislikeService.request(parameter: ParameterNone()).map{ _ in false}
+            return dislikeService.request(parameter: ParameterNone())
+                .map{ _ in
+                    self.isLiked = false
+                    return false
+                }
         } else {
-            return likeService.request(parameter: ParameterNone()).map {_ in true }
+            return likeService.request(parameter: ParameterNone())
+                .map {_ in
+                    self.isLiked = true
+                    return true   
+            }
         }
     }
     

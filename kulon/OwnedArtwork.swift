@@ -65,7 +65,7 @@ class OwnedArtworkFromArtwork: OwnedArtwork, UploadablePoshik {
     
     
     func like() -> Observable<Bool> {
-        return Observable.never()
+        return origin.like()
     }
     
     var imageForUpload: Observable<Uploadable> {

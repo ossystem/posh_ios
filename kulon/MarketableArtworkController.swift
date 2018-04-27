@@ -138,15 +138,14 @@ class ArtworkInfoView: UIView {
     private var artworkImage = KulonImageView()
         .with(roundedEdges: 272/2)
         .with(contentMode: .scaleAspectFill)
-        .with(backgroundColor: UIColor.Kulon.lightOrange)
+//        .with(backgroundColor: UIColor.Kulon.lightOrange)
     private var artistImage = UIImageView()
         .with(roundedEdges: 32/2)
         .with(contentMode: .scaleAspectFill)
-        .with(backgroundColor: UIColor.Kulon.lightOrange)
     
-    private var artistName = StandardLabel(font: .systemFont(ofSize: 20))
+    private var artistName = StandardLabel(font: .systemFont(ofSize: 18, weight: UIFontWeightBold))
         .aligned(by: .center)
-    private var artworkName = StandardLabel(font: .systemFont(ofSize: 24))
+    private var artworkName = StandardLabel(font: .systemFont(ofSize: 26, weight: UIFontWeightBold))
         .aligned(by: .center)
     private var price = StandardLabel(font: .systemFont(ofSize: 16))
         .aligned(by: .center)
@@ -159,7 +158,7 @@ class ArtworkInfoView: UIView {
         .with(image: #imageLiteral(resourceName: "icon_like_1"))
         .with(roundedEdges: 16)
     private var downloadButton = UIButton()
-        .with(title: "Download")
+        .with(title: "Put on")
         .with(titleColor: .black)
         .with(backgroundColor: UIColor.Kulon.lightOrange)
         .with(roundedEdges: 8)
@@ -203,8 +202,8 @@ class ArtworkInfoView: UIView {
         likeButton.setImage(artwork.isLiked ? #imageLiteral(resourceName: "icon_like_2") : #imageLiteral(resourceName: "icon_like_1"), for: .normal)
         
         artworkImage.setBelow(view: artistImage, offset: 16)
-        artistImage.setBelow(view: artistName, offset: 16)
-        artistName.setBelow(view: artworkName, offset: 20)
+        artistImage.setBelow(view: artistName, offset: 8)
+        artistName.setBelow(view: artworkName, offset: 16)
         artworkName.setBelow(view: price, offset: 4)
         
         artworkImage.snp.makeConstraints {
@@ -236,7 +235,8 @@ class ArtworkInfoView: UIView {
             self.buyButton.isEnabled = true
             self.artistName.text = info.artist.name
             self.artworkName.text = info.name
-            self.price.text = "\(info.minPrice)POS"
+//            self.price.text = "\(info.minPrice)POS"
+            self.buyButton.setTitle("Buy (\(info.minPrice) POSH)", for: .normal)
             self.request = try? URLRequest(url: URL(string: info.image.link)!, method: .get, headers: ["Authorization": "Bearer \(TokenService().token!)"])
             if let request = self.request {
                 self.artworkImage.setImage(with: request)
@@ -246,6 +246,7 @@ class ArtworkInfoView: UIView {
             info.artist.avatar.asObservable().bind(to:
                 self.artistImage.rx.image
             ).disposed(by: self.disposeBag)
+            
         }).disposed(by: disposeBag)
         
         

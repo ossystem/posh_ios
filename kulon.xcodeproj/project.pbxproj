@@ -116,6 +116,7 @@
 		FDE63E8720777B6800E93371 /* Recoverable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDE63E8420777B6700E93371 /* Recoverable.swift */; };
 		FDE63E8820777B6800E93371 /* RefreshableAndRecoverable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDE63E8520777B6700E93371 /* RefreshableAndRecoverable.swift */; };
 		FDE63E8D2077A0BA00E93371 /* Acquisition.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDE63E8C2077A0BA00E93371 /* Acquisition.swift */; };
+		FDE7AB332093734300BCD4C7 /* Favorites.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FDE7AB322093734300BCD4C7 /* Favorites.storyboard */; };
 		FDE7AB8620724B6200302E52 /* UICollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDE7AB8520724B6200302E52 /* UICollectionView.swift */; };
 		FDEAE6991EAAB26500B9F504 /* MyImagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDEAE6981EAAB26500B9F504 /* MyImagesViewController.swift */; };
 /* End PBXBuildFile section */
@@ -235,6 +236,7 @@
 		FDE63E8420777B6700E93371 /* Recoverable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Recoverable.swift; sourceTree = "<group>"; };
 		FDE63E8520777B6700E93371 /* RefreshableAndRecoverable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefreshableAndRecoverable.swift; sourceTree = "<group>"; };
 		FDE63E8C2077A0BA00E93371 /* Acquisition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Acquisition.swift; sourceTree = "<group>"; };
+		FDE7AB322093734300BCD4C7 /* Favorites.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Favorites.storyboard; sourceTree = "<group>"; };
 		FDE7AB8520724B6200302E52 /* UICollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UICollectionView.swift; sourceTree = "<group>"; };
 		FDEAE6981EAAB26500B9F504 /* MyImagesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyImagesViewController.swift; sourceTree = "<group>"; };
 		FDF8295B208B9068003E4EFC /* kulon.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = kulon.entitlements; sourceTree = "<group>"; };
@@ -340,6 +342,7 @@
 				FD5409BF1EC99DDD00E93B7F /* ColorPickerView.swift */,
 				FD7DBAC91ED2254C00D97D45 /* MyImagesService.swift */,
 				FDDA3EAC1EFD709A00AA8A19 /* CollectionHeaderView.swift */,
+				FDE7AB322093734300BCD4C7 /* Favorites.storyboard */,
 			);
 			name = MyImages;
 			sourceTree = "<group>";
@@ -683,6 +686,7 @@
 				FD5F9F491EA776A300BD79B1 /* Auth.storyboard in Resources */,
 				FD897224206E3BC500027B38 /* PhoneNumberMetadata.xml in Resources */,
 				FD89722B206E3BC500027B38 /* Info.plist in Resources */,
+				FDE7AB332093734300BCD4C7 /* Favorites.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

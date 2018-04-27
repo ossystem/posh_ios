@@ -65,6 +65,8 @@ class DefaultUserImage: ObservableImage {
     }
 }
 
+
+
 class ObservableImageFromJSON: ObservableImage, ImmutableMappable, ObservableType {
 
     private var link: String

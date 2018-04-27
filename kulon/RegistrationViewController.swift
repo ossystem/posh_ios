@@ -35,6 +35,12 @@ class RegistrationViewController: BaseViewController {
         self.definesPresentationContext = true
         self.transitioningDelegate = self
         
+        emailField.rx.text.asObservable().subscribe(onNext: {
+            if $0?.characters.count == 1 , $0 != "+" {
+                self.emailField.text = "+\($0 ?? "")"
+            }
+        }).disposed(by: bag)
+        
         let firstObs = sendCodeButton.rx.tap
             
             .map { [unowned self] in self.emailField.text }

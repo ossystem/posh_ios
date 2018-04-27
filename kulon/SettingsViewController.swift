@@ -24,7 +24,7 @@ struct SettingItem {
             SettingItem(name: "Contacts", descr: "Write a letter to the developers", image: #imageLiteral(resourceName: "icon_settings_contacts_8F8D8D"),request: ContactsSettingsService().getRequest() ),
             SettingItem(name: "FAQ", descr: "The most frequently asked questions", image: #imageLiteral(resourceName: "icon_settings_question_8F8D8D"), request: nil),
             SettingItem(name: "Store locations", descr: "Find the closest store to buy our gear", image: #imageLiteral(resourceName: "icon_settings_geo_8F8D8D"), request:AdressesSettingsService().getRequest()),
-            SettingItem(name: "Share", descr: "Share your personal link with friends to achive tokens", image: #imageLiteral(resourceName: "logo"), request: nil),
+            SettingItem(name: "Share", descr: "Share your personal link with friends to achive tokens", image: #imageLiteral(resourceName: "icon-share"), request: nil),
             SettingItem(name: "LOGOUT", descr: "", image: #imageLiteral(resourceName: "icon_settings_logout"), request: nil),
             
         ]

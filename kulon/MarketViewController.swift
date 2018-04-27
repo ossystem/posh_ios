@@ -71,6 +71,12 @@ class StoreViewController: BaseViewController, ExpandableButtonDelegate, UITable
 //            self.poshiks.loadNextPageIfNeeded(for: ip)
             return cell
         }
+        
+        dataSource.supplementaryViewFactory = { [unowned self] ds, cv, kind, ip in
+            let view = cv.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "Header", for: ip) as! CollectionHeaderView
+            view.configure(with: (self.marketParameter.artist as? NamedObject)?.name ?? "")
+            return view//UICollectionReusableView()
+        }
 
         collectionView.contentInset = UIEdgeInsets(top: 80, left: 0, bottom: 0, right: 0)
 
@@ -157,6 +163,7 @@ class StoreViewController: BaseViewController, ExpandableButtonDelegate, UITable
     }
     
     func resetFilters() {
+        marketParameter = MarketParameter()
         observableParameter.update(MarketParameter())
         topButton.hideButtons()
     }
@@ -231,11 +238,18 @@ class StoreViewController: BaseViewController, ExpandableButtonDelegate, UITable
         view.insertSubview(blurView, aboveSubview: collectionView)
         UIView.animate(withDuration: 0.3, animations: {
             self.blurView?.effect = UIBlurEffect(style: .extraLight)
-        }, completion: { _ in
+        }, completion: { [unowned self] _ in
                 self.categoriesTableView.isHidden = false
+            switch self.currentSelectionMode {
+            case .artist:
+                self.startArtistsSelection()
+            case .category:
+                self.startCategorySelection()
+            case .tag, .none:
                 self.statrSearching()
-                self.tagInputView.isHidden = false
-                self.tagTextField.becomeFirstResponder()
+            }
+            self.tagInputView.isHidden = false
+            self.tagTextField.becomeFirstResponder()
         })
     }
     

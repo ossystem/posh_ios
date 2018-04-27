@@ -9,7 +9,7 @@ import SnapKit
 
 class KulonImageView: RoundedImageView {
     var currentRequest: DataRequest?
-    let activity = UIActivityIndicatorView(activityIndicatorStyle: .white)
+    let activity = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.gray)
 
     public override func setImage(with request: URLRequest) {
         

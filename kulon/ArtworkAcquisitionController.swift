@@ -125,7 +125,7 @@ class ArtworkAcquisitionView: UIView {
         artistName.text = acquisition.seller.name
         acquisition.seller.avatar.asObservable().bind(to: artistImage.rx.image).disposed(by: disposeBag)
         acquisition.purchasable.image.asObservable().bind(to: artworkImage.rx.image).disposed(by: disposeBag)
-        price.text = "\(acquisition.price) POS"
+        price.text = "\(acquisition.price) POSH"
         
         let sellsLabel = StandardLabel(font: .systemFont(ofSize: 16), textColor: .black, text: "sells yoy:")
         let forLabel = StandardLabel(font: .systemFont(ofSize: 16), textColor: .black, text: "for:")

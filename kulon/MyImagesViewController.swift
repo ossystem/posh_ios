@@ -58,16 +58,13 @@ class MyImagesViewController: BaseViewController, ExpandableButtonDelegate {
     
     private let ownedArtworks: OwnedArtworks = OwnedArtworksFromAPI()
     private let likedArtworks: MarketableArtworks = LikedArtworksFromAPI()
+    private var refreshableArtworks: RefreshableByRefreshControl<([OwnedArtwork],[MarketableArtwork])>!
+    private let refreshControl = UIRefreshControl()
     
     override func viewDidLoad() {
         
         collectionView.contentInset = UIEdgeInsets(top: 70, left: 0, bottom: 0, right: 0)
-        
-        let refreshControl = UIRefreshControl()
-        
         collectionView.refreshControl = refreshControl
-        
-
         
         let dataSource = RxCollectionViewSectionedReloadDataSource<StandardSectionModel<Artwork>>()
         dataSource.configureCell = { ds, cv, ip, artwork in
@@ -81,13 +78,14 @@ class MyImagesViewController: BaseViewController, ExpandableButtonDelegate {
             view.configure(with: self.sectionTitles[ip.section])
             return view
         }
-        
-        //TODO: make refresh
+        refreshableArtworks =
         RefreshableByRefreshControl(origin: Observable.combineLatest(ownedArtworks.asObservable()
                                                                      .catchErrorJustReturn([]),
                                                                      likedArtworks.asObservable()
                                                                      .catchErrorJustReturn([])),
                                     updatedOn: refreshControl)
+          refreshableArtworks
+            .asObservable()
             .debug()
             .map {
                 [StandardSectionModel<Artwork>(items: []),
@@ -111,6 +109,10 @@ class MyImagesViewController: BaseViewController, ExpandableButtonDelegate {
         .bind(to: sectionTitles.balance).disposed(by: disposeBag)
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        refreshableArtworks.refresh()
+    }
     
 }
 

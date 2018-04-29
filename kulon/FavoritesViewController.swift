@@ -12,19 +12,19 @@ import RxBluetoothKit
 import RxSwift
 import CoreBluetooth
 import RxDataSources
-class MyImagesViewController: BaseViewController, ExpandableButtonDelegate {
+
+class FavoritesViewController: BaseViewController, ExpandableButtonDelegate {
     
     @IBOutlet weak var addButton: RoundedButton!
     @IBOutlet weak var collectionView: UICollectionView!
-
+    
     let balanceService = BalanceService()
     var balance: Variable<BalanceTo> = Variable<BalanceTo>(BalanceLoading().toBalance())
     
     private let disposeBag = DisposeBag()
     
-    private let ownedArtworks: OwnedArtworks = OwnedArtworksFromAPI()
     private let likedArtworks: MarketableArtworks = LikedArtworksFromAPI()
-    private var refreshableArtworks: RefreshableByRefreshControl<([OwnedArtwork])>!
+    private var refreshableArtworks: RefreshableByRefreshControl<([MarketableArtwork])>!
     private let refreshControl = UIRefreshControl()
     
     override func viewDidLoad() {
@@ -39,38 +39,32 @@ class MyImagesViewController: BaseViewController, ExpandableButtonDelegate {
             return cell
         }
         
-        dataSource.supplementaryViewFactory = { [unowned self] ds, cv, kind, ip in
-            let view = cv.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "Header", for: ip) as! CollectionHeaderView
-            view.configure(with: self.balance.value.toString())
-            return view
-        }
-        
-        refreshableArtworks = RefreshableByRefreshControl(origin: ownedArtworks.asObservable().catchErrorJustReturn([]), updatedOn: refreshControl)
-          refreshableArtworks
+        refreshableArtworks = RefreshableByRefreshControl(origin: likedArtworks.asObservable().catchErrorJustReturn([]), updatedOn: refreshControl)
+        refreshableArtworks
             .asObservable()
             .debug()
             .map {
                 [
-                 StandardSectionModel<Artwork>(items: $0)
-                 ]
+                    StandardSectionModel<Artwork>(items: $0)
+                ]
             }
             .bind(to: collectionView.rx.items(dataSource: dataSource))
             .disposed(by: disposeBag)
-
+        
         
         collectionView.rx.modelSelected((Artwork & Selectable).self).subscribe(onNext: {
-             self.navigationController?.pushViewController( $0.viewControllerToPresentt, animated: true)
+            self.navigationController?.pushViewController( $0.viewControllerToPresentt, animated: true)
         }).disposed(by: disposeBag)
-
+        
         
         balanceService.balance()
             .map { $0.toBalance() }
             .startWith(BalanceLoading().toBalance())
             .catchErrorJustReturn(BalanceFromValue(value: 0).toBalance())
             .do(onNext: { [unowned self] _ in self.collectionView.reloadData() })
-        .bind(to: balance).disposed(by: disposeBag)
+            .bind(to: balance).disposed(by: disposeBag)
     }
-
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         refreshableArtworks.refresh()

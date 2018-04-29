@@ -2,11 +2,11 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "Artboard.pdf",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
+      "filename" : "Artboard.pdf",
       "scale" : "2x"
     },
     {

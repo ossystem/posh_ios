@@ -208,7 +208,7 @@ class BalanceFromAPI: Balance, ResponseType {
     }
     
     func toString() -> String {
-        return "\(self.value)"
+        return "Balance: \(self.value) POSH"
     }
     
     

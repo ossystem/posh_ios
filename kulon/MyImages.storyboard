@@ -191,7 +191,7 @@
                             <constraint firstItem="4h9-ql-Ser" firstAttribute="centerX" secondItem="q13-h7-x9u" secondAttribute="centerX" id="tqc-sS-tsi"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="My images" image="icon_tab_picture" id="8ij-h8-hFs"/>
+                    <tabBarItem key="tabBarItem" title="Purchases" image="icon_tab_picture" id="8ij-h8-hFs"/>
                     <navigationItem key="navigationItem" id="63T-6B-p1g"/>
                     <connections>
                         <outlet property="addButton" destination="pVV-im-775" id="zk8-pp-6kd"/>

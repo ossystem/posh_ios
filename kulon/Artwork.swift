@@ -77,12 +77,21 @@ class ArtworkInfoFromJSON: ArtworkInfo, ResponseType {
     var name: String
     
     required init(map: Map) throws {
+        do {
         id = try map.value("artwork.id")
         name = try map.value("artwork.name")
         image = try map.value("artwork.image") as ArtworkImageFromJSON
         minPrice = try map.value("artwork.min_price")
         acquisitionParams = try DictionaryParams(dict: map.value("artwork.acquisition_params"))
         artist = try map.value("artwork.artist") as ArtistFromJSON
+        } catch {
+            id = try map.value("purchase.artwork.id")
+            name = try map.value("purchase.artwork.name")
+            image = try map.value("purchase.artwork.image") as ArtworkImageFromJSON
+            minPrice = -1
+            acquisitionParams = DictionaryParams(dict: [:])
+            artist = (try? map.value("purchase.artwork.artist") as ArtistFromJSON) ?? ArtistFromJSON()
+        }
         
     }
 }

@@ -122,8 +122,90 @@ class OwnedArtworksFromAPI: OwnedArtworks {
 class OwnedArtworksApiService: ApiService {
     
     typealias Parameter = ParameterNone
-    typealias Response = ArtworksFromJSON
+    typealias Response = OwnedArtworksFromJSON
     
     var route: String = "artworks/owned"
     var method: Alamofire.HTTPMethod = .get
+}
+
+
+
+class OwnedArtworksFromJSON: ResponseType {
+    let artworks: [OwnedArtworkFromJSON]
+    
+    required init(map: Map) throws {
+        artworks = try map.value("purchases") as [OwnedArtworkFromJSON]
+    }
+}
+
+class OwnedArtworkFromJSON: Artwork, ResponseType {
+    var isLiked: Bool
+    
+    var info: Observable<ArtworkInfo> {
+        return ObservableOwnedArtworkInfo(artwork: self).asObservable().map { $0 as ArtworkInfo }
+    }
+    
+    var image: ArtworkImage
+    
+    var id: String
+    
+    var name: String
+    
+    var isPurchased: Bool
+    
+    private lazy var likeService = LikeApiService(artwork: self)
+    private lazy var dislikeService = DisikeApiService(artwork: self)
+    
+    func like() -> Observable<Bool> {
+        if isLiked {
+            return dislikeService.request(parameter: ParameterNone())
+                .map{ _ in
+                    self.isLiked = false
+                    return false
+            }
+        } else {
+            return likeService.request(parameter: ParameterNone())
+                .map {_ in
+                    self.isLiked = true
+                    return true
+            }
+        }
+    }
+    
+    required init(map: Map) throws {
+        
+          //FIXME: to handle purchases
+            id = try map.value("artwork.id")
+            name = try map.value("artwork.name")
+            image = try map.value("artwork.image") as ArtworkImageFromJSON
+            isPurchased = true
+            isLiked = try map.value("artwork.is_favorite")
+        
+    }
+}
+
+class ObservableOwnedArtworkInfo {
+    
+    func asObservable() -> Observable<ArtworkInfoFromJSON> {
+        return artworkInfoApiService.request(parameter: ParameterNone())
+    }
+    private var artworkInfoApiService : OwnedArtworkInfoApiService
+    init(artwork: Artwork) {
+        self.artworkInfoApiService = OwnedArtworkInfoApiService(artwork: artwork)
+    }
+    
+}
+
+
+class OwnedArtworkInfoApiService: ApiService {
+    typealias Response = ArtworkInfoFromJSON
+    typealias Parameter = ParameterNone
+    
+    var route: String
+    var method: HTTPMethod = .get
+    
+    init(artwork: Artwork) {
+        route = "artworks/owned/\(artwork.id)"
+    }
+    
 }

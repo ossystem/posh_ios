@@ -19,6 +19,10 @@ class MarketableArtworkController: UIViewController, UIGestureRecognizerDelegate
         .with(image: #imageLiteral(resourceName: "icon_top_cancel"))
         .with(tintColor: UIColor.Kulon.orange)
     
+    var wantsToShowArtist: Observable<Artist> {
+        return infoView.wantToShowArtist
+    }
+    
     init(marketableArtwork: MarketableArtwork) {
         self.artwork = marketableArtwork
         self.infoView = ArtworkInfoView(artwork: marketableArtwork)
@@ -50,8 +54,12 @@ class MarketableArtworkController: UIViewController, UIGestureRecognizerDelegate
                 //TODO: make waiting
             }
             .subscribe(onNext: { [unowned self] in
-                self.present(ArtworkAcquisitionController(acquisition: $0, artwork: marketableArtwork as! MarketableArtwork), animated: true)
+                self.present(ArtworkAcquisitionController(acquisition: $0, artwork: marketableArtwork), animated: true)
             }).disposed(by: disposeBag)
+        
+        infoView.wantToShowArtist.subscribe(onNext: {
+            (self.tabBarController as? TabBarController)?.showArtist($0)
+        }).disposed(by: disposeBag)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -88,6 +96,10 @@ class OwnedArtworkController: UIViewController {
     private var topButton = RoundedButton()
         .with(image: #imageLiteral(resourceName: "icon_top_cancel"))
         .with(tintColor: UIColor.Kulon.orange)
+    
+    var wantsToShowArtist: Observable<Artist> {
+        return infoView.wantToShowArtist
+    }
 
     init(ownedArtwork: OwnedArtwork) {
         self.artwork = ownedArtwork
@@ -114,6 +126,9 @@ class OwnedArtworkController: UIViewController {
             self.navigationController?.popViewController(animated: true)
         }).disposed(by: disposeBag)
 
+        infoView.wantToShowArtist.subscribe(onNext: {
+            (self.tabBarController as? TabBarController)?.showArtist($0)
+        }).disposed(by: disposeBag)
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -143,8 +158,12 @@ class ArtworkInfoView: UIView {
         .with(roundedEdges: 32/2)
         .with(contentMode: .scaleAspectFill)
     
-    private var artistName = StandardLabel(font: .systemFont(ofSize: 18, weight: UIFontWeightBold))
-        .aligned(by: .center)
+    private var artistName = UIButton()
+        .with(font: .systemFont(ofSize: 18, weight: UIFontWeightBold))
+        .with(titleColor: .black)
+    .with(backgroundColor: .white)
+    
+    
     private var artworkName = StandardLabel(font: .systemFont(ofSize: 26, weight: UIFontWeightBold))
         .aligned(by: .center)
     private var price = StandardLabel(font: .systemFont(ofSize: 16))
@@ -171,6 +190,13 @@ class ArtworkInfoView: UIView {
         return buyButton.rx.tap.asObservable()
     }
     
+    private var artistSubject = PublishSubject<Artist>()
+    var wantToShowArtist: Observable<Artist> {
+        return Observable.combineLatest(artistSubject.debug(), artistName.rx.tap.asObservable().debug())
+            .map { $0.0 }
+
+    }
+    
     override func layoutSubviews() {
         super.layoutSubviews()
         artworkImage.layer.cornerRadius = artworkImage.frame.width/2
@@ -179,9 +205,11 @@ class ArtworkInfoView: UIView {
     init(artwork: Artwork & Purchasable) {
         self.artwork = artwork
         super.init(frame: .zero)
-        [artistImage, artworkImage, artistName, artworkName, price, buyButton, likeButton, downloadButton]
+        
+        let underline = UIView().with(backgroundColor: .black)
+        [artistImage, artworkImage, artistName, artworkName, price, buyButton, likeButton, downloadButton, underline]
                 .forEach { [unowned self] in self.addSubview($0) }
-        ([artistImage, artworkImage, artistName, artworkName, price, buyButton] as [UIView])
+        ([artistImage, artworkImage, artistName, artworkName, price, buyButton, underline] as [UIView])
             .forEach {
                 $0.snp.makeConstraints {
                     $0.centerX.equalToSuperview()
@@ -228,14 +256,25 @@ class ArtworkInfoView: UIView {
             $0.trailing.equalTo(artworkImage)
             $0.width.height.equalTo(32)
         }
+        
+        artistName.snp.makeConstraints {
+            $0.height.equalTo(24)
+        }
+        
+        underline.snp.makeConstraints {
+            $0.top.equalTo(artistName.snp.bottom)
+            $0.trailing.equalTo(artistName)
+            $0.leading.equalTo(artistName).offset(32)
+            $0.height.equalTo(1)
+        }
 
         self.buyButton.isEnabled = false
+
         
         artwork.info.subscribe(onNext: { [unowned self] info  in
             self.buyButton.isEnabled = true
-            self.artistName.text = info.artist.name
+            self.artistName.setTitle("by: \(info.artist.name)", for: .normal)
             self.artworkName.text = info.name
-//            self.price.text = "\(info.minPrice)POS"
             self.buyButton.setTitle("Buy (\(info.minPrice) POSH)", for: .normal)
             self.request = try? URLRequest(url: URL(string: info.image.link)!, method: .get, headers: ["Authorization": "Bearer \(TokenService().token!)"])
             if let request = self.request {
@@ -246,9 +285,8 @@ class ArtworkInfoView: UIView {
             info.artist.avatar.asObservable().bind(to:
                 self.artistImage.rx.image
             ).disposed(by: self.disposeBag)
-            
+            self.artistSubject.onNext(info.artist)
         }).disposed(by: disposeBag)
-        
         
         
         artwork.purchased.subscribe(onNext: {

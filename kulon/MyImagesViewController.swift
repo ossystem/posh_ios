@@ -17,8 +17,8 @@ class MyImagesViewController: BaseViewController, ExpandableButtonDelegate {
     @IBOutlet weak var addButton: RoundedButton!
     @IBOutlet weak var collectionView: UICollectionView!
 
-    let balanceService = BalanceService()
-    var balance: Variable<BalanceTo> = Variable<BalanceTo>(BalanceLoading().toBalance())
+    private let balanceService = BalanceService()
+    private var balance: Variable<BalanceTo> = Variable<BalanceTo>(BalanceLoading().toBalance())
     
     private let disposeBag = DisposeBag()
     
@@ -26,6 +26,12 @@ class MyImagesViewController: BaseViewController, ExpandableButtonDelegate {
     private let likedArtworks: MarketableArtworks = LikedArtworksFromAPI()
     private var refreshableArtworks: RefreshableByRefreshControl<([OwnedArtwork])>!
     private let refreshControl = UIRefreshControl()
+    
+    
+    private var artistSubject = PublishSubject<Artist>()
+    var wantsToShowArtist: Observable<Artist> {
+        return artistSubject.debug()
+    }
     
     override func viewDidLoad() {
         
@@ -58,9 +64,18 @@ class MyImagesViewController: BaseViewController, ExpandableButtonDelegate {
             .disposed(by: disposeBag)
 
         
-        collectionView.rx.modelSelected((Artwork & Selectable).self).subscribe(onNext: {
-             self.navigationController?.pushViewController( $0.viewControllerToPresentt, animated: true)
-        }).disposed(by: disposeBag)
+        collectionView.rx.modelSelected((Artwork & Selectable).self)
+            .do(onNext: {
+                [unowned self] in
+                self.navigationController?.pushViewController( $0.viewControllerToPresentt, animated: true)
+            })
+            .flatMap {
+                ($0.viewControllerToPresentt as! OwnedArtworkController).wantsToShowArtist.asObservable()
+            }
+            .debug()
+            .bind(to: artistSubject).disposed(by: disposeBag)
+        
+
 
         
         balanceService.balance()

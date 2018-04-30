@@ -144,6 +144,7 @@ class ArtistFromJSON: Artist, ResponseType {
     }
 }
 
+
 class ArtistsFromApi : ResponseType  {
     var artists: [Artist]
     

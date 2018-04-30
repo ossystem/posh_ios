@@ -232,6 +232,13 @@ class StoreViewController: BaseViewController, ExpandableButtonDelegate, UITable
     }
 
     
+    func showArtist(_ artist: Artist) {
+        currentSelectionMode = .artist
+        marketParameter.artist = artist
+        observableParameter.update(marketParameter)
+        topButton.hideButtons()
+    }
+    
     //MARK: - Expandable button delegate
     
     func willExpand(_ button: ExpandableButton) {

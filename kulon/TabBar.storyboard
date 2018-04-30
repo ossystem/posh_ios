@@ -12,7 +12,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="nYp-Pf-FFQ">
             <objects>
-                <tabBarController id="pcX-7m-Zyj" sceneMemberID="viewController">
+                <tabBarController id="pcX-7m-Zyj" customClass="TabBarController" customModule="kulon" customModuleProvider="target" sceneMemberID="viewController">
                     <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="fiK-aj-JZo">
                         <rect key="frame" x="0.0" y="975" width="768" height="49"/>

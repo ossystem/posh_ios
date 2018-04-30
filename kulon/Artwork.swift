@@ -88,6 +88,7 @@ class ArtworkInfoFromJSON: ArtworkInfo, ResponseType {
 }
 
 
+
 class ObservableArtworkInfo {
     
     func asObservable() -> Observable<ArtworkInfoFromJSON> {

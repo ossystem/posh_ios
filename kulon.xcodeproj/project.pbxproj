@@ -118,6 +118,7 @@
 		FDE63E8D2077A0BA00E93371 /* Acquisition.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDE63E8C2077A0BA00E93371 /* Acquisition.swift */; };
 		FDE7AB332093734300BCD4C7 /* Favorites.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FDE7AB322093734300BCD4C7 /* Favorites.storyboard */; };
 		FDE7AB352095EE8E00BCD4C7 /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDE7AB342095EE8E00BCD4C7 /* FavoritesViewController.swift */; };
+		FDE7AB3720960FA700BCD4C7 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDE7AB3620960FA700BCD4C7 /* TabBarController.swift */; };
 		FDE7AB8620724B6200302E52 /* UICollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDE7AB8520724B6200302E52 /* UICollectionView.swift */; };
 		FDEAE6991EAAB26500B9F504 /* MyImagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDEAE6981EAAB26500B9F504 /* MyImagesViewController.swift */; };
 /* End PBXBuildFile section */
@@ -239,6 +240,7 @@
 		FDE63E8C2077A0BA00E93371 /* Acquisition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Acquisition.swift; sourceTree = "<group>"; };
 		FDE7AB322093734300BCD4C7 /* Favorites.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Favorites.storyboard; sourceTree = "<group>"; };
 		FDE7AB342095EE8E00BCD4C7 /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
+		FDE7AB3620960FA700BCD4C7 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		FDE7AB8520724B6200302E52 /* UICollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UICollectionView.swift; sourceTree = "<group>"; };
 		FDEAE6981EAAB26500B9F504 /* MyImagesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyImagesViewController.swift; sourceTree = "<group>"; };
 		FDF8295B208B9068003E4EFC /* kulon.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = kulon.entitlements; sourceTree = "<group>"; };
@@ -422,6 +424,7 @@
 			isa = PBXGroup;
 			children = (
 				FDC3AB111EBB428C00141241 /* TabBar.storyboard */,
+				FDE7AB3620960FA700BCD4C7 /* TabBarController.swift */,
 			);
 			name = TabBar;
 			sourceTree = "<group>";
@@ -826,6 +829,7 @@
 				FD0EF8FE1ECF397C005F5ACF /* TockenService.swift in Sources */,
 				FD4E2F491EDF25D5009C74D3 /* FAQViewController.swift in Sources */,
 				FDC9E3221EBFDFCE00B6DC25 /* PoshikCell.swift in Sources */,
+				FDE7AB3720960FA700BCD4C7 /* TabBarController.swift in Sources */,
 				FDE7AB352095EE8E00BCD4C7 /* FavoritesViewController.swift in Sources */,
 				FD974B081EC9EF3C0066AC27 /* CGPoint.swift in Sources */,
 				FD897228206E3BC500027B38 /* MetadataManager.swift in Sources */,

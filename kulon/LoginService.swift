@@ -153,7 +153,7 @@ class PerformReferralApiService: ApiService {
     typealias Parameter = ReferralParameter
     typealias Response = ResponseNone
     
-    var route: String = "perform-referral"
+    var route: String = "perform/referral"
     var method: HTTPMethod = .post
 }
 
@@ -175,7 +175,7 @@ class GetRefferalApiService: ApiService {
     typealias Parameter = ParameterNone
     typealias Response = ReferralCodeFromJSON
     
-    var route: String = "referral-code"
+    var route: String = "referral/code"
     var method: HTTPMethod = .get
 }
 

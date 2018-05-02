@@ -273,7 +273,7 @@ class ArtworkInfoView: UIView {
         
         artwork.info.subscribe(onNext: { [unowned self] info  in
             self.buyButton.isEnabled = true
-            self.artistName.setTitle("by: \(info.artist.name)", for: .normal)
+            self.artistName.setTitle("by \(info.artist.name)", for: .normal)
             self.artworkName.text = info.name
             self.buyButton.setTitle("Buy (\(info.minPrice) POSH)", for: .normal)
             self.request = try? URLRequest(url: URL(string: info.image.link)!, method: .get, headers: ["Authorization": "Bearer \(TokenService().token!)"])

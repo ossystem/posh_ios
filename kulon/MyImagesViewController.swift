@@ -25,6 +25,7 @@ class MyImagesViewController: BaseViewController, ExpandableButtonDelegate {
     private let ownedArtworks: OwnedArtworks = OwnedArtworksFromAPI()
     private let likedArtworks: MarketableArtworks = LikedArtworksFromAPI()
     private var refreshableArtworks: RefreshableByRefreshControl<([OwnedArtwork])>!
+    private var refreshableBalance: RefreshableByRefreshControl<BalanceTo>!
     private let refreshControl = UIRefreshControl()
     
     
@@ -76,19 +77,20 @@ class MyImagesViewController: BaseViewController, ExpandableButtonDelegate {
             .bind(to: artistSubject).disposed(by: disposeBag)
         
 
-
-        
-        balanceService.balance()
+        refreshableBalance = RefreshableByRefreshControl(origin: balanceService.balance()
             .map { $0.toBalance() }
             .startWith(BalanceLoading().toBalance())
-            .catchErrorJustReturn(BalanceFromValue(value: 0).toBalance())
-            .do(onNext: { [unowned self] _ in self.collectionView.reloadData() })
+            .catchErrorJustReturn(BalanceFromValue(value: 0).toBalance()), updatedOn: refreshControl)
+        
+        refreshableBalance
+        .do(onNext: { [unowned self] _ in self.collectionView.reloadData() })
         .bind(to: balance).disposed(by: disposeBag)
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         refreshableArtworks.refresh()
+        refreshableBalance.refresh()
     }
     
 }

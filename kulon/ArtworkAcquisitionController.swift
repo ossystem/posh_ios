@@ -127,8 +127,8 @@ class ArtworkAcquisitionView: UIView {
         acquisition.purchasable.image.asObservable().bind(to: artworkImage.rx.image).disposed(by: disposeBag)
         price.text = "\(acquisition.price) POSH"
         
-        let sellsLabel = StandardLabel(font: .systemFont(ofSize: 16), textColor: .black, text: "sells yoy:")
-        let forLabel = StandardLabel(font: .systemFont(ofSize: 16), textColor: .black, text: "for:")
+        let sellsLabel = StandardLabel(font: .systemFont(ofSize: 16), textColor: .black, text: "sells you")
+        let forLabel = StandardLabel(font: .systemFont(ofSize: 16), textColor: .black, text: "for")
         [artistImage, artworkImage, artistName, artworkName, price, buyButton, sellsLabel, forLabel]
             .forEach { [unowned self] in self.addSubview($0) }
         

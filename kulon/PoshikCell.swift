@@ -37,6 +37,7 @@ class PoshikCell: UICollectionViewCell {
 //            image.af_setImage(withURLRequest: request)
             self.request = request
             image.setImage(with: request)
+            
         }
     }
     

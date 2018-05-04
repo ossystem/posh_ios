@@ -12,7 +12,7 @@ target ‘kulon’ do
     
     # networking
     pod 'Alamofire'
-    pod 'AlamofireImage'
+    pod 'AlamofireImage', '~> 3.3'
     pod 'AlamofireObjectMapper'
     # layout
     pod 'SnapKit', '~> 3.2.0'

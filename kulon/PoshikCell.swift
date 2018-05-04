@@ -43,11 +43,16 @@ class PoshikCell: UICollectionViewCell {
     
     func configure(with artwork: Artwork) {
         //TODO: design more elegant image
+        image.image = nil
         request = try? URLRequest(url: URL(string: artwork.image.link)!, method: .get, headers: ["Authorization": "Bearer \(TokenService().token!)"])
         if let request = request {
             image.setImage(with: request)
+            
+//            image.af_setImage(withURLRequest: request)
         } else {
             print("image request error: \n\turl: \(artwork.image.link)")
         }
+        
+        
     }
 }

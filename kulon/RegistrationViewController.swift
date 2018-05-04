@@ -29,11 +29,19 @@ class RegistrationViewController: BaseViewController {
     private let errorSubject = PublishSubject<Error>()
     private let purchaseSubject = PublishSubject<Void>()
     
+    private let gestureRecognizer = UITapGestureRecognizer()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.providesPresentationContextTransitionStyle = true
         self.definesPresentationContext = true
         self.transitioningDelegate = self
+        
+        view.addGestureRecognizer(gestureRecognizer)
+        
+        gestureRecognizer.rx.event.asObservable().subscribe(onNext: { [unowned self] _ in
+            self.view.endEditing(true)
+        }).disposed(by: bag)
         
         emailField.rx.text.asObservable().subscribe(onNext: {
             if $0?.characters.count == 1 , $0 != "+" {
@@ -86,12 +94,15 @@ class RegistrationViewController: BaseViewController {
     
     func showCodeField() {
         //expand
-        UIView.animate(withDuration: 0.4) {
+        UIView.animate(withDuration: 0.4, animations: {
             self.sendCodeButton.isHidden = true
             self.codeViewsGroup.forEach {
                 $0.isHidden = false
             }
+        }) { [unowned self] _ in
+            self.passwordField.becomeFirstResponder()
         }
+        
     }
     
     func enterApplication() {

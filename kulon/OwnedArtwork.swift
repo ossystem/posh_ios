@@ -180,7 +180,6 @@ class OwnedArtworkFromJSON: Artwork, ResponseType {
             image = try map.value("artwork.image") as ArtworkImageFromJSON
             isPurchased = true
             isLiked = try map.value("artwork.is_favorite")
-        
     }
 }
 

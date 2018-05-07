@@ -123,7 +123,7 @@ class UploadableImage : ObservableUploadable, ObservableType {
     
     init(artworkInfo: ArtworkInfo) {
         
-        request = try! URLRequest(url: "",
+        request = try! URLRequest(url: "artworks/owned/\(artworkInfo.id)/download?device_id=\(artworkInfo.formats.first?.id ?? "")",
                                   method: .get,
                                   headers: ["Authorization": "Bearer \(TokenService().token!)"])
     }

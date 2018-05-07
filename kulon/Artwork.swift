@@ -73,7 +73,7 @@ class ArtworkInfoFromJSON: ArtworkInfo, ResponseType {
     var acquisitionParams: DictionaryParams
     var image: ArtworkImage
     var artist: Artist
-    var formats: [ArtworkFormat] = []
+    var formats: [ArtworkFormat]
     var name: String
     
     required init(map: Map) throws {
@@ -84,6 +84,7 @@ class ArtworkInfoFromJSON: ArtworkInfo, ResponseType {
         minPrice = try map.value("artwork.min_price")
         acquisitionParams = try DictionaryParams(dict: map.value("artwork.acquisition_params"))
         artist = try map.value("artwork.artist") as ArtistFromJSON
+        formats = try map.value("devices") as [ArtworkFormatFromJSON]
         } catch {
             id = try map.value("purchase.artwork.id")
             name = try map.value("purchase.artwork.name")
@@ -91,9 +92,22 @@ class ArtworkInfoFromJSON: ArtworkInfo, ResponseType {
             minPrice = -1
             acquisitionParams = DictionaryParams(dict: [:])
             artist = (try? map.value("purchase.artwork.artist") as ArtistFromJSON) ?? ArtistFromJSON()
+            formats = try map.value("purchase.artwork.devices") as [ArtworkFormatFromJSON]
         }
         
     }
+}
+
+class ArtworkFormatFromJSON: ArtworkFormat, ResponseType {
+    var deviceCode: String
+    
+    var id: String
+    
+    required init(map: Map) throws {
+        deviceCode = try map.value("code")
+        id = try map.value("id")
+    }
+    
 }
 
 

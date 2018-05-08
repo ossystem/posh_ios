@@ -13,7 +13,7 @@ import RxSwift
 
 class MarketParameter: ParameterType, PaginationParameter {
     
-    var category: IdiableObject? {
+    var category: (IdiableObject & NamedObject)?  {
         didSet {
             if category != nil {
                 tag = nil
@@ -22,7 +22,7 @@ class MarketParameter: ParameterType, PaginationParameter {
         }
     }
     
-    var tag: IdiableObject? {
+    var tag: (IdiableObject & NamedObject)?  {
         didSet {
             if tag != nil {
                 category = nil
@@ -31,13 +31,24 @@ class MarketParameter: ParameterType, PaginationParameter {
         }
     }
     
-    var artist: IdiableObject? {
+    var artist: (IdiableObject & NamedObject)?  {
         didSet {
             if artist != nil {
                 category = nil
                 tag = nil
             }
         }
+    }
+    
+    func name() -> String {
+        if let category = category {
+            return category.name
+        } else if let tag = tag {
+            return tag.name
+        } else if let artist = artist {
+            return artist.name
+        }
+        return ""
     }
     
     var page: Int = 1

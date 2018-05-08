@@ -74,7 +74,7 @@ class StoreViewController: BaseViewController, ExpandableButtonDelegate, UITable
         
         dataSource.supplementaryViewFactory = { [unowned self] ds, cv, kind, ip in
             let view = cv.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "Header", for: ip) as! CollectionHeaderView
-            view.configure(with: (self.marketParameter.artist as? NamedObject)?.name ?? "")
+            view.configure(with: self.marketParameter.name())
             return view//UICollectionReusableView()
         }
 
@@ -217,7 +217,7 @@ class StoreViewController: BaseViewController, ExpandableButtonDelegate, UITable
         artistsButton.backgroundColor = .white
     }
     
-    func didSelect(_ object: IdiableObject) {
+    func didSelect(_ object: IdiableObject & NamedObject ) {
         if case .category = currentSelectionMode {
             marketParameter.category = object
         }

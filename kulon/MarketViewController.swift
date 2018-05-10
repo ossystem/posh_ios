@@ -46,6 +46,7 @@ class StoreViewController: BaseViewController, ExpandableButtonDelegate, UITable
     var getNamesMethod: Observable<[NamedObject & IdiableObject]>?
     var marketParameter =  MarketParameter()
     var observableParameter = ObservableMarketParameter()
+    var artworks: MarketableArtworks!
     
     enum SelectionMode {
         case tag, category, artist, none
@@ -82,17 +83,15 @@ class StoreViewController: BaseViewController, ExpandableButtonDelegate, UITable
 
         let refreshConrol = UIRefreshControl()
         
-        observableParameter.flatMap {
-            RefreshableByRefreshControl(
-                origin: MarketableArtworksFromAPI(parameter: $0).asObservable(),
-                updatedOn: refreshConrol).debug()
-            }
-            .asObservable()
-            .debug()
-            .catchErrorJustReturn([])
-            .map{ [StandardSectionModel(items: $0)] }            
-            .bind(to: collectionView.rx.items(dataSource: dataSource))
-            .disposed(by: bag)
+        artworks = MarketableArtworksFromAPI(parameter: observableParameter.asObservable())
+        RefreshableByRefreshControl(
+            origin: artworks.asObservable(),
+            updatedOn: refreshConrol)
+        .asObservable()
+        .catchErrorJustReturn([])
+        .map{ [StandardSectionModel(items: $0)] }
+        .bind(to: collectionView.rx.items(dataSource: dataSource))
+        .disposed(by: bag)
         
         collectionView.rx.modelSelected(MarketableArtwork.self).subscribe(onNext: { [unowned self] in
             self.navigationController?.pushViewController(MarketableArtworkController(marketableArtwork: $0), animated: true)

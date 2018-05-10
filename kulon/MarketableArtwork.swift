@@ -139,17 +139,25 @@ class FakeMarketableArtworks: MarketableArtworks {
 
 class MarketableArtworksFromAPI: MarketableArtworks {
     
-    private var parameter: MarketParameter
+    private var parameter: Observable<MarketParameter>
     private var service = MarketArtworksApiService()
     
+    private var parameterVariable = Variable<MarketParameter>(MarketParameter())
+    private var disposeBag = DisposeBag()
+    
     func asObservable() -> Observable<[MarketableArtwork]> {
-        return service.request(parameter: parameter).map {
+        
+        return parameterVariable.asObservable().flatMapLatest { [unowned self] in
+                self.service.request(parameter: $0)
+            }
+       .map {
             $0.artworks.map { MarketableArtworkFromArtwork(artwork: $0) }
         }
     }
     
-    init(parameter: MarketParameter) {
+    init(parameter: Observable<MarketParameter>) {
         self.parameter = parameter
+        parameter.debug().bind(to: parameterVariable).disposed(by: disposeBag)
     }
     
 }

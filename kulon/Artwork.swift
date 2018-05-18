@@ -84,7 +84,7 @@ class ArtworkInfoFromJSON: ArtworkInfo, ResponseType {
         minPrice = try map.value("artwork.min_price")
         acquisitionParams = try DictionaryParams(dict: map.value("artwork.acquisition_params"))
         artist = try map.value("artwork.artist") as ArtistFromJSON
-        formats = try map.value("devices") as [ArtworkFormatFromJSON]
+        formats = try map.value("artwork.devices") as [ArtworkFormatFromJSON]
         } catch {
             id = try map.value("purchase.artwork.id")
             name = try map.value("purchase.artwork.name")

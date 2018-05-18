@@ -23,6 +23,7 @@
 		FD0EF9001ECF39AF005F5ACF /* MarketService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD0EF8FF1ECF39AF005F5ACF /* MarketService.swift */; };
 		FD1F42F01EBB52BE008AE3ED /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD1F42EF1EBB52BE008AE3ED /* UIColor.swift */; };
 		FD30D7CC205C02D1008CEF6F /* FilterableNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD30D7CB205C02D1008CEF6F /* FilterableNames.swift */; };
+		FD3F974220AF30B40038844F /* UIImage+JTImageDecode.m in Sources */ = {isa = PBXBuildFile; fileRef = FD3F974020AF30B30038844F /* UIImage+JTImageDecode.m */; };
 		FD4E2F491EDF25D5009C74D3 /* FAQViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD4E2F481EDF25D5009C74D3 /* FAQViewController.swift */; };
 		FD4E2F4B1EDF2700009C74D3 /* CommonQuestionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD4E2F4A1EDF2700009C74D3 /* CommonQuestionCell.swift */; };
 		FD4E2F4D1EE07171009C74D3 /* CommonQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD4E2F4C1EE07171009C74D3 /* CommonQuestion.swift */; };
@@ -143,6 +144,8 @@
 		FD0EF8FF1ECF39AF005F5ACF /* MarketService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarketService.swift; sourceTree = "<group>"; };
 		FD1F42EF1EBB52BE008AE3ED /* UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		FD30D7CB205C02D1008CEF6F /* FilterableNames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterableNames.swift; sourceTree = "<group>"; };
+		FD3F974020AF30B30038844F /* UIImage+JTImageDecode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+JTImageDecode.m"; sourceTree = "<group>"; };
+		FD3F974120AF30B40038844F /* UIImage+JTImageDecode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+JTImageDecode.h"; sourceTree = "<group>"; };
 		FD4E2F481EDF25D5009C74D3 /* FAQViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FAQViewController.swift; sourceTree = "<group>"; };
 		FD4E2F4A1EDF2700009C74D3 /* CommonQuestionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommonQuestionCell.swift; sourceTree = "<group>"; };
 		FD4E2F4C1EE07171009C74D3 /* CommonQuestion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommonQuestion.swift; sourceTree = "<group>"; };
@@ -388,6 +391,8 @@
 		FD5409B91EC5FDD200E93B7F /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				FD3F974120AF30B40038844F /* UIImage+JTImageDecode.h */,
+				FD3F974020AF30B30038844F /* UIImage+JTImageDecode.m */,
 				FDE63E8420777B6700E93371 /* Recoverable.swift */,
 				FDE63E8520777B6700E93371 /* RefreshableAndRecoverable.swift */,
 				FDC9E31D1EBFBF8700B6DC25 /* Identifiers.swift */,
@@ -804,6 +809,7 @@
 				FD4FE9201F15254D006F2AE2 /* SocialWebViewController.swift in Sources */,
 				FD8971862066ADD600027B38 /* UILabel.swift in Sources */,
 				FDADA60A1F42FD3100D81892 /* Uploadable.swift in Sources */,
+				FD3F974220AF30B40038844F /* UIImage+JTImageDecode.m in Sources */,
 				FD89718E206A6FAD00027B38 /* ArtworkAcquisitionController.swift in Sources */,
 				FDE63E8D2077A0BA00E93371 /* Acquisition.swift in Sources */,
 				FD7DC8331F4DBFF600C2DF5D /* Refreshable.swift in Sources */,

@@ -98,6 +98,14 @@ class StoreViewController: BaseViewController, ExpandableButtonDelegate, UITable
         }).disposed(by: bag)
     
         collectionView.refreshControl = refreshConrol
+        
+        topButton.subButtons = [
+            categoryButton,
+            artistsButton,
+            tagButton,
+            resetButton
+        ]
+        blurView = UIVisualEffectView(frame: view.bounds)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -121,14 +129,9 @@ class StoreViewController: BaseViewController, ExpandableButtonDelegate, UITable
 
     
     func setupInterface(){
-        topButton.subButtons = [
-            categoryButton,
-            artistsButton,
-            tagButton,
-            resetButton
-        ]
+        
         navigationController?.isNavigationBarHidden = true
-        blurView = UIVisualEffectView(frame: view.bounds)
+        
     }
     
     func loadNames() {

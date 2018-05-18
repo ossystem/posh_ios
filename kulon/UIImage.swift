@@ -6,11 +6,13 @@ import ImageIO
 import Alamofire
 import AlamofireImage
 import SnapKit
+import RxSwift
 
 class KulonImageView: RoundedImageView {
     var currentRequest: DataRequest?
     let activity = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.gray)
 
+    private var disposeBag = DisposeBag()
     public override func setImage(with request: URLRequest) {
         
         addSubview(activity)
@@ -26,7 +28,9 @@ class KulonImageView: RoundedImageView {
                 TokenService().token = token
             }
             if let data = response.result.value {
-                self?.image = UIImage.gif(data: data)
+                if let s = self {
+                    UIImage.observableGif(data: data).catchErrorJustReturn(UIImage()).bind(to: s.rx.image).disposed(by: s.disposeBag)
+                }
             }
             self?.currentRequest = nil
             
@@ -78,6 +82,20 @@ extension UIImageView {
 }
 
 extension UIImage {
+    
+    public class func observableGif(data: Data) -> Observable<UIImage> {
+        return Observable.create({  observer in
+            
+            DispatchQueue.global().async {
+                if let image = gif(data: data) {
+                    observer.onNext(image)
+                } else {
+                    observer.onError(ImageErorr())
+                }
+            }
+            return Disposables.create()
+        })
+    }
     
     public class func gif(data: Data) -> UIImage? {
         // Create source from data
@@ -247,7 +265,8 @@ extension UIImage {
         var frame: UIImage
         var frameCount: Int
         for i in 0..<count {
-            frame = UIImage(cgImage: images[Int(i)])
+            //decodedImage used to force decoding image in bg
+            frame = UIImage.decodedImage(with: UIImage(cgImage: images[Int(i)]))
             frameCount = Int(delays[Int(i)] / gcd)
             
             for _ in 0..<frameCount {

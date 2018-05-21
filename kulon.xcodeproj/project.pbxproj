@@ -30,6 +30,7 @@
 		FD4E2F4F1EE1B7AD009C74D3 /* DeviceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD4E2F4E1EE1B7AD009C74D3 /* DeviceService.swift */; };
 		FD4FE91E1F1518D7006F2AE2 /* SocialService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD4FE91D1F1518D7006F2AE2 /* SocialService.swift */; };
 		FD4FE9201F15254D006F2AE2 /* SocialWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD4FE91F1F15254D006F2AE2 /* SocialWebViewController.swift */; };
+		FD508EE120B2D42200FD20FD /* StandardButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD508EE020B2D42200FD20FD /* StandardButton.swift */; };
 		FD52CB3C208F0F0500B6E4E0 /* kulon.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = FDF8295B208B9068003E4EFC /* kulon.entitlements */; };
 		FD5409AD1EC32A2400E93B7F /* LikeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD5409AC1EC32A2400E93B7F /* LikeView.swift */; };
 		FD5409AF1EC5D78000E93B7F /* Poshik.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FD5409AE1EC5D78000E93B7F /* Poshik.storyboard */; };
@@ -152,6 +153,7 @@
 		FD4E2F4E1EE1B7AD009C74D3 /* DeviceService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceService.swift; sourceTree = "<group>"; };
 		FD4FE91D1F1518D7006F2AE2 /* SocialService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocialService.swift; sourceTree = "<group>"; };
 		FD4FE91F1F15254D006F2AE2 /* SocialWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocialWebViewController.swift; sourceTree = "<group>"; };
+		FD508EE020B2D42200FD20FD /* StandardButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandardButton.swift; sourceTree = "<group>"; };
 		FD5409AC1EC32A2400E93B7F /* LikeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LikeView.swift; sourceTree = "<group>"; };
 		FD5409AE1EC5D78000E93B7F /* Poshik.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Poshik.storyboard; sourceTree = "<group>"; };
 		FD5409BD1EC6231D00E93B7F /* ColorPicker.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ColorPicker.xib; sourceTree = "<group>"; };
@@ -330,6 +332,7 @@
 				FD59599F1ECB96C500BB2D9D /* CategoryCell.swift */,
 				FD5959A11ECB973900BB2D9D /* Category.swift */,
 				FD5F9F451EA776A300BD79B1 /* MarketViewController.swift */,
+				FD508EE020B2D42200FD20FD /* StandardButton.swift */,
 				FD89718D206A6FAD00027B38 /* ArtworkAcquisitionController.swift */,
 				FD7DBABD1ED08D0600D97D45 /* CategoriesService.swift */,
 				FD7DBAC11ED098DE00D97D45 /* MarketTagAutoCompletionService.swift */,
@@ -870,6 +873,7 @@
 				FDC89DF61EBA3799004D3F9F /* RoundedView.swift in Sources */,
 				FDE63E8720777B6800E93371 /* Recoverable.swift in Sources */,
 				FD1F42F01EBB52BE008AE3ED /* UIColor.swift in Sources */,
+				FD508EE120B2D42200FD20FD /* StandardButton.swift in Sources */,
 				FD5F9F5A1EA8073E00BD79B1 /* TopBarView.swift in Sources */,
 				FD897226206E3BC500027B38 /* NSRegularExpression+Swift.swift in Sources */,
 				FD89718A2066ADED00027B38 /* StandardTableView.swift in Sources */,

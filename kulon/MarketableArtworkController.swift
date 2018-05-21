@@ -155,6 +155,7 @@ class ArtworkInfoView: UIView {
     private var artworkImage = FLAnimatedImageView()
         .with(roundedEdges: 272/2)
         .with(contentMode: .scaleAspectFill)
+    
     private var artistImage = UIImageView()
         .with(roundedEdges: 32/2)
         .with(contentMode: .scaleAspectFill)
@@ -164,24 +165,28 @@ class ArtworkInfoView: UIView {
         .with(titleColor: .black)
     .with(backgroundColor: .white)
     
-    
     private var artworkName = StandardLabel(font: .systemFont(ofSize: 26, weight: UIFontWeightBold))
         .aligned(by: .center)
+    
     private var price = StandardLabel(font: .systemFont(ofSize: 16))
         .aligned(by: .center)
-    private var buyButton = UIButton()
+    
+    private var buyButton = StandardButton()
         .with(title: "Buy")
         .with(titleColor: .black)
         .with(backgroundColor: UIColor.Kulon.lightOrange)
         .with(roundedEdges: 8)
+    
     private var likeButton = UIButton()
         .with(image: #imageLiteral(resourceName: "icon_like_1"))
         .with(roundedEdges: 16)
-    private var downloadButton = UIButton()
+    
+    private var downloadButton = StandardButton()
         .with(title: "Put on")
         .with(titleColor: .black)
         .with(backgroundColor: UIColor.Kulon.lightOrange)
         .with(roundedEdges: 8)
+    
     private var disposeBag = DisposeBag()
     private var request: URLRequest?
     private var artwork: Artwork & Purchasable

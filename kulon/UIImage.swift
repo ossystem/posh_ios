@@ -15,6 +15,8 @@ class KulonImageView: RoundedImageView {
     private var disposeBag = DisposeBag()
     public override func setImage(with request: URLRequest) {
         
+        cancelRequest()
+        
         addSubview(activity)
         activity.snp.makeConstraints {
             $0.center.equalToSuperview()
@@ -24,16 +26,13 @@ class KulonImageView: RoundedImageView {
         currentRequest = Alamofire.request(request).responseData {
             [weak self] response in
             self?.activity.removeFromSuperview()
-            if let token = response.response?.allHeaderFields["Authorization"] as? String {
-                TokenService().token = token
-            }
             if let data = response.result.value {
                 if let s = self {
+                    
                     UIImage.observableGif(data: data).catchErrorJustReturn(UIImage()).bind(to: s.rx.image).disposed(by: s.disposeBag)
                 }
             }
             self?.currentRequest = nil
-            
         }
     }
     

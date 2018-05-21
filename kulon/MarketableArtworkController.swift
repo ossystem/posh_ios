@@ -7,6 +7,8 @@ import Foundation
 import UIKit
 import RxSwift
 import SnapKit
+import FLAnimatedImage
+import SDWebImage
 
 class MarketableArtworkController: UIViewController, UIGestureRecognizerDelegate {
 
@@ -150,10 +152,9 @@ class OwnedArtworkController: UIViewController {
 
 class ArtworkInfoView: UIView {
 
-    private var artworkImage = KulonImageView()
+    private var artworkImage = FLAnimatedImageView()
         .with(roundedEdges: 272/2)
         .with(contentMode: .scaleAspectFill)
-//        .with(backgroundColor: UIColor.Kulon.lightOrange)
     private var artistImage = UIImageView()
         .with(roundedEdges: 32/2)
         .with(contentMode: .scaleAspectFill)
@@ -190,6 +191,10 @@ class ArtworkInfoView: UIView {
         return buyButton.rx.tap.asObservable()
     }
     
+    private let recoverSubject = PublishSubject<Void>()
+    private let errorSubject = PublishSubject<Error>()
+    private let purchaseSubject = PublishSubject<Void>()
+    
     private var artistSubject = PublishSubject<Artist>()
     var wantToShowArtist: Observable<Artist> {
         return Observable.combineLatest(artistSubject.debug(), artistName.rx.tap.asObservable().debug())
@@ -204,6 +209,7 @@ class ArtworkInfoView: UIView {
     
     init(artwork: Artwork & Purchasable) {
         self.artwork = artwork
+
         super.init(frame: .zero)
         
         let underline = UIView().with(backgroundColor: .black)
@@ -276,12 +282,9 @@ class ArtworkInfoView: UIView {
             self.artistName.setTitle("by \(info.artist.name)", for: .normal)
             self.artworkName.text = info.name
             self.buyButton.setTitle("Buy (\(info.minPrice) POSH)", for: .normal)
-            self.request = try? URLRequest(url: URL(string: info.image.link)!, method: .get, headers: ["Authorization": "Bearer \(TokenService().token!)"])
-            if let request = self.request {
-                self.artworkImage.setImage(with: request)
-            } else {
-                print("image request error: \n\turl: \(info.image.link)")
-            }
+        
+            self.artworkImage.sd_setImage(with: URL(string: info.image.link)!)
+
             info.artist.avatar.asObservable().bind(to:
                 self.artistImage.rx.image
             ).disposed(by: self.disposeBag)
@@ -294,7 +297,39 @@ class ArtworkInfoView: UIView {
             self.downloadButton.isHidden = false
         }).disposed(by: disposeBag)
         
-       
+//        Recoverable(origin:
+//            downloadButton.rx.tap
+//                .do(onNext: {
+//                    self.downloadButton.setWaiting(true)
+//                })
+//                .flatMap {
+//                    OwnedArtworkFromArtwork(artwork: artwork).setToDevice()
+//                }.do(onNext: {
+//                    self.downloadButton.setWaiting(false)
+//                })
+//            ,
+//                    recoveringOn: recoverSubject,
+//                    reportingErrorsTo: errorSubject
+//            )
+//            .debug()
+//            .subscribe(onNext: { [unowned self] in
+//                self.downloadButton.setWaiting(false)
+//                }, onError: { [unowned self] _ in
+//                    self.downloadButton.setWaiting(false)
+//            })
+//            .disposed(by: disposeBag)
+//        errorSubject.subscribe(onNext: { [unowned self] _ in
+//            self.downloadButton.setWaiting(false)
+//        }).disposed(by: disposeBag)
+        
+        downloadButton.rx.tap.asObservable()
+            .withLatestFrom(errorSubject)
+            .debug()
+            .map { _ in}
+            .bind(to: recoverSubject)
+            .disposed(by: disposeBag)
+        
+        
         downloadButton.rx.tap.asObservable()
             .do(onNext: {
                 self.downloadButton.setWaiting(true)
@@ -302,7 +337,7 @@ class ArtworkInfoView: UIView {
         .flatMap {
             OwnedArtworkFromArtwork(artwork: artwork).setToDevice()
             }
-        
+
         .debug()
         .subscribe(onNext: { [unowned self] in
             self.downloadButton.setWaiting(false)
@@ -310,7 +345,7 @@ class ArtworkInfoView: UIView {
                 self.downloadButton.setWaiting(false)
         })
         .disposed(by: disposeBag)
-        
+//
         
         
         likeButton.rx.tap.asObservable()

@@ -25,6 +25,10 @@ class MarketableArtworkController: UIViewController, UIGestureRecognizerDelegate
         return infoView.wantToShowArtist
     }
     
+    private let recoverSubject = PublishSubject<Void>()
+    private let errorSubject = PublishSubject<Error>()
+    private let purchaseSubject = PublishSubject<Void>()
+    
     init(marketableArtwork: MarketableArtwork) {
         self.artwork = marketableArtwork
         self.infoView = ArtworkInfoView(artwork: marketableArtwork)
@@ -58,6 +62,30 @@ class MarketableArtworkController: UIViewController, UIGestureRecognizerDelegate
             .subscribe(onNext: { [unowned self] in
                 self.present(ArtworkAcquisitionController(acquisition: $0, artwork: marketableArtwork), animated: true)
             }).disposed(by: disposeBag)
+        
+        Recoverable(origin:
+            infoView.wantsToAqcuire
+                .flatMap { [unowned self] in
+                    self.artwork.acquire()
+                    //TODO: make waiting
+            }
+            ,
+                    recoveringOn: recoverSubject,
+                    reportingErrorsTo: errorSubject
+            )
+            .debug()
+            .subscribe(onNext: { [unowned self] in
+                self.present(ArtworkAcquisitionController(acquisition: $0, artwork: marketableArtwork), animated: true)
+            }).disposed(by: disposeBag)
+            
+        infoView.wantsToAqcuire
+            .withLatestFrom(errorSubject)
+            .debug()
+            .map { _ in}
+            .bind(to: recoverSubject)
+            .disposed(by: disposeBag)
+        
+        
         
         infoView.wantToShowArtist.subscribe(onNext: {
             (self.tabBarController as? TabBarController)?.showArtist($0)
@@ -302,30 +330,30 @@ class ArtworkInfoView: UIView {
             self.downloadButton.isHidden = false
         }).disposed(by: disposeBag)
         
-//        Recoverable(origin:
-//            downloadButton.rx.tap
-//                .do(onNext: {
-//                    self.downloadButton.setWaiting(true)
-//                })
-//                .flatMap {
-//                    OwnedArtworkFromArtwork(artwork: artwork).setToDevice()
-//                }.do(onNext: {
-//                    self.downloadButton.setWaiting(false)
-//                })
-//            ,
-//                    recoveringOn: recoverSubject,
-//                    reportingErrorsTo: errorSubject
-//            )
-//            .debug()
-//            .subscribe(onNext: { [unowned self] in
-//                self.downloadButton.setWaiting(false)
-//                }, onError: { [unowned self] _ in
-//                    self.downloadButton.setWaiting(false)
-//            })
-//            .disposed(by: disposeBag)
-//        errorSubject.subscribe(onNext: { [unowned self] _ in
-//            self.downloadButton.setWaiting(false)
-//        }).disposed(by: disposeBag)
+        Recoverable(origin:
+            downloadButton.rx.tap
+                .do(onNext: {
+                    self.downloadButton.setWaiting(true)
+                })
+                .flatMap {
+                    OwnedArtworkFromArtwork(artwork: artwork).setToDevice()
+                }.do(onNext: {
+                    self.downloadButton.setWaiting(false)
+                })
+            ,
+                    recoveringOn: recoverSubject,
+                    reportingErrorsTo: errorSubject
+            )
+            .debug()
+            .subscribe(onNext: { [unowned self] in
+                self.downloadButton.setWaiting(false)
+                }, onError: { [unowned self] _ in
+                    self.downloadButton.setWaiting(false)
+            })
+            .disposed(by: disposeBag)
+        errorSubject.subscribe(onNext: { [unowned self] _ in
+            self.downloadButton.setWaiting(false)
+        }).disposed(by: disposeBag)
         
         downloadButton.rx.tap.asObservable()
             .withLatestFrom(errorSubject)
@@ -334,23 +362,22 @@ class ArtworkInfoView: UIView {
             .bind(to: recoverSubject)
             .disposed(by: disposeBag)
         
-        
-        downloadButton.rx.tap.asObservable()
-            .do(onNext: {
-                self.downloadButton.setWaiting(true)
-            })
-        .flatMap {
-            OwnedArtworkFromArtwork(artwork: artwork).setToDevice()
-            }
-
-        .debug()
-        .subscribe(onNext: { [unowned self] in
-            self.downloadButton.setWaiting(false)
-            }, onError: { [unowned self] _ in
-                self.downloadButton.setWaiting(false)
-        })
-        .disposed(by: disposeBag)
 //
+//        downloadButton.rx.tap.asObservable()
+//            .do(onNext: {
+//                self.downloadButton.setWaiting(true)
+//            })
+//        .flatMap {
+//            OwnedArtworkFromArtwork(artwork: artwork).setToDevice()
+//            }
+//
+//        .debug()
+//        .subscribe(onNext: { [unowned self] in
+//            self.downloadButton.setWaiting(false)
+//            }, onError: { [unowned self] _ in
+//                self.downloadButton.setWaiting(false)
+//        })
+//        .disposed(by: disposeBag)
         
         
         likeButton.rx.tap.asObservable()

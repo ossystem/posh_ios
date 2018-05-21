@@ -12,10 +12,19 @@ import AlamofireImage
 import Alamofire
 import FLAnimatedImage
 import SDWebImage
-
+import SnapKit
 class PoshikCell: UICollectionViewCell {
     
     @IBOutlet weak var image: FLAnimatedImageView!
+    private lazy var loadingIndicator = { [unowned self] () -> UIActivityIndicatorView in
+        let ind = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+        ind.hidesWhenStopped = true
+        self.addSubview(ind)
+        ind.snp.makeConstraints {
+            $0.center.equalTo(self.image)
+        }
+        return ind
+    }()
     
     var request: URLRequest?
     override func prepareForReuse() {
@@ -24,6 +33,12 @@ class PoshikCell: UICollectionViewCell {
 
     func configure(with artwork: Artwork) {
         image.image = nil
-        image.sd_setImage(with: URL(string: artwork.image.link)!)
+        loadingIndicator.startAnimating()
+        image.sd_setImage(with: URL(string: artwork.image.link)!) { [weak self] im, er, cache, url in
+            if let error = er {
+                print("Error image loading for URL: \(String(describing: url)) Message: \(error)")
+            }
+            self?.loadingIndicator.stopAnimating()
+        }
     }
 }

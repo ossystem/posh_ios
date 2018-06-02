@@ -81,7 +81,7 @@ class KulonService {
     deinit {
         service.peripheral.cancelConnection()
             .subscribe( {_ in 
-                print("service deinited")
+                print("Connection canceled")
                 }).disposed(by: disposeBag)
         print("service deinited")
     }
@@ -189,6 +189,7 @@ class BLEService {
             .flatMap { _ -> Observable<Peripheral> in
                return self.manager
                     .scanForPeripherals(withServices: nil)
+                    .timeout(30, scheduler: MainScheduler.instance)
 //                .filter {
 //                    $0.peripheral.identifier.uuidString == "43028998-0F95-40CE-85C2-98292FA48EA7"
 //                }
@@ -255,6 +256,7 @@ class BLEService {
     func set(_ poshik: UploadablePoshik & NamedObject) -> Observable<Void> {
         return  sendCommand(.openImage(poshik.name))
             .flatMap { [unowned self] result, service -> Observable<Void> in
+                print("Opening result: \(result)")
                 switch result {
                 case .opened:
                     return service.service.peripheral.cancelConnection().map{ _ in }
@@ -277,16 +279,20 @@ class BLEService {
     func upload(_ poshik: UploadablePoshik & NamedObject, with service: KulonService) -> Observable<Void> {
         
         let file = poshik.imageForUpload
+        var counter = 0
         return sendCommand(.createImage(poshik.name), to: service)
             .flatMap { result, service -> Observable<Characteristic> in
                     file.asObservable().flatMap { file -> Observable<NSData> in
                         let chunkedFile = (file.data as NSData).chunked(of: 20)
-                        print(chunkedFile.count)
+                        print("file chunkscount: \(chunkedFile.count)")
                         return Observable.from(chunkedFile)
                     }
                     .flatMap {
                         return service.upload.writeValue(Data(referencing: $0) , type: .withResponse)
-                    }
+                    }  
+                    .do(onNext: { _ in
+                        print("chank loaded: \(counter)")
+                    })
                     .takeLast(1)
             }
             .flatMap { [unowned self] _ in

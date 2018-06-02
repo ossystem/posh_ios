@@ -94,6 +94,25 @@ class ObservableImageFromJSON: ObservableImage, ImmutableMappable, ObservableTyp
     }
 }
 
+class ArtworkFile: ResponseType {
+    var format: String = ""
+    var data: Data
+    
+    required init(map: Map) throws {
+        data = try (map.value("file") as String).data(using: .utf8)!
+    }
+}
+class ArtworkData: Uploadable, ResponseType{
+    var data: Data {
+        return files.first!.data
+    }
+    var files: [ArtworkFile]
+    
+    required init(map: Map) throws {
+        files = try map.value("files")
+    }
+}
+
 class UploadableImage : ObservableUploadable, ObservableType {
     
     let disposeBag = DisposeBag()
@@ -102,10 +121,16 @@ class UploadableImage : ObservableUploadable, ObservableType {
     typealias E = Uploadable
     func subscribe<O:ObserverType>(_ observer: O) -> Disposable where O.E == E {
         return Observable.create { [unowned self] observer  in
-            Alamofire.request(self.request).responseData(completionHandler: { data in
-                observer.on(.next(UploadableFromData(data: data.data!)))
-                observer.on(.completed)
-            })
+            Alamofire.request(self.request)
+                .responseObject(keyPath: "data", completionHandler: { (response: DataResponse<ArtworkData>) in
+                    switch response.result {
+                    case let .success(value):
+                        observer.onNext(value)
+                        observer.onCompleted()
+                    case let .failure(error):
+                        observer.onError(error)
+                    }
+                })
             return Disposables.create()
             }.subscribe(observer)
         
@@ -123,7 +148,7 @@ class UploadableImage : ObservableUploadable, ObservableType {
     
     init(artworkInfo: ArtworkInfo) {
         
-        request = try! URLRequest(url: "artworks/owned/\(artworkInfo.id)/download?device_id=\(artworkInfo.formats.first?.id ?? "")",
+        request = try! URLRequest(url: "https://posh.jwma.ru/api/v1/artworks/owned/\(artworkInfo.id)/download?device_id=\(artworkInfo.formats.first?.id ?? "")",
                                   method: .get,
                                   headers: ["Authorization": "Bearer \(TokenService().token!)"])
     }

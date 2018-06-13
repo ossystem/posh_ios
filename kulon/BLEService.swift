@@ -282,16 +282,22 @@ class BLEService {
         var counter = 0
         return sendCommand(.createImage(poshik.name), to: service)
             .flatMap { result, service -> Observable<Characteristic> in
+                
                     file.asObservable().flatMap { file -> Observable<NSData> in
-                        let chunkedFile = (file.data as NSData).chunked(of: 20)
+                        let chunkedFile = (file.data as NSData).chunked(of: 16)
                         print("file chunkscount: \(chunkedFile.count)")
-                        return Observable.from(chunkedFile)
+                        return Observable.zip(
+                            Observable.from(chunkedFile),
+                            Observable<Int>.interval(0.02, scheduler: MainScheduler.instance).map{ _ in () }
+                        ) { $0.0 }
                     }
-                    .flatMap {
-                        return service.upload.writeValue(Data(referencing: $0) , type: .withResponse)
-                    }  
+                    .flatMap { chunk in
+                        return service.upload.writeValue(Data(referencing: chunk) , type: .withResponse)
+                    }
+                    
                     .do(onNext: { _ in
                         print("chank loaded: \(counter)")
+                        counter +=  1
                     })
                     .takeLast(1)
             }

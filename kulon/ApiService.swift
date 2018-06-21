@@ -66,7 +66,8 @@ extension ApiService {
 
     
     var baseRoute: String {
-        return "https://posh.jwma.ru/api/v1/"
+        return "https://art.posh.space/api/v1/"
+//        return "https://posh.jwma.ru/api/v1/"
     }
     var headers: [String : String] {
         var headers = ["Accept":"application/json"]

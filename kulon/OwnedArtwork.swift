@@ -104,7 +104,7 @@ class OwnedArtworkFromArtwork: OwnedArtwork, UploadablePoshik {
     
     init(artwork: Artwork) {
         self.origin = artwork
-        self.name = artwork.name
+        self.name = "\(artwork.name).mjpeg"
         self.id = artwork.id
     }
 }

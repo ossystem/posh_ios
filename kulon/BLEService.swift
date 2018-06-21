@@ -60,7 +60,9 @@ class KulonService {
     var notificationValueUpldated: Observable<Characteristic> {
         return notifications.setNotificationAndMonitorUpdates()
             .catchError {_ in Observable.empty() }
-            .debug()
+            .do(onNext: {
+                print("BLEService: recieved \(String(describing: FileOperationResult($0.value)))")
+            })
     }
     
     init(_ characteristics: [Characteristic]) throws {
@@ -225,6 +227,7 @@ class BLEService {
     
     private func sendCommand(_ command: BLEControlCommand, to service: KulonService? = nil) -> Observable<(FileOperationResult, KulonService)> {
         //todo: use connect
+        print("BLEService: Attempting to send comand: \(command)")
         if service != nil && service!.service.peripheral.isConnected {
             return  Observable.combineLatest(
                 service!.notificationValueUpldated,

@@ -39,6 +39,8 @@
 	<dict>
 		<key>NSExceptionDomains</key>
 		<dict>
+			<key>art.posh.space</key>
+			<string></string>
 			<key>kulon.jwma.ru</key>
 			<dict>
 				<key>NSExceptionAllowsInsecureHTTPLoads</key>

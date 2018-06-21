@@ -32,7 +32,7 @@ extension Poshik {
     }
     
     func requestforImage(withSize size: ImageSize) -> URLRequest? {
-        let url = URL(string: "http://kulon.jwma.ru/api/v1/\(imageRoute)/\(id)/img?size=\(size.rawValue)")
+        let url = URL(string: "http://art.posh.space/api/v1/\(imageRoute)/\(id)/img?size=\(size.rawValue)")
         
         return try? URLRequest(url: url!, method: .get, headers: ["Authorization": "Bearer \(TokenService().token!)"])
         

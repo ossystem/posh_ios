@@ -103,8 +103,9 @@ class OwnedArtworkFromArtwork: OwnedArtwork, UploadablePoshik {
     private var origin: Artwork
     
     init(artwork: Artwork) {
+        let format = artwork.image.mime == "image/gif" ? "mjpeg" : "jpeg"
         self.origin = artwork
-        self.name = "\(artwork.name).mjpeg"
+        self.name = "\(artwork.name).\(format)"
         self.id = artwork.id
     }
 }

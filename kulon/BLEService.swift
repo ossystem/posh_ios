@@ -165,7 +165,7 @@ class BluetoothPoweredOffError : LocalizedError {
 
 extension BluetoothError: LocalizedError {
     public var errorDescription: String? {
-        return localizedDescription
+        return self.description
     }
 }
 

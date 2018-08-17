@@ -11,6 +11,10 @@ import RxSwift
 import Alamofire
 import ObjectMapper
 
+import WatchKit
+import WatchConnectivity
+import UserNotifications
+
 protocol OwnedArtwork: Artwork, Purchasable, Selectable {
     func setToDevice() -> Observable<Void> //FIXME: TEMP
 }
@@ -58,7 +62,11 @@ class FakeOwnedArtworks : OwnedArtworks {
     }
 }
 
-class OwnedArtworkFromArtwork: OwnedArtwork, UploadablePoshik {
+enum MyError: Error {
+    case BadImage
+}
+
+class OwnedArtworkFromArtwork: NSObject, OwnedArtwork, UploadablePoshik, WCSessionDelegate {
     var isLiked: Bool {
         return origin.isLiked
     }
@@ -80,8 +88,105 @@ class OwnedArtworkFromArtwork: OwnedArtwork, UploadablePoshik {
     
     var bleService = BLEService.shared
     
+    var wcSession: WCSession!
+    
+    let bag = DisposeBag()
+    let wcResult = Variable<Int>(0)
+    var wcError : Error?
+    var wcFileUrl : URL?
+    let wcResultO : Observable<Int>
+    
     func setToDevice() -> Observable<Void> {
-        return bleService.set(self)
+        if (self.canPutOnWatch(wcSession: wcSession)) {
+            
+            self.wcResult.value = 0
+            self.wcError = nil;
+            self.wcFileUrl = nil;
+            
+            let pr = self.getFileUrl(self)
+                .flatMap { (fileUrl: URL) -> Observable<Int> in
+                    self.wcFileUrl = fileUrl
+                    self.wcSession.transferFile(fileUrl, metadata: ["fileMetadata": "123"])
+                    return self.wcResultO
+                }
+                .skipWhile({ (res: Int) -> Bool in
+                    return res == 0;
+                })
+                .flatMap { (res: Int) -> Observable<Void> in
+                    if (res == 1) {
+                        return Observable.just()
+                    } else if (res == -1) {
+                        return Observable.error(self.wcError!)
+                    } else {
+                        return Observable.empty()
+                    }
+                }
+            
+                return pr
+        } else {
+            return bleService.set(self)
+        }
+    }
+    
+    func getFileUrl(_ poshik: UploadablePoshik & NamedObject) -> Observable<URL> {
+        
+        let file = poshik.imageForUpload
+        let infoO = self.origin.info
+        
+        //this doesn't work for animated files :(
+        /*
+        return file.asObservable().flatMap { file -> Observable<URL> in
+            let imageData: NSData
+            imageData = file.data as NSData;
+            if imageData.length < 2000 {
+                return Observable.error(MyError.BadImage)
+            }
+            let directory = NSTemporaryDirectory()
+            let fileName = poshik.name //NSUUID().uuidString
+            let fullURL = NSURL.fileURL(withPathComponents: [directory, fileName])
+            do {
+                try imageData.write(to: fullURL!)
+            } catch {
+                return Observable.error(error)
+            }
+            return Observable.from(optional: fullURL)
+        }
+        */
+        
+        return infoO.flatMap { info -> Observable<URL> in
+            let imageDownloadUrl = URL(string: info.image.link)
+            var imageData: Data?;
+            var err : Error?;
+            
+            do {
+                //TODO: background fetch
+                imageData = try Data(contentsOf: imageDownloadUrl!)
+            } catch {
+                err = error
+            }
+            if (err != nil) {
+                return Observable.error(err!)
+            }
+            if imageData == nil || (imageData?.count)! < 3000 {
+                return Observable.error(MyError.BadImage)
+            }
+            
+            let directory = NSTemporaryDirectory()
+            let fileName = poshik.name //NSUUID().uuidString
+            let fullURL = NSURL.fileURL(withPathComponents: [directory, fileName])
+            
+            do {
+                try imageData?.write(to: fullURL!)
+            } catch {
+                err = error
+            }
+            if (err != nil) {
+                return Observable.error(err!)
+            }
+            
+            return Observable.from(optional: fullURL)
+        }
+ 
     }
     
     var info: Observable<ArtworkInfo> {
@@ -107,7 +212,62 @@ class OwnedArtworkFromArtwork: OwnedArtwork, UploadablePoshik {
         self.origin = artwork
         self.name = "\(artwork.name).\(format)"
         self.id = artwork.id
+        
+        self.wcResultO = self.wcResult.asObservable()
+        self.wcError = nil
+        self.wcFileUrl = nil
+        
+        super.init()
+        
+        if WCSession.isSupported() {
+            wcSession = WCSession.default()
+            wcSession.delegate = self
+            wcSession.activate()
+        }
+    
     }
+    
+
+    func canPutOnWatch(wcSession: WCSession) -> Bool {
+        //return true;
+        return WCSession.isSupported() && wcSession.isPaired && wcSession.isWatchAppInstalled;
+    }
+    
+
+    // MARK: WCSessionDelegate
+    
+    func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
+        if error != nil {
+            print("[!] WC session activation error: \(error?.localizedDescription ?? "-")")
+        } else {
+            print("[i] WC session activated \(activationState)")
+        }
+    }
+    
+    func sessionDidBecomeInactive(_ session: WCSession) {
+        print("[i] WC session did become inactive")
+    }
+    
+    func sessionDidDeactivate(_ session: WCSession) {
+        print("[i] WC session did deactivate")
+    }
+    
+    func session(_ session: WCSession, didFinish fileTransfer: WCSessionFileTransfer, error: Error?) {
+        if (self.wcFileUrl != fileTransfer.file.fileURL) {
+            print("[?] WC file transfer not our callback   \(error?.localizedDescription ?? "-")")
+            return
+        }
+        
+        if error != nil {
+            print("[!] WC session file transfer error: \(error?.localizedDescription ?? "-")")
+            self.wcError = error
+            self.wcResult.value = -1
+        } else {
+            print("[i] WC finished file transfer")
+            self.wcResult.value = 1
+        }
+    }
+    
 }
 
 class OwnedArtworksFromAPI: OwnedArtworks {

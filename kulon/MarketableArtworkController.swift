@@ -10,7 +10,10 @@ import SnapKit
 import FLAnimatedImage
 import SDWebImage
 
-class MarketableArtworkController: UIViewController, UIGestureRecognizerDelegate {
+import WatchKit
+import WatchConnectivity
+
+class MarketableArtworkController: BaseViewController, UIGestureRecognizerDelegate {
 
     private var artwork: MarketableArtwork
     private var infoView: ArtworkInfoView
@@ -33,6 +36,8 @@ class MarketableArtworkController: UIViewController, UIGestureRecognizerDelegate
         self.artwork = marketableArtwork
         self.infoView = ArtworkInfoView(artwork: marketableArtwork)
         super.init(nibName: nil, bundle: nil)
+        
+        self.infoView.showErrorMessage = self.showErrorMessage(_:)
         let topBG = TopBarBackgroundView()
         topBG.backgroundColor = .clear
         view.addSubviews([infoView, topBG, topButton])
@@ -90,6 +95,7 @@ class MarketableArtworkController: UIViewController, UIGestureRecognizerDelegate
         infoView.wantToShowArtist.subscribe(onNext: {
             (self.tabBarController as? TabBarController)?.showArtist($0)
         }).disposed(by: disposeBag)
+        
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -116,11 +122,11 @@ class MarketableArtworkController: UIViewController, UIGestureRecognizerDelegate
 }
 
 
-class OwnedArtworkController: UIViewController {
+class OwnedArtworkController: BaseViewController {
 
     private var artwork: OwnedArtwork
     private var infoView: ArtworkInfoView
-
+    
     private var disposeBag = DisposeBag()
 
     private var topButton = RoundedButton()
@@ -135,6 +141,8 @@ class OwnedArtworkController: UIViewController {
         self.artwork = ownedArtwork
         self.infoView = ArtworkInfoView(artwork: ownedArtwork)
         super.init(nibName: nil, bundle: nil)
+        
+        self.infoView.showErrorMessage = self.showErrorMessage(_:)
         let topBG = TopBarBackgroundView()
         topBG.backgroundColor = .clear
         view.addSubviews([infoView, topBG, topButton])
@@ -175,11 +183,11 @@ class OwnedArtworkController: UIViewController {
         super.viewWillAppear(animated)
         navigationController?.isNavigationBarHidden = true
     }
-
+    
 }
 
-class ArtworkInfoView: UIView {
-
+class ArtworkInfoView: UIView, WCSessionDelegate {
+    
     private var artworkImage = FLAnimatedImageView()
         .with(roundedEdges: 272/2)
         .with(contentMode: .scaleAspectFill)
@@ -209,7 +217,7 @@ class ArtworkInfoView: UIView {
         .with(image: #imageLiteral(resourceName: "icon_like_1"))
         .with(roundedEdges: 16)
     
-    private var downloadButton = StandardButton()
+    public var downloadButton = StandardButton()
         .with(title: "Put on")
         .with(titleColor: .black)
         .with(backgroundColor: UIColor.Kulon.lightOrange)
@@ -219,6 +227,8 @@ class ArtworkInfoView: UIView {
     private var request: URLRequest?
     private var artwork: Artwork & Purchasable
     private var bleService = BLEService()
+    
+    public var showErrorMessage: ((_ error: String) -> Void)?
     
     var wantsToAqcuire: Observable<Void> {
         return buyButton.rx.tap.asObservable()
@@ -240,10 +250,16 @@ class ArtworkInfoView: UIView {
         artworkImage.layer.cornerRadius = artworkImage.frame.width/2
     }
     
+    
     init(artwork: Artwork & Purchasable) {
         self.artwork = artwork
+        self.showErrorMessage = nil
 
         super.init(frame: .zero)
+        
+        //to give it time to init before putting on
+        WCSession.default().delegate = self
+        WCSession.default().activate()
         
         let underline = UIView().with(backgroundColor: .black)
         [artistImage, artworkImage, artistName, artworkName, price, buyButton, likeButton, downloadButton, underline]
@@ -337,22 +353,37 @@ class ArtworkInfoView: UIView {
                 })
                 .flatMap {
                     OwnedArtworkFromArtwork(artwork: artwork).setToDevice()
-                }.do(onNext: {
-                    self.downloadButton.setWaiting(false)
+                }.do(onNext: { (res) in
+                    DispatchQueue.main.async {
+                        self.downloadButton.setWaiting(false)
+                    }
                 })
             ,
                     recoveringOn: recoverSubject,
                     reportingErrorsTo: errorSubject
             )
             .debug()
-            .subscribe(onNext: { [unowned self] in
-                self.downloadButton.setWaiting(false)
-                }, onError: { [unowned self] _ in
-                    self.downloadButton.setWaiting(false)
+            .subscribe(onNext: { [unowned self] (res) in
+                    DispatchQueue.main.async {
+                        self.downloadButton.setWaiting(false)
+                    }
+                }, onError: { [unowned self] (error) in
+                    DispatchQueue.main.async {
+                        self.downloadButton.setWaiting(false)
+                    }
             })
             .disposed(by: disposeBag)
-        errorSubject.subscribe(onNext: { [unowned self] _ in
-            self.downloadButton.setWaiting(false)
+        
+        errorSubject.subscribe(onNext: { [unowned self] (error) in
+            DispatchQueue.main.async {
+                //TODO: Why second click on PutOn btn doesn't work?
+                let errStr = error.localizedDescription;
+                print("! ", errStr)
+                self.downloadButton.setWaiting(false)
+                if (self.showErrorMessage != nil) {
+                    self.showErrorMessage!(errStr)
+                }
+            }
         }).disposed(by: disposeBag)
         
         downloadButton.rx.tap.asObservable()
@@ -394,6 +425,25 @@ class ArtworkInfoView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+
+    // MARK: WCSessionDelegate
+    
+    func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
+        if error != nil {
+            print("[!] WC session activation error: \(error?.localizedDescription ?? "-")")
+        } else {
+            print("[i] WC session activated \(activationState)")
+        }
+    }
+    
+    func sessionDidBecomeInactive(_ session: WCSession) {
+        print("[i] WC session did become inactive")
+    }
+    
+    func sessionDidDeactivate(_ session: WCSession) {
+        print("[i] WC session did deactivate")
+    }
+
 
 }
 

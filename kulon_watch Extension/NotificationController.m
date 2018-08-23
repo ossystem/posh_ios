@@ -7,6 +7,7 @@
 //
 
 #import "NotificationController.h"
+#import "UIImage+animatedGIF.h"
 
 
 @interface NotificationController ()
@@ -46,7 +47,9 @@
     if (notification.request.content.attachments.count > 0) {
         UNNotificationAttachment* att = [notification.request.content.attachments objectAtIndex:0];
         NSData* data = [NSData dataWithContentsOfURL:att.URL];
+        NSLog(@"(from ntf) data len = %u", data.length);
         image = [UIImage imageWithData:data scale:1.0];
+        NSLog(@"image created %u", image.images.count);
     }
     [self.imageView setImage:image];
     

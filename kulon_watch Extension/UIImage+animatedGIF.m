@@ -1,5 +1,6 @@
 #import "UIImage+animatedGIF.h"
 #import <ImageIO/ImageIO.h>
+#import <WatchKit/WatchKit.h>
 
 #if __has_feature(objc_arc)
 #define toCF (__bridge CFTypeRef)
@@ -115,5 +116,55 @@
 + (UIImage *)animatedImageWithAnimatedGIFURL:(NSURL *)url {
     return animatedImageWithAnimatedGIFReleasingImageSource(CGImageSourceCreateWithURL(toCF url, NULL));
 }
+
++ (UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)newSize {
+    //UIGraphicsBeginImageContext(newSize);
+    // In next line, pass 0.0 to use the current device's pixel scaling factor (and thus account for Retina resolution).
+    // Pass 1.0 to force exact pixel size.
+    UIGraphicsBeginImageContextWithOptions(newSize, NO, 1.0);
+    [image drawInRect:CGRectMake(0, 0, newSize.width, newSize.height)];
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return newImage;
+}
+
+- (UIImage*) fixedAnimatedImage {
+    NSUInteger maxFramesCnt = 201;
+    CGSize screenSize = [WKInterfaceDevice currentDevice].screenBounds.size;
+    screenSize.width *= [WKInterfaceDevice currentDevice].screenScale;
+    screenSize.height *= [WKInterfaceDevice currentDevice].screenScale;
+    CGSize maxSize = screenSize;
+    
+    NSUInteger framesCnt = self.images.count;
+    UIImage* firstFrame = [self.images firstObject];
+    CGSize size = firstFrame.size;
+    BOOL isFramesCntOk = framesCnt <= maxFramesCnt;
+    BOOL isSizeOk = size.width <= maxSize.width && size.height <= maxSize.height;
+    if (isFramesCntOk && isSizeOk)
+        return self;
+    
+    NSTimeInterval duration = self.duration;
+    NSArray<UIImage*>* frames = self.images;
+    NSUInteger newFramesCnt = isFramesCntOk ? framesCnt : maxFramesCnt;
+    CGFloat sizeRatio = isSizeOk ? 1.0 : MAX(size.width / maxSize.width, size.height / maxSize.height);
+    CGSize newSize = isSizeOk ? size : CGSizeMake(MIN(maxSize.width, size.width / sizeRatio), MIN(maxSize.height, size.height / sizeRatio));
+    NSMutableArray<UIImage*>* fixedFrames = [NSMutableArray arrayWithCapacity:newFramesCnt];
+    NSUInteger ff = 0;
+    CGFloat fratio = 1.0 * framesCnt / newFramesCnt;
+    for (NSUInteger f = 0 ; f < framesCnt ; f++) {
+        CGFloat factor = 1.0 * (f + 1) / fratio;
+        bool take = isFramesCntOk || f == 0 || ((int)factor >= ff && (int)factor < newFramesCnt);
+        if (take) {
+            UIImage* frame = [frames objectAtIndex:f];
+            UIImage* fixedFrame = isSizeOk ? frame : [UIImage imageWithImage:frame scaledToSize:newSize];
+            [fixedFrames addObject:fixedFrame];
+            ff++;
+        }
+    }
+    UIImage* newImage = [UIImage animatedImageWithImages:fixedFrames duration:duration];
+    return newImage;
+}
+
+
     
     @end

@@ -19,6 +19,8 @@
 - (void)awakeWithContext:(id)context {
     [super awakeWithContext:context];
     
+    [self.firstLabel setHidden:NO];
+    
     //activate session
     if ([WCSession isSupported]) {
         WCSession* session = [WCSession defaultSession];
@@ -49,7 +51,22 @@
     //get last img url
     NSString* lastUrlStr = [[NSUserDefaults standardUserDefaults] objectForKey:@"putOnUrl"];
     if (lastUrlStr != nil) {
-        [self.imageView setImageData:[NSData dataWithContentsOfURL:[NSURL URLWithString:lastUrlStr]]];
+        NSData* data = [NSData dataWithContentsOfURL:[NSURL URLWithString:lastUrlStr]];
+        NSLog(@"(last) data len = %u (%@)", data.length, lastUrlStr);
+        if (data.length > 0) {
+            [self.waitLabel setHidden:NO];
+            UIImage* oimage = [UIImage animatedImageWithAnimatedGIFData:data];
+            NSLog(@"image created - %u frames, duration %.2f, size %.0f %.0f %.1f", oimage.images.count, oimage.duration, [oimage.images objectAtIndex:0].size.width, [oimage.images objectAtIndex:0].size.height, [oimage.images objectAtIndex:0].scale);
+            UIImage* image = [oimage fixedAnimatedImage];
+            NSLog(@"image fixed - %u frames, duration %.2f, size %.0f %.0f %.1f", image.images.count, image.duration, [image.images objectAtIndex:0].size.width, [image.images objectAtIndex:0].size.height, [image.images objectAtIndex:0].scale);
+            [self.imageView setImage: image];
+            [self.waitLabel setHidden:YES];
+            [self.firstLabel setHidden:YES];
+            BOOL isAnimated = image.images && image.images.count > 1;
+            if (isAnimated) {
+                [self.imageView startAnimating];
+            }
+        }
     }
     
     // Configure interface objects here.
@@ -101,11 +118,20 @@
     //set image to image view
     //UIImage* image = [UIImage imageWithData:[NSData dataWithContentsOfURL:copyUrl]];
     [self.imageView stopAnimating];
-    UIImage* image = [UIImage animatedImageWithAnimatedGIFData:[NSData dataWithContentsOfURL:copyUrl]];
+    [self.waitLabel setHidden:NO];
+    NSData* data = [NSData dataWithContentsOfURL:copyUrl];
+    NSLog(@"(from session) data len = %u", data.length);
+    UIImage* oimage = [UIImage animatedImageWithAnimatedGIFData:data];
+    NSLog(@"image created - %u frames, duration %.2f, size %.0f %.0f %.1f", oimage.images.count, oimage.duration, [oimage.images objectAtIndex:0].size.width, [oimage.images objectAtIndex:0].size.height, [oimage.images objectAtIndex:0].scale);
+    UIImage* image = [oimage fixedAnimatedImage];
+    NSLog(@"image fixed - %u frames, duration %.2f, size %.0f %.0f %.1f", image.images.count, image.duration, [image.images objectAtIndex:0].size.width, [image.images objectAtIndex:0].size.height, [image.images objectAtIndex:0].scale);
     BOOL isAnimated = image.images && image.images.count > 1;
     [self.imageView setImage:image];
-    if (isAnimated)
+    if (isAnimated) {
         [self.imageView startAnimating];
+    }
+    [self.waitLabel setHidden:YES];
+    [self.firstLabel setHidden:YES];
     
     //save for next app run
     [[NSUserDefaults standardUserDefaults] setObject:[copyUrl absoluteString] forKey:@"putOnUrl"];

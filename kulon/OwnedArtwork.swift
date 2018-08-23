@@ -127,6 +127,21 @@ class OwnedArtworkFromArtwork: NSObject, OwnedArtwork, UploadablePoshik, WCSessi
             return bleService.set(self)
         }
     }
+
+    //TODO: background fetch
+    /*
+        return Observable.create({  observer in
+            
+            DispatchQueue.global().async {
+                if let image = gif(data: data) {
+                    observer.onNext(image)
+                } else {
+                    observer.onError(ImageErorr())
+                }
+            }
+            return Disposables.create()
+        })
+   */
     
     func getFileUrl(_ poshik: UploadablePoshik & NamedObject) -> Observable<URL> {
         

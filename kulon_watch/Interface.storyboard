@@ -14,14 +14,18 @@
             <objects>
                 <controller contentMode="scaleAspectFill" id="AgC-eL-Hgc" customClass="InterfaceController">
                     <items>
+                        <label width="136" alignment="left" hidden="YES" text="POSH" textAlignment="center" id="I3r-iM-mpX"/>
+                        <label width="136" alignment="left" hidden="YES" text="Please, wait..." textAlignment="center" id="zqV-7u-FKR"/>
                         <imageView width="1" height="1" alignment="center" verticalAlignment="center" contentMode="scaleAspectFill" id="GYq-tY-nXW"/>
                     </items>
                     <connections>
+                        <outlet property="firstLabel" destination="I3r-iM-mpX" id="pdE-7a-PDh"/>
                         <outlet property="imageView" destination="GYq-tY-nXW" id="iWM-Ov-D43"/>
+                        <outlet property="waitLabel" destination="zqV-7u-FKR" id="sLP-Xh-Z6W"/>
                     </connections>
                 </controller>
             </objects>
-            <point key="canvasLocation" x="220" y="345"/>
+            <point key="canvasLocation" x="220" y="344.5"/>
         </scene>
         <!--Static Notification Interface Controller-->
         <scene sceneID="AEw-b0-oYE">

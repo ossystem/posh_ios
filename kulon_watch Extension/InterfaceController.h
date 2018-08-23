@@ -21,6 +21,8 @@
 
 
 @property (nonatomic, weak) IBOutlet WKInterfaceImage *imageView;
+@property (nonatomic, weak) IBOutlet WKInterfaceLabel* waitLabel;
+@property (nonatomic, weak) IBOutlet WKInterfaceLabel* firstLabel;
 @property (nonatomic, strong) WCSession* wcSession;
 
 @end
